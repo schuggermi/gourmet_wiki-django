@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {{ block.super }}
+    - Create a new recipe
+{% endblock %}
+
+{% block head %}
+    {{ wizard.form.media }}
+{% endblock %}
+
+{% block main_content %}
+    <p>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+
+    <form action="" method="post" id="wizard-form">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        <table>
+            <tbody id="ingredient-formset">
+            {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+                {% for form in wizard.form.forms %}
+                    {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
+                {% endfor %}
+            {% else %}
+                <tr>{{ wizard.form.as_table }}</tr>
+            {% endif %}
+            </tbody>
+        </table>
+
+        {% if wizard.steps.current == '1' %}
+            {{ wizard.form.total_form_count }}
+            <button type="button"
+                    hx-get="{% url 'add_ingredient_form' %}"
+                    hx-target="#ingredient-formset"
+                    hx-swap="beforeend"
+                    hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset tr').length}"
+                    hx-on="htmx:afterRequest:document.querySelector('#id_form-TOTAL_FORMS').value++;"
+                    id="add-ingredient">
+                Add Ingredient
+            </button>
+        {% endif %}
+
+        <div>
+            {% if wizard.steps.prev %}
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">
+                    {% translate "first step" %}
+                </button>
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">
+                    {% translate "prev step" %}
+                </button>
+            {% endif %}
+            <input
+                    type="submit"
+                    value="{% if wizard.steps.current == wizard.steps.last %}{% translate 'Create' %}{% else %}{% translate 'Next' %}{% endif %}">
+        </div>
+    </form>
+
+    <script>
+        function reindexFormset(formsetSelector, totalFormsSelector) {
+            console.log("Called it.")
+            const rows = document.querySelectorAll(`${formsetSelector} tr`);
+            const totalFormsInput = document.querySelector(totalFormsSelector);
+
+            rows.forEach((row, index) => {
+                row.id = `form-${index}`;
+
+                row.querySelectorAll('[name], [id], label[for]').forEach((el) => {
+                    ['name', 'id', 'for'].forEach((attr) => {
+                        if (el.hasAttribute(attr)) {
+                            el.setAttribute(attr,
+                                el.getAttribute(attr).replace(/form-\d+/g, `form-${index}`)
+                            );
+                        }
+                    });
+                });
+            });
+
+            if (totalFormsInput) {
+                totalFormsInput.value = rows.length;
+            }
+        }
+    </script>
+{% endblock %}

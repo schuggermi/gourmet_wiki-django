@@ -1,0 +1,12 @@
+<tr id="form-{{ form_index }}">
+    <td>
+        {{ form.as_p }}
+
+        <button type="button"
+                class="remove-ingredient"
+                onclick="this.closest('tr').remove(); reindexFormset('#ingredient-formset', '#id_form-TOTAL_FORMS');"
+        >
+            Remove
+        </button>
+    </td>
+</tr>

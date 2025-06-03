@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ block.super }}
+    - All Recipes
+{% endblock %}
+
+{% block main_content %}
+    {{ block.super }}
+ 
+    <div>
+        {% for recipe in object_list %}
+            <ul>
+                <li>Name: {{ recipe.name }}</li>
+                <li>Description: {{ recipe.description }}</li>
+                <li>Created by: {{ recipe.created_by }}</li>
+                <li>Total cost: {{ recipe.total_cost }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}
