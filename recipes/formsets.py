@@ -81,4 +81,5 @@ RecipeImageFormSet = modelformset_factory(
     formset=BaseRecipeImageFormSet,
     extra=1,
     can_delete=False,
+    exclude=['order']
 )

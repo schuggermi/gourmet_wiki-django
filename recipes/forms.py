@@ -60,7 +60,7 @@ class RecipeIngredientForm(forms.ModelForm):
 class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = RecipeImage
-        fields = ['image', 'caption', 'order']
+        fields = ['image', 'caption']
         widgets = {
             'image': forms.FileInput(attrs={
                 'class': 'file-input',
@@ -69,10 +69,5 @@ class RecipeImageForm(forms.ModelForm):
             'caption': forms.TextInput(attrs={
                 'class': 'input',
                 'placeholder': 'Enter image caption (optional)'
-            }),
-            'order': forms.NumberInput(attrs={
-                'class': 'input',
-                'min': '0',
-                'value': '0'
             }),
         }
