@@ -8,9 +8,9 @@
 {% block main_content %}
     {{ block.super }}
 
-    <div class="grid grid-cols-4 gap-3 justify-items-center w-fit mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 space-y-12 justify-items-center w-fit mx-auto">
         {% for recipe in object_list %}
-            <div class="card bg-base-100 w-96 shadow-sm">
+            <div class="card bg-base-100 max-w-96 shadow-sm">
                 <figure class="h-56">
                     <img src="{{ recipe.thumbnail_image.url }}" alt="{{ recipe.name }}">
                 </figure>

@@ -101,9 +101,6 @@ class CreateRecipeWizardView(SessionWizardView):
 
         ingredients_count = 0
         for form in ingredient_formset:
-            if not form.is_valid():
-                print("THIS IS NOT A VALID FORM")
-                return self.render_revalidation_failure(step='1', form=form)
             if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
                 recipe_ingredient = form.save(commit=False)
                 recipe_ingredient.recipe = recipe

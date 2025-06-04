@@ -28,6 +28,11 @@
                 {{ wizard.form.non_field_errors }}
             </div>
         {% endif %}
+        {% if wizard.form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ wizard.form.non_field_errors }}
+            </div>
+        {% endif %}
 
         {% if wizard.steps.current == '0' %}
             <fieldset class="fieldset">
@@ -39,22 +44,11 @@
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">{% translate 'Recipe Ingredients' %}</legend>
 
-                {% if wizard.form.non_form_errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.non_form_errors }}
-                    </div>
-                {% endif %}
-                {% if wizard.form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.non_field_errors }}
-                    </div>
-                {% endif %}
-
                 <div class="flex flex-col">
                     {{ wizard.form.management_form }}
                     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-                    <div id="ingredient-formset">
+                    <div id="ingredient-formset" class="flex flex-col gap-3">
                         {% for form in wizard.form.forms %}
                             {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
                         {% endfor %}
@@ -76,26 +70,15 @@
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">{% translate 'Recipe Images' %}</legend>
 
-                {% if wizard.form.non_form_errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.non_form_errors }}
-                    </div>
-                {% endif %}
-                {% if wizard.form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.non_field_errors }}
-                    </div>
-                {% endif %}
-
-                <div id="image-formset" class="flex flex-col">
+                <div class="flex flex-col">
                     {{ wizard.form.management_form }}
                     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-                    {% for form in wizard.form.forms %}
-                        <div class="w-full">
+                    <div id="image-formset" class="flex flex-col gap-3">
+                        {% for form in wizard.form.forms %}
                             {% include 'recipes/partials/image_form_row.html' with form=form form_index=forloop.counter0 %}
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
 
                 <button type="button"

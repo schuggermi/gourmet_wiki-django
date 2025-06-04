@@ -3,7 +3,7 @@
 <div id="recipe_image-{{ form_index }}" class="formset-form flex items-start gap-3">
     {% include "partials/form.html" with form=form %}
 
-    <p class="remove-image self-center cursor-pointer"
+    <p class="remove-image cursor-pointer self-start translate-y-6"
        title="{% translate 'Remove this Image' %}"
        onclick="this.closest('.formset-form').remove(); reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');"
     >

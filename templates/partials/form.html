@@ -1,24 +1,24 @@
 {% for field in form %}
-    <div class="flex flex-col">
-        <label for="{{ field.id_for_label }}" class="label">
-            {{ field.label }}
-            {% if field.field.required %}
-                <span>*</span>
+    {% if field.is_hidden == False %}
+        <div class="flex flex-col">
+            <label for="{{ field.id_for_label }}" class="label">
+                {{ field.label }}
+                {% if field.field.required %}
+                    <span>*</span>
+                {% endif %}
+            </label>
+
+            {{ field }}
+
+            {% if field.errors %}
+                <ul>
+                    {% for error in field.errors %}
+                        <li class="text-red-400"><p>{{ error }}</p></li>
+                    {% endfor %}
+                </ul>
+            {% elif field.help_text %}
+                <small class="label">{{ field.help_text }}</small>
             {% endif %}
-        </label>
-
-        {{ field }}
-
-        {% if field.help_text %}
-            <small class="label">{{ field.help_text }}</small>
-        {% endif %}
-
-        {% if field.errors %}
-            <ul class="list">
-                {% for error in field.errors %}
-                    <li class="list-row">{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 {% endfor %}

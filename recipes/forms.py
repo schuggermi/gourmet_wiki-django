@@ -25,8 +25,6 @@ class RecipeForm(forms.ModelForm):
 
 
 class RecipeIngredientForm(forms.ModelForm):
-    empty_permitted = False
-
     class Meta:
         model = RecipeIngredient
         fields = ['ingredient', 'quantity']
