@@ -2,32 +2,28 @@
 
 {% block title %}
     {{ block.super }}
-    - All Recipes
+    - Recipes
 {% endblock %}
 
 {% block main_content %}
     {{ block.super }}
 
-    <div class="flex flex-col gap-3">
+    <div class="grid grid-cols-4 gap-3 justify-items-center w-fit mx-auto">
         {% for recipe in object_list %}
-            <div class="flex gap-3">
-                <img src="{{ recipe.get_thumbnail_url }}" alt="{{ recipe.name }}" style="width: 150px; height: auto;">
-
-                <ul class="flex gap-3">
-                    {% for image in recipe.images.all %}
-                        <li>
-                            <img src="{{ image.image.url }}" alt="{{ image.caption }}"
-                                 style="width: 100px; height: auto;">
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                <ul>
-                    <li>Name: {{ recipe.name }}</li>
-                    <li>Description: {{ recipe.description }}</li>
-                    <li>Created by: {{ recipe.created_by }}</li>
-                    <li>Total cost: {{ recipe.total_cost }}</li>
-                </ul>
+            <div class="card bg-base-100 w-96 shadow-sm">
+                <figure class="h-56">
+                    <img src="{{ recipe.thumbnail_image.url }}" alt="{{ recipe.name }}">
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {{ recipe.name }}
+                        <div class="badge badge-neutral">{{ recipe.created_by }}</div>
+                    </h2>
+                    <p>{{ recipe.description }}</p>
+                    <div class="card-actions justify-end">
+                        <div class="badge badge-outline">{{ recipe.total_cost }} €</div>
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>

@@ -46,6 +46,16 @@ class RecipeIngredientForm(forms.ModelForm):
         if self.errors:
             return cleaned_data
 
+        # Check if both ingredient and quantity are provided
+        ingredient = cleaned_data.get('ingredient')
+        quantity = cleaned_data.get('quantity')
+
+        if not ingredient:
+            self.add_error('ingredient', 'This field is required.')
+
+        if not quantity:
+            self.add_error('quantity', 'This field is required.')
+
         return cleaned_data
 
 
