@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from formtools.wizard.views import SessionWizardView
 
-from recipes.forms import RecipeForm, RecipeIngredientForm
+from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage
 
@@ -101,6 +101,9 @@ class CreateRecipeWizardView(SessionWizardView):
 
         ingredients_count = 0
         for form in ingredient_formset:
+            if not form.is_valid():
+                print("THIS IS NOT A VALID FORM")
+                return self.render_revalidation_failure(step='1', form=form)
             if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
                 recipe_ingredient = form.save(commit=False)
                 recipe_ingredient.recipe = recipe
@@ -127,7 +130,7 @@ class CreateRecipeWizardView(SessionWizardView):
                 images_count += 1
 
         messages.success(
-            self.request, 
+            self.request,
             f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients and {images_count} images!'
         )
         return redirect(reverse('recipe-list'))

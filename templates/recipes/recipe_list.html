@@ -13,9 +13,10 @@
             <div class="flex gap-3">
                 <img src="{{ recipe.get_thumbnail_url }}" alt="{{ recipe.name }}" style="width: 150px; height: auto;">
 
-                <ul>
+                <ul class="flex gap-3">
                     {% for image in recipe.images.all %}
-                        <li><img src="{{ image.image.url }}" alt="{{ image.caption }}"
+                        <li>
+                            <img src="{{ image.image.url }}" alt="{{ image.caption }}"
                                  style="width: 100px; height: auto;">
                         </li>
                     {% endfor %}

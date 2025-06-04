@@ -6,6 +6,8 @@ from recipes.models import RecipeIngredient, RecipeImage
 
 class BaseRecipeIngredientFormSet(BaseModelFormSet):
     def clean(self):
+        super().clean()
+
         if any(self.errors):
             return
 
@@ -17,7 +19,7 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
                 ingredient = form.cleaned_data.get('ingredient')
                 if ingredient in ingredients:
-                    form.add_error('ingredient', 'This ingredient has already been added to this recipe.')
+                    form.add_error('ingredient', 'Duplicated ingredient')
                 if ingredient:
                     ingredients.add(ingredient)
 
