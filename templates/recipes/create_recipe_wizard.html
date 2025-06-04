@@ -25,52 +25,60 @@
         {% endif %}
 
         {% if wizard.steps.current == '0' %}
-            <h2>Recipe Details</h2>
-            <div>
-                {{ wizard.form.as_p }}
-            </div>
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">{% translate 'Recipe Details' %}</legend>
+
+                {% include "partials/form.html" with form=wizard.form %}
+            </fieldset>
         {% elif wizard.steps.current == '1' %}
-            <h2>Recipe Ingredients</h2>
-            {% if wizard.form.non_form_errors %}
-                <div class="alert alert-danger">
-                    {{ wizard.form.non_form_errors }}
-                </div>
-            {% endif %}
-            {% if wizard.form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {{ wizard.form.non_field_errors }}
-                </div>
-            {% endif %}
-            <div id="ingredient-formset">
-                {{ wizard.form.management_form }}
-                <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">{% translate 'Recipe Ingredients' %}</legend>
 
-                {% for form in wizard.form.forms %}
-                    {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
-                {% endfor %}
-            </div>
+                {% if wizard.form.non_form_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_form_errors }}
+                    </div>
+                {% endif %}
+                {% if wizard.form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_field_errors }}
+                    </div>
+                {% endif %}
 
-            <button type="button"
-                    hx-get="{% url 'add_ingredient_form' %}"
-                    hx-target="#ingredient-formset"
-                    hx-swap="beforeend"
-                    hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
-                    hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
-                    id="add-ingredient">
-                Add Ingredient
-            </button>
+                <div id="ingredient-formset" class="flex flex-col">
+                    {{ wizard.form.management_form }}
+                    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+                    {% for form in wizard.form.forms %}
+                        <div class="w-full">
+                            {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <button type="button"
+                        class="btn"
+                        hx-get="{% url 'add_ingredient_form' %}"
+                        hx-target="#ingredient-formset"
+                        hx-swap="beforeend"
+                        hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
+                        hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
+                        id="add-ingredient">
+                    Add Ingredient
+                </button>
+            </fieldset>
         {% endif %}
 
         <div class="form-navigation mt-4">
             {% if wizard.steps.prev %}
-                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-secondary">
-                    {% translate "First Step" %}
-                </button>
-                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-secondary">
-                    {% translate "Previous" %}
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+                    </svg>
                 </button>
             {% endif %}
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn">
                 {% if wizard.steps.current == wizard.steps.last %}
                     {% translate 'Create Recipe' %}
                 {% else %}
@@ -106,7 +114,7 @@
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             if (document.querySelector('#ingredient-formset')) {
                 reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');
             }

@@ -1,6 +1,10 @@
+from pathlib import Path
+
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
 from django.forms.models import modelformset_factory
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -41,6 +45,7 @@ class CreateRecipeWizardView(SessionWizardView):
         ('1', RecipeIngredientFormSet),
     ]
     template_name = 'recipes/create_recipe_wizard.html'
+    file_storage = FileSystemStorage(location=Path(settings.MEDIA_ROOT).joinpath('recipes/images/temp'))
 
     def get_form(self, step=None, data=None, files=None):
         if step is None:

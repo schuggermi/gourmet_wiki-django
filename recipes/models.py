@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -15,10 +16,21 @@ class Recipe(models.Model):
         on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    thumbnail_image = models.ImageField(
+        upload_to='recipes/images/',
+        null=True,
+        blank=True,
+        default='recipes/images/placeholder.jpg'
+    )
 
     @property
     def total_cost(self):
         return calculate_recipe_cost(self)
+
+    def get_thumbnail_url(self):
+        if self.thumbnail_image and hasattr(self.thumbnail_image, 'url'):
+            return self.thumbnail_image.url
+        return settings.MEDIA_URL + 'recipes/images/placeholder.jpg'
 
     def __str__(self):
         return self.name
@@ -45,3 +57,27 @@ class RecipeIngredient(models.Model):
 
     def __str__(self):
         return f"{self.quantity} {self.ingredient.unit} {self.ingredient.name} for {self.recipe.name}"
+
+
+class RecipeImage(models.Model):
+    recipe = models.ForeignKey(
+        Recipe,
+        related_name='images',
+        on_delete=models.CASCADE
+    )
+    image = models.ImageField(
+        upload_to='recipes/images/'
+    )
+    caption = models.CharField(
+        max_length=200,
+        blank=True
+    )
+    order = models.PositiveIntegerField(
+        default=0
+    )
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f"Image for {self.recipe.name} - {self.caption}"

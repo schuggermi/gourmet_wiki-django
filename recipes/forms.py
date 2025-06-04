@@ -7,13 +7,32 @@ from recipes.models import Recipe, RecipeIngredient
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['name', 'description']
+        fields = ['name', 'description', 'thumbnail_image']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'input',
+                'placeholder': 'Enter recipe name'
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'textarea',
+                'rows': 4
+            }),
+        }
 
 
 class RecipeIngredientForm(forms.ModelForm):
     class Meta:
         model = RecipeIngredient
         fields = ['ingredient', 'quantity']
+        widgets = {
+            'ingredient': forms.Select(attrs={
+                'class': 'select',
+                'placeholder': 'Enter recipe name'
+            }),
+            'quantity': forms.TextInput(attrs={
+                'class': 'input',
+            }),
+        }
 
     # def clean(self):
     #     cleaned_data = super().clean()

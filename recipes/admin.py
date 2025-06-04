@@ -12,7 +12,7 @@ class RecipeIngredientInline(admin.TabularInline):
 class RecipeAdmin(admin.ModelAdmin):
     readonly_fields = ['get_total_cost', 'created_at']
     list_display = ['name', 'get_total_cost', 'created_by', 'created_at']
-    fields = ['name', 'description', 'created_by', 'created_at', 'get_total_cost']
+    fields = ['name', 'description', 'thumbnail_image', 'created_by', 'created_at', 'get_total_cost']
     inlines = [RecipeIngredientInline]
 
     def get_total_cost(self, obj):

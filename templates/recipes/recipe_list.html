@@ -7,9 +7,11 @@
 
 {% block main_content %}
     {{ block.super }}
- 
+
     <div>
         {% for recipe in object_list %}
+            <img src="{{ recipe.get_thumbnail_url }}" alt="{{ recipe.name }}" style="width: 150px; height: auto;">
+
             <ul>
                 <li>Name: {{ recipe.name }}</li>
                 <li>Description: {{ recipe.description }}</li>
