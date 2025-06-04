@@ -41,32 +41,51 @@ class CreateRecipeWizardView(SessionWizardView):
     def get_form(self, step=None, data=None, files=None):
         form = super().get_form(step, data, files)
         if step == '1':
-            prefix = self.get_form_prefix(step)
+            print(f"{data=}")
             return RecipeIngredientFormSet(
                 data=data,
                 queryset=RecipeIngredient.objects.none(),
-                prefix=prefix
+                prefix=f'recipe_ingredient'
             )
         return form
-
+    
     def done(self, form_list, **kwargs):
-        if form_list[0].is_valid():
-            recipe = form_list[0].save(commit=False)
-            recipe.created_by = self.request.user
-            recipe.save()
-        else:
-            return self.render_revalidation_failure(step='0', form=form_list[0])
+        recipe_form = form_list[0]
 
-        ingredient_formset = self.get_form(step='1', data=self.storage.get_step_data('1'))
+        # if not recipe_form.is_valid():
+        #     return self.render_revalidation_failure(step='0', form=recipe_form)
 
-        if ingredient_formset.is_valid():
-            for form in ingredient_formset:
-                cleaned_data = form.cleaned_data
-                if cleaned_data and not cleaned_data.get('DELETE', False):
-                    ingredient = form.save(commit=False)
-                    ingredient.recipe = recipe
-                    ingredient.save()
+        recipe = recipe_form.save(commit=False)
+        recipe.created_by = self.request.user
+        recipe.save()
 
-                    return HttpResponse('Form successfully submitted.')
-        else:
-            return self.render_revalidation_failure(step='1', form=ingredient_formset)
+        ingredient_formset = self.get_form(
+            step='1',
+            data=self.storage.get_step_data('1')
+        )
+
+        # ingredients_used = set()
+        # has_duplicates = False
+        #
+        # for form in ingredient_formset:
+        #     if not form.cleaned_data or form.cleaned_data.get('DELETE', False):
+        #         continue
+        #
+        #     ingredient = form.cleaned_data.get('ingredient')
+        #     if ingredient in ingredients_used:
+        #         form.add_error('ingredient', 'This ingredient has already been added to this recipe.')
+        #         has_duplicates = True
+        #     ingredients_used.add(ingredient)
+        #
+        # if has_duplicates:
+        #     self.storage.extra_data['recipe_id'] = recipe.id
+        #     return self.render_revalidation_failure(step='1', form=ingredient_formset)
+
+        # If we get here, no duplicates were found, save all ingredients
+        for form in ingredient_formset:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
+                recipe_ingredient = form.save(commit=False)
+                recipe_ingredient.recipe = recipe
+                recipe_ingredient.save()
+
+        return HttpResponse('Form successfully submitted.')

@@ -17,20 +17,23 @@
         {% csrf_token %}
         {{ wizard.management_form }}
 
-        <table>
-            <tbody id="ingredient-formset">
-            {% if wizard.form.forms %}
+
+        {% if wizard.form.forms %}
+            <div id="ingredient-formset">
                 {{ wizard.form.management_form }}
                 <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
                 {% for form in wizard.form.forms %}
+                    {{ form.non_field_errors }}
+
                     {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
                 {% endfor %}
-            {% else %}
-                <tr>{{ wizard.form.as_table }}</tr>
-            {% endif %}
-            </tbody>
-        </table>
+            </div>
+        {% else %}
+            <div>
+                {{ wizard.form.as_p }}
+            </div>
+        {% endif %}
 
         {% if wizard.steps.current == '1' %}
             {{ wizard.form.total_form_count }}
@@ -38,8 +41,8 @@
                     hx-get="{% url 'add_ingredient_form' %}"
                     hx-target="#ingredient-formset"
                     hx-swap="beforeend"
-                    hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset tr').length}"
-                    hx-on="htmx:afterRequest:document.querySelector('#id_form-TOTAL_FORMS').value++;"
+                    hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
+                    hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++;"
                     id="add-ingredient">
                 Add Ingredient
             </button>
@@ -56,24 +59,26 @@
             {% endif %}
             <input
                     type="submit"
-                    value="{% if wizard.steps.current == wizard.steps.last %}{% translate 'Create' %}{% else %}{% translate 'Next' %}{% endif %}">
+                    value="
+
+                            {% if wizard.steps.current == wizard.steps.last %}{% translate 'Create' %}{% else %}{% translate 'Next' %}{% endif %}">
         </div>
     </form>
 
     <script>
         function reindexFormset(formsetSelector, totalFormsSelector) {
             console.log("Called it.")
-            const rows = document.querySelectorAll(`${formsetSelector} tr`);
+            const rows = document.querySelectorAll(`${formsetSelector} .formset-form`);
             const totalFormsInput = document.querySelector(totalFormsSelector);
 
             rows.forEach((row, index) => {
-                row.id = `form-${index}`;
+                row.id = `recipe_ingredient-${index}`;
 
                 row.querySelectorAll('[name], [id], label[for]').forEach((el) => {
                     ['name', 'id', 'for'].forEach((attr) => {
                         if (el.hasAttribute(attr)) {
                             el.setAttribute(attr,
-                                el.getAttribute(attr).replace(/form-\d+/g, `form-${index}`)
+                                el.getAttribute(attr).replace(/form-\d+/g, `recipe_ingredient-${index}`)
                             );
                         }
                     });

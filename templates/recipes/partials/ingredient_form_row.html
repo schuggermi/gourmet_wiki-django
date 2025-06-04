@@ -1,12 +1,10 @@
-<tr id="form-{{ form_index }}">
-    <td>
-        {{ form.as_p }}
+<div id="recipe_ingredient-{{ form_index }}" class="formset-form">
+    {{ form.as_p }}
 
-        <button type="button"
-                class="remove-ingredient"
-                onclick="this.closest('tr').remove(); reindexFormset('#ingredient-formset', '#id_form-TOTAL_FORMS');"
-        >
-            Remove
-        </button>
-    </td>
-</tr>
+    <button type="button"
+            class="remove-ingredient"
+            onclick="this.closest('.formset-form').remove(); reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
+    >
+        Remove
+    </button>
+</div>

@@ -1,3 +1,4 @@
+from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
@@ -7,24 +8,22 @@ from recipes.models import RecipeIngredient
 
 # class BaseRecipeIngredientFormSet(BaseModelFormSet):
 #     def clean(self):
-#         super().clean()
+#         """
+#         Checks that no duplicate ingredients exist in the formset
+#         """
 #         if any(self.errors):
-#             return  # Skip if individual forms have errors already
+#             return
 #
-#         seen = set()
+#         ingredients = set()
 #         for form in self.forms:
-#             if form.cleaned_data.get('DELETE', False):
-#                 continue
-#
-#             recipe = form.cleaned_data.get('recipe')  # might be None at creation time
-#             ingredient = form.cleaned_data.get('ingredient')
-#
-#             # We'll use (ingredient) only here because recipe is not assigned yet
-#             # Handle it later in the wizard `done()`
-#             key = ingredient.id if ingredient else None
-#             if key in seen:
-#                 raise ValidationError("Each ingredient must be unique.")
-#             seen.add(key)
+#             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
+#                 ingredient = form.cleaned_data.get('ingredient')
+#                 if ingredient in ingredients:
+#                     raise forms.ValidationError(
+#                         "Each ingredient can only be used once in a recipe."
+#                     )
+#                 if ingredient:
+#                     ingredients.add(ingredient)
 
 
 RecipeIngredientFormSet = modelformset_factory(
@@ -33,4 +32,5 @@ RecipeIngredientFormSet = modelformset_factory(
     # formset=BaseRecipeIngredientFormSet,
     extra=1,
     can_delete=False,
+    validate_min=True,
 )
