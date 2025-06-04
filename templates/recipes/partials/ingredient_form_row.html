@@ -1,8 +1,31 @@
-<div id="recipe_ingredient-{{ form_index }}" class="formset-form">
-    {{ form.as_p }}
+<div id="recipe_ingredient-{{ form_index }}" class="formset-form mb-3 p-3 border rounded">
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+                <div class="alert alert-danger mt-1">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
 
     <button type="button"
-            class="remove-ingredient"
+            class="remove-ingredient btn btn-danger btn-sm"
             onclick="this.closest('.formset-form').remove(); reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
     >
         Remove

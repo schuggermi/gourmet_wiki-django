@@ -1,8 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.forms.models import modelformset_factory
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from formtools.wizard.views import SessionWizardView
@@ -20,9 +23,7 @@ class RecipeListView(ListView):
 
 def add_ingredient_form(request):
     form_index = int(request.GET.get("form_count", 0))
-    new_form = RecipeIngredientForm(prefix=f'form-{form_index}')
-
-    print(f"{form_index=}")
+    new_form = RecipeIngredientForm(prefix=f'recipe_ingredient-{form_index}')
 
     context = {
         'form': new_form,
@@ -35,25 +36,29 @@ def add_ingredient_form(request):
 
 @method_decorator(login_required, name='dispatch')
 class CreateRecipeWizardView(SessionWizardView):
-    form_list = [RecipeForm, RecipeIngredientForm]
+    form_list = [
+        ('0', RecipeForm),
+        ('1', RecipeIngredientFormSet),
+    ]
     template_name = 'recipes/create_recipe_wizard.html'
 
     def get_form(self, step=None, data=None, files=None):
-        form = super().get_form(step, data, files)
+        if step is None:
+            step = self.steps.current
+
         if step == '1':
-            print(f"{data=}")
             return RecipeIngredientFormSet(
                 data=data,
                 queryset=RecipeIngredient.objects.none(),
-                prefix=f'recipe_ingredient'
+                prefix='recipe_ingredient'
             )
-        return form
-    
-    def done(self, form_list, **kwargs):
-        recipe_form = form_list[0]
+        return super().get_form(step, data, files)
 
-        # if not recipe_form.is_valid():
-        #     return self.render_revalidation_failure(step='0', form=recipe_form)
+    def done(self, form_list, **kwargs):
+        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'))
+
+        if not recipe_form.is_valid():
+            return self.render_revalidation_failure(step='0', form=recipe_form)
 
         recipe = recipe_form.save(commit=False)
         recipe.created_by = self.request.user
@@ -64,28 +69,20 @@ class CreateRecipeWizardView(SessionWizardView):
             data=self.storage.get_step_data('1')
         )
 
-        # ingredients_used = set()
-        # has_duplicates = False
-        #
-        # for form in ingredient_formset:
-        #     if not form.cleaned_data or form.cleaned_data.get('DELETE', False):
-        #         continue
-        #
-        #     ingredient = form.cleaned_data.get('ingredient')
-        #     if ingredient in ingredients_used:
-        #         form.add_error('ingredient', 'This ingredient has already been added to this recipe.')
-        #         has_duplicates = True
-        #     ingredients_used.add(ingredient)
-        #
-        # if has_duplicates:
-        #     self.storage.extra_data['recipe_id'] = recipe.id
-        #     return self.render_revalidation_failure(step='1', form=ingredient_formset)
+        if not ingredient_formset.is_valid():
+            self.storage.extra_data['recipe_id'] = recipe.id
+            return self.render_revalidation_failure(step='1', form=ingredient_formset)
 
-        # If we get here, no duplicates were found, save all ingredients
+        ingredients_count = 0
         for form in ingredient_formset:
             if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
                 recipe_ingredient = form.save(commit=False)
                 recipe_ingredient.recipe = recipe
                 recipe_ingredient.save()
+                ingredients_count += 1
 
-        return HttpResponse('Form successfully submitted.')
+        messages.success(
+            self.request, 
+            f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients!'
+        )
+        return redirect(reverse('recipe-list'))
