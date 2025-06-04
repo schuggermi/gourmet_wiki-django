@@ -15,8 +15,8 @@ from django.views.generic import ListView
 from formtools.wizard.views import SessionWizardView
 
 from recipes.forms import RecipeForm, RecipeIngredientForm
-from recipes.formsets import RecipeIngredientFormSet
-from recipes.models import Recipe, RecipeIngredient
+from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet
+from recipes.models import Recipe, RecipeIngredient, RecipeImage
 
 User = get_user_model()
 
@@ -38,11 +38,25 @@ def add_ingredient_form(request):
     return HttpResponse(html)
 
 
+def add_image_form(request):
+    form_index = int(request.GET.get("form_count", 0))
+    new_form = RecipeImageForm(prefix=f'recipe_image-{form_index}')
+
+    context = {
+        'form': new_form,
+        'form_index': form_index,
+    }
+
+    html = render_to_string('recipes/partials/image_form_row.html', context)
+    return HttpResponse(html)
+
+
 @method_decorator(login_required, name='dispatch')
 class CreateRecipeWizardView(SessionWizardView):
     form_list = [
         ('0', RecipeForm),
         ('1', RecipeIngredientFormSet),
+        ('2', RecipeImageFormSet),
     ]
     template_name = 'recipes/create_recipe_wizard.html'
     file_storage = FileSystemStorage(location=Path(settings.MEDIA_ROOT).joinpath('recipes/images/temp'))
@@ -56,6 +70,13 @@ class CreateRecipeWizardView(SessionWizardView):
                 data=data,
                 queryset=RecipeIngredient.objects.none(),
                 prefix='recipe_ingredient'
+            )
+        elif step == '2':
+            return RecipeImageFormSet(
+                data=data,
+                files=files,
+                queryset=RecipeImage.objects.none(),
+                prefix='recipe_image'
             )
         return super().get_form(step, data, files)
 
@@ -86,8 +107,27 @@ class CreateRecipeWizardView(SessionWizardView):
                 recipe_ingredient.save()
                 ingredients_count += 1
 
+        # Process recipe images
+        image_formset = self.get_form(
+            step='2',
+            data=self.storage.get_step_data('2'),
+            files=self.storage.get_step_files('2')
+        )
+
+        if not image_formset.is_valid():
+            self.storage.extra_data['recipe_id'] = recipe.id
+            return self.render_revalidation_failure(step='2', form=image_formset)
+
+        images_count = 0
+        for form in image_formset:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False) and form.cleaned_data.get('image'):
+                recipe_image = form.save(commit=False)
+                recipe_image.recipe = recipe
+                recipe_image.save()
+                images_count += 1
+
         messages.success(
             self.request, 
-            f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients!'
+            f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients and {images_count} images!'
         )
         return redirect(reverse('recipe-list'))

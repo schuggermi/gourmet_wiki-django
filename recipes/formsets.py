@@ -1,7 +1,7 @@
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
-from recipes.forms import RecipeIngredientForm
-from recipes.models import RecipeIngredient
+from recipes.forms import RecipeIngredientForm, RecipeImageForm
+from recipes.models import RecipeIngredient, RecipeImage
 
 
 class BaseRecipeIngredientFormSet(BaseModelFormSet):
@@ -29,4 +29,21 @@ RecipeIngredientFormSet = modelformset_factory(
     extra=1,
     can_delete=False,
     validate_min=True,
+)
+
+
+class BaseRecipeImageFormSet(BaseModelFormSet):
+    def clean(self):
+        if any(self.errors):
+            return
+
+        # No need to check for duplicates as we want to allow multiple images
+
+
+RecipeImageFormSet = modelformset_factory(
+    RecipeImage,
+    form=RecipeImageForm,
+    formset=BaseRecipeImageFormSet,
+    extra=1,
+    can_delete=False,
 )

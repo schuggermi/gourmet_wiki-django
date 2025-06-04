@@ -8,16 +8,26 @@
 {% block main_content %}
     {{ block.super }}
 
-    <div>
+    <div class="flex flex-col gap-3">
         {% for recipe in object_list %}
-            <img src="{{ recipe.get_thumbnail_url }}" alt="{{ recipe.name }}" style="width: 150px; height: auto;">
+            <div class="flex gap-3">
+                <img src="{{ recipe.get_thumbnail_url }}" alt="{{ recipe.name }}" style="width: 150px; height: auto;">
 
-            <ul>
-                <li>Name: {{ recipe.name }}</li>
-                <li>Description: {{ recipe.description }}</li>
-                <li>Created by: {{ recipe.created_by }}</li>
-                <li>Total cost: {{ recipe.total_cost }}</li>
-            </ul>
+                <ul>
+                    {% for image in recipe.images.all %}
+                        <li><img src="{{ image.image.url }}" alt="{{ image.caption }}"
+                                 style="width: 100px; height: auto;">
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <ul>
+                    <li>Name: {{ recipe.name }}</li>
+                    <li>Description: {{ recipe.description }}</li>
+                    <li>Created by: {{ recipe.created_by }}</li>
+                    <li>Total cost: {{ recipe.total_cost }}</li>
+                </ul>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

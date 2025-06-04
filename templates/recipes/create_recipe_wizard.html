@@ -67,6 +67,43 @@
                     Add Ingredient
                 </button>
             </fieldset>
+        {% elif wizard.steps.current == '2' %}
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">{% translate 'Recipe Images' %}</legend>
+
+                {% if wizard.form.non_form_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_form_errors }}
+                    </div>
+                {% endif %}
+                {% if wizard.form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div id="image-formset" class="flex flex-col">
+                    {{ wizard.form.management_form }}
+                    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+                    {% for form in wizard.form.forms %}
+                        <div class="w-full">
+                            {% include 'recipes/partials/image_form_row.html' with form=form form_index=forloop.counter0 %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <button type="button"
+                        class="btn"
+                        hx-get="{% url 'add_image_form' %}"
+                        hx-target="#image-formset"
+                        hx-swap="beforeend"
+                        hx-vals="js:{form_count: document.querySelectorAll('#image-formset .formset-form').length}"
+                        hx-on="htmx:afterRequest:document.querySelector('#id_recipe_image-TOTAL_FORMS').value++; reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');"
+                        id="add-image">
+                    Add Image
+                </button>
+            </fieldset>
         {% endif %}
 
         <div class="form-navigation mt-4">
@@ -94,14 +131,20 @@
             const rows = document.querySelectorAll(`${formsetSelector} .formset-form`);
             const totalFormsInput = document.querySelector(totalFormsSelector);
 
+            // Determine the prefix based on the formset selector
+            let prefix = 'recipe_ingredient';
+            if (formsetSelector === '#image-formset') {
+                prefix = 'recipe_image';
+            }
+
             rows.forEach((row, index) => {
-                row.id = `recipe_ingredient-${index}`;
+                row.id = `${prefix}-${index}`;
 
                 row.querySelectorAll('[name], [id], label[for]').forEach((el) => {
                     ['name', 'id', 'for'].forEach((attr) => {
                         if (el.hasAttribute(attr)) {
                             el.setAttribute(attr,
-                                el.getAttribute(attr).replace(/recipe_ingredient-\d+|form-\d+/g, `recipe_ingredient-${index}`)
+                                el.getAttribute(attr).replace(new RegExp(`${prefix}-\\d+|form-\\d+`, 'g'), `${prefix}-${index}`)
                             );
                         }
                     });
@@ -117,6 +160,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             if (document.querySelector('#ingredient-formset')) {
                 reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');
+            }
+            if (document.querySelector('#image-formset')) {
+                reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
             }
         });
     </script>

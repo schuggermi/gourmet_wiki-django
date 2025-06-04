@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from recipes.models import Recipe, RecipeIngredient
+from recipes.models import Recipe, RecipeIngredient, RecipeImage
 
 
 class RecipeForm(forms.ModelForm):
@@ -59,3 +59,24 @@ class RecipeIngredientForm(forms.ModelForm):
     #     #             'ingredient': 'This ingredient has already been added to the recipe.'
     #     #         })
     #     return cleaned_data
+
+
+class RecipeImageForm(forms.ModelForm):
+    class Meta:
+        model = RecipeImage
+        fields = ['image', 'caption', 'order']
+        widgets = {
+            'image': forms.FileInput(attrs={
+                'class': 'file-input',
+                'accept': 'image/*'
+            }),
+            'caption': forms.TextInput(attrs={
+                'class': 'input',
+                'placeholder': 'Enter image caption (optional)'
+            }),
+            'order': forms.NumberInput(attrs={
+                'class': 'input',
+                'min': '0',
+                'value': '0'
+            }),
+        }
