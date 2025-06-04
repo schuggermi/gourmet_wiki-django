@@ -60,7 +60,7 @@ class CreateRecipeWizardView(SessionWizardView):
         return super().get_form(step, data, files)
 
     def done(self, form_list, **kwargs):
-        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'))
+        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'), files=self.storage.get_step_files('0'))
 
         if not recipe_form.is_valid():
             return self.render_revalidation_failure(step='0', form=recipe_form)

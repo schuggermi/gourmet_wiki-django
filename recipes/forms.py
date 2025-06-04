@@ -17,6 +17,10 @@ class RecipeForm(forms.ModelForm):
                 'class': 'textarea',
                 'rows': 4
             }),
+            'thumbnail_image': forms.FileInput(attrs={
+                'class': 'file-input',
+                'accept': 'image/*'
+            }),
         }
 
 
