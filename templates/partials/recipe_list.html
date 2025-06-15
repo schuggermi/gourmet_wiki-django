@@ -1,0 +1,23 @@
+<div class="grid grid-cols-1 gap-6 justify-items-start w-full mx-auto py-10">
+    {% for recipe in object_list %}
+        <div class="w-full h-36 card card-side bg-base-primary shadow-sm cursor-pointer hover:shadow-lg hover:bg-base-primary/50 transition-shadow group">
+            <figure class="w-36 h-36 bg-cover bg-center bg-no-repeat"
+                    style="background-image: url('{{ recipe.thumbnail_image.url }}');">
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title">
+                    {{ recipe.name }}
+                </h2>
+                <p class="min-h-3">{{ recipe.description }}</p>
+                <div class="card-actions justify-between">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor"
+                         class="size-6 transition-transform duration-300 group-hover:translate-x-2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

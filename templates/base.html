@@ -1,3 +1,5 @@
+{% load django_vite %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,16 +11,15 @@
         {% endblock %}
     </title>
 
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    {% vite_hmr_client %}
+    {% vite_asset 'static/js/main.js' %}
 
     {% block head %}
-
     {% endblock %}
 </head>
-<body class="w-full min-h-screen">
-<div class="px-2 mx-auto">
+<body class="w-full min-h-screen bg-base-secondary prose">
+{% include "partials/navbar.html" %}
+<div class="max-w-7xl mx-auto flex flex-col items-center justify-start gap-5 pt-10">
     {% block main_content %}
 
     {% endblock %}

@@ -1,0 +1,20 @@
+{
+  "name": "gourmet_wiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.mjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "private": true,
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.8",
+    "daisyui": "^5.0.43",
+    "tailwindcss": "^4.1.8"
+  }
+}

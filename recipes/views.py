@@ -130,4 +130,4 @@ class CreateRecipeWizardView(SessionWizardView):
             self.request,
             f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients and {images_count} images!'
         )
-        return redirect(reverse('recipe-list'))
+        return redirect(reverse('users-profile-recipes'))

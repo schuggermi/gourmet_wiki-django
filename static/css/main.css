@@ -1,0 +1,109 @@
+@import "tailwindcss";
+/*@import "@tailwindcss/typography";*/
+
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark;
+}
+
+@theme {
+    --color-base-primary: #2D2323;
+    --color-base-secondary: #443634;
+    --color-accent: #A6988A;
+    --color-secondary: #443634;
+    --color-accent-secondary: #7a5c4f;
+    --step-bg-accent: var(--color-accent);
+    --step-bg-primary: var(--color-base-primary);
+    --input-color-accent: var(--color-accent);
+}
+
+@plugin "daisyui/theme" {
+    name: "light";
+    --color-base-primary: #FAF6F0;
+    --color-base-secondary: #D8CFC4;
+    --color-accent: #A6988A;
+    --color-secondary: #443634;
+    --color-accent-secondary: #7a5c4f;
+    --step-bg-accent: var(--color-accent);
+    --step-bg-primary: var(--color-base-primary);
+    --input-color-accent: var(--color-accent);
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+    --color-base-primary: #2D2323;
+    --color-base-secondary: #443634;
+    --color-accent: #A6988A;
+    --color-secondary: #443634;
+    --color-accent-secondary: #7a5c4f;
+    --step-bg-accent: var(--color-accent);
+    --step-bg-primary: var(--color-base-primary);
+    --input-color-accent: var(--color-accent);
+}
+
+body, html {
+    color: var(--color-accent);
+}
+
+.step::after {
+    color: #2D2323;
+    background-color: #A6988A;
+    border-color: #A6988A;
+    font-weight: 500;
+}
+
+.step.step-accent::after {
+    color: #A6988A;
+    background-color: #2D2323;
+    border-color: #2D2323;
+}
+
+.step::before {
+    background-color: #A6988A;
+}
+
+.file-input::file-selector-button {
+    color: #2D2323;
+}
+
+.file-input::-webkit-file-upload-button {
+    color: #2D2323;
+}
+
+label, span {
+    color: var(--color-accent);
+}
+
+h1 {
+    @apply text-4xl font-bold mb-4;
+    color: var(--color-accent-secondary);
+}
+
+h2 {
+    @apply text-3xl font-semibold mb-3;
+    color: var(--color-accent-secondary);
+}
+
+h3 {
+    @apply text-2xl font-semibold mb-3;
+    color: var(--color-accent-secondary);
+}
+
+h4 {
+    @apply text-xl font-medium mb-2;
+    color: var(--color-accent-secondary);
+}
+
+h5 {
+    @apply text-lg font-medium mb-2;
+    color: var(--color-accent-secondary);
+}
+
+h6 {
+    @apply text-base font-medium mb-2;
+    color: var(--color-accent-secondary);
+}
+
+small {
+    @apply text-base font-normal mb-2;
+    color: var(--color-accent-secondary);
+}

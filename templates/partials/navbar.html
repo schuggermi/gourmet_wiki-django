@@ -1,0 +1,76 @@
+{% load static %}
+
+<div class="navbar bg-base-primary shadow-sm">
+    <div class="navbar-start flex gap-3">
+        <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 6h16M4 12h8m-8 6h16"></path>
+                </svg>
+            </div>
+            <ul
+                    tabindex="0"
+                    class="menu dropdown-content bg-base-primary text-accent rounded-box z-1 mt-3 p-2 shadow">
+                <li><a>Recipes</a></li>
+                <li>
+                    <a>Options</a>
+                    <ul class="p-2">
+                        <li><a>Find Recipe</a></li>
+                        <li><a>Create Recipe</a></li>
+                    </ul>
+                </li>
+                <li><a>Item 3</a></li>
+            </ul>
+        </div>
+        <a href="{% url 'home' %}">
+            <img class="w-42" src="{% static 'images/logo_landscape.svg' %}"
+                 alt="Logo Landscape - Gourmet Wiki">
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+        <ul class="absolute z-50 menu menu-horizontal px-1">
+            <li class="cursor-pointer dropdown dropdown-center dropdown-bottom">
+                <p tabindex="0"
+                   role="button">
+                    Recipes
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+
+                </p>
+                <ul tabindex="0" class="dropdown-content menu p-2 w-max bg-accent rounded-lg">
+                    <li>{% include "partials/go_to.html" with url_name="recipe-list" text="Find Recipe" %}</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-end">
+        {% if user.is_authenticated %}
+            <div class="avatar group/avatar cursor-pointer dropdown dropdown-end dropdown-bottom">
+                <div tabindex="0"
+                     role="button"
+                     class="mask mask-hexagon-2 w-12 h-12 group-hover/avatar:scale-105">
+                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>
+                </div>
+                <ul tabindex="0" class="dropdown-content menu p-2 w-40 bg-accent rounded-lg">
+                    {% if user.is_authenticated %}
+                        <li>{% include "partials/go_to.html" with url_name="users-profile" text="Profile" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="users-profile-recipes" text="Your Recipes" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="recipe-create" text="Create Recipe" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_logout" text="Logout" %}</li>
+                    {% else %}
+                        <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_signup" text="Sign up" %}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% else %}
+            <ul class="p-2 w-fit rounded-lg">
+                <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-accent" %}</li>
+            </ul>
+        {% endif %}
+    </div>
+</div>

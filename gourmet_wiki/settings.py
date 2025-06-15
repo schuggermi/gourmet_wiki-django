@@ -38,8 +38,14 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'recipes.apps.RecipesConfig',
     'ingredients.apps.IngredientsConfig',
+    'core.apps.CoreConfig',
+    'users.apps.UsersConfig',
 
+    'django_vite',
     'formtools',
+
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +56,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'gourmet_wiki.urls'
@@ -65,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -115,7 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'assets',
+]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -124,3 +141,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": DEBUG
+    }
+}
+
+ACCOUNT_SIGNUP_REDIRECT_URL = 'users-profile'
+LOGIN_REDIRECT_URL = 'users-profile'
+ACCOUNT_LOGOUT_ON_GET = True

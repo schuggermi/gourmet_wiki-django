@@ -1,11 +1,23 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation.trans_null import gettext_lazy as _
 
 from ingredients.models import Ingredient
 from recipes.services.cost_calculator import calculate_recipe_cost
 
 User = get_user_model()
+
+
+class UnitChoice(models.TextChoices):
+    GRAM = 'g', _('g')
+    KILOGRAM = 'kg', _('kg')
+    LITER = 'l', _('l')
+    MILLILITER = 'ml', _('ml')
+    OUNCE = 'oz', _('oz')
+    TABLESPOON = 'sp', _('sp')
+    TEE_SPOON = 'tes', _('tes')
+
 
 
 class Recipe(models.Model):
@@ -50,6 +62,11 @@ class RecipeIngredient(models.Model):
         max_digits=10,
         decimal_places=2,
         help_text="z.B. 200 (g oder ml)"
+    )
+    unit = models.CharField(
+        max_length=10,
+        choices=UnitChoice.choices,
+        default=UnitChoice.GRAM,
     )
 
     class Meta:
