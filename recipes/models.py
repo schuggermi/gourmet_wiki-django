@@ -61,7 +61,6 @@ class RecipeIngredient(models.Model):
     quantity = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        help_text="z.B. 200 (g oder ml)"
     )
     unit = models.CharField(
         max_length=10,

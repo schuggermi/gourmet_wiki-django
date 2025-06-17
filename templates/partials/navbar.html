@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="navbar bg-base-primary shadow-sm">
+<div id="navbar" class="navbar fixed top-0 w-full transition-all duration-300 shadow-md z-50 bg-base-100">
     <div class="navbar-start flex gap-3">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -12,7 +12,7 @@
             </div>
             <ul
                     tabindex="0"
-                    class="menu dropdown-content bg-base-primary text-accent rounded-box z-1 mt-3 p-2 shadow">
+                    class="menu dropdown-content bg-base-200 text-accent rounded-box z-1 mt-3 p-2 shadow">
                 <li><a>Recipes</a></li>
                 <li>
                     <a>Options</a>
@@ -25,7 +25,7 @@
             </ul>
         </div>
         <a href="{% url 'home' %}">
-            <img class="w-42" src="{% static 'images/logo_landscape.svg' %}"
+            <img class="w-42" src="{% static 'images/logo_landscape_forest.svg' %}"
                  alt="Logo Landscape - Gourmet Wiki">
         </a>
     </div>
@@ -33,7 +33,8 @@
         <ul class="absolute z-50 menu menu-horizontal px-1">
             <li class="cursor-pointer dropdown dropdown-center dropdown-bottom">
                 <p tabindex="0"
-                   role="button">
+                   role="button"
+                >
                     Recipes
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-3">
@@ -41,8 +42,8 @@
                     </svg>
 
                 </p>
-                <ul tabindex="0" class="dropdown-content menu p-2 w-max bg-accent rounded-lg">
-                    <li>{% include "partials/go_to.html" with url_name="recipe-list" text="Find Recipe" %}</li>
+                <ul tabindex="0" class="dropdown-content menu p-2 w-max bg-base-300 rounded-lg">
+                    <li>{% include "partials/go_to.html" with url_name="recipe-list" text="Find Recipe" color="text-base-content" %}</li>
                 </ul>
             </li>
         </ul>
@@ -52,24 +53,27 @@
             <div class="avatar group/avatar cursor-pointer dropdown dropdown-end dropdown-bottom">
                 <div tabindex="0"
                      role="button"
-                     class="mask mask-hexagon-2 w-12 h-12 group-hover/avatar:scale-105">
-                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>
+                     class="w-12 h-12 mask mask-hexagon-2 bg-secondary group-hover/avatar:scale-105">
+                    {#                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>#}
+                    <p class="uppercase text-center text-accent-content w-full h-full flex items-center justify-center">
+                        {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+                    </p>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu p-2 w-40 bg-accent rounded-lg">
+                <ul tabindex="0" class="dropdown-content menu p-2 w-40 bg-base-300 rounded-lg">
                     {% if user.is_authenticated %}
-                        <li>{% include "partials/go_to.html" with url_name="users-profile" text="Profile" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="users-profile-recipes" text="Your Recipes" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="recipe-create" text="Create Recipe" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="account_logout" text="Logout" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="users-profile" text="Profile" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="users-profile-recipes" text="Your Recipes" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="recipe-create" text="Create Recipe" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_logout" text="Logout" color="text-base-content" %}</li>
                     {% else %}
-                        <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="account_signup" text="Sign up" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_signup" text="Sign up" color="text-base-content" %}</li>
                     {% endif %}
                 </ul>
             </div>
         {% else %}
             <ul class="p-2 w-fit rounded-lg">
-                <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-accent" %}</li>
+                <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content" %}</li>
             </ul>
         {% endif %}
     </div>

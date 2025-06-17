@@ -150,4 +150,7 @@ DJANGO_VITE = {
 
 ACCOUNT_SIGNUP_REDIRECT_URL = 'users-profile'
 LOGIN_REDIRECT_URL = 'users-profile'
+LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_SESSION_REMEMBER = False
+# ACCOUNT_FORMS = {'login': 'users.forms.CustomLoginForm'}

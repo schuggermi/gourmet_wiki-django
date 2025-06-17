@@ -4,30 +4,30 @@ from django.core.exceptions import ValidationError
 from recipes.models import Recipe, RecipeIngredient, RecipeImage
 
 
-INPUT_CLASSES = 'input input-accent bg-accent text-base-primary w-full'
-SELECT_CLASSES = 'select select-accent bg-accent text-base-primary w-full'
-TEXTAREA_CLASSES = 'textarea textarea-accent bg-accent text-base-primary w-full'
-FILE_INPUT_CLASSES = 'file-input file-input-accent bg-accent text-base-primary w-full'
+INPUT_CLASSES = 'input input-accent bg-base-content text-base-primary w-full'
+SELECT_CLASSES = 'select select-accent bg-base-content text-base-primary w-full'
+TEXTAREA_CLASSES = 'textarea textarea-accent bg-base-content text-base-primary w-full resize-none'
+FILE_INPUT_CLASSES = 'file-input file-input-ghost text-base-primary w-full'
 
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['name', 'description', 'thumbnail_image']
+        fields = ['name', 'description'] #thumbnail_image
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,
-                'placeholder': 'Give your recipe a name'
+                'placeholder': 'Recipe Name'
             }),
             'description': forms.Textarea(attrs={
                 'class': TEXTAREA_CLASSES,
-                'rows': 4,
-                'placeholder': 'Describe your recipe in short words'
+                'rows': 2,
+                'placeholder': 'Recipe Description'
             }),
-            'thumbnail_image': forms.FileInput(attrs={
-                'class': FILE_INPUT_CLASSES,
-                'accept': 'image/*'
-            }),
+            # 'thumbnail_image': forms.FileInput(attrs={
+            #     'class': FILE_INPUT_CLASSES,
+            #     'accept': 'image/*'
+            # }),
         }
 
 
@@ -38,10 +38,11 @@ class RecipeIngredientForm(forms.ModelForm):
         widgets = {
             'ingredient': forms.Select(attrs={
                 'class': SELECT_CLASSES,
-                'placeholder': 'Enter recipe name'
+                'placeholder': 'New Ingredient'
             }),
             'quantity': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,
+                'placeholder': 'Quantity'
             }),
             'unit': forms.Select(attrs={
                 'class': SELECT_CLASSES,
@@ -78,6 +79,6 @@ class RecipeImageForm(forms.ModelForm):
             }),
             'caption': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,
-                'placeholder': 'Enter image caption (optional)'
+                'placeholder': 'Image caption (optional)'
             }),
         }

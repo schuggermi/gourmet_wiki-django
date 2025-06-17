@@ -16,10 +16,10 @@
         {% include "partials/go_back.html" %}
     </h1>
 
-    <ul class="steps steps-vertical step-primary lg:steps-horizontal">
-        <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-accent{% endif %}">Details</li>
-        <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-accent{% endif %}">Ingredients</li>
-        <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-accent{% endif %}">Images</li>
+    <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3/4">
+        <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p class="text-secondary!">Details</p></li>
+        <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p class="text-secondary!">Ingredients</p></li>
+        <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p class="text-secondary!">Images</p></li>
     </ul>
 
     <form action="" method="post" id="wizard-form" enctype="multipart/form-data">
@@ -39,13 +39,13 @@
 
         {% if wizard.steps.current == '0' %}
             <fieldset class="fieldset">
-                <legend class="fieldset-legend text-accent">{% translate 'Details' %}</legend>
+                <legend class="fieldset-legend text-base-content">{% translate 'Details' %}</legend>
 
                 {% include "partials/form.html" with form=wizard.form %}
             </fieldset>
         {% elif wizard.steps.current == '1' %}
-            <fieldset class="fieldset">
-                <legend class="fieldset-legend text-accent">{% translate 'Ingredients' %}</legend>
+            <fieldset class="fieldset flex flex-col gap-5">
+                <legend class="fieldset-legend text-base-content">{% translate 'Ingredients' %}</legend>
 
                 <div class="flex flex-col">
                     {{ wizard.form.management_form }}
@@ -59,7 +59,7 @@
                 </div>
 
                 <button type="button"
-                        class="w-fit btn bg-base-primary text-accent border-base-primary hover:bg-base-secondary"
+                        class="btn bg-base-300! btn-base-300! text-base-content! border-base-300!"
                         hx-get="{% url 'add_ingredient_form' %}"
                         hx-target="#ingredient-formset"
                         hx-swap="beforeend"
@@ -70,8 +70,8 @@
                 </button>
             </fieldset>
         {% elif wizard.steps.current == '2' %}
-            <fieldset class="fieldset">
-                <legend class="fieldset-legend text-accent">{% translate 'Additional Images' %}</legend>
+            <fieldset class="fieldset flex flex-col gap-5">
+                <legend class="fieldset-legend text-base-content">{% translate 'Additional Images' %}</legend>
 
                 <div class="flex flex-col">
                     {{ wizard.form.management_form }}
@@ -85,7 +85,7 @@
                 </div>
 
                 <button type="button"
-                        class="w-fit btn bg-base-primary text-accent border-base-primary hover:bg-base-secondary"
+                        class="w-fit btn bg-secondary!"
                         hx-get="{% url 'add_image_form' %}"
                         hx-target="#image-formset"
                         hx-swap="beforeend"
@@ -103,7 +103,7 @@
                         name="wizard_goto_step"
                         type="submit"
                         value="{{ wizard.steps.prev }}"
-                        class="btn btn-outline  bt-base-primarytext-accent border-base-primary hover:bg-base-secondary"
+                        class="btn! btn-outline! bg-transparent! text-base-content! border-base-content! hover:border-secondary! hover:text-secondary!"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="size-6">
@@ -112,8 +112,7 @@
                     </svg>
                 </button>
             {% endif %}
-            <button type="submit"
-                    class="btn bg-base-primary text-accent border-base-primary hover:bg-base-secondary">
+            <button type="submit">
                 {% if wizard.steps.current == wizard.steps.last %}
                     {% translate 'Create Recipe' %}
                 {% else %}
