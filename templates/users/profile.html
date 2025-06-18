@@ -11,11 +11,11 @@
         {% include "partials/go_back.html" %}
     </h1>
 
-    <div class="grid grid-cols-2 gap-5 w-full">
-        <div class="flex gap-5">
+    <div class="grid grid-cols-2 gap-10 w-full">
+        <div class="flex gap-10">
             <div class="w-36 h-36 mask mask-hexagon-2 bg-secondary group-hover/avatar:scale-105">
                 {#                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>#}
-                <p class="uppercase text-center text-accent-content text-7xl w-full h-full flex items-center justify-center">
+                <p class="uppercase text-center text-accent-content! text-5xl! w-full h-full flex items-center justify-center">
                     {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
                 </p>
             </div>
@@ -32,22 +32,22 @@
 
         <div class="col-span-2 grid grid-cols-4 gap-5 w-full">
             <a href="{% url 'recipe-create' %}"
-               class="h-full w-full border-1 border-base-content px-5 py-10 rounded-lg cursor-pointer group hover:bg-base-primary">
+               class="h-full w-full border-1 border-secondary px-5 py-10 rounded-lg cursor-pointer group hover:bg-base-primary">
                 <h4>Craft a new Recipe</h4>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"
-                     class="text-secondary! size-6 transition-transform duration-300 group-hover:translate-x-2">
+                     class="text-base-content! size-6 transition-transform duration-300 group-hover:translate-x-10">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
                 </svg>
             </a>
 
             <a href="{% url 'users-profile-recipes' %}"
-               class="h-full w-full border-1 border-base-content px-5 py-10 rounded-lg cursor-pointer group hover:bg-base-primary">
+               class="h-full w-full border-1 border-secondary px-5 py-10 rounded-lg cursor-pointer group hover:bg-base-primary">
                 <h4>Your Recipes</h4>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"
-                     class="text-secondary! size-6 transition-transform duration-300 group-hover:translate-x-2">
+                     class="text-base-content! size-6 transition-transform duration-300 group-hover:translate-x-10">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
                 </svg>

@@ -1,0 +1,96 @@
+{% load i18n %}
+
+
+<div class="grid gird-cols-1 w-3xl gap-5">
+    {{ wizard.form.management_form }}
+    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+    <div id="ingredient-formset" class="flex flex-col gap-5">
+        {% for form in forms %}
+            {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
+        {% endfor %}
+    </div>
+
+    <button type="button"
+            class="btn rounded-sm! bg-transparent border-secondary text-secondary hover:text-accent-content hover:bg-secondary"
+            hx-get="{% url 'add_ingredient_form' %}"
+            hx-target="#ingredient-formset"
+            hx-swap="beforeend"
+            hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
+            hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
+            id="add-ingredient">
+        Add Ingredient
+    </button>
+
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        (function () {
+            const sortable = document.querySelector("#image-formset");
+
+            console.log("SORTABLE")
+            console.log(sortable)
+
+            new Sortable(sortable, {
+                animation: 150,
+                dragClass: 'border-secondary!',
+                onEnd: () => reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'),
+            });
+        })();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('htmx:configRequest', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            const totalForms = parseInt(totalFormsInput.value);
+
+            if (totalForms >= 10) {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener('htmx:afterSwap', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
+
+            reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
+            imageUploaded();
+        });
+
+        document.getElementById('image-formset').addEventListener('change', (event) => {
+            const input = event.target;
+            console.log("INPUT: ")
+            console.log(input)
+            if (input.matches('input[type="file"]')) {
+                const storeId = input.id;
+                const label = document.getElementById(`${storeId}--name`);
+                if (label) {
+                    label.textContent = input.files[0] ? input.files[0].name : "No file chosen";
+                }
+            }
+        });
+    });
+
+    function imageUploaded() {
+        const uploadImage = document.getElementById('upload-image');
+        const formset = document.getElementById('image-formset');
+
+        const forms = formset.querySelectorAll('.formset-form')
+        const lastForm = forms[forms.length - 1]
+        console.log(lastForm)
+        const imageLabel = lastForm.querySelector('span')
+        const imageInput = lastForm.querySelector('input')
+        const previewImage = lastForm.querySelector('.preview-image')
+        console.log(imageLabel)
+        console.log(imageInput)
+        imageLabel.textContent = uploadImage.files[0] ? uploadImage.files[0].name : "No file chosen";
+        imageInput.files = uploadImage.files ? uploadImage.files : [];
+        if (imageInput.files && imageInput.files[0]) {
+            const imageUrl = URL.createObjectURL(uploadImage.files[0]);
+            previewImage.style.backgroundImage = `url("${imageUrl}")`;
+        } else {
+            previewImage.style.backgroundImage = '';
+        }
+    }
+</script>

@@ -1,0 +1,190 @@
+{% load i18n %}
+
+
+<div class="grid gird-cols-1 w-3xl gap-5">
+    {{ wizard.form.management_form }}
+    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+    <div id="image-formset" class="grid grid-cols-5 gap-5 w-full">
+        {% for form in forms %}
+            {% include "recipes/partials/image_form_row.html" %}
+        {% endfor %}
+        <p id="no-images-uploaded" class="w-max">{% translate 'No Images uploaded yet.' %}</p>
+    </div>
+
+    <label for="upload-image" class="custom-file-upload">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor" class="size-6 text-current">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m6.75 12-3-3m0 0-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"></path>
+        </svg>
+        {% translate 'Upload Image (max. 10 files)' %}
+    </label>
+
+    <input type="file"
+           id="upload-image"
+           name="upload-image"
+           class="hidden"
+           hx-get="{% url 'add_image_form' %}"
+           hx-target="#image-formset"
+           hx-swap="beforeend"
+           hx-vals="js:{form_count: document.querySelectorAll('#image-formset .formset-form').length}"
+    >
+
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        (function () {
+            const sortable = document.querySelector("#image-formset");
+
+            console.log("SORTABLE")
+            console.log(sortable)
+
+            new Sortable(sortable, {
+                animation: 150,
+                dragClass: 'border-secondary!',
+                onEnd: () => reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'),
+            });
+        })();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('htmx:configRequest', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            const totalForms = parseInt(totalFormsInput.value);
+
+            if (totalForms >= 10) {
+                event.preventDefault();
+            }
+        });
+
+        document.addEventListener('htmx:afterSwap', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
+
+            reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
+            imageUploaded();
+        });
+
+        document.getElementById('image-formset').addEventListener('change', (event) => {
+            const input = event.target;
+            console.log("INPUT: ")
+            console.log(input)
+            if (input.matches('input[type="file"]')) {
+                const storeId = input.id;
+                const label = document.getElementById(`${storeId}--name`);
+                if (label) {
+                    label.textContent = input.files[0] ? input.files[0].name : "No file chosen";
+                }
+            }
+        });
+    });
+
+    function updateMsg() {
+        const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+        const noImagesUploadedMsg = document.getElementById('no-images-uploaded');
+
+        if (parseInt(totalFormsInput.value) >= 1) {
+            noImagesUploadedMsg.classList.add('hidden');
+        } else if (parseInt(totalFormsInput.value) === 0) {
+            noImagesUploadedMsg.classList.remove('hidden');
+        }
+    }
+
+    function imageUploaded() {
+        const uploadImage = document.getElementById('upload-image');
+        const formset = document.getElementById('image-formset');
+
+        updateMsg();
+
+        const forms = formset.querySelectorAll('.formset-form')
+        const lastForm = forms[forms.length - 1]
+        console.log(lastForm)
+        const imageLabel = lastForm.querySelector('span')
+        const imageInput = lastForm.querySelector('input')
+        const previewImage = lastForm.querySelector('.preview-image')
+        console.log(imageLabel)
+        console.log(imageInput)
+        imageLabel.textContent = uploadImage.files[0] ? uploadImage.files[0].name : "No file chosen";
+        imageInput.files = uploadImage.files ? uploadImage.files : [];
+        if (imageInput.files && imageInput.files[0]) {
+            const imageUrl = URL.createObjectURL(uploadImage.files[0]);
+            previewImage.style.backgroundImage = `url("${imageUrl}")`;
+        } else {
+            previewImage.style.backgroundImage = '';
+        }
+    }
+</script>
+
+{% comment %}    <div class="grid grid-cols-2 gap-5">
+        <!-- Recipe Portions -->
+        <div class="flex flex-col gap-1 w-full">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6 text-secondary!">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
+                </svg>
+                {% translate 'Portions' %}
+            </p>
+            <div class="flex gap-3 border-1 border-secondary p-2 rounded-sm">
+                <div class="labeled-number-input flex">
+                    <div class="flex items-center gap-2">
+                        <button
+                                class="btn bg-secondary! rounded-sm! text-accent-content!"
+                                onclick="
+                                        event.preventDefault();
+                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
+                                        const current = parseInt(input.value) || 0;
+                                        if (current > 0) input.value = current - 1;
+                                        "
+                        >
+                            -
+                        </button>
+
+                        <input
+                                type="text"
+                                name="{{ form.portions.html_name }}"
+                                id="{{ form.portions.id_for_label }}"
+                                value="{{ form.portions.value|default_if_none:0 }}"
+                                class="{{ form.portions.field.widget.attrs.class }} bg-base-content! border-none! text-accent-content! text-center!"
+                        {% for attr, val in form.portions.field.widget.attrs.items %}
+                            {{ attr }}="{{ val }}"
+                        {% endfor %}
+                        >
+
+                        <button
+                                class="btn bg-secondary! rounded-sm! text-accent-content!"
+                                onclick="
+                                        event.preventDefault();
+                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
+                                        const current = parseInt(input.value) || 0;
+                                        input.value = current + 1;
+                                        "
+                        >
+                            +
+                        </button>
+                    </div>
+
+
+                    <label for="{{ form.portions.id_for_label }}"
+                           class="text-accent-content! labeled-number-input--label">
+                        {% translate 'Pers.' %}
+                    </label>
+                </div>
+            </div>
+            <div>
+                {% for error in form.portions.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+                {% for error in form.working_time_minutes.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>{% endcomment %}

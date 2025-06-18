@@ -1,4 +1,4 @@
-<a class="flex gap-1 items-center justify-start cursor-pointer group/link {% if color %}{{ color }}{% else %}text-base-content{% endif %}"
+<a class="rounded-md flex gap-1 items-center justify-start cursor-pointer group/link {% if color %}{{ color }}{% else %}text-base-content{% endif %}"
    href="{% if url_name %}{% url url_name %}{% endif %}" onclick="{{ onclick }}"
 >
     {{ text }}

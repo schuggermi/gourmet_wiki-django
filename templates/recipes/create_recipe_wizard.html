@@ -11,116 +11,96 @@
 {% endblock %}
 
 {% block main_content %}
-    <h1 class="self-start flex flex-col gap-1">
-        Craft your Recipe <br>
-        {% include "partials/go_back.html" %}
-    </h1>
+    {% comment %}<div class="flex justify-between items-start">
+        <h1 class="self-start flex flex-col gap-1">
+            Craft your Recipe <br>
+            {% include "partials/go_back.html" %}
+        </h1>
 
-    <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3/4">
-        <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p class="text-secondary!">Details</p></li>
-        <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p class="text-secondary!">Ingredients</p></li>
-        <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p class="text-secondary!">Images</p></li>
-    </ul>
+        <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3xl max-w-3xl">
+            <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p
+                    class="text-secondary!">
+                Details</p></li>
+            <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p
+                    class="text-secondary!">
+                Ingredients</p></li>
+            <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p
+                    class="text-secondary!">
+                Images</p></li>
+        </ul>
+    </div>{% endcomment %}
 
-    <form action="" method="post" id="wizard-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ wizard.management_form }}
 
-        {% if wizard.form.non_field_errors %}
-            <div class="alert alert-danger">
-                {{ wizard.form.non_field_errors }}
-            </div>
-        {% endif %}
-        {% if wizard.form.non_field_errors %}
-            <div class="alert alert-danger">
-                {{ wizard.form.non_field_errors }}
-            </div>
-        {% endif %}
+    <div class="flex flex-col gap-10 w-full">
+        <h1 class="self-start flex flex-col gap-1">
+            Craft your Recipe <br>
+            {% include "partials/go_back.html" %}
+        </h1>
 
-        {% if wizard.steps.current == '0' %}
-            <fieldset class="fieldset">
-                <legend class="fieldset-legend text-base-content">{% translate 'Details' %}</legend>
+        <div class="self-center flex flex-col gap-10">
+            <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3xl max-w-3xl">
+                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p
+                        class="text-secondary!">
+                    Details</p></li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p
+                        class="text-secondary!">
+                    Ingredients</p></li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p
+                        class="text-secondary!">
+                    Images</p></li>
+            </ul>
+            <form action="" method="post" id="wizard-form" enctype="multipart/form-data" class="w-3xl max-w-3xl">
+                {% csrf_token %}
+                {{ wizard.management_form }}
 
-                {% include "partials/form.html" with form=wizard.form %}
-            </fieldset>
-        {% elif wizard.steps.current == '1' %}
-            <fieldset class="fieldset flex flex-col gap-5">
-                <legend class="fieldset-legend text-base-content">{% translate 'Ingredients' %}</legend>
-
-                <div class="flex flex-col">
-                    {{ wizard.form.management_form }}
-                    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
-
-                    <div id="ingredient-formset" class="flex flex-col gap-3">
-                        {% for form in wizard.form.forms %}
-                            {% include 'recipes/partials/ingredient_form_row.html' with form=form form_index=forloop.counter0 %}
-                        {% endfor %}
+                {% if wizard.form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_field_errors }}
                     </div>
-                </div>
-
-                <button type="button"
-                        class="btn bg-base-300! btn-base-300! text-base-content! border-base-300!"
-                        hx-get="{% url 'add_ingredient_form' %}"
-                        hx-target="#ingredient-formset"
-                        hx-swap="beforeend"
-                        hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
-                        hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
-                        id="add-ingredient">
-                    Add Ingredient
-                </button>
-            </fieldset>
-        {% elif wizard.steps.current == '2' %}
-            <fieldset class="fieldset flex flex-col gap-5">
-                <legend class="fieldset-legend text-base-content">{% translate 'Additional Images' %}</legend>
-
-                <div class="flex flex-col">
-                    {{ wizard.form.management_form }}
-                    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
-
-                    <div id="image-formset" class="flex flex-col gap-3">
-                        {% for form in wizard.form.forms %}
-                            {% include 'recipes/partials/image_form_row.html' with form=form form_index=forloop.counter0 %}
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <button type="button"
-                        class="w-fit btn bg-secondary!"
-                        hx-get="{% url 'add_image_form' %}"
-                        hx-target="#image-formset"
-                        hx-swap="beforeend"
-                        hx-vals="js:{form_count: document.querySelectorAll('#image-formset .formset-form').length}"
-                        hx-on="htmx:afterRequest:document.querySelector('#id_recipe_image-TOTAL_FORMS').value++; reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');"
-                        id="add-image">
-                    Add Image
-                </button>
-            </fieldset>
-        {% endif %}
-
-        <div class="form-navigation mt-4">
-            {% if wizard.steps.prev %}
-                <button
-                        name="wizard_goto_step"
-                        type="submit"
-                        value="{{ wizard.steps.prev }}"
-                        class="btn! btn-outline! bg-transparent! text-base-content! border-base-content! hover:border-secondary! hover:text-secondary!"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
-                    </svg>
-                </button>
-            {% endif %}
-            <button type="submit">
-                {% if wizard.steps.current == wizard.steps.last %}
-                    {% translate 'Create Recipe' %}
-                {% else %}
-                    {% translate 'Next' %}
                 {% endif %}
-            </button>
+                {% if wizard.form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                {% if wizard.steps.current == '0' %}
+                    {% include "recipes/partials/recipe_details_form.html" with form=wizard.form %}
+                {% elif wizard.steps.current == '1' %}
+                    <div>
+                        {% include 'recipes/partials/recipe_ingredients_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
+                    </div>
+                {% elif wizard.steps.current == '2' %}
+                    {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
+                {% endif %}
+
+                <div class="flex gap-5">
+                    {% if wizard.steps.prev %}
+                        <button
+                                name="wizard_goto_step"
+                                type="submit"
+                                value="{{ wizard.steps.prev }}"
+                                class="btn bg-transparent! text-base-content! border-base-content! hover:border-secondary! hover:text-secondary! rounded-sm!"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+                            </svg>
+                        </button>
+                    {% endif %}
+                    <button type="submit" class="btn btn-secondary rounded-sm! text-accent-content!">
+                        {% if wizard.steps.current == wizard.steps.last %}
+                            {% translate 'Create Recipe' %}
+                        {% else %}
+                            {% translate 'Next' %}
+                        {% endif %}
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
+
+    </div>
 
     <script>
         function reindexFormset(formsetSelector, totalFormsSelector) {

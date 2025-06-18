@@ -3,31 +3,76 @@ from django.core.exceptions import ValidationError
 
 from recipes.models import Recipe, RecipeIngredient, RecipeImage
 
-
-INPUT_CLASSES = 'input input-accent bg-base-content text-base-primary w-full'
-SELECT_CLASSES = 'select select-accent bg-base-content text-base-primary w-full'
-TEXTAREA_CLASSES = 'textarea textarea-accent bg-base-content text-base-primary w-full resize-none'
-FILE_INPUT_CLASSES = 'file-input file-input-ghost text-base-primary w-full'
+INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
+NUMBER_INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
+SELECT_CLASSES = 'select bg-base-content rounded-sm w-full'
+TEXTAREA_CLASSES = 'textarea bg-base-content rounded-sm w-full resize-none border-box focus:outline-none focus:border-none'
+FILE_INPUT_CLASSES = 'file-input bg-base-content rounded-sm w-full'
 
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['name', 'description'] #thumbnail_image
+        fields = [
+            'name', 'description', 'skill_level', 'portions', 'working_time_hours', 'working_time_minutes',
+            'cooking_time_hours', 'cooking_time_minutes', 'rest_time_hours', 'rest_time_minutes',
+        ]  # thumbnail_image
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,
-                'placeholder': 'Recipe Name'
+                'placeholder': 'Name your creation (e.g. Spicy Thai Basil Chicken)'
             }),
             'description': forms.Textarea(attrs={
                 'class': TEXTAREA_CLASSES,
-                'rows': 2,
-                'placeholder': 'Recipe Description'
+                'rows': 3,
+                'cols': 20,
+                'wrap': 'soft',
+                'style': 'white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;',
+                'placeholder': 'e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili.'
             }),
             # 'thumbnail_image': forms.FileInput(attrs={
             #     'class': FILE_INPUT_CLASSES,
             #     'accept': 'image/*'
             # }),
+            'skill_level': forms.Select(attrs={
+                'class': SELECT_CLASSES,
+                'placeholder': 'Choose a Skill Level'
+            }),
+            'portions': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 1,
+                'max': 500,
+            }),
+            'working_time_hours': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 24,
+            }),
+            'working_time_minutes': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 60,
+            }),
+            'cooking_time_hours': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 24,
+            }),
+            'cooking_time_minutes': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 60,
+            }),
+            'rest_time_hours': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 24,
+            }),
+            'rest_time_minutes': forms.NumberInput(attrs={
+                'class': NUMBER_INPUT_CLASSES,
+                'min': 0,
+                'max': 60,
+            }),
         }
 
 
@@ -48,6 +93,16 @@ class RecipeIngredientForm(forms.ModelForm):
                 'class': SELECT_CLASSES,
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name in self.fields:
+            if self.errors.get(field_name):
+                old_class = self.fields[field_name].widget.attrs.get('class', '')
+                self.fields[field_name].widget.attrs['class'] = (
+                        old_class + ' border-3 border-red-400'
+                )
 
     def clean(self):
         cleaned_data = super().clean()

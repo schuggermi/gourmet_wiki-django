@@ -59,15 +59,15 @@
                         {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
                     </p>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu p-2 w-40 bg-base-300 rounded-lg">
+                <ul tabindex="0" class="dropdown-content menu p-2 w-48 bg-base-300 rounded-lg">
                     {% if user.is_authenticated %}
-                        <li>{% include "partials/go_to.html" with url_name="users-profile" text="Profile" color="text-base-content" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="users-profile-recipes" text="Your Recipes" color="text-base-content" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="recipe-create" text="Create Recipe" color="text-base-content" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="account_logout" text="Logout" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="users-profile" text="Profile" color="text-base-content!" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="users-profile-recipes" text="Your Recipes" color="text-base-content!" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="recipe-create" text="Create Recipe" color="text-base-content!" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_logout" text="Logout" color="text-base-content!" %}</li>
                     {% else %}
-                        <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content" %}</li>
-                        <li>{% include "partials/go_to.html" with url_name="account_signup" text="Sign up" color="text-base-content" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content!" %}</li>
+                        <li>{% include "partials/go_to.html" with url_name="account_signup" text="Sign up" color="text-base-content!" %}</li>
                     {% endif %}
                 </ul>
             </div>

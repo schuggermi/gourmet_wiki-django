@@ -1,14 +1,14 @@
-<div class="grid grid-cols-2 gap-6 justify-items-start w-full mx-auto">
+<div class="grid grid-cols-2 gap-5 w-full mx-auto pb-10">
     {% for recipe in object_list %}
-        <div class="w-full h-36 card card-side bg-base-300 shadow-sm cursor-pointer hover:shadow-lg hover:bg-base-primary/50 transition-shadow group">
-            <figure class="w-36 h-36 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('{{ recipe.thumbnail_image.url }}');">
+        <div class="w-full h-36 card items-center rounded-md card-side bg-transparent outline-1 outline-secondary shadow-sm cursor-pointer hover:shadow-lg hover:bg-base-primary/50 transition-shadow group">
+            <figure class="w-44 h-36 bg-cover bg-center bg-no-repeat rounded-md bg-secondary"
+                    style="background-image: url('{{ recipe.get_thumbnail_image.url }}');">
             </figure>
             <div class="card-body">
-                <h2 class="card-title text-secondary!">
+                <h2 class="text-secondary!">
                     {{ recipe.name }}
                 </h2>
-                <p class="min-h-3">{{ recipe.description }}</p>
+                <small>{{ recipe.description }}</small>
                 <div class="card-actions justify-between">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor"

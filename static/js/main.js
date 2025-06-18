@@ -1,4 +1,6 @@
 import '@/css/main.css';
+import Sortable from "sortablejs";
+window.Sortable = Sortable;
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.documentElement.setAttribute('data-theme', 'dark');

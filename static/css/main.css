@@ -5,72 +5,109 @@
     themes: forest --default, forest --prefersdark, forest;
 }
 
-.file-input {
-    @apply input bg-base-content text-accent-content w-full rounded-sm;
-}
+@layer base {
+    .file-input {
+        @apply input bg-base-content text-accent-content w-full rounded-sm;
+    }
 
 
-textarea, input[type="text"], input[type="password"], input[type="email"], input[type="file"] {
-    @apply input bg-base-content text-accent-content w-full rounded-sm;
-}
+    textarea, select, input[type="text"], input[type="password"], input[type="email"], input[type="file"], input[type="number"].custom-number {
+        @apply input bg-base-content text-accent-content w-full rounded-sm outline-none ring-0 focus:ring-0 focus:outline-none;
+    }
 
-input[type="checkbox"] {
-    @apply checkbox checkbox-accent bg-base-content text-accent-content;
-}
+    input:focus, textarea:focus, select:focus {
+        box-shadow: none !important;
+        outline: none !important;
+        border: 2px solid var(--color-secondary) !important;
+    }
 
-select {
-    @apply input bg-base-content text-accent-content w-full;
-}
+    input[type="file"] {
+        display: none !important;
+    }
 
-button {
-    @apply btn btn-primary text-accent-content rounded-3xl hover:opacity-70;
-}
+    input[type="file"].custom-file-upload {
+        display: block !important;
+    }
 
-form {
-    @apply flex flex-col gap-5;
-}
+    .custom-file-upload {
+        @apply input bg-transparent border-secondary hover:bg-secondary cursor-pointer text-secondary hover:text-accent-content rounded-sm w-full flex items-center justify-center;
+    }
 
-label {
-    color: var(--color-base-content);
-}
+    /*.custom-file-upload:hover {
+        background-color: #007bff;
+        color: white;
+    }*/
+    .labeled-number-input {
+        @apply bg-base-content text-accent-content w-full rounded-sm flex items-center justify-between;
+    }
 
-span {
-    color: var(--color-base-content);
-}
+    .labeled-number-input--label {
+        @apply px-2;
+    }
 
-h1 {
-    @apply text-4xl font-bold mb-4;
-    color: var(--color-primary);
-}
+    input[type="checkbox"] {
+        @apply checkbox checkbox-accent bg-base-content text-accent-content;
+    }
 
-h2 {
-    @apply text-3xl font-semibold mb-3;
-    color: var(--color-primary);
-}
+    select {
+        @apply input bg-base-content text-accent-content w-full;
+    }
 
-h3 {
-    @apply text-2xl font-semibold mb-3;
-    color: var(--color-secondary);
-}
+    .btn {
+        @apply text-accent-content;
+    }
 
-h4 {
-    @apply text-xl font-medium mb-2;
-    color: var(--color-secondary);
-}
+    form {
+        @apply flex flex-col gap-5;
+    }
 
-h5 {
-    @apply text-lg font-medium mb-2;
-    color: var(--color-primary);
-}
+    label {
+        color: var(--color-base-content);
+    }
 
-h6 {
-    @apply text-base font-medium mb-2;
-    color: var(--color-primary);
-}
+    span {
+        color: var(--color-base-content);
+    }
 
-small {
-    @apply text-base font-normal mb-2;
-    color: var(--color-secondary);
+    h1 {
+        @apply text-4xl font-bold;
+        color: var(--color-primary);
+    }
+
+    h2 {
+        @apply text-3xl font-semibold;
+        color: var(--color-primary);
+    }
+
+    h3 {
+        @apply text-2xl font-semibold;
+        color: var(--color-secondary);
+    }
+
+    h4 {
+        @apply text-xl font-medium;
+        color: var(--color-secondary);
+    }
+
+    h5 {
+        @apply text-lg font-medium;
+        color: var(--color-primary);
+    }
+
+    h6 {
+        @apply text-base font-medium;
+        color: var(--color-primary);
+    }
+
+    p, a, small, label {
+        @apply text-base font-medium;
+        color: var(--color-base-content);
+    }
+
+    small {
+        @apply text-base font-normal mb-2;
+        color: var(--color-secondary);
+    }
 }
 
 /*@plugin "daisyui"*/

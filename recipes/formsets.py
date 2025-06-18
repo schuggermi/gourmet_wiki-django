@@ -79,7 +79,8 @@ RecipeImageFormSet = modelformset_factory(
     RecipeImage,
     form=RecipeImageForm,
     formset=BaseRecipeImageFormSet,
-    extra=1,
+    extra=0,
+    max_num=10,
     can_delete=False,
     exclude=['order']
 )

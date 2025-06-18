@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation.trans_null import gettext_lazy as _
 
@@ -19,10 +20,16 @@ class UnitChoice(models.TextChoices):
     TEE_SPOON = 'tes', _('tes')
 
 
+class SkillLevelChoice(models.TextChoices):
+    BEGINNER = 'BEGINNER', _('Beginner')
+    INTERMEDIATE = 'INTERMEDIATE', _('Intermediate')
+    ADVANCED = 'ADVANCED', _('Advanced')
+    PROFESSIONAL = 'PROFESSIONAL', _('Professional')
+
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, max_length=250)
     created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -32,16 +39,74 @@ class Recipe(models.Model):
         upload_to='recipes/images/',
         null=True,
         blank=True,
-        default='recipes/images/placeholder.jpg'
+    )
+    portions = models.PositiveIntegerField(
+        default=4,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(500),
+        ]
+    )
+    working_time_hours = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(24),
+        ]
+    )
+    working_time_minutes = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(60),
+        ]
+    )
+    cooking_time_hours = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(24),
+        ]
+    )
+    cooking_time_minutes = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(60),
+        ]
+    )
+    rest_time_hours = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(24),
+        ]
+    )
+    rest_time_minutes = models.PositiveIntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(60),
+        ]
+    )
+    skill_level = models.CharField(
+        max_length=50,
+        choices=SkillLevelChoice.choices,
+        default=SkillLevelChoice.BEGINNER,
     )
 
     @property
     def total_cost(self):
         return calculate_recipe_cost(self)
 
-    def get_thumbnail_url(self):
-        if self.thumbnail_image and hasattr(self.thumbnail_image, 'url'):
-            return self.thumbnail_image.url
+    @property
+    def get_thumbnail_image(self):
+        if self.thumbnail_image and self.images:
+            return self.thumbnail_image
+        elif self.thumbnail_image and not self.images:
+            return self.thumbnail_image
+        elif not self.thumbnail_image and self.images:
+            return self.images.first().image
         return settings.MEDIA_URL + 'recipes/images/placeholder.jpg'
 
     def __str__(self):
@@ -79,7 +144,7 @@ class RecipeImage(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         related_name='images',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     image = models.ImageField(
         upload_to='recipes/images/'
