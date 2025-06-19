@@ -161,10 +161,10 @@ class RecipeIngredientForm(forms.ModelForm):
 class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = RecipeImage
-        fields = ['image', 'caption']
+        fields = ['image', 'caption', 'order']
         widgets = {
             'image': forms.FileInput(attrs={
-                'class': FILE_INPUT_CLASSES,
+                'class': FILE_INPUT_CLASSES + 'hidden',
                 'accept': 'image/*'
             }),
             'caption': forms.TextInput(attrs={
@@ -172,3 +172,13 @@ class RecipeImageForm(forms.ModelForm):
                 'placeholder': 'Image caption (optional)'
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name in self.fields:
+            if self.errors.get(field_name):
+                old_class = self.fields[field_name].widget.attrs.get('class', '')
+                self.fields[field_name].widget.attrs['class'] = (
+                        old_class + ' border-3 border-red-400'
+                )

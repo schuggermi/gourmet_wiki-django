@@ -7,7 +7,7 @@
 
     <div id="image-formset" class="grid grid-cols-5 gap-5 w-full">
         {% for form in forms %}
-            {% include "recipes/partials/image_form_row.html" %}
+            {% include "recipes/partials/image_form_row.html" with form=form form_index=forloop.counter0 %}
         {% endfor %}
         <p id="no-images-uploaded" class="w-max">{% translate 'No Images uploaded yet.' %}</p>
     </div>
@@ -94,6 +94,10 @@
 
     function imageUploaded() {
         const uploadImage = document.getElementById('upload-image');
+        console.log("Upload image: ")
+        console.log(uploadImage)
+        console.log("Files: ")
+        console.log(uploadImage.files)
         const formset = document.getElementById('image-formset');
 
         updateMsg();
@@ -102,12 +106,16 @@
         const lastForm = forms[forms.length - 1]
         console.log(lastForm)
         const imageLabel = lastForm.querySelector('span')
-        const imageInput = lastForm.querySelector('input')
+        const imageInput = lastForm.querySelector('input[id$="image"]')
         const previewImage = lastForm.querySelector('.preview-image')
         console.log(imageLabel)
         console.log(imageInput)
+
         imageLabel.textContent = uploadImage.files[0] ? uploadImage.files[0].name : "No file chosen";
         imageInput.files = uploadImage.files ? uploadImage.files : [];
+
+        console.log(imageInput.files)
+
         if (imageInput.files && imageInput.files[0]) {
             const imageUrl = URL.createObjectURL(uploadImage.files[0]);
             previewImage.style.backgroundImage = `url("${imageUrl}")`;
@@ -116,75 +124,3 @@
         }
     }
 </script>
-
-{% comment %}    <div class="grid grid-cols-2 gap-5">
-        <!-- Recipe Portions -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="size-6 text-secondary!">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
-                </svg>
-                {% translate 'Portions' %}
-            </p>
-            <div class="flex gap-3 border-1 border-secondary p-2 rounded-sm">
-                <div class="labeled-number-input flex">
-                    <div class="flex items-center gap-2">
-                        <button
-                                class="btn bg-secondary! rounded-sm! text-accent-content!"
-                                onclick="
-                                        event.preventDefault();
-                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
-                                        const current = parseInt(input.value) || 0;
-                                        if (current > 0) input.value = current - 1;
-                                        "
-                        >
-                            -
-                        </button>
-
-                        <input
-                                type="text"
-                                name="{{ form.portions.html_name }}"
-                                id="{{ form.portions.id_for_label }}"
-                                value="{{ form.portions.value|default_if_none:0 }}"
-                                class="{{ form.portions.field.widget.attrs.class }} bg-base-content! border-none! text-accent-content! text-center!"
-                        {% for attr, val in form.portions.field.widget.attrs.items %}
-                            {{ attr }}="{{ val }}"
-                        {% endfor %}
-                        >
-
-                        <button
-                                class="btn bg-secondary! rounded-sm! text-accent-content!"
-                                onclick="
-                                        event.preventDefault();
-                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
-                                        const current = parseInt(input.value) || 0;
-                                        input.value = current + 1;
-                                        "
-                        >
-                            +
-                        </button>
-                    </div>
-
-
-                    <label for="{{ form.portions.id_for_label }}"
-                           class="text-accent-content! labeled-number-input--label">
-                        {% translate 'Pers.' %}
-                    </label>
-                </div>
-            </div>
-            <div>
-                {% for error in form.portions.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-                {% for error in form.working_time_minutes.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>{% endcomment %}

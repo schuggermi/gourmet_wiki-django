@@ -1,25 +1,23 @@
 {% load i18n %}
 
-<div id="recipe_image-{{ form_index }}" class="formset-form flex rounded-md items-start w-full cursor-grab border-3 border-transparent"
+<div id="recipe_image-{{ form_index }}"
+     class="formset-form flex rounded-md items-start w-full cursor-grab border-3 border-transparent"
      data-store-id="{{ form.image.id_for_label }}"
 >
-    <div class="flex gap-5 items-center w-full">
+    <div class="flex gap-5 items-center w-full relative">
+        <p class="preparation-step-label text-secondary font-bold text-sm absolute -top-5 -left-3 z-20">{{ form_index|add:"1" }}.</p>
+        {{ form.order.as_hidden }}
+
         <label for="{{ form.image.id_for_label }}" class="hidden">
             {{ form.image.label }}
         </label>
 
-        <input
-                type="file"
-                name="{{ form.image.html_name }}"
-                id="{{ form.image.id_for_label }}"
-                value="{{ form.image.value|default_if_none:'' }}"
-                class="form-control {% if form.image.errors %}is-invalid{% endif %}"
-        {% for attr, val in form.image.field.widget.attrs.items %} {{ attr }}="{{ val }}" {% endfor %}
-        >
+        {{ form.image }}
 
         <span id="{{ form.image.id_for_label }}--name" class="hidden">No file chosen</span>
         <div class="group/preview relative w-full">
-            <div class="preview-image w-full h-24 rounded-md bg-cover bg-center bg-no-repeat" style="background-image: none;"></div>
+            <div class="preview-image w-full h-24 rounded-md bg-cover bg-center bg-no-repeat"
+                 style="background-image: none;"></div>
 
             <p class="absolute -bottom-2 -right-2 hover:scale-105 bg-red-400 rounded-full p-1 remove-image cursor-pointer self-center"
                title="{% translate 'Remove this Image' %}"

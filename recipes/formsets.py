@@ -95,22 +95,24 @@ class BaseRecipeImageFormSet(BaseModelFormSet):
         if any(self.errors):
             return
 
-        # # Check if at least one form has valid data with required fields
-        # valid_forms = 0
-        # for form in self.forms:
-        #     if form.cleaned_data and not form.cleaned_data.get('DELETE'):
-        #         # Get all required fields from the form
-        #         required_fields = [field_name for field_name, field in form.fields.items()
-        #                           if field.required and field_name != 'DELETE']
-        #
-        #         # Check if all required fields are filled
-        #         all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
-        #
-        #         if all_required_filled:
-        #             valid_forms += 1
-        #
-        # if self.forms and valid_forms != self.forms:
-        #     self.non_form_errors().append("At least one image with all required fields filled out is required.")
+        valid_forms = 0
+        images = set()
+        for form in self.forms:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE'):
+                required_fields = [field_name for field_name, field in form.fields.items()
+                                   if field.required and field_name != 'DELETE' and field_name != 'order']
+
+                all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
+
+                if all_required_filled:
+                    valid_forms += 1
+
+                image = form.cleaned_data.get('image')
+                if image:
+                    images.add(image)
+
+        if valid_forms == 0 and self.forms:
+            self.non_form_errors().append("Images must not be empty.")
 
 
 RecipeImageFormSet = modelformset_factory(
@@ -118,7 +120,10 @@ RecipeImageFormSet = modelformset_factory(
     form=RecipeImageForm,
     formset=BaseRecipeImageFormSet,
     extra=0,
+    min_num=0,
     max_num=10,
+    validate_min=True,
+    validate_max=True,
+    can_order=True,
     can_delete=False,
-    exclude=['order']
 )

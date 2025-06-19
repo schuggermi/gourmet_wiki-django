@@ -168,6 +168,7 @@ class RecipeImage(models.Model):
         max_length=200,
         blank=True
     )
+    order = models.PositiveIntegerField()
 
     def __str__(self):
         return f"Image for {self.recipe.name} - {self.caption}"
