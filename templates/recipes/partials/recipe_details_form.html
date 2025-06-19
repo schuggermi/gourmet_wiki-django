@@ -31,23 +31,14 @@
             {{ form.description.label }}
         </label>
 
-        {% comment %}        {{ form.description }}
-
-        <textarea name="0-description" cols="10" rows="2"
-                  class="textarea! bg-base-content! rounded-sm! w-full! focus:outline-none! focus:border-none!"
-                  wrap="soft" style="white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;"
-                  placeholder="e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili." maxlength="250"
-                  id="id_0-description"></textarea>{% endcomment %}
-
-        {% comment %}       <textarea type="text" name="0-name" id="id_0-name" class="border-3! border-red-400!"
-                  placeholder="Name your creation (e.g. Spicy Thai Basil Chicken)" maxlength="100"></textarea>{% endcomment %}
-
         <textarea
                 type="text"
                 name="{{ form.description.html_name }}"
                 id="{{ form.description.id_for_label }}"
-        {% for attr, val in form.description.field.widget.attrs.items %} {{ attr }}="{{ val }} {% if attr == 'class' %}
-            h-16! {% if form.description.errors %}border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
+                class="{{ form.step_text.field.widget.attrs.class }} h-16! {% if form.step_text.errors %}border-3! border-red-400!{% endif %}"
+                rows="{{ form.step_text.field.widget.attrs.rows }}"
+                cols="{{ form.step_text.field.widget.attrs.cols }}"
+                wrap="{{ form.step_text.field.widget.attrs.wrap }}"
         ></textarea>
 
         {% for error in form.description.errors %}

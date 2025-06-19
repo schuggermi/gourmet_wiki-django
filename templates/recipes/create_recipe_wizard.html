@@ -39,15 +39,27 @@
 
         <div class="self-center flex flex-col gap-10">
             <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3xl max-w-3xl">
-                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p
-                        class="text-secondary!">
-                    Details</p></li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p
-                        class="text-secondary!">
-                    Ingredients</p></li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p
-                        class="text-secondary!">
-                    Images</p></li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
+                    <p class="text-secondary!">
+                        Details
+                    </p>
+                </li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
+                    <p class="text-secondary!">
+                        Ingredients
+                    </p>
+                </li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}">
+                    <p
+                            class="text-secondary!">
+                        Images
+                    </p>
+                </li>
+                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-secondary{% endif %}">
+                    <p class="text-secondary!">
+                        Preparation Steps
+                    </p>
+                </li>
             </ul>
             <form action="" method="post" id="wizard-form" enctype="multipart/form-data" class="w-3xl max-w-3xl">
                 {% csrf_token %}
@@ -67,11 +79,11 @@
                 {% if wizard.steps.current == '0' %}
                     {% include "recipes/partials/recipe_details_form.html" with form=wizard.form %}
                 {% elif wizard.steps.current == '1' %}
-                    <div>
-                        {% include 'recipes/partials/recipe_ingredients_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
-                    </div>
+                    {% include 'recipes/partials/recipe_ingredients_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% elif wizard.steps.current == '2' %}
                     {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
+                {% elif wizard.steps.current == '3' %}
+                    {% include 'recipes/partials/recipe_preparation_step_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% endif %}
 
                 <div class="flex gap-5">
@@ -113,6 +125,9 @@
             if (formsetSelector === '#image-formset') {
                 prefix = 'recipe_image';
             }
+            if (formsetSelector === '#preparation-step-formset') {
+                prefix = 'recipe_preparation_step';
+            }
 
             rows.forEach((row, index) => {
                 row.id = `${prefix}-${index}`;
@@ -140,6 +155,9 @@
             }
             if (document.querySelector('#image-formset')) {
                 reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
+            }
+            if (document.querySelector('#preparation-step-formset')) {
+                reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');
             }
         });
     </script>

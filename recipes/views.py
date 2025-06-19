@@ -14,15 +14,28 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from formtools.wizard.views import SessionWizardView
 
-from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm
-from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet
-from recipes.models import Recipe, RecipeIngredient, RecipeImage
+from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
+from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
+from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep
 
 User = get_user_model()
 
 
 class RecipeListView(ListView):
     model = Recipe
+
+
+def add_preparation_step_form(request):
+    form_index = int(request.GET.get("form_count", 0))
+    new_form = RecipePreparationStepForm(prefix=f'recipe_preparation_step-{form_index}')
+
+    context = {
+        'form': new_form,
+        'form_index': form_index,
+    }
+
+    html = render_to_string('recipes/partials/preparation_step_form_row.html', context)
+    return HttpResponse(html)
 
 
 def add_ingredient_form(request):
@@ -57,6 +70,7 @@ class CreateRecipeWizardView(SessionWizardView):
         ('0', RecipeForm),
         ('1', RecipeIngredientFormSet),
         ('2', RecipeImageFormSet),
+        ('3', RecipePreparationStepFormSet),
     ]
     template_name = 'recipes/create_recipe_wizard.html'
     file_storage = FileSystemStorage(location=Path(settings.MEDIA_ROOT).joinpath('recipes/images/temp'))
@@ -78,10 +92,18 @@ class CreateRecipeWizardView(SessionWizardView):
                 queryset=RecipeImage.objects.none(),
                 prefix='recipe_image'
             )
+        elif step == '3':
+            return RecipePreparationStepFormSet(
+                data=data,
+                files=files,
+                queryset=RecipePreparationStep.objects.none(),
+                prefix='recipe_preparation_step'
+            )
         return super().get_form(step, data, files)
 
     def done(self, form_list, **kwargs):
-        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'), files=self.storage.get_step_files('0'))
+        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'),
+                                    files=self.storage.get_step_files('0'))
 
         if not recipe_form.is_valid():
             return self.render_revalidation_failure(step='0', form=recipe_form)
@@ -126,8 +148,22 @@ class CreateRecipeWizardView(SessionWizardView):
                 recipe_image.save()
                 images_count += 1
 
-        messages.success(
-            self.request,
-            f'Recipe "{recipe.name}" successfully created with {ingredients_count} ingredients and {images_count} images!'
+        # Process recipe preparation steps
+        recipe_preparation_step_formset = self.get_form(
+            step='3',
+            data=self.storage.get_step_data('3')
         )
+
+        if not recipe_preparation_step_formset.is_valid():
+            self.storage.extra_data['recipe_id'] = recipe.id
+            return self.render_revalidation_failure(step='3', form=recipe_preparation_step_formset)
+
+        prep_steps_count = 0
+        for form in recipe_preparation_step_formset:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
+                recipe_prep_step = form.save(commit=False)
+                recipe_prep_step.recipe = recipe
+                recipe_prep_step.save()
+                prep_steps_count += 1
+
         return redirect(reverse('users-profile-recipes'))

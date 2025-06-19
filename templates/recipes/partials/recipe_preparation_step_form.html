@@ -1,0 +1,42 @@
+{% load i18n %}
+
+
+<div class="grid gird-cols-1 w-3xl gap-5">
+    {{ wizard.form.management_form }}
+    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+    <div id="preparation-step-formset" class="flex flex-col gap-5 w-full">
+        {% for form in forms %}
+            {% include 'recipes/partials/preparation_step_form_row.html' with form=form form_index=forloop.counter0 %}
+        {% endfor %}
+    </div>
+
+    <button type="button"
+            class="btn rounded-sm! bg-transparent border-secondary text-secondary hover:text-accent-content hover:bg-secondary"
+            hx-get="{% url 'add_preparation_step_form' %}"
+            hx-target="#preparation-step-formset"
+            hx-swap="beforeend"
+            hx-vals="js:{form_count: document.querySelectorAll('#preparation-step-formset .formset-form').length}"
+            hx-on="htmx:afterRequest:document.querySelector('#id_recipe_preparation_step-TOTAL_FORMS').value++; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
+            id="add-preparation-step">
+        {% translate 'Add Preparation Step' %}
+    </button>
+
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        (function () {
+            const sortable = document.querySelector("#preparation-step-formset");
+
+            console.log("SORTABLE")
+            console.log(sortable)
+
+            new Sortable(sortable, {
+                animation: 150,
+                dragClass: 'border-secondary!',
+                onEnd: () => reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS'),
+            });
+        })();
+    });
+</script>

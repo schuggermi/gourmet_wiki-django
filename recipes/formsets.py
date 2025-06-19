@@ -1,7 +1,46 @@
 from django.forms.models import modelformset_factory, BaseModelFormSet
 
-from recipes.forms import RecipeIngredientForm, RecipeImageForm
-from recipes.models import RecipeIngredient, RecipeImage
+from recipes.forms import RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
+from recipes.models import RecipeIngredient, RecipeImage, RecipePreparationStep
+
+
+class BaseRecipePreparationStepFormSet(BaseModelFormSet):
+    def clean(self):
+        super().clean()
+
+        if any(self.errors):
+            return
+
+        valid_forms = 0
+        prep_steps = set()
+        for form in self.forms:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE'):
+                required_fields = [field_name for field_name, field in form.fields.items()
+                                   if field.required and field_name != 'DELETE']
+
+                all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
+
+                if all_required_filled:
+                    valid_forms += 1
+
+                prep_step = form.cleaned_data.get('step_text')
+                if prep_step:
+                    prep_steps.add(prep_step)
+
+        if valid_forms == 0 and self.forms:
+            self.non_form_errors().append("Ingredients must not be empty.")
+
+
+RecipePreparationStepFormSet = modelformset_factory(
+    RecipePreparationStep,
+    form=RecipePreparationStepForm,
+    formset=BaseRecipePreparationStepFormSet,
+    extra=0,
+    min_num=1,
+    max_num=50,
+    can_delete=False,
+    exclude=['order']
+)
 
 
 class BaseRecipeIngredientFormSet(BaseModelFormSet):
@@ -11,17 +50,13 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
         if any(self.errors):
             return
 
-        # if not self.forms:
-        #     self.non_form_errors().append("At least one ingredient is required.")
-
-        # Check if at least one form has valid data
         valid_forms = 0
         ingredients = set()
         for form in self.forms:
             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
                 # Get all required fields from the form
-                required_fields = [field_name for field_name, field in form.fields.items() 
-                                  if field.required and field_name != 'DELETE']
+                required_fields = [field_name for field_name, field in form.fields.items()
+                                   if field.required and field_name != 'DELETE']
 
                 # Check if all required fields are filled
                 all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)

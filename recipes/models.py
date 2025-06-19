@@ -113,6 +113,20 @@ class Recipe(models.Model):
         return self.name
 
 
+class RecipePreparationStep(models.Model):
+    recipe = models.ForeignKey(
+        Recipe,
+        related_name="preparation_steps",
+        on_delete=models.CASCADE
+    )
+    step_text = models.CharField(
+        max_length=500,
+    )
+
+    def __str__(self):
+        return self.step_text
+
+
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(
         Recipe,
