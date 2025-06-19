@@ -79,7 +79,7 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     class Meta:
         model = RecipePreparationStep
-        fields = ['step_text']
+        fields = ['step_text', 'order']
         widgets = {
             'step_text': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,

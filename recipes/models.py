@@ -122,9 +122,10 @@ class RecipePreparationStep(models.Model):
     step_text = models.CharField(
         max_length=500,
     )
+    order = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.step_text
+        return f"{self.order + 1}. {self.step_text}"
 
 
 class RecipeIngredient(models.Model):

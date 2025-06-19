@@ -2,15 +2,30 @@
 
 <div id="recipe_preparation_step-{{ form_index }}" class="formset-form flex items-start gap-3 w-full">
     <div class="flex gap-5 items-start w-full">
+        {#        <p class="preparation-step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>#}
         <p class="preparation-step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>
+        {{ form.order.as_hidden }}
+
         <!-- Step Text -->
         <div class="w-full">
-{#            {{ form }}#}
-            <label for="{{ form.step_text.id_for_label }}" class="hidden">
-                {{ form.step_text.label }}
-            </label>
+            <div class="flex items-center gap-5">
+                <label for="{{ form.step_text.id_for_label }}" class="hidden">
+                    {{ form.step_text.label }}
+                </label>
 
-            {{ form.step_text }}
+                {{ form.step_text }}
+                <p class="cursor-pointer self-center w-fit"
+                   title="{% translate 'Remove this Preparation Step' %}"
+                   onclick="this.closest('.formset-form').remove(); reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor"
+                         class="size-6 text-error">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
+                    </svg>
+                </p>
+            </div>
 
             {% for error in form.step_text.errors %}
                 <div class="text-red-400">
@@ -18,25 +33,14 @@
                 </div>
             {% endfor %}
         </div>
-        <p class="cursor-pointer self-center w-fit"
-           title="{% translate 'Remove this Preparation Step' %}"
-           onclick="this.closest('.formset-form').remove(); reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS'); updateLabels();"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor"
-                 class="size-6 text-error">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
-            </svg>
-        </p>
     </div>
 </div>
 
 <script>
-    function updateLabels() {
-        const labels = document.querySelectorAll('.preparation-step-label');
-        labels.forEach((label, idx) => {
-            label.textContent = `${idx + 1}.`;
-        });
-    }
+    {% comment %}    function updateLabels() {
+            const orderFields = document.querySelectorAll('.preparation-step-label');
+            orderFields.forEach((field, idx) => {
+                field.value = idx + 1;
+            });
+        }{% endcomment %}
 </script>
