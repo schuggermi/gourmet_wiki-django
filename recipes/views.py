@@ -69,8 +69,8 @@ class CreateRecipeWizardView(SessionWizardView):
     form_list = [
         ('0', RecipeForm),
         ('1', RecipeIngredientFormSet),
-        ('2', RecipeImageFormSet),
-        ('3', RecipePreparationStepFormSet),
+        ('2', RecipePreparationStepFormSet),
+        ('3', RecipeImageFormSet),
     ]
     template_name = 'recipes/create_recipe_wizard.html'
     file_storage = FileSystemStorage(location=Path(settings.MEDIA_ROOT).joinpath('recipes/images/temp'))
@@ -86,18 +86,18 @@ class CreateRecipeWizardView(SessionWizardView):
                 prefix='recipe_ingredient'
             )
         elif step == '2':
-            return RecipeImageFormSet(
-                data=data,
-                files=files,
-                queryset=RecipeImage.objects.none(),
-                prefix='recipe_image'
-            )
-        elif step == '3':
             return RecipePreparationStepFormSet(
                 data=data,
                 files=files,
                 queryset=RecipePreparationStep.objects.none(),
                 prefix='recipe_preparation_step'
+            )
+        elif step == '3':
+            return RecipeImageFormSet(
+                data=data,
+                files=files,
+                queryset=RecipeImage.objects.none(),
+                prefix='recipe_image'
             )
         return super().get_form(step, data, files)
 
@@ -112,6 +112,7 @@ class CreateRecipeWizardView(SessionWizardView):
         recipe.created_by = self.request.user
         recipe.save()
 
+        # Process recipe ingredients
         ingredient_formset = self.get_form(
             step='1',
             data=self.storage.get_step_data('1')
@@ -129,34 +130,15 @@ class CreateRecipeWizardView(SessionWizardView):
                 recipe_ingredient.save()
                 ingredients_count += 1
 
-        # Process recipe images
-        image_formset = self.get_form(
-            step='2',
-            data=self.storage.get_step_data('2'),
-            files=self.storage.get_step_files('2')
-        )
-
-        if not image_formset.is_valid():
-            self.storage.extra_data['recipe_id'] = recipe.id
-            return self.render_revalidation_failure(step='2', form=image_formset)
-
-        images_count = 0
-        for form in image_formset:
-            if form.cleaned_data and not form.cleaned_data.get('DELETE', False) and form.cleaned_data.get('image'):
-                recipe_image = form.save(commit=False)
-                recipe_image.recipe = recipe
-                recipe_image.save()
-                images_count += 1
-
         # Process recipe preparation steps
         recipe_preparation_step_formset = self.get_form(
-            step='3',
-            data=self.storage.get_step_data('3')
+            step='2',
+            data=self.storage.get_step_data('2')
         )
 
         if not recipe_preparation_step_formset.is_valid():
             self.storage.extra_data['recipe_id'] = recipe.id
-            return self.render_revalidation_failure(step='3', form=recipe_preparation_step_formset)
+            return self.render_revalidation_failure(step='2', form=recipe_preparation_step_formset)
 
         prep_steps_count = 0
         for form in recipe_preparation_step_formset:
@@ -165,5 +147,24 @@ class CreateRecipeWizardView(SessionWizardView):
                 recipe_prep_step.recipe = recipe
                 recipe_prep_step.save()
                 prep_steps_count += 1
+
+        # Process recipe images
+        image_formset = self.get_form(
+            step='3',
+            data=self.storage.get_step_data('3'),
+            files=self.storage.get_step_files('3')
+        )
+
+        if not image_formset.is_valid():
+            self.storage.extra_data['recipe_id'] = recipe.id
+            return self.render_revalidation_failure(step='3', form=image_formset)
+
+        images_count = 0
+        for form in image_formset:
+            if form.cleaned_data and not form.cleaned_data.get('DELETE', False) and form.cleaned_data.get('image'):
+                recipe_image = form.save(commit=False)
+                recipe_image.recipe = recipe
+                recipe_image.save()
+                images_count += 1
 
         return redirect(reverse('users-profile-recipes'))

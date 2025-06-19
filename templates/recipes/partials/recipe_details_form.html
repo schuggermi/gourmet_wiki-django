@@ -31,7 +31,7 @@
             {{ form.description.label }}
         </label>
 
-        <textarea
+        {% comment %}<textarea
                 type="text"
                 name="{{ form.description.html_name }}"
                 id="{{ form.description.id_for_label }}"
@@ -39,7 +39,9 @@
                 rows="{{ form.step_text.field.widget.attrs.rows }}"
                 cols="{{ form.step_text.field.widget.attrs.cols }}"
                 wrap="{{ form.step_text.field.widget.attrs.wrap }}"
-        ></textarea>
+        ></textarea>{% endcomment %}
+
+        {{ form.description }}
 
         {% for error in form.description.errors %}
             <div class="text-red-400">

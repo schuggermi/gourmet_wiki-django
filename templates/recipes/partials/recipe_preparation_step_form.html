@@ -34,7 +34,8 @@
 
             new Sortable(sortable, {
                 animation: 150,
-                dragClass: 'border-secondary!',
+                dragClass: 'text-secondary!',
+                handle: '.drag-handle',
                 onEnd: () => reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS'),
             });
         })();

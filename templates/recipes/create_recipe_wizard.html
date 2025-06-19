@@ -50,14 +50,13 @@
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}">
-                    <p
-                            class="text-secondary!">
-                        Images
+                    <p class="text-secondary!">
+                        Preparation Steps
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-secondary{% endif %}">
                     <p class="text-secondary!">
-                        Preparation Steps
+                        Images
                     </p>
                 </li>
             </ul>
@@ -81,9 +80,9 @@
                 {% elif wizard.steps.current == '1' %}
                     {% include 'recipes/partials/recipe_ingredients_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% elif wizard.steps.current == '2' %}
-                    {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
-                {% elif wizard.steps.current == '3' %}
                     {% include 'recipes/partials/recipe_preparation_step_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
+                {% elif wizard.steps.current == '3' %}
+                    {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% endif %}
 
                 <div class="flex gap-5">
