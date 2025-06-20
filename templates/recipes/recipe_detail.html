@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load recipe_tags i18n static %}
+
+{% block title %}
+    {{ block.super }}
+    - {{ object.name }}
+{% endblock %}
+
+
+{% block main_content %}
+    {{ block.super }}
+
+    <div class="w-full mx-auto flex flex-col gap-10 items-center justify-start pb-10">
+        <div class="w-full flex justify-between">
+            {% include "partials/go_back.html" %}
+            <a href="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn btn-secondary rounded-sm">
+                {% translate 'Edit Recipe' %}
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 gap-10 w-full mx-auto">
+            <!-- Image Carousel -->
+            <div class="carousel carousel-start w-full aspect-video rounded-sm">
+                {% with images=recipe.images.all %}
+                    {% for image in images %}
+                        <div id="{{ image.image.name }}"
+                             class="carousel-item relative w-full bg-cover bg-center bg-no-repeat rounded-sm"
+                             style="background-image: url('{{ image.image.url }}');"
+                        >
+                        </div>
+                    {% endfor %}
+                    {% if not recipe.images.all %}
+                    	<div id="placeholder"
+                             class="carousel-item relative w-full bg-cover bg-center bg-no-repeat rounded-sm"
+                             style="background-image: url('{{ recipe.get_thumbnail_image }}');"
+                        >
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <!-- Recipe Details -->
+            <div class="flex flex-col gap-5 justify-between">
+                <div class="flex flex-col gap-5">
+                    <h1>{{ recipe.name }}</h1>
+                    <p>{{ recipe.description }}</p>
+                </div>
+
+                <div class="flex flex-col gap-5">
+                    <!-- Skill Level -->
+                    <div class="flex gap-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6 text-secondary!">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"></path>
+                        </svg>
+                        <p>{{ recipe.skill_level }}</p>
+                    </div>
+
+                    <!-- Portions -->
+                    <div class="flex gap-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6 text-secondary!">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
+                        </svg>
+                        <p>{{ recipe.portions }} Pers.</p>
+                    </div>
+                </div>
+
+                <!-- Times -->
+                <div class="flex gap-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="size-6 text-secondary!">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                    </svg>
+
+                    <!-- Total Time -->
+                    <div class="flex flex-col gap-1 w-fit">
+                        <div class="flex gap-1 border-b-1 border-secondary pb-1">
+                            <p>{% translate 'Total Time' %}</p>
+                        </div>
+
+                        <p>
+                            {{ recipe.total_time_hours }}h {{ recipe.total_time_minutes }}min
+                        </p>
+                    </div>
+
+                    <!-- Cooking Time -->
+                    <div class="flex flex-col gap-1 w-fit">
+                        <div class="flex gap-1 border-b-1 border-secondary pb-1">
+                            <p>{% translate 'Cooking Time' %}</p>
+                        </div>
+
+                        <p>
+                            {{ recipe.cooking_time_hours }}h {{ recipe.cooking_time_minutes }}min
+                        </p>
+                    </div>
+
+                    <!-- Working Time -->
+                    <div class="flex flex-col gap-1 w-fit">
+                        <div class="flex gap-1 border-b-1 border-secondary pb-1">
+                            <p>{% translate 'Working Time' %}</p>
+                        </div>
+
+                        <p>
+                            {{ recipe.working_time_hours }}h {{ recipe.working_time_minutes }}min
+                        </p>
+                    </div>
+
+                    <!-- Rest Time -->
+                    <div class="flex flex-col gap-1 w-fit">
+                        <div class="flex gap-1 border-b-1 border-secondary pb-1">
+                            <p>{% translate 'Resting Time' %}</p>
+                        </div>
+
+                        <p>
+                            {{ recipe.rest_time_hours }}h {{ recipe.rest_time_minutes }}min
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recipe Ingredients -->
+            <div class="flex flex-col gap-5 justify-start">
+                <h2>{% translate 'Ingredients' %}</h2>
+
+                <ul class="w-full">
+                    {% for ingredient in recipe.ingredients.all %}
+                        <li class="py-2 flex justify-center {% if forloop.counter < recipe.ingredients.all|length %}border-b-1 border-base-content{% endif %}">
+                            <div class="w-full grid grid-cols-5 gap-5">
+                                <p class="col-span-1 text-end">
+                                    <span class="text-secondary">{{ ingredient.quantity|floatformat:"0" }}</span>
+                                    <span class="font-light">{{ ingredient.unit }}</span>
+                                </p>
+                                <p class="col-span-4">{{ ingredient.ingredient }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Preparation Steps -->
+            <div class="flex flex-col gap-5 justify-start">
+                <h2>{% translate 'Preparation Steps' %}</h2>
+
+                <ul class="flex flex-col gap-5">
+                    {% for step in recipe.preparation_steps.all %}
+                        <li class="flex flex-col gap-1">
+                            <p class="text-secondary font-bold w-full ">{% translate 'Preparation Step' %} {{ step.order|add:"1" }}</p>
+                            <p class="ps-5">{{ step.step_text }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

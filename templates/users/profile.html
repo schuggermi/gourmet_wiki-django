@@ -44,7 +44,7 @@
 
             <a href="{% url 'users-profile-recipes' %}"
                class="h-full w-full border-1 border-secondary px-5 py-10 rounded-lg cursor-pointer group hover:bg-base-primary">
-                <h4>Your Recipes</h4>
+                <h4>Your Recipes ({{ object.user.recipe_set.all|length }})</h4>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"
                      class="text-base-content! size-6 transition-transform duration-300 group-hover:translate-x-10">

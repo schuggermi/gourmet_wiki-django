@@ -165,7 +165,7 @@ class RecipeImageForm(forms.ModelForm):
         widgets = {
             'image': forms.FileInput(attrs={
                 'class': FILE_INPUT_CLASSES + 'hidden',
-                'accept': 'image/*'
+                'accept': 'image/*',
             }),
             'caption': forms.TextInput(attrs={
                 'class': INPUT_CLASSES,
@@ -182,3 +182,24 @@ class RecipeImageForm(forms.ModelForm):
                 self.fields[field_name].widget.attrs['class'] = (
                         old_class + ' border-3 border-red-400'
                 )
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+
+        if not image and self.instance and self.instance.pk:
+            return self.instance.image
+        return image
+
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     image = cleaned_data.get('image')
+    #
+    #     # If no new image is uploaded, but the instance has one, reuse it
+    #     if not image and self.instance and self.instance.pk and self.instance.image:
+    #         cleaned_data['image'] = self.instance.image
+    #
+    #     # If still no image, raise error
+    #     if not image:
+    #         self.add_error('image', "This field is requiredd.")
+    #
+    #     return cleaned_data

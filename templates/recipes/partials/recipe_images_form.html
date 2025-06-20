@@ -3,13 +3,25 @@
 
 <div class="grid gird-cols-1 w-3xl gap-5">
     {{ wizard.form.management_form }}
+    {% if wizard.form.non_form_errors %}
+        <div class="alert alert-danger">
+            {{ wizard.form.non_form_errors }}
+        </div>
+    {% endif %}
+    {% if wizard.form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ wizard.form.non_field_errors }}
+        </div>
+    {% endif %}
+
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
     <div id="image-formset" class="grid grid-cols-5 gap-5 w-full">
         {% for form in forms %}
             {% include "recipes/partials/image_form_row.html" with form=form form_index=forloop.counter0 %}
         {% endfor %}
-        <p id="no-images-uploaded" class="w-max">{% translate 'No Images uploaded yet.' %}</p>
+        <p id="no-images-uploaded"
+           class="w-max {% if forms %}hidden{% endif %}">{% translate 'No Images uploaded yet.' %}</p>
     </div>
 
     <label for="upload-image" class="custom-file-upload">
@@ -63,8 +75,8 @@
             const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
             totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
 
-            reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
             imageUploaded();
+            reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
         });
 
         document.getElementById('image-formset').addEventListener('change', (event) => {

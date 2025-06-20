@@ -11,26 +11,6 @@
 {% endblock %}
 
 {% block main_content %}
-    {% comment %}<div class="flex justify-between items-start">
-        <h1 class="self-start flex flex-col gap-1">
-            Craft your Recipe <br>
-            {% include "partials/go_back.html" %}
-        </h1>
-
-        <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3xl max-w-3xl">
-            <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}"><p
-                    class="text-secondary!">
-                Details</p></li>
-            <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}"><p
-                    class="text-secondary!">
-                Ingredients</p></li>
-            <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}"><p
-                    class="text-secondary!">
-                Images</p></li>
-        </ul>
-    </div>{% endcomment %}
-
-
     <div class="flex flex-col gap-10 w-full">
         <h1 class="self-start flex flex-col gap-1">
             Craft your Recipe <br>
@@ -60,18 +40,23 @@
                     </p>
                 </li>
             </ul>
-            <form action="" method="post" id="wizard-form" enctype="multipart/form-data" class="w-3xl max-w-3xl">
+            <form method="post" id="wizard-form" enctype="multipart/form-data" class="w-3xl max-w-3xl">
                 {% csrf_token %}
                 {{ wizard.management_form }}
 
-                {% if wizard.form.non_field_errors %}
+                {% if wizard.form.non_form_errors %}
                     <div class="alert alert-danger">
-                        {{ wizard.form.non_field_errors }}
+                        {{ wizard.form.non_form_errors }}
                     </div>
                 {% endif %}
                 {% if wizard.form.non_field_errors %}
                     <div class="alert alert-danger">
                         {{ wizard.form.non_field_errors }}
+                    </div>
+                {% endif %}
+                {% if wizard.form.errors %}
+                    <div class="alert alert-danger">
+                        {{ wizard.form.errors }}
                     </div>
                 {% endif %}
 
@@ -134,7 +119,8 @@
 
                 orderLabels.forEach((label, idx) => {
                     label.textContent = `${idx + 1}.`;
-                    label.nextElementSibling.value = idx;
+                    {## id_recipe_image-0-order#}
+                    document.querySelector(`#id_${row.id}-order`).value = idx;
                 });
 
                 row.querySelectorAll('[name], [id], label[for]').forEach((el) => {

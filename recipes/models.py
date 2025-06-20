@@ -11,6 +11,7 @@ User = get_user_model()
 
 
 class UnitChoice(models.TextChoices):
+    PIECE = 'piece', _('piece')
     GRAM = 'g', _('g')
     KILOGRAM = 'kg', _('kg')
     LITER = 'l', _('l')
@@ -21,10 +22,10 @@ class UnitChoice(models.TextChoices):
 
 
 class SkillLevelChoice(models.TextChoices):
-    BEGINNER = 'BEGINNER', _('Beginner')
-    INTERMEDIATE = 'INTERMEDIATE', _('Intermediate')
-    ADVANCED = 'ADVANCED', _('Advanced')
-    PROFESSIONAL = 'PROFESSIONAL', _('Professional')
+    BEGINNER = _('Beginner')
+    INTERMEDIATE = _('Intermediate')
+    ADVANCED = _('Advanced')
+    PROFESSIONAL = _('Professional')
 
 
 class Recipe(models.Model):
@@ -100,14 +101,18 @@ class Recipe(models.Model):
         return calculate_recipe_cost(self)
 
     @property
+    def total_time_hours(self):
+        return self.working_time_hours + self.cooking_time_hours + self.rest_time_hours
+
+    @property
+    def total_time_minutes(self):
+        return self.working_time_minutes + self.cooking_time_minutes + self.rest_time_minutes
+
+    @property
     def get_thumbnail_image(self):
-        if self.thumbnail_image and self.images:
-            return self.thumbnail_image
-        elif self.thumbnail_image and not self.images:
-            return self.thumbnail_image
-        elif not self.thumbnail_image and self.images:
-            return self.images.first().image
-        return settings.MEDIA_URL + 'recipes/images/placeholder.jpg'
+        if self.images.exists():
+            return self.images.first().image.url
+        return settings.STATIC_URL + 'images/placeholder_recipe.jpg'
 
     def __str__(self):
         return self.name
@@ -152,7 +157,7 @@ class RecipeIngredient(models.Model):
         unique_together = ('recipe', 'ingredient')
 
     def __str__(self):
-        return f"{self.quantity} {self.ingredient.unit} {self.ingredient.name} for {self.recipe.name}"
+        return f"{round(self.quantity, 0)}{self.ingredient.unit} {self.ingredient.name}"
 
 
 class RecipeImage(models.Model):

@@ -1,17 +1,20 @@
+import logging
 from pathlib import Path
+from pprint import pprint
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.forms import model_to_dict
 from django.forms.models import modelformset_factory
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 
 from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
@@ -55,6 +58,8 @@ def add_image_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = RecipeImageForm(prefix=f'recipe_image-{form_index}')
 
+    print("NEW FORM: ", new_form)
+
     context = {
         'form': new_form,
         'form_index': form_index,
@@ -75,42 +80,70 @@ class CreateRecipeWizardView(SessionWizardView):
     template_name = 'recipes/create_recipe_wizard.html'
     file_storage = FileSystemStorage(location=Path(settings.MEDIA_ROOT).joinpath('recipes/images/temp'))
 
+    def dispatch(self, request, *args, **kwargs):
+        self.recipe_id = kwargs.get('recipe_id')
+        self.recipe_instance = None
+        if self.recipe_id:
+            self.recipe_instance = get_object_or_404(Recipe, id=self.recipe_id, created_by=request.user)
+        return super().dispatch(request, *args, **kwargs)
+
     def get_form(self, step=None, data=None, files=None):
         if step is None:
             step = self.steps.current
 
-        if step == '1':
-            return RecipeIngredientFormSet(
-                data=data,
-                queryset=RecipeIngredient.objects.none(),
-                prefix='recipe_ingredient'
-            )
+        kwargs = {}
+
+        if data is not None:
+            kwargs['data'] = data
+        if files is not None:
+            kwargs['files'] = files
+
+        if step == '0':
+            if self.recipe_instance:
+                kwargs['instance'] = self.recipe_instance
+            return RecipeForm(**kwargs)
+        elif step == '1':
+            queryset = self.recipe_instance.ingredients.all() if self.recipe_instance else RecipeIngredient.objects.none()
+            kwargs.update({
+                'prefix': 'recipe_ingredient',
+                'queryset': queryset,
+            })
+            return RecipeIngredientFormSet(**kwargs)
         elif step == '2':
-            return RecipePreparationStepFormSet(
-                data=data,
-                files=files,
-                queryset=RecipePreparationStep.objects.none(),
-                prefix='recipe_preparation_step'
-            )
+            queryset = self.recipe_instance.preparation_steps.all() if self.recipe_instance else RecipePreparationStep.objects.none()
+            kwargs.update({
+                'queryset': queryset,
+                'prefix': 'recipe_preparation_step',
+            })
+            return RecipePreparationStepFormSet(**kwargs)
         elif step == '3':
-            return RecipeImageFormSet(
-                data=data,
-                files=files,
-                queryset=RecipeImage.objects.none(),
-                prefix='recipe_image'
-            )
+            queryset = self.recipe_instance.images.all()
+            print("Prepopulating images for recipe:", self.recipe_instance)
+            for img in queryset:
+                print(" -", img.pk, img.image.url)
+            kwargs.update({
+                'queryset': queryset,
+                'prefix': 'recipe_image',
+            })
+            return RecipeImageFormSet(**kwargs)
         return super().get_form(step, data, files)
 
     def done(self, form_list, **kwargs):
-        recipe_form = self.get_form(step='0', data=self.storage.get_step_data('0'),
-                                    files=self.storage.get_step_files('0'))
+        recipe_form = self.get_form(
+            step='0',
+            data=self.storage.get_step_data('0'),
+            files=self.storage.get_step_files('0')
+        )
 
         if not recipe_form.is_valid():
             return self.render_revalidation_failure(step='0', form=recipe_form)
 
-        recipe = recipe_form.save(commit=False)
-        recipe.created_by = self.request.user
-        recipe.save()
+        if self.recipe_instance:
+            recipe = recipe_form.save()
+        else:
+            recipe = recipe_form.save(commit=False)
+            recipe.created_by = self.request.user
+            recipe.save()
 
         # Process recipe ingredients
         ingredient_formset = self.get_form(
@@ -122,13 +155,14 @@ class CreateRecipeWizardView(SessionWizardView):
             self.storage.extra_data['recipe_id'] = recipe.id
             return self.render_revalidation_failure(step='1', form=ingredient_formset)
 
-        ingredients_count = 0
-        for form in ingredient_formset:
-            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
-                recipe_ingredient = form.save(commit=False)
-                recipe_ingredient.recipe = recipe
-                recipe_ingredient.save()
-                ingredients_count += 1
+        ingredients = ingredient_formset.save(commit=False)
+        for ingredient in ingredients:
+            ingredient.recipe = recipe
+            ingredient.save()
+        for obj in ingredient_formset.deleted_forms:
+            obj.delete()
+
+        print(f"{ingredients=}")
 
         # Process recipe preparation steps
         recipe_preparation_step_formset = self.get_form(
@@ -140,15 +174,16 @@ class CreateRecipeWizardView(SessionWizardView):
             self.storage.extra_data['recipe_id'] = recipe.id
             return self.render_revalidation_failure(step='2', form=recipe_preparation_step_formset)
 
-        prep_steps_count = 0
-        for form in recipe_preparation_step_formset:
-            if form.cleaned_data and not form.cleaned_data.get('DELETE', False):
-                recipe_prep_step = form.save(commit=False)
-                recipe_prep_step.recipe = recipe
-                recipe_prep_step.save()
-                prep_steps_count += 1
+        steps = recipe_preparation_step_formset.save(commit=False)
+        for obj in recipe_preparation_step_formset.deleted_forms:
+            obj.delete()
+        for step in steps:
+            step.recipe = recipe
+            step.save()
 
         # Process recipe images
+
+        print(self.storage.get_step_data('3'))
         image_formset = self.get_form(
             step='3',
             data=self.storage.get_step_data('3'),
@@ -159,12 +194,33 @@ class CreateRecipeWizardView(SessionWizardView):
             self.storage.extra_data['recipe_id'] = recipe.id
             return self.render_revalidation_failure(step='3', form=image_formset)
 
-        images_count = 0
-        for form in image_formset:
-            if form.cleaned_data and not form.cleaned_data.get('DELETE', False) and form.cleaned_data.get('image'):
-                recipe_image = form.save(commit=False)
-                recipe_image.recipe = recipe
-                recipe_image.save()
-                images_count += 1
+        # images = image_formset.save(commit=False)
 
-        return redirect(reverse('users-profile-recipes'))
+        print(dir(image_formset))
+
+        # for obj in image_formset.deleted_forms:
+        #     obj.delete()
+
+        images = image_formset.save(commit=False)
+        for idx, image in enumerate(images):
+            if image_formset.data.get(f"{image_formset.prefix}-{idx}-DELETE") == 'on':
+                image.delete()
+            else:
+                image.recipe = recipe
+                image.save()
+
+        # for form in image_formset.forms:
+        #     print("DELETE: ", form.data.get(f"{form.prefix}-DELETE"))
+        #     if form.instance and form.data.get(f"{form.prefix}-DELETE") == 'on':
+        #         form.instance.delete()
+        #         image_formset.forms.remove(form)
+        #     else:
+        #         instance = form.save(commit=False)
+        #         instance.recipe = recipe
+        #         instance.save()
+
+        return redirect(reverse('recipe-detail', kwargs={'pk': self.recipe_instance.pk}))
+
+
+class RecipeDetailView(DetailView):
+    model = Recipe

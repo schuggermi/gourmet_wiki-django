@@ -4,24 +4,27 @@
      class="formset-form flex rounded-md items-start w-full cursor-grab border-3 border-transparent"
      data-store-id="{{ form.image.id_for_label }}"
 >
+    {{ form.management_form }}
     <div class="flex gap-5 items-center w-full relative">
-        <p class="preparation-step-label text-secondary font-bold text-sm absolute -top-5 -left-3 z-20">{{ form_index|add:"1" }}.</p>
-        {{ form.order.as_hidden }}
-
         <label for="{{ form.image.id_for_label }}" class="hidden">
             {{ form.image.label }}
         </label>
 
+        {{ form.id }}
         {{ form.image }}
+        {{ form.DELETE.as_hidden }}
+        {{ form.order.as_hidden }}
 
         <span id="{{ form.image.id_for_label }}--name" class="hidden">No file chosen</span>
-        <div class="group/preview relative w-full">
+        <div class="preview group/preview relative w-full">
+            <p class="preparation-step-label text-secondary font-bold text-sm absolute -top-5 -left-3 z-20">{{ form_index|add:"1" }}.</p>
+
             <div class="preview-image w-full h-24 rounded-md bg-cover bg-center bg-no-repeat"
-                 style="background-image: none;"></div>
+                 style="background-image: {% if form.instance.pk %}url('{{ form.instance.image.url }}'){% else %}none{% endif %};"></div>
 
             <p class="absolute -bottom-2 -right-2 hover:scale-105 bg-red-400 rounded-full p-1 remove-image cursor-pointer self-center"
                title="{% translate 'Remove this Image' %}"
-               onclick="this.closest('.formset-form').remove(); reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'); updateMsg();"
+               onclick="this.closest('.preview').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'); updateMsg();"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"

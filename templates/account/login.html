@@ -10,7 +10,7 @@
     <div class="w-full h-full md:flex flex-col md:items-center md:justify-center">
         <h1>{% translate 'Log In Now' %}</h1>
 
-        <div class="h-full flex flex-col justify-center items-center">
+        <div class="h-full flex flex-col justify-center items-center max-w-sm">
             {% if not SOCIALACCOUNT_ONLY %}
                 <div class="bg-base-primary p-5 rounded-lg">
                     {% url 'account_login' as login_url %}
@@ -22,7 +22,7 @@
                             {% if form.non_field_errors %}
                                 <ul>
                                     {% for error in form.non_field_errors %}
-                                        <li><p class="text-red-400">{{ error }}</p></li>
+                                        <li><p class="text-red-400 text-center">{{ error }}</p></li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
