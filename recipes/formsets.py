@@ -18,18 +18,23 @@ class BaseRecipePreparationStepFormSet(BaseModelFormSet):
         valid_forms = 0
         prep_steps = set()
         for form in self.forms:
-            if form.cleaned_data and not form.cleaned_data.get('DELETE'):
-                required_fields = [field_name for field_name, field in form.fields.items()
-                                   if field.required and field_name != 'DELETE' and field_name not in ('order', 'id')]
+            if not form.cleaned_data:
+                continue
 
-                all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
+            if form.cleaned_data.get('DELETE'):
+                continue
 
-                if all_required_filled:
-                    valid_forms += 1
+            required_fields = [field_name for field_name, field in form.fields.items()
+                               if field.required and field_name != 'DELETE' and field_name not in ('order', 'id')]
 
-                prep_step = form.cleaned_data.get('step_text')
-                if prep_step:
-                    prep_steps.add(prep_step)
+            all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
+
+            if all_required_filled:
+                valid_forms += 1
+
+            prep_step = form.cleaned_data.get('step_text')
+            if prep_step:
+                prep_steps.add(prep_step)
 
         if valid_forms == 0 and self.forms:
             self.non_form_errors().append("Preparation Steps must not be empty.")
@@ -48,10 +53,9 @@ RecipePreparationStepFormSet = modelformset_factory(
 
 class BaseRecipeIngredientFormSet(BaseModelFormSet):
     def clean(self):
-        super().clean()  # MUST call this first!
+        super().clean()
 
         if any(self.errors):
-            # If there are errors, skip further validation
             return
 
         valid_forms = 0
@@ -61,29 +65,22 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             if not form.cleaned_data:
                 continue
 
-            # If the form is marked for deletion, skip it for validation/counting
             if form.cleaned_data.get('DELETE'):
                 continue
 
-            # Identify required fields excluding 'DELETE', 'order', 'id'
-            required_fields = [
-                fname for fname, field in form.fields.items()
-                if field.required and fname not in ('DELETE', 'order', 'id')
-            ]
+            required_fields = [field_name for field_name, field in form.fields.items()
+                               if field.required and field_name not in ('DELETE', 'order', 'id')]
 
-            # Check all required fields are filled
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 
             if all_required_filled:
                 valid_forms += 1
 
-            # Collect images for further processing if needed
             image = form.cleaned_data.get('image')
             if image:
                 images.add(image)
 
         if valid_forms == 0 and self.forms:
-            # Add a non-field error if no valid forms remain (after deletion)
             self._non_form_errors.append("Images must not be empty.")
 
 

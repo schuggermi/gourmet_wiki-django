@@ -24,7 +24,7 @@
 
             <p class="absolute -bottom-2 -right-2 hover:scale-105 bg-red-400 rounded-full p-1 remove-image cursor-pointer self-center"
                title="{% translate 'Remove this Image' %}"
-               onclick="this.closest('.preview').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'); updateMsg();"
+               onclick="this.closest('.preview').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'); updateMsg();"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"

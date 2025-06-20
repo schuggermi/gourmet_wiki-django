@@ -102,7 +102,7 @@
         function reindexFormset(formsetSelector, totalFormsSelector) {
             console.log("Reindexing formset");
             const rows = document.querySelectorAll(`${formsetSelector} .formset-form`);
-            const orderLabels = document.querySelectorAll('.preparation-step-label');
+            const orderLabels = document.querySelectorAll('.step-label');
             const totalFormsInput = document.querySelector(totalFormsSelector);
 
             // Determine the prefix based on the formset selector
@@ -115,11 +115,14 @@
             }
 
             rows.forEach((row, index) => {
+                console.log(row)
                 row.id = `${prefix}-${index}`;
 
                 orderLabels.forEach((label, idx) => {
+                    console.log(label)
                     label.textContent = `${idx + 1}.`;
                     {## id_recipe_image-0-order#}
+                    console.log(row.id)
                     document.querySelector(`#id_${row.id}-order`).value = idx;
                 });
 
