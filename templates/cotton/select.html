@@ -1,0 +1,32 @@
+{% load forms %}
+
+<c-vars type="text"
+        class="w-full select rounded-sm focus:outline-none focus:ring-0"
+        error_class="border-3 border-red-400"
+></c-vars>
+
+<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+       class="{% if not labeled %}hidden{% endif %}">
+    {% if field and not label %}
+        {{ field.label }}
+    {% elif label %}
+        {{ label }}
+    {% endif %}
+</label>
+<select {{ field.field.widget.attrs|render_attrs }}
+        id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+        name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
+        class="{{ default_class }} {{ class }} {% if field and field.errors %} {{ error_class }}{% endif %}"
+>
+    {% for value, label in field.field.choices %}
+        {% if forloop.counter0 > 0 %}
+            <option value="{{ value }}"
+                    {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
+        {% endif %}
+    {% endfor %}
+</select>
+{% for error in field.errors %}
+    <div class="text-red-400">
+        {{ error }}
+    </div>
+{% endfor %}

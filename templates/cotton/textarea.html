@@ -1,0 +1,13 @@
+{% load forms %}
+
+<c-vars type="text"
+        default_class="w-full textarea rounded-sm focus:outline-none focus:ring-0"
+        error_class="border-3 border-red-400"
+></c-vars>
+
+<label for="{{ field.id_for_label }}" class="{% if not labeled %}hidden{% endif %}">{{ field.label }}</label>
+<textarea {{ field.field.widget.attrs|render_attrs }}
+          id="{{ field.id_for_label }}"
+          name="{{ field.html_name }}"
+          class="{{ default_class }} {% if not field.field.widget.attrs.resize %}resize-none{% endif %} {{ class }} {% if field.errors %}{{ error_class }}{% endif %}"
+>{{ field.value|default_if_none:'' }}</textarea>

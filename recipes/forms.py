@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep
 
-INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
+INPUT_CLASSES = ''
 NUMBER_INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
 SELECT_CLASSES = 'select bg-base-content rounded-sm w-full'
 TEXTAREA_CLASSES = 'textarea bg-base-content rounded-sm w-full border-box focus:outline-none focus:border-none'
@@ -19,57 +19,49 @@ class RecipeForm(forms.ModelForm):
         ]  # thumbnail_image
         widgets = {
             'name': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
-                'placeholder': 'Name your creation (e.g. Spicy Thai Basil Chicken)'
+                'placeholder': 'Name your creation (e.g. Spicy Thai Basil Chicken)',
+                'maxlength': Recipe._meta.get_field('name').max_length,
             }),
             'description': forms.Textarea(attrs={
-                'class': TEXTAREA_CLASSES + ' resize-none',
                 'rows': 3,
                 'cols': 20,
                 'wrap': 'soft',
-                'style': 'white-space: pre-wrap; word-wrap: break-word; overflow-wrap: break-word;',
-                'placeholder': 'e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili.'
+                'resize': False,
+                'placeholder': 'e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili.',
+                'maxlength': Recipe._meta.get_field('description').max_length,
             }),
             # 'thumbnail_image': forms.FileInput(attrs={
             #     'class': FILE_INPUT_CLASSES,
             #     'accept': 'image/*'
             # }),
             'skill_level': forms.Select(attrs={
-                'class': SELECT_CLASSES,
                 'placeholder': 'Choose a Skill Level'
             }),
             'portions': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 1,
                 'max': 500,
             }),
             'working_time_hours': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 24,
             }),
             'working_time_minutes': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 60,
             }),
             'cooking_time_hours': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 24,
             }),
             'cooking_time_minutes': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 60,
             }),
             'rest_time_hours': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 24,
             }),
             'rest_time_minutes': forms.NumberInput(attrs={
-                'class': NUMBER_INPUT_CLASSES,
                 'min': 0,
                 'max': 60,
             }),
@@ -82,7 +74,6 @@ class RecipePreparationStepForm(forms.ModelForm):
         fields = ['step_text', 'order']
         widgets = {
             'step_text': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
                 'placeholder': 'e.g. Heat 2 tbsp of oil in a wok over medium-high heat.'
             }),
         }
@@ -117,27 +108,14 @@ class RecipeIngredientForm(forms.ModelForm):
         fields = ['ingredient', 'quantity', 'unit']
         widgets = {
             'ingredient': forms.Select(attrs={
-                'class': SELECT_CLASSES,
                 'placeholder': 'New Ingredient'
             }),
-            'quantity': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
+            'quantity': forms.NumberInput(attrs={
                 'placeholder': 'Quantity'
             }),
             'unit': forms.Select(attrs={
-                'class': SELECT_CLASSES,
             }),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        for field_name in self.fields:
-            if self.errors.get(field_name):
-                old_class = self.fields[field_name].widget.attrs.get('class', '')
-                self.fields[field_name].widget.attrs['class'] = (
-                        old_class + ' border-3 border-red-400'
-                )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -164,11 +142,9 @@ class RecipeImageForm(forms.ModelForm):
         fields = ['image', 'caption', 'order']
         widgets = {
             'image': forms.FileInput(attrs={
-                'class': FILE_INPUT_CLASSES + 'hidden',
                 'accept': 'image/*',
             }),
             'caption': forms.TextInput(attrs={
-                'class': INPUT_CLASSES,
                 'placeholder': 'Image caption (optional)'
             }),
         }

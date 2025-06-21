@@ -12,14 +12,14 @@
     </div>
 
     <button type="button"
-            class="btn rounded-sm! bg-transparent border-secondary text-secondary hover:text-accent-content hover:bg-secondary"
+            class="btn btn-secondary w-fit"
             hx-get="{% url 'add_ingredient_form' %}"
             hx-target="#ingredient-formset"
             hx-swap="beforeend"
             hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
             hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
             id="add-ingredient">
-        Add Ingredient
+        + Add Ingredient
     </button>
 
 </div>

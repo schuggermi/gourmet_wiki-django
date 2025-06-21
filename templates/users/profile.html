@@ -8,7 +8,7 @@
 {% block main_content %}
     <h1 class="self-start flex flex-col gap-1 items-start">
         Your Profile <br>
-        {% include "partials/go_back.html" %}
+        <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
     </h1>
 
     <div class="grid grid-cols-2 gap-10 w-full">

@@ -12,51 +12,42 @@
 
 {% block main_content %}
     <div class="flex flex-col gap-10 w-full">
-        <h1 class="self-start flex flex-col gap-1">
-            Craft your Recipe <br>
-            {% include "partials/go_back.html" %}
-        </h1>
+        <div class="flex flex-col gap-1">
+            <h1 class="self-start flex flex-col gap-1">Craft your Recipe <br></h1>
+            <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
+        </div>
 
         <div class="self-center flex flex-col gap-10">
-            <ul class="steps steps-vertical step-base-300 lg:steps-horizontal w-3xl max-w-3xl">
-                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
-                    <p class="text-secondary!">
+            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-3xl max-w-3xl">
+                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-accent{% endif %}">
+                    <p>
                         Details
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
-                    <p class="text-secondary!">
+                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-accent{% endif %}">
+                    <p>
                         Ingredients
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}">
-                    <p class="text-secondary!">
+                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-accent{% endif %}">
+                    <p>
                         Preparation Steps
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-secondary{% endif %}">
-                    <p class="text-secondary!">
+                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-accent{% endif %}">
+                    <p>
                         Images
                     </p>
                 </li>
             </ul>
-            <form method="post" id="wizard-form" enctype="multipart/form-data" class="w-3xl max-w-3xl">
+            <form method="post" id="wizard-form" enctype="multipart/form-data"
+                  class="w-3xl max-w-3xl flex flex-col gap-5">
                 {% csrf_token %}
                 {{ wizard.management_form }}
 
-                {% if wizard.form.non_form_errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.non_form_errors }}
-                    </div>
-                {% endif %}
                 {% if wizard.form.non_field_errors %}
-                    <div class="alert alert-danger">
+                    <div class="alert alert-outline alert-error">
                         {{ wizard.form.non_field_errors }}
-                    </div>
-                {% endif %}
-                {% if wizard.form.errors %}
-                    <div class="alert alert-danger">
-                        {{ wizard.form.errors }}
                     </div>
                 {% endif %}
 
@@ -70,13 +61,13 @@
                     {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% endif %}
 
-                <div class="flex gap-5">
+                <div class="flex gap-1 self-end">
                     {% if wizard.steps.prev %}
                         <button
                                 name="wizard_goto_step"
                                 type="submit"
                                 value="{{ wizard.steps.prev }}"
-                                class="btn bg-transparent! text-base-content! border-base-content! hover:border-secondary! hover:text-secondary! rounded-sm!"
+                                class="btn btn-accent btn-outline"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="size-6">
@@ -85,7 +76,7 @@
                             </svg>
                         </button>
                     {% endif %}
-                    <button type="submit" class="btn btn-secondary rounded-sm! text-accent-content!">
+                    <button type="submit" class="btn btn-primary">
                         {% if wizard.steps.current == wizard.steps.last %}
                             {% translate 'Create Recipe' %}
                         {% else %}
@@ -101,7 +92,9 @@
     <script>
         function reindexFormset(formsetSelector, totalFormsSelector) {
             console.log("Reindexing formset");
-            const rows = document.querySelectorAll(`${formsetSelector} .formset-form`);
+            console.log(formsetSelector)
+            const formset = document.querySelector(`${formsetSelector}`);
+            const rows = formset.querySelectorAll(`.formset-form`);
             const orderLabels = document.querySelectorAll('.step-label');
             const totalFormsInput = document.querySelector(totalFormsSelector);
 
@@ -115,22 +108,32 @@
             }
 
             rows.forEach((row, index) => {
+                // Update row ID
+                const newRowId = `${prefix}-${index}`;
+                row.id = newRowId;
+
                 console.log(row)
-                row.id = `${prefix}-${index}`;
+                // Update order input inside this row
+                const orderInput = row.querySelector(`[id$='-order']`);
+                if (orderInput) {
+                    orderInput.value = index;
+                }
 
-                orderLabels.forEach((label, idx) => {
-                    console.log(label)
-                    label.textContent = `${idx + 1}.`;
-                    {## id_recipe_image-0-order#}
-                    console.log(row.id)
-                    document.querySelector(`#id_${row.id}-order`).value = idx;
-                });
+                // Update label only inside this row (if applicable)
+                const stepLabel = row.querySelector('.step-label');
+                if (stepLabel) {
+                    stepLabel.textContent = `${index + 1}.`;
+                }
 
+                // Update all relevant attributes within this row
                 row.querySelectorAll('[name], [id], label[for]').forEach((el) => {
                     ['name', 'id', 'for'].forEach((attr) => {
                         if (el.hasAttribute(attr)) {
                             el.setAttribute(attr,
-                                el.getAttribute(attr).replace(new RegExp(`${prefix}-\\d+|form-\\d+`, 'g'), `${prefix}-${index}`)
+                                el.getAttribute(attr).replace(
+                                    new RegExp(`${prefix}-\\d+|form-\\d+`, 'g'),
+                                    `${prefix}-${index}`
+                                )
                             );
                         }
                     });

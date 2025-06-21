@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 
     'django_vite',
+    'django_cotton',
     'formtools',
 
     'allauth',
@@ -71,13 +72,24 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
         ,
-        'APP_DIRS': True,
+        'APP_DIRS': False,
         'OPTIONS': {
+            'loaders': [(
+                'django.template.loaders.cached.Loader',
+                [
+                    'django_cotton.cotton_loader.Loader',
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ],
+            )],
             'context_processors': [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+            ],
+            'builtins': [
+                'django_cotton.templatetags.cotton'
             ],
         },
     },

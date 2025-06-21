@@ -8,15 +8,7 @@
             {{ form.name.label }}
         </label>
 
-        <input
-                type="text"
-                name="{{ form.name.html_name }}"
-                id="{{ form.name.id_for_label }}"
-                value="{{ form.name.value|default_if_none:'' }}"
-        {% for attr, val in form.name.field.widget.attrs.items %} {{ attr }}="{{ val }}
-            {% if attr == 'class' %}{% if form.name.errors %}border-3! border-red-400!{% endif %}{% endif %}
-            " {% endfor %}
-        >
+        <c-input :field="form.name"></c-input>
 
         {% for error in form.name.errors %}
             <div class="text-red-400">
@@ -31,17 +23,7 @@
             {{ form.description.label }}
         </label>
 
-        {% comment %}<textarea
-                type="text"
-                name="{{ form.description.html_name }}"
-                id="{{ form.description.id_for_label }}"
-                class="{{ form.step_text.field.widget.attrs.class }} h-16! {% if form.step_text.errors %}border-3! border-red-400!{% endif %}"
-                rows="{{ form.step_text.field.widget.attrs.rows }}"
-                cols="{{ form.step_text.field.widget.attrs.cols }}"
-                wrap="{{ form.step_text.field.widget.attrs.wrap }}"
-        ></textarea>{% endcomment %}
-
-        {{ form.description }}
+        <c-textarea :field="form.description"></c-textarea>
 
         {% for error in form.description.errors %}
             <div class="text-red-400">
@@ -72,32 +54,24 @@
                 <div class="grid grid-cols-{{ form.fields.skill_level.choices|length }} gap-5 w-full">
                     {% for value, label in form.fields.skill_level.choices %}
                         <div class="flex flex-col gap-2 items-center">
-                            <label for="skill_level_choice">{{ label }}</label>
-                            <input
-                                    type="checkbox"
-                                    {% if value == form.skill_level.value %}checked{% endif %}
-                                    name="skill_level_choice"
-                                    id="skill_level_choice"
-                                    value="{{ value }}"
-                                    class="skill-checkbox w-5 h-5"
-                                    hx-on="change:
-                    document.querySelectorAll('.skill-checkbox').forEach(cb => {
-                        if(cb !== this) cb.checked = false;
-                    });
-                    document.getElementById('{{ form.skill_level.id_for_label }}').value = this.checked ? this.value : '';
-                "
-                            >
+                            <c-input type="checkbox"
+                                     labeled
+                                     :label="label"
+                                     class="skill-checkbox"
+                                     id="{{ value }}"
+                                     :value="value"
+                                     check_value="{{ form.skill_level.value }}"
+                                     hx_on="change:
+                                                document.querySelectorAll('.skill-checkbox').forEach(cb => {
+                                                    if(cb !== this) cb.checked = false;
+                                                });
+                                                document.getElementById('{{ form.skill_level.id_for_label }}').value = this.checked ? this.value : '';
+                                            "
+                            ></c-input>
                         </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-        <div>
-            {% for error in form.portions.errors %}
-                <div class="text-red-400">
-                    {{ error }}
-                </div>
-            {% endfor %}
         </div>
     </div>
 
@@ -112,11 +86,11 @@
                 </svg>
                 {% translate 'Portions' %}
             </p>
-            <div class="flex gap-3 border-t-1 border-secondary pt-1">
-                <div class="labeled-number-input flex">
-                    <div class="flex items-center gap-2">
+            <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
+                <div class="labeled-number-input flex w-full">
+                    <div class="flex items-center gap-2 w-full">
                         <button
-                                class="btn bg-secondary border-none! rounded-sm!"
+                                class="btn bg-secondary"
                                 onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('{{ form.portions.id_for_label }}');
@@ -127,18 +101,13 @@
                             -
                         </button>
 
-                        <input
-                                type="text"
-                                name="{{ form.portions.html_name }}"
-                                id="{{ form.portions.id_for_label }}"
-                                value="{{ form.portions.value|default_if_none:0 }}"
-                        {% for attr, val in form.portions.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.portions.errors %}border-3! border-red-400!
-                            {% endif %}{% endif %}" {% endfor %}
-                        >
+                        <div class="flex flex-row-reverse gap-1 items-center w-full">
+                            <c-input :field="form.portions" class="text-center" labeled
+                                     label="{% translate 'Pers.' %}"></c-input>
+                        </div>
 
                         <button
-                                class="btn bg-secondary border-none! rounded-sm!"
+                                class="btn bg-secondary"
                                 onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('{{ form.portions.id_for_label }}');
@@ -149,20 +118,7 @@
                             +
                         </button>
                     </div>
-
-
-                    <label for="{{ form.portions.id_for_label }}"
-                           class="text-accent-content! labeled-number-input--label">
-                        {% translate 'Pers.' %}
-                    </label>
                 </div>
-            </div>
-            <div>
-                {% for error in form.portions.errors %}
-                    <div class="text-red-400">
-                        {{ error }}
-                    </div>
-                {% endfor %}
             </div>
         </div>
 
@@ -176,56 +132,16 @@
                 </svg>
                 {% translate 'Working Time' %}
             </p>
-            <div class="flex gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.working_time_hours.html_name }}"
-                                id="{{ form.working_time_hours.id_for_label }}"
-                                value="{{ form.working_time_hours.value|default_if_none:'' }}"
-                        {% for attr, val in form.working_time_hours.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.working_time_hours.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-
-                        <label for="{{ form.working_time_hours.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label">
-                            {% translate 'Hours' %}
-                        </label>
-                    </div>
+            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.working_time_hours" class="text-center" type="number" labeled
+                             label="{% translate 'Hours' %}"></c-input>
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.working_time_minutes.html_name }}"
-                                id="{{ form.working_time_minutes.id_for_label }}"
-                                value="{{ form.working_time_minutes.value|default_if_none:'' }}"
-                        {% for attr, val in form.working_time_minutes.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.working_time_minutes.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-                        <label for="{{ form.working_time_minutes.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label"
-                        >
-                            {% translate 'Minutes' %}
-                        </label>
-                    </div>
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.working_time_minutes" class="text-center" type="number" labeled
+                             label="{% translate 'Minutes' %}"></c-input>
                 </div>
-            </div>
-            <div>
-                {% for error in form.working_time_hours.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-                {% for error in form.working_time_minutes.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
             </div>
         </div>
 
@@ -239,56 +155,16 @@
                 </svg>
                 {% translate 'Cooking Time' %}
             </p>
-            <div class="flex gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.cooking_time_hours.html_name }}"
-                                id="{{ form.cooking_time_hours.id_for_label }}"
-                                value="{{ form.cooking_time_hours.value|default_if_none:'' }}"
-                        {% for attr, val in form.cooking_time_hours.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.cooking_time_hours.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-
-                        <label for="{{ form.cooking_time_hours.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label">
-                            {% translate 'Hours' %}
-                        </label>
-                    </div>
+            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.cooking_time_hours" class="text-center" type="number" labeled
+                             label="{% translate 'Hours' %}"></c-input>
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.cooking_time_minutes.html_name }}"
-                                id="{{ form.cooking_time_minutes.id_for_label }}"
-                                value="{{ form.cooking_time_minutes.value|default_if_none:'' }}"
-                        {% for attr, val in form.cooking_time_minutes.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.cooking_time_minutes.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-                        <label for="{{ form.cooking_time_minutes.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label"
-                        >
-                            {% translate 'Minutes' %}
-                        </label>
-                    </div>
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.cooking_time_minutes" class="text-center" type="number" labeled
+                             label="{% translate 'Minutes' %}"></c-input>
                 </div>
-            </div>
-            <div>
-                {% for error in form.cooking_time_hours.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-                {% for error in form.cooking_time_minutes.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
             </div>
         </div>
 
@@ -302,56 +178,16 @@
                 </svg>
                 {% translate 'Resting Time' %}
             </p>
-            <div class="flex gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.rest_time_hours.html_name }}"
-                                id="{{ form.rest_time_hours.id_for_label }}"
-                                value="{{ form.rest_time_hours.value|default_if_none:'' }}"
-                        {% for attr, val in form.rest_time_hours.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.rest_time_hours.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-
-                        <label for="{{ form.rest_time_hours.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label">
-                            {% translate 'Hours' %}
-                        </label>
-                    </div>
+            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.rest_time_hours" class="text-center" type="number" labeled
+                             label="{% translate 'Hours' %}"></c-input>
                 </div>
 
-                <div class="flex flex-col gap-1">
-                    <div class="labeled-number-input flex">
-                        <input
-                                type="number"
-                                name="{{ form.rest_time_minutes.html_name }}"
-                                id="{{ form.rest_time_minutes.id_for_label }}"
-                                value="{{ form.rest_time_minutes.value|default_if_none:'' }}"
-                        {% for attr, val in form.rest_time_minutes.field.widget.attrs.items %} {{ attr }}="{{ val }}
-                            {% if attr == 'class' %}text-center! {% if form.rest_time_minutes.errors %}
-                                border-3! border-red-400!{% endif %}{% endif %}" {% endfor %}
-                        >
-                        <label for="{{ form.rest_time_minutes.id_for_label }}"
-                               class="text-accent-content! labeled-number-input--label"
-                        >
-                            {% translate 'Minutes' %}
-                        </label>
-                    </div>
+                <div class="flex flex-row-reverse items-center gap-2">
+                    <c-input :field="form.rest_time_minutes" class="text-center" type="number" labeled
+                             label="{% translate 'Minutes' %}"></c-input>
                 </div>
-            </div>
-            <div>
-                {% for error in form.rest_time_hours.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
-                {% for error in form.rest_time_minutes.errors %}
-                    <div class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,23 +1,21 @@
 {% load i18n %}
 
 <div id="recipe_preparation_step-{{ form_index }}" class="formset-form flex items-start gap-3 w-full">
-    <div class="flex gap-5 items-start w-full">
+    {{ form.id }}
+    {{ form.order.as_hidden }}
+    {{ form.DELETE.as_hidden }}
+
+    <div class="formset-form-content flex gap-5 items-start w-full">
         <p class="step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>
-        {{ form.id }}
-        {{ form.order.as_hidden }}
-        {{ form.DELETE.as_hidden }}
 
         <!-- Step Text -->
         <div class="w-full">
             <div class="flex items-center gap-5">
-                <label for="{{ form.step_text.id_for_label }}" class="hidden">
-                    {{ form.step_text.label }}
-                </label>
+                <c-input :field="form.step_text"></c-input>
 
-                {{ form.step_text }}
                 <p class="cursor-pointer self-center w-fit"
                    title="{% translate 'Remove this Preparation Step' %}"
-                   onclick="this.closest('.formset-form').hidden = true; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
+                   onclick="this.closest('.formset-form-content').classList.add('hidden'); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor"
@@ -42,4 +40,3 @@
         </div>
     </div>
 </div>
-

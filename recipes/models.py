@@ -114,6 +114,10 @@ class Recipe(models.Model):
             return self.images.first().image.url
         return settings.STATIC_URL + 'images/placeholder_recipe.jpg'
 
+    @property
+    def ordered_preparation_steps(self):
+        return self.preparation_steps.all().order_by('order')
+
     def __str__(self):
         return self.name
 

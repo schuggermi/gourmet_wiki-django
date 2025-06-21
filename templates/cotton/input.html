@@ -1,0 +1,33 @@
+{% load forms %}
+
+<c-vars type="text"
+        input_class="input"
+        default_class="w-full rounded-sm focus:outline-none focus:ring-0"
+        checkbox_class="checkbox rounded-sm"
+        error_class="border-3 border-red-400"
+></c-vars>
+
+<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+       class="{% if not labeled %}hidden{% endif %}">
+    {% if field and not label %}
+        {{ field.label }}
+    {% elif label %}
+        {{ label }}
+    {% endif %}
+</label>
+<input {{ field.field.widget.attrs|render_attrs }}
+        type="{{ type }}"
+        {% if value == check_value %}checked{% endif %}
+        id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+        name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
+        value="{% if field %}{{ field.value|default_if_none:'' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value }}{% endif %}"
+        class="
+                {% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{{ input_class }} {{ default_class }}{% endif %}{% endif %} {{ class }}
+                {% if field and field.errors %}{{ error_class }}{% endif %}"
+        hx-on="{{ hx_on }}"
+>
+{% for error in field.errors %}
+    <div class="text-red-400">
+        {{ error }}
+    </div>
+{% endfor %}

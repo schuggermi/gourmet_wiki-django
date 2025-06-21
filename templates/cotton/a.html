@@ -1,0 +1,39 @@
+<c-vars type="default"
+        default_class=""
+        animated_class="flex gap-2 cursor-pointer group/link"
+        btn_class="btn btn-primary"
+        default_class="rounded-sm"
+></c-vars>
+
+<a href="{{ url }}"
+   class="{% if type == 'default' %}{{ default_class }}{% elif type == 'btn' %}{{ btn_class }}{% endif %} {{ class }}
+           {% if animated %}{{ animated_class }}{% endif %}">
+    {% if animated %}
+        {% if not reverted %}
+            {{ slot }}
+        {% endif %}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+             stroke="currentColor"
+             class="size-6 transition-all duration-300 group-hover/link:inline {% if reverted %}rotate-180{% endif %}{% if not visible_animation %}hidden opacity-0 group-hover/link:opacity-100{% endif %} {% if reverted %}group-hover/link:-translate-x-2{% else %}group-hover/link:translate-x-2{% endif %}">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+        </svg>
+        {% if reverted %}
+            {{ slot }}
+        {% endif %}
+    {% endif %}
+</a>
+
+
+{% comment %}
+<a class="rounded-md flex gap-1 items-center justify-start cursor-pointer group/link {% if color %}{{ color }}{% else %}text-base-content{% endif %}"
+   href="{% if url_name %}{% url url_name %}{% endif %}" onclick="{{ onclick }}"
+>
+    {{ text }}
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+         stroke="currentColor"
+         class="hidden size-6 transition-all duration-300 opacity-0 group-hover/link:inline group-hover/link:opacity-100 group-hover/link:translate-x-2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+    </svg>
+</a>{% endcomment %}

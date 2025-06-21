@@ -119,7 +119,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             return RecipeIngredientFormSet(**kwargs)
         elif step == '2':
             if self.recipe_instance:
-                queryset = self.recipe_instance.preparation_steps.all()
+                queryset = self.recipe_instance.preparation_steps.all().order_by('order')
             else:
                 queryset = RecipePreparationStep.objects.none()
             kwargs.update({
@@ -185,23 +185,28 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
         if not step_formset.is_valid():
             return self.render_revalidation_failure(step='2', form=step_formset)
 
-        for form in step_formset:
+        for index, form in enumerate(step_formset):
             print("FORM DATA: ", form.data)
             print("FORM PREFIX: ", form.prefix)
-            if form.data.get(f"{form.prefix}-DELETE", False):
+            if form.data.get(f"{form.prefix}-DELETE") == 'on':
                 if form.instance.pk:
                     form.instance.delete()
             else:
                 instance = form.save(commit=False)
-                instance.recipe = recipe
 
-                exists = type(instance).objects.filter(
-                    recipe=instance.recipe,
-                    step_text=instance.step_text,
-                ).exists()
+                if not instance.pk:
+                    instance.recipe = recipe
+                instance.order = form.cleaned_data.get('order', index)
+                # instance.save()
 
-                if not exists:
-                    instance.save()
+                # exists = type(instance).objects.filter(
+                #     recipe=instance.recipe,
+                #     id=instance.pk
+                # ).exists()
+                #
+                # if not exists:
+                #     print("NOT EXISTS")
+                instance.save()
 
         # Step 3 – Images
         image_formset = self.get_form(

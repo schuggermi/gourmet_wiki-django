@@ -25,7 +25,7 @@ class BaseRecipePreparationStepFormSet(BaseModelFormSet):
                 continue
 
             required_fields = [field_name for field_name, field in form.fields.items()
-                               if field.required and field_name != 'DELETE' and field_name not in ('order', 'id')]
+                               if field.required and field_name not in ('DELETE', 'id', 'order')]
 
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 
@@ -45,7 +45,6 @@ RecipePreparationStepFormSet = modelformset_factory(
     form=RecipePreparationStepForm,
     formset=BaseRecipePreparationStepFormSet,
     extra=0,
-    min_num=1,
     can_order=True,
     can_delete=True,
 )
@@ -69,7 +68,7 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
                 continue
 
             required_fields = [field_name for field_name, field in form.fields.items()
-                               if field.required and field_name not in ('DELETE', 'order', 'id')]
+                               if field.required and field_name not in ('DELETE', 'id')]
 
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 
