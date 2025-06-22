@@ -13,17 +13,22 @@
     <div class="w-full mx-auto flex flex-col gap-10 items-center justify-start p-2 pb-10">
         <div class="w-full flex justify-between">
             <div class="flex flex-col gap-1">
-                <h1>{{ recipe.name }}</h1>
                 <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
             </div>
-            <c-a animated type="btn" url="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn-neutral!">Edit
-                Recipe
-            </c-a>
+            {% if recipe.created_by == user %}
+                <div class="flex gap-5 items-center">
+                    {% include "recipes/partials/favorite_button.html" %}
+
+                    <c-a animated type="btn" url="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn-neutral!">Edit
+                        Recipe
+                    </c-a>
+                </div>
+            {% endif %}
         </div>
 
-        <div class="grid grid-cols-2 gap-10 w-full mx-auto">
+        <div id="print-area" class="grid grid-cols-2 gap-10 w-full mx-auto">
             <!-- Image Carousel -->
-            <div class="carousel carousel-start w-full aspect-video rounded-sm">
+            <div class="carousel carousel-start w-full aspect-video rounded-sm shadow-lg print:hidden">
                 {% with images=recipe.images.all %}
                     {% for image in images %}
                         <div id="{{ image.image.name }}"
@@ -42,9 +47,24 @@
                 {% endwith %}
             </div>
 
+            <img src="{{ recipe.images.first.image.url }}" alt="{{ recipe.images.first.caption }}"
+                 class="hidden print:block w-full aspect-video rounded-sm shadow-lg object-cover"/>
+
             <!-- Recipe Details -->
             <div class="flex flex-col gap-5 justify-between">
                 <div class="flex flex-col gap-5">
+                    <div class="flex items-center gap-5 justify-between">
+                        <h1>{{ recipe.name }}</h1>
+                        <button onclick="printElement('print-area')" class="cursor-pointer print:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                 class="size-6 hover:size-7">
+                                <path fill-rule="evenodd"
+                                      d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 0 0 3 3h.27l-.155 1.705A1.875 1.875 0 0 0 7.232 22.5h9.536a1.875 1.875 0 0 0 1.867-2.045l-.155-1.705h.27a3 3 0 0 0 3-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0 0 18 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM16.5 6.205v-2.83A.375.375 0 0 0 16.125 3h-8.25a.375.375 0 0 0-.375.375v2.83a49.353 49.353 0 0 1 9 0Zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 0 1-.374.409H7.232a.375.375 0 0 1-.374-.409l.526-5.784a.373.373 0 0 1 .333-.337 41.741 41.741 0 0 1 8.566 0Zm.967-3.97a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H18a.75.75 0 0 1-.75-.75V10.5ZM15 9.75a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-.75-.75H15Z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+
                     <p>
                         {% if recipe.description != "" %}
                             {{ recipe.description }}
@@ -84,28 +104,28 @@
                               d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                     </svg>
 
-                    <div class="w-full grid grid-cols-4 gap-5 px-4">
+                    <div class="w-full grid grid-cols-4 gap-5">
                         <!-- Total Time -->
                         <div class="flex flex-col gap-1 w-full">
                             <div class="flex gap-1 border-b-1 border-neutral pb-1">
-                                <p>{% translate 'Total Time' %}</p>
+                                <p>{% translate 'Total' %}</p>
                             </div>
 
                             <div class="flex justify-center gap-2 px-2">
-                                <p><span class="text-secondary font-bold">{{ recipe.total_time_hours }}</span> h</p>
-                                <p><span class="text-secondary font-bold">{{ recipe.total_time_minutes }}</span> min</p>
+                                <p><span class="text-secondary font-bold">{{ recipe.total_time_hours }}</span>h</p>
+                                <p><span class="text-secondary font-bold">{{ recipe.total_time_minutes }}</span>min</p>
                             </div>
                         </div>
 
                         <!-- Cooking Time -->
                         <div class="flex flex-col gap-1 w-full">
                             <div class="flex gap-1 border-b-1 border-neutral pb-1">
-                                <p>{% translate 'Cooking Time' %}</p>
+                                <p>{% translate 'Cooking' %}</p>
                             </div>
 
                             <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.cooking_time_hours }}</span> h</p>
-                                <p><span class="font-bold">{{ recipe.cooking_time_minutes }}</span> min
+                                <p><span class="font-bold">{{ recipe.cooking_time_hours }}</span>h</p>
+                                <p><span class="font-bold">{{ recipe.cooking_time_minutes }}</span>min
                                 </p>
                             </div>
                         </div>
@@ -113,12 +133,12 @@
                         <!-- Working Time -->
                         <div class="flex flex-col gap-1 w-full">
                             <div class="flex gap-1 border-b-1 border-neutral pb-1">
-                                <p>{% translate 'Working Time' %}</p>
+                                <p>{% translate 'Working' %}</p>
                             </div>
 
                             <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.working_time_hours }}</span> h</p>
-                                <p><span class="font-bold">{{ recipe.working_time_minutes }}</span> min
+                                <p><span class="font-bold">{{ recipe.working_time_hours }}</span>h</p>
+                                <p><span class="font-bold">{{ recipe.working_time_minutes }}</span>min
                                 </p>
                             </div>
                         </div>
@@ -126,12 +146,12 @@
                         <!-- Rest Time -->
                         <div class="flex flex-col gap-1 w-full">
                             <div class="flex gap-1 border-b-1 border-neutral pb-1">
-                                <p>{% translate 'Resting Time' %}</p>
+                                <p>{% translate 'Resting' %}</p>
                             </div>
 
                             <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.rest_time_hours }}</span> h</p>
-                                <p><span class="font-bold">{{ recipe.rest_time_minutes }}</span> min</p>
+                                <p><span class="font-bold">{{ recipe.rest_time_hours }}</span>h</p>
+                                <p><span class="font-bold">{{ recipe.rest_time_minutes }}</span>min</p>
                             </div>
                         </div>
                     </div>
@@ -144,7 +164,7 @@
                     <h2>{% translate 'Ingredients' %}</h2>
                     <div class="flex items-center justify-end gap-2 w-full">
                         <button
-                                class="btn bg-secondary"
+                                class="btn btn-neutral btn-outline"
                                 onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('portions');
@@ -161,13 +181,13 @@
 
                         <div class="flex flex-row-reverse gap-1 items-center w-fit">
                             <c-input id="portions" name="portions" value="{{ recipe.portions }}" disabled
-                                     class="text-center max-w-12"
+                                     class="text-center max-w-12 font-bold underline"
                                      labeled
                                      label="{% translate 'Pers.' %}"></c-input>
                         </div>
 
                         <button
-                                class="btn bg-secondary"
+                                class="btn btn-neutral btn-outline"
                                 onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('portions');
@@ -202,4 +222,38 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function printElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return alert("Element not found!");
+
+            const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+                .map(node => node.outerHTML)
+                .join('\n');
+
+            // Open a new window
+            const printWindow = window.open('', '_blank', 'width=600,height=400');
+            printWindow.document.write(`
+    <html>
+      <head>
+        <title>Print</title>
+        ${styles}
+      </head>
+      <body>
+        ${element.outerHTML}
+      </body>
+    </html>
+  `);
+
+            printWindow.document.close();
+            printWindow.focus();
+
+            // Wait for content to load, then print and close
+            printWindow.onload = () => {
+                printWindow.print();
+                printWindow.close();
+            };
+        }
+    </script>
 {% endblock %}

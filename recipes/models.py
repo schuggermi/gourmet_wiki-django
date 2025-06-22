@@ -97,6 +97,11 @@ class Recipe(models.Model):
         choices=SkillLevelChoice.choices,
         default=SkillLevelChoice.BEGINNER,
     )
+    favorite_by = models.ManyToManyField(
+        User,
+        related_name='favorite_recipes',
+        blank=True,
+    )
 
     @property
     def total_cost(self):
@@ -122,6 +127,9 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+    def is_favorite_by(self, user):
+        return self.favorite_by.filter(pk=user.pk).exists()
 
     def calculate_scaled_ingredients(self, target_portions: int):
         scale_factor = Decimal(target_portions / self.portions)

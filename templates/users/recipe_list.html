@@ -9,11 +9,12 @@
     {{ block.super }}
 
     <div class="max-w-7xl w-full mx-auto flex flex-col gap-10 items-center justify-start">
-
-        <h1 class="self-start flex flex-col gap-1">
-            Your Recipes <br>
+        <div class="self-start flex flex-col gap-1">
+            <h1>
+                Your Recipes <br>
+            </h1>
             <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
-        </h1>
+        </div>
 
         <div class="flex flex-col gap-10 w-full">
             <div class="btn btn-secondary rounded-sm! text-accent-content! w-fit self-end">

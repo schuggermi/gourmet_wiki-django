@@ -229,7 +229,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
-        return redirect(reverse('recipe-detail', kwargs={'pk': self.recipe_instance.pk}))
+        return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 
 class RecipeDetailView(DetailView):
@@ -243,4 +243,19 @@ def get_calculate_scaled_ingredients(request, recipe_id):
     }
 
     html = render_to_string('recipes/partials/recipe_ingredients_list.html', context)
+    return HttpResponse(html)
+
+
+@login_required
+def toggle_favorite(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    if request.user in recipe.favorite_by.all():
+        recipe.favorite_by.remove(request.user)
+    else:
+        recipe.favorite_by.add(request.user)
+    html = render_to_string(
+        "recipes/partials/favorite_button.html",
+        {"recipe": recipe, "user": request.user},
+        request=request
+    )
     return HttpResponse(html)

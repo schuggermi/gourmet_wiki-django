@@ -12,13 +12,13 @@
 
 {% block main_content %}
     <div class="flex flex-col gap-10 w-full">
-        <div class="flex flex-col gap-1">
-            <h1 class="self-start flex flex-col gap-1">Craft your Recipe <br></h1>
+        <div class="flex flex-col gap-1 w-full">
+            <h1 class="self-start flex flex-col gap-1 w-full">Craft your Recipe <br></h1>
             <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
         </div>
 
-        <div class="self-center flex flex-col gap-10">
-            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-3xl max-w-3xl">
+        <div class="self-center flex flex-col gap-10 w-3xl max-w-3xl">
+            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-full">
                 <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-accent{% endif %}">
                     <p>
                         Details
@@ -41,7 +41,7 @@
                 </li>
             </ul>
             <form method="post" id="wizard-form" enctype="multipart/form-data"
-                  class="w-3xl max-w-3xl flex flex-col gap-5">
+                  class="w-full flex flex-col gap-5">
                 {% csrf_token %}
                 {{ wizard.management_form }}
 
@@ -61,7 +61,7 @@
                     {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% endif %}
 
-                <div class="flex gap-1 self-end">
+                <div class="flex gap-1 justify-end">
                     {% if wizard.steps.prev %}
                         <button
                                 name="wizard_goto_step"
