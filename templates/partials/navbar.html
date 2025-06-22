@@ -57,11 +57,12 @@
                         {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
                     </p>
                 </div>
-                <ul tabindex="0" class="menu menu-vertical dropdown-content w-max bg-base-300">
+                <ul tabindex="0" class="menu menu-vertical dropdown-content w-36 bg-base-300">
                     {% if user.is_authenticated %}
-                        <li><c-a animated url="{% url 'users-profile' %}">Profile</c-a></li>
-                        <li><c-a animated url="{% url 'users-profile-recipes' %}">Your Recipes</c-a></li>
-                        <li><c-a animated url="{% url 'recipe-create' %}">Create Recipe</c-a></li>
+                        <li><c-a animated url="{% url 'users-profile' %}">My Profile</c-a></li>
+                        <li><c-a animated url="{% url 'users-profile-recipes' %}">Cookbook</c-a></li>
+                        <li><c-a animated url="{% url 'users-profile-favorite-recipes' %}">Favorites</c-a></li>
+                        <li><c-a animated url="{% url 'recipe-create' %}">Add Recipe</c-a></li>
                         <li><c-a animated url="{% url 'account_logout' %}">Logout</c-a></li>
                     {% else %}
                         <li><c-a animated url="{% url 'account_login' %}">Login</c-a></li>

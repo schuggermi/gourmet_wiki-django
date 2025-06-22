@@ -167,12 +167,11 @@ class RecipeIngredient(models.Model):
         related_name="ingredients",
         on_delete=models.CASCADE
     )
-    ingredient = models.ForeignKey(
-        Ingredient,
-        on_delete=models.CASCADE,
+    ingredient = models.CharField(
+        max_length=150,
     )
     quantity = models.PositiveIntegerField(
-        default=4,
+        default=0,
         validators=[
             MinValueValidator(1),
         ]
@@ -187,7 +186,7 @@ class RecipeIngredient(models.Model):
         unique_together = ('recipe', 'ingredient')
 
     def __str__(self):
-        return f"{round(self.quantity, 0)}{self.ingredient.unit} {self.ingredient.name}"
+        return f"{round(self.quantity, 0)}{self.ingredient.unit} {self.ingredient}"
 
 
 class RecipeImage(models.Model):

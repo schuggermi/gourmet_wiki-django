@@ -107,8 +107,8 @@ class RecipeIngredientForm(forms.ModelForm):
         model = RecipeIngredient
         fields = ['ingredient', 'quantity', 'unit']
         widgets = {
-            'ingredient': forms.Select(attrs={
-                'placeholder': 'New Ingredient'
+            'ingredient': forms.TextInput(attrs={
+                'placeholder': 'Butter'
             }),
             'quantity': forms.NumberInput(attrs={
                 'placeholder': 'Quantity'

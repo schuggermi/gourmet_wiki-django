@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block title %}
     {{ block.super }}
-    - {% translate 'Cookbook' %}
+    - Your Favorite Recipes
 {% endblock %}
 
 {% block main_content %}
@@ -11,16 +10,11 @@
 
     <div class="max-w-7xl w-full mx-auto flex flex-col gap-10 items-center justify-start">
         <div class="self-start flex flex-col gap-1">
-            <h1>
-                {% translate 'Cookbook' %}
-            </h1>
+            <h1>Your Favorite Recipes</h1>
             <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
         </div>
 
         <div class="flex flex-col gap-10 w-full">
-            <div class="btn btn-secondary rounded-sm! text-accent-content! w-fit self-end">
-                {% include "partials/go_to.html" with url_name="recipe-create" text="Add Recipe" color="text-accent-content!" %}
-            </div>
             {% include "partials/recipe_list.html" %}
         </div>
     </div>

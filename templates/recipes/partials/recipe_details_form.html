@@ -9,12 +9,6 @@
         </label>
 
         <c-input :field="form.name"></c-input>
-
-        {% for error in form.name.errors %}
-            <div class="text-red-400">
-                {{ error }}
-            </div>
-        {% endfor %}
     </div>
 
     <!-- Recipe Description -->
@@ -24,12 +18,6 @@
         </label>
 
         <c-textarea :field="form.description"></c-textarea>
-
-        {% for error in form.description.errors %}
-            <div class="text-red-400">
-                {{ error }}
-            </div>
-        {% endfor %}
     </div>
 
     <div class="grid grid-cols-1 gap-5">

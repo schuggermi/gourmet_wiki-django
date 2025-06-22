@@ -22,3 +22,11 @@ class UserRecipeListView(ListView):
 
     def get_queryset(self):
         return User.objects.get(pk=self.request.user.pk).recipe_set.all()
+
+
+class UserFavoriteRecipeListView(ListView):
+    model = Recipe
+    template_name = "users/favorite_recipe_list.html"
+
+    def get_queryset(self):
+        return User.objects.get(pk=self.request.user.pk).favorite_recipes.all()

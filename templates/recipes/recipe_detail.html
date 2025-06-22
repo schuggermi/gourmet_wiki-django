@@ -15,15 +15,14 @@
             <div class="flex flex-col gap-1">
                 <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
             </div>
-            {% if recipe.created_by == user %}
-                <div class="flex gap-5 items-center">
-                    {% include "recipes/partials/favorite_button.html" %}
-
+            <div class="flex gap-5 items-center">
+                {% if recipe.created_by == user %}
                     <c-a animated type="btn" url="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn-neutral!">Edit
                         Recipe
                     </c-a>
-                </div>
-            {% endif %}
+                {% endif %}
+                {% include "recipes/partials/favorite_button.html" %}
+            </div>
         </div>
 
         <div id="print-area" class="grid grid-cols-2 gap-10 w-full mx-auto">
@@ -111,9 +110,13 @@
                                 <p>{% translate 'Total' %}</p>
                             </div>
 
-                            <div class="flex justify-center gap-2 px-2">
-                                <p><span class="text-secondary font-bold">{{ recipe.total_time_hours }}</span>h</p>
-                                <p><span class="text-secondary font-bold">{{ recipe.total_time_minutes }}</span>min</p>
+                            <div class="flex gap-2 px-2">
+                                <p>
+                                    <span class="font-bold">{{ recipe.total_time_hours }}</span><small>h</small>
+                                </p>
+                                <p>
+                                    <span class="font-bold">{{ recipe.total_time_minutes }}</span><small>min</small>
+                                </p>
                             </div>
                         </div>
 
@@ -123,9 +126,12 @@
                                 <p>{% translate 'Cooking' %}</p>
                             </div>
 
-                            <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.cooking_time_hours }}</span>h</p>
-                                <p><span class="font-bold">{{ recipe.cooking_time_minutes }}</span>min
+                            <div class="flex gap-2 px-2">
+                                <p>
+                                    <span class="font-bold">{{ recipe.cooking_time_hours }}</span><small>h</small>
+                                </p>
+                                <p>
+                                    <span class="font-bold">{{ recipe.cooking_time_minutes }}</span><small>min</small>
                                 </p>
                             </div>
                         </div>
@@ -136,9 +142,12 @@
                                 <p>{% translate 'Working' %}</p>
                             </div>
 
-                            <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.working_time_hours }}</span>h</p>
-                                <p><span class="font-bold">{{ recipe.working_time_minutes }}</span>min
+                            <div class="flex gap-2 px-2">
+                                <p>
+                                    <span class="font-bold">{{ recipe.working_time_hours }}</span><small>h</small>
+                                </p>
+                                <p>
+                                    <span class="font-bold">{{ recipe.working_time_minutes }}</span><small>min</small>
                                 </p>
                             </div>
                         </div>
@@ -149,9 +158,13 @@
                                 <p>{% translate 'Resting' %}</p>
                             </div>
 
-                            <div class="flex justify-center gap-2 px-2">
-                                <p><span class="font-bold">{{ recipe.rest_time_hours }}</span>h</p>
-                                <p><span class="font-bold">{{ recipe.rest_time_minutes }}</span>min</p>
+                            <div class="flex gap-2 px-2">
+                                <p>
+                                    <span class="font-bold">{{ recipe.rest_time_hours }}</span><small>h</small>
+                                </p>
+                                <p>
+                                    <span class="font-bold">{{ recipe.rest_time_minutes }}</span><small>min</small>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -232,7 +245,6 @@
                 .map(node => node.outerHTML)
                 .join('\n');
 
-            // Open a new window
             const printWindow = window.open('', '_blank', 'width=600,height=400');
             printWindow.document.write(`
     <html>
@@ -249,7 +261,6 @@
             printWindow.document.close();
             printWindow.focus();
 
-            // Wait for content to load, then print and close
             printWindow.onload = () => {
                 printWindow.print();
                 printWindow.close();

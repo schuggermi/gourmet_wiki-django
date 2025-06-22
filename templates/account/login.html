@@ -15,7 +15,7 @@
                 <div class="bg-base-primary p-5 rounded-lg">
                     {% url 'account_login' as login_url %}
 
-                    <form action="{{ login_url }}" method="post">
+                    <form action="{{ login_url }}" method="post" class="flex flex-col gap-5">
                         {% csrf_token %}
 
                         <div class="flex flex-col w-full gap-3">
@@ -27,36 +27,10 @@
                                 </ul>
                             {% endif %}
 
-                            <div>
-                                <label for="{{ form.login.id_for_label }}" class="label hidden">
-                                    {{ form.login.label }}
-                                </label>
+                            <c-input :field="form.login" type="text"></c-input>
 
-                                {{ form.login }}
-
-                                {% if form.login.errors %}
-                                    <ul>
-                                        {% for error in form.login.errors %}
-                                            <li class="text-red-400"><p>{{ error }}</p></li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            </div>
-
-                            <div>
-                                <label for="{{ form.password.id_for_label }}" class="label hidden">
-                                    {{ form.password.label }}
-                                </label>
-
-                                {{ form.password }}
-
-                                {% if form.password.errors %}
-                                    <ul>
-                                        {% for error in form.password.errors %}
-                                            <li class="text-red-400"><p>{{ error }}</p></li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
+                            <div class="w-full">
+                                 <c-input :field="form.password" type="password"></c-input>
 
                                 <a href="{% url 'account_reset_password' %}">
                                     <small>{% translate 'Forgot your password?' %}</small>
@@ -64,7 +38,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary rounded-sm!">
+                        <button type="submit" class="btn btn-primary w-full">
                             {% trans "Sign In" %}
                         </button>
                     </form>
@@ -72,7 +46,7 @@
 
                 <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
                     <p>You don't have an account at Gourmet-Wiki yet?</p>
-                    {% include "partials/go_to.html" with url_name="account_signup" text="Create new account" color="text-base-content underline" %}
+                    <c-a animated url="{% url 'account_signup' %}" class="underline">{% translate 'Create new account' %}</c-a>
                 </div>
             {% endif %}
             {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}

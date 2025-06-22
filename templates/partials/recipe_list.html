@@ -1,6 +1,7 @@
 <div class="grid grid-cols-2 gap-5 w-full mx-auto pb-10">
     {% for recipe in object_list %}
-        <a href="{% url 'recipe-detail' pk=recipe.pk %}" class="w-full h-full flex items-center rounded-md bg-transparent outline-1 outline-secondary shadow-sm cursor-pointer hover:shadow-lg hover:bg-base-primary/50 transition-shadow group">
+        <a href="{% url 'recipe-detail' pk=recipe.pk %}"
+           class="w-full h-full flex items-center rounded-md bg-transparent outline-1 outline-secondary shadow-sm cursor-pointer hover:shadow-lg hover:bg-base-primary/50 transition-shadow group">
             <figure class="shrink-0 w-44 aspect-square bg-cover bg-center bg-no-repeat rounded-tl-md rounded-bl-md bg-secondary"
                     style="background-image: url('{{ recipe.get_thumbnail_image }}');">
             </figure>
@@ -9,6 +10,14 @@
                     {{ recipe.name }}
                 </h2>
                 <p class="text-sm">{{ recipe.description }}</p>
+                <div class="flex gap-2">
+                    <p>
+                        <span class="font-bold">{{ recipe.cooking_time_hours }}</span><small>h</small>
+                    </p>
+                    <p>
+                        <span class="font-bold">{{ recipe.cooking_time_minutes }}</span><small>min</small>
+                    </p>
+                </div>
                 <div class="flex justify-end">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor"

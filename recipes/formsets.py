@@ -45,6 +45,7 @@ RecipePreparationStepFormSet = modelformset_factory(
     form=RecipePreparationStepForm,
     formset=BaseRecipePreparationStepFormSet,
     extra=0,
+    min_num=1,
     can_order=True,
     can_delete=True,
 )
