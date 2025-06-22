@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.forms import model_to_dict
 from django.forms.models import modelformset_factory
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -21,6 +21,7 @@ from formtools.wizard.views import SessionWizardView
 from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep
+from recipes.services.cost_calculator import calculate_recipe_cost
 
 User = get_user_model()
 
@@ -231,3 +232,13 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
 
 class RecipeDetailView(DetailView):
     model = Recipe
+
+
+def get_calculate_scaled_ingredients(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    context = {
+        'ingredients': recipe.calculate_scaled_ingredients(int(request.GET.get('portions', recipe.portions)))
+    }
+
+    html = render_to_string('recipes/partials/recipe_ingredients_list.html', context)
+    return HttpResponse(html)

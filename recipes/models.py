@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -121,6 +123,20 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
+    def calculate_scaled_ingredients(self, target_portions: int):
+        scale_factor = Decimal(target_portions / self.portions)
+
+        scaled_ingredients = []
+        for ri in self.ingredients.all():
+            scaled_quantity = ri.quantity * scale_factor
+            scaled_ingredients.append({
+                'ingredient': ri.ingredient,
+                'quantity': round(scaled_quantity, 2),
+                'unit': ri.unit,
+            })
+
+        return scaled_ingredients
+
 
 class RecipePreparationStep(models.Model):
     recipe = models.ForeignKey(
@@ -147,9 +163,11 @@ class RecipeIngredient(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
     )
-    quantity = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
+    quantity = models.PositiveIntegerField(
+        default=4,
+        validators=[
+            MinValueValidator(1),
+        ]
     )
     unit = models.CharField(
         max_length=10,
