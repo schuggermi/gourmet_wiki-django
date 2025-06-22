@@ -58,7 +58,7 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             return
 
         valid_forms = 0
-        images = set()
+        ingredients = set()
 
         for form in self.forms:
             if not form.cleaned_data:
@@ -75,12 +75,12 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             if all_required_filled:
                 valid_forms += 1
 
-            image = form.cleaned_data.get('image')
-            if image:
-                images.add(image)
+            ingredient = form.cleaned_data.get('ingredient')
+            if ingredient:
+                ingredients.add(ingredient)
 
         if valid_forms == 0 and self.forms:
-            self._non_form_errors.append("Images must not be empty.")
+            self._non_form_errors.append("Ingredients must not be empty.")
 
 
 RecipeIngredientFormSet = modelformset_factory(
@@ -105,7 +105,7 @@ class BaseRecipeImageFormSet(BaseModelFormSet):
         for form in self.forms:
             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
                 required_fields = [field_name for field_name, field in form.fields.items()
-                                   if field.required and field_name != 'DELETE' and field_name not in ('order', 'id')]
+                                   if field.required and field_name not in ('DELETE', 'order', 'id')]
 
                 print(f"{required_fields=}")
 

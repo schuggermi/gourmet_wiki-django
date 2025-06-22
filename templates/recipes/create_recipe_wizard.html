@@ -94,8 +94,7 @@
             console.log("Reindexing formset");
             console.log(formsetSelector)
             const formset = document.querySelector(`${formsetSelector}`);
-            const rows = formset.querySelectorAll(`.formset-form`);
-            const orderLabels = document.querySelectorAll('.step-label');
+            const rows = formset.querySelectorAll(`.formset-form:not(.hidden)`);
             const totalFormsInput = document.querySelector(totalFormsSelector);
 
             // Determine the prefix based on the formset selector

@@ -90,7 +90,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
     def dispatch(self, request, *args, **kwargs):
         self.recipe_id = kwargs.get('recipe_id')
         if self.recipe_id:
-            self.recipe_instance = get_object_or_404(Recipe, id=self.recipe_id, created_by=request.user)
+            self.recipe_instance = get_object_or_404(Recipe, id=self.recipe_id, created_by=request.user.pk)
         return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, step=None, data=None, files=None):
@@ -218,13 +218,15 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
         if not image_formset.is_valid():
             return self.render_revalidation_failure(step='3', form=image_formset)
 
-        for form in image_formset:
+        for index, form in enumerate(image_formset):
             if form.data.get(f"{form.prefix}-DELETE", False):
                 if form.instance.pk:
                     form.instance.delete()
             else:
                 instance = form.save(commit=False)
-                instance.recipe = recipe
+                if not instance.pk:
+                    instance.recipe = recipe
+                instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
         return redirect(reverse('recipe-detail', kwargs={'pk': self.recipe_instance.pk}))
