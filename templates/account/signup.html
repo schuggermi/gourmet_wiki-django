@@ -3,23 +3,23 @@
 
 {% block title %}
     {{ block.super }}
-    - {% trans "Log In Now" %}
+    - {% trans "Sign Up Now" %}
 {% endblock title %}
 
 {% block heading %}
-    <h1>{% translate 'Log In Now' %}</h1>
-{% endblock %}
+    <h1>{% translate 'Sign Up Now' %}</h1>
+{% endblock heading %}
 
 {% block content %}
-    <div class="flex flex-col gap-5 justify-center items-center max-w-sm w-full">
+    <div class="flex flex-col gap-5 justify-center items-center max-w-sm">
         {% if not SOCIALACCOUNT_ONLY %}
-            <div class="bg-base-primary w-full">
-                {% url 'account_login' as login_url %}
+            <div class="bg-base-primary">
+                {% url 'account_signup' as signup_url %}
 
-                <form action="{{ login_url }}" method="post" class="flex flex-col gap-5 w-full text-start">
+                <form action="{{ signup_url }}" method="post" class="flex flex-col gap-5 w-full">
                     {% csrf_token %}
 
-                    <div class="flex flex-col w-full gap-3">
+                    <div class="flex flex-col w-full gap-2">
                         {% if form.non_field_errors %}
                             <ul>
                                 {% for error in form.non_field_errors %}
@@ -28,21 +28,30 @@
                             </ul>
                         {% endif %}
 
-                        <div>
-                            <c-input :field="form.login" type="text"></c-input>
+                        <div class="flex gap-2">
+                            <div class="text-start">
+                                <c-input :field="form.first_name" type="text"></c-input>
+                            </div>
+                            <div class="text-start">
+                                <c-input :field="form.last_name" type="text"></c-input>
+                            </div>
                         </div>
-
-                        <div class="w-full">
-                            <c-input :field="form.password" type="password"></c-input>
-
-                            <a href="{% url 'account_reset_password' %}">
-                                <small>{% translate 'Forgot your password?' %}</small>
-                            </a>
+                        <div class="text-start">
+                            <c-input :field="form.email" type="text"></c-input>
+                        </div>
+                        <div class="text-start">
+                            <c-input :field="form.username" type="text"></c-input>
+                        </div>
+                        <div class="text-start">
+                            <c-input :field="form.password1" type="password"></c-input>
+                        </div>
+                        <div class="text-start">
+                            <c-input :field="form.password2" type="password"></c-input>
                         </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-full">
-                        {% trans "Sign In" %}
+                        {% trans "Sign Up" %}
                     </button>
                 </form>
             </div>
@@ -52,9 +61,9 @@
             {% endif %}
 
             <div class="text-center flex flex-col gap-1 items-center">
-                <p>You don't have an account at Gourmet-Wiki yet?</p>
-                <c-a animated url="{% url 'account_signup' %}"
-                     class="underline">{% translate 'Sign Up Now' %}</c-a>
+                <p>You already have an account at Gourmet-Wiki?</p>
+                <c-a animated url="{% url 'account_login' %}"
+                     class="underline">{% translate 'Log In' %}</c-a>
             </div>
         {% endif %}
         {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}

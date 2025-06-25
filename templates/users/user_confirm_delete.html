@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n static allauth account %}
+
+{% block title %}
+    {{ block.super }}
+    - {% trans "Delete Your Account" %}
+{% endblock title %}
+
+{% block main_content %}
+    <div class="w-full h-full md:flex flex-col gap-10 md:items-center md:justify-center pb-10">
+        <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="hover:scale-105">
+            <img class="max-w-sm mx-auto" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
+                 alt="Gourmet Wiki">
+        </c-a>
+        <h1>{% translate 'Delete Your Account' %}</h1>
+
+        <div class="h-full flex flex-col gap-20 justify-center items-center max-w-sm">
+            <div class="bg-base-primary p-5 rounded-lg w-full">
+                {% if token_fail %}
+                    <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
+                        <p>The password reset link was invalid, possibly because it has already been used.</p>
+                        <c-a animated url="{% url 'account_reset_password' %}"
+                             class="underline btn btn-primary"
+                        >
+                            {% translate 'Try Again' %}
+                        </c-a>
+                    </div>
+                {% else %}
+                    {% url 'account_reset_password_from_key' as action_url %}
+                    <form id="delete-form" method="post" class="flex flex-col gap-5 w-full text-center">
+                        {% csrf_token %}
+
+                        <p>{% translate 'Are you sure you want to delete your account? This action cannot be undone.' %}</p>
+                        <c-a url="{% url 'users-profile' %}" class="btn btn-neutral btn-outline w-full">
+                            {% trans "Cancel" %}
+                        </c-a>
+
+                        <div class="flex flex-col w-full gap-2">
+                            <div class="text-start">
+                                <p>
+                                    Please type your full name to confirm:
+                                </p>
+                                <c-input name="confirm_name" id="confirm_name" type="text"
+                                         placeholder="{{ request.user.get_full_name }}"
+                                ></c-input>
+                            </div>
+
+                            <div class="text-start">
+                                <p>
+                                    Please enter your email to confirm:
+                                </p>
+                                <c-input name="confirm_email" id="confirm_email" type="text"
+                                         placeholder="{{ request.user.email }}"
+                                ></c-input>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button type="submit" id="submit-button" class="btn btn-error w-full" disabled>
+                                {% trans "Delete Your Account" %}
+                            </button>
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+
+            <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
+                <p> Please contact us if you have any trouble deleting your account. </p>
+                <c-a animated url=""
+                     class="underline">{% translate 'Support' %}</c-a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const nameInput = document.getElementById('confirm_name');
+        const emailInput = document.getElementById('confirm_email');
+        const submitButton = document.getElementById('submit-button');
+
+        const expectedName = "{{ request.user.get_full_name|escapejs }}";
+        const expectedEmail = "{{ request.user.email|escapejs }}";
+
+        function validateInputs() {
+            const nameMatch = nameInput.value.trim() === expectedName;
+            const emailMatch = emailInput.value.trim() === expectedEmail;
+            submitButton.disabled = !(nameMatch && emailMatch);
+        }
+
+        nameInput.addEventListener('input', validateInputs);
+        emailInput.addEventListener('input', validateInputs);
+    </script>
+{% endblock main_content %}

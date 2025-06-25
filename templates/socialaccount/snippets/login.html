@@ -1,0 +1,17 @@
+{% load static i18n allauth socialaccount %}
+
+
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    <div class="md:flex flex-col gap-5 md:items-center md:justify-center w-full">
+        <h2>{% translate 'Or use a Third-Party' %}</h2>
+
+        <div class="flex flex-col gap-5 justify-center items-center w-full">
+            {% if not SOCIALACCOUNT_ONLY %}
+                <div class="bg-base-primary w-full">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

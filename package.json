@@ -9,6 +9,7 @@
   },
   "private": true,
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "vite": "^6.3.5"
   },
   "dependencies": {

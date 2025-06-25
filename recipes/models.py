@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models import Avg
 from django.utils.translation.trans_null import gettext_lazy as _
 
 from ingredients.models import Ingredient
@@ -51,6 +52,7 @@ class Recipe(models.Model):
         ]
     )
     working_time_hours = models.PositiveIntegerField(
+        verbose_name=_('h'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -58,6 +60,7 @@ class Recipe(models.Model):
         ]
     )
     working_time_minutes = models.PositiveIntegerField(
+        verbose_name=_('min'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -65,6 +68,7 @@ class Recipe(models.Model):
         ]
     )
     cooking_time_hours = models.PositiveIntegerField(
+        verbose_name=_('h'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -72,6 +76,7 @@ class Recipe(models.Model):
         ]
     )
     cooking_time_minutes = models.PositiveIntegerField(
+        verbose_name=_('min'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -79,6 +84,7 @@ class Recipe(models.Model):
         ]
     )
     rest_time_hours = models.PositiveIntegerField(
+        verbose_name=_('h'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -86,6 +92,7 @@ class Recipe(models.Model):
         ]
     )
     rest_time_minutes = models.PositiveIntegerField(
+        verbose_name=_('min'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -119,11 +126,16 @@ class Recipe(models.Model):
     def get_thumbnail_image(self):
         if self.images.exists():
             return self.images.first().image.url
-        return settings.STATIC_URL + 'images/placeholder_recipe.jpg'
+        return settings.STATIC_URL + 'images/placeholder_recipe.png'
 
     @property
     def ordered_preparation_steps(self):
         return self.preparation_steps.all().order_by('order')
+
+    @property
+    def average_rating(self):
+        avg = self.ratings.aggregate(avg=Avg('score'))['avg']
+        return round(avg or 0, 1)
 
     def __str__(self):
         return self.name
@@ -144,6 +156,17 @@ class Recipe(models.Model):
             })
 
         return scaled_ingredients
+
+
+class RecipeRating(models.Model):
+    recipe = models.ForeignKey(Recipe, related_name='ratings', on_delete=models.CASCADE)
+    score = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('recipe', 'user')
 
 
 class RecipePreparationStep(models.Model):
@@ -186,7 +209,7 @@ class RecipeIngredient(models.Model):
         unique_together = ('recipe', 'ingredient')
 
     def __str__(self):
-        return f"{round(self.quantity, 0)}{self.ingredient.unit} {self.ingredient}"
+        return f"{round(self.quantity, 0)}{self.unit} {self.ingredient}"
 
 
 class RecipeImage(models.Model):

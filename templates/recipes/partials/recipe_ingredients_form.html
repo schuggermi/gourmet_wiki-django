@@ -17,9 +17,28 @@
             hx-target="#ingredient-formset"
             hx-swap="beforeend"
             hx-vals="js:{form_count: document.querySelectorAll('#ingredient-formset .formset-form').length}"
-            hx-on="htmx:afterRequest:document.querySelector('#id_recipe_ingredient-TOTAL_FORMS').value++; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
             id="add-ingredient">
         + Add Ingredient
     </button>
 
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('htmx:afterSwap', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_ingredient-TOTAL_FORMS');
+            totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
+
+            const forms = document.querySelectorAll('.formset-form')
+            const lastForm = forms[forms.length - 1]
+            const firstInput = lastForm.querySelector('input:not([type="hidden"])')
+
+            console.log("INPUUT: ")
+            console.log(firstInput)
+
+            firstInput.focus();
+
+            reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');
+        });
+    });
+</script>

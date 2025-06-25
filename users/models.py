@@ -11,6 +11,7 @@ class Profile(models.Model):
         blank=True,
         null=True
     ) # TODO - consider using django_avatar library in future
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username

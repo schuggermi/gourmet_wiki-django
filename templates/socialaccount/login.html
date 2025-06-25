@@ -1,0 +1,31 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n static allauth account %}
+
+{% block title %}
+    {{ block.super }}
+    - {% trans "Sign In" %}
+{% endblock title %}
+
+{% block heading %}
+    <h1>
+        {% blocktrans with provider.name as provider %}
+            Sign In Via {{ provider }}
+        {% endblocktrans %}
+    </h1>
+{% endblock heading %}
+
+{% block content %}
+    <form method="post" class="flex flex-col gap-5 w-full text-center">
+        {% csrf_token %}
+
+        <p>
+            {% blocktrans with provider.name as provider %}
+                You are about to sign in using a third-party account from {{ provider }}.
+            {% endblocktrans %}
+        </p>
+
+        <button type="submit" class="btn btn-primary w-full">
+            {% trans "Continue" %}
+        </button>
+    </form>
+{% endblock content %}

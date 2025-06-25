@@ -65,11 +65,15 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             if not form.cleaned_data:
                 continue
 
+            print(f"{form.cleaned_data=}")
+
             if form.cleaned_data.get('DELETE'):
                 continue
 
             required_fields = [field_name for field_name, field in form.fields.items()
                                if field.required and field_name not in ('DELETE', 'id')]
+
+            print(f"{required_fields=}")
 
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 

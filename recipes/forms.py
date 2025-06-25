@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep
+from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 
 INPUT_CLASSES = ''
 NUMBER_INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
@@ -134,6 +134,12 @@ class RecipeIngredientForm(forms.ModelForm):
             self.add_error('quantity', 'This field is required.')
 
         return cleaned_data
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = RecipeRating
+        fields = ['score']
 
 
 class RecipeImageForm(forms.ModelForm):

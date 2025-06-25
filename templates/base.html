@@ -19,15 +19,18 @@
 </head>
 <body class="w-full min-h-screen h-screen bg-base-100 prose">
 {% include "partials/navbar.html" %}
-<div class="h-full max-w-7xl mx-auto flex flex-col gap-10 items-center justify-start pt-32">
-    {#    <p class="bg-primary">Primary</p>#}
-    {#    <p class="bg-secondary">Secondary</p>#}
-    {#    <p class="bg-accent">Accent</p>#}
-    {#    <p class="bg-accent-content">Base</p>#}
+<div class="relative h-full w-full max-w-7xl mx-auto flex flex-col gap-10 items-center justify-start pt-32">
     {% block main_content %}
-
     {% endblock %}
 </div>
+
+{% if messages %}
+    <div class="absolute bottom-5 right-5 w-fit p-2 bg-base-300 rounded-sm">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
 
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
@@ -35,7 +38,7 @@
     const navbar = document.getElementById("navbar");
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 10) {
+        if (window.scrollY > 65) {
             navbar.classList.add("bg-base-200", "shadow-md");
             navbar.classList.remove("bg-transparent");
         } else {

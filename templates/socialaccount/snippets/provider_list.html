@@ -1,0 +1,29 @@
+{% load static i18n allauth socialaccount %}
+
+
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    <div class="h-full flex flex-col gap-20 justify-center items-center w-full">
+        {% for provider in socialaccount_providers %}
+            {% if provider.id == "openid" %}
+                {% for brand in provider.get_brands %}
+                    {% provider_login_url provider openid=brand.openid_url process=process as href %}
+            <c-a :url="href" class="btn btn-accent btn-outline w-full">
+                {{ name }}
+            </c-a>
+                {% endfor %}
+            {% endif %}
+
+            {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+            <c-a :url="href" class="btn btn-accent btn-outline w-full rounded-2xl!" animated>
+                {{ provider.name }}
+            </c-a>
+
+        {% endfor %}
+        {#            {% if not SOCIALACCOUNT_ONLY %}#}
+        {#                <div class="bg-base-primary p-5 rounded-lg w-full">#}
+        {#                    {% url 'account_login' as login_url %}#}
+        {#                </div>#}
+        {#            {% endif %}#}
+    </div>
+{% endif %}

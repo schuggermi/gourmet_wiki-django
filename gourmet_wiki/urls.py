@@ -1,3 +1,4 @@
+from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -10,4 +11,4 @@ urlpatterns = [
                   path('ingredients/', include('ingredients.urls'), name='ingredients'),
                   path('accounts/', include('allauth.urls')),
                   path('users/', include('users.urls')),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + debug_toolbar_urls()

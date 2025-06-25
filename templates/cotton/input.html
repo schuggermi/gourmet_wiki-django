@@ -7,14 +7,18 @@
         error_class="border-3 border-red-400"
 ></c-vars>
 
-<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-       class="{% if not labeled %}hidden{% endif %}">
-    {% if field and not label %}
-        {{ field.label }}
-    {% elif label %}
-        {{ label }}
-    {% endif %}
-</label>
+{% if slot %}
+    {{ slot }}
+{% else %}
+    <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+           class="{% if not labeled %}hidden{% endif %}">
+        {% if field and not label %}
+            {{ field.label }}
+        {% elif label %}
+            {{ label }}
+        {% endif %}
+    </label>
+{% endif %}
 <input {{ field.field.widget.attrs|render_attrs }}
         type="{{ type }}"
         {% if value == check_value %}checked{% endif %}
@@ -22,13 +26,16 @@
         id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
         name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
         value="{% if field %}{{ field.value|default_if_none:'' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value }}{% endif %}"
-        class="
-                {% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}
+        placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
+        class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}
                 {% if field and field.errors %}{{ error_class }}{% endif %}"
         hx-on="{{ hx_on }}"
 >
-{% for error in field.errors %}
-    <div class="text-red-400">
-        {{ error }}
-    </div>
-{% endfor %}
+{% if not no_errors %}
+    {% for error in field.errors %}
+        <div class="text-red-400">
+            - {{ error }}
+        </div>
+    {% endfor %}
+{% endif %}
+

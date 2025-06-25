@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block main_content %}
+    <div class="w-full md:flex flex-col gap-5 md:items-center md:justify-center">
+        <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="hover:scale-105">
+            <img class="max-w-sm mx-auto" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
+                 alt="Gourmet Wiki">
+        </c-a>
+        {% block heading %}
+        {% endblock %}
+        <div class="flex flex-col gap-5 justify-start items-center max-w-sm text-center w-full">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+{% endblock %}

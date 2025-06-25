@@ -58,6 +58,11 @@
                             ></c-input>
                         </div>
                     {% endfor %}
+                    {% for error in form.skill_level.errors %}
+                        <div class="text-red-400">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -78,34 +83,9 @@
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                 <div class="labeled-number-input flex w-full">
                     <div class="flex items-center gap-2 w-full">
-                        <button
-                                class="btn bg-secondary"
-                                onclick="
-                                        event.preventDefault();
-                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
-                                        const current = parseInt(input.value) || 0;
-                                        if (current > 0) input.value = current - 1;
-                                        "
-                        >
-                            -
-                        </button>
-
-                        <div class="flex flex-row-reverse gap-1 items-center w-full">
-                            <c-input :field="form.portions" class="text-center" labeled
-                                     label="{% translate 'Pers.' %}"></c-input>
+                        <div class="flex items-center gap-2 w-full">
+                            <c-number-action-input :field="form.portions" no_errors></c-number-action-input>
                         </div>
-
-                        <button
-                                class="btn bg-secondary"
-                                onclick="
-                                        event.preventDefault();
-                                        const input = document.getElementById('{{ form.portions.id_for_label }}');
-                                        const current = parseInt(input.value) || 0;
-                                        input.value = current + 1;
-                                        "
-                        >
-                            +
-                        </button>
                     </div>
                 </div>
             </div>
@@ -122,14 +102,12 @@
                 {% translate 'Working Time' %}
             </p>
             <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.working_time_hours" class="text-center" type="number" labeled
-                             label="{% translate 'Hours' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.working_time_hours" no_errors></c-number-action-input>
                 </div>
 
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.working_time_minutes" class="text-center" type="number" labeled
-                             label="{% translate 'Minutes' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.working_time_minutes" no_errors></c-number-action-input>
                 </div>
             </div>
         </div>
@@ -145,14 +123,12 @@
                 {% translate 'Cooking Time' %}
             </p>
             <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.cooking_time_hours" class="text-center" type="number" labeled
-                             label="{% translate 'Hours' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.cooking_time_hours" no_errors></c-number-action-input>
                 </div>
 
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.cooking_time_minutes" class="text-center" type="number" labeled
-                             label="{% translate 'Minutes' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.cooking_time_minutes" no_errors></c-number-action-input>
                 </div>
             </div>
         </div>
@@ -168,14 +144,12 @@
                 {% translate 'Resting Time' %}
             </p>
             <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.rest_time_hours" class="text-center" type="number" labeled
-                             label="{% translate 'Hours' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.rest_time_hours" no_errors></c-number-action-input>
                 </div>
 
-                <div class="flex flex-row-reverse items-center gap-2">
-                    <c-input :field="form.rest_time_minutes" class="text-center" type="number" labeled
-                             label="{% translate 'Minutes' %}"></c-input>
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.rest_time_minutes" no_errors></c-number-action-input>
                 </div>
             </div>
         </div>

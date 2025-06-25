@@ -7,7 +7,7 @@
 
 <a href="{{ url }}"
    class="{% if type == 'default' %}{{ default_class }}{% elif type == 'btn' %}{{ btn_class }}{% endif %} {{ class }}
-           {% if animated %}{{ animated_class }}{% endif %}">
+           {% if animated %}{{ animated_class }}{% endif %}" {{ attrs }}>
     {% if animated %}
         {% if not reverted %}
             {{ slot }}
@@ -21,6 +21,8 @@
         {% if reverted %}
             {{ slot }}
         {% endif %}
+    {% else %}
+        {{ slot }}
     {% endif %}
 </a>
 

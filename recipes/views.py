@@ -10,8 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.forms import model_to_dict
 from django.forms.models import modelformset_factory
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
+from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -20,7 +20,7 @@ from formtools.wizard.views import SessionWizardView
 
 from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
-from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep
+from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 from recipes.services.cost_calculator import calculate_recipe_cost
 
 User = get_user_model()
@@ -172,14 +172,15 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             else:
                 instance = form.save(commit=False)
                 instance.recipe = recipe
+                instance.ingredient = form.cleaned_data['ingredient']
 
-                exists = type(instance).objects.filter(
-                    ingredient=instance.ingredient,
-                    recipe=instance.recipe,
-                ).exists()
-
-                if not exists:
-                    instance.save()
+                # exists = type(instance).objects.filter(
+                #     ingredient=instance.ingredient.ingredient,
+                #     recipe=instance.recipe,
+                # ).exists()
+                #
+                # if not exists:
+                instance.save()
 
         # Step 2 – Preparation Steps
         step_formset = self.get_form(step='2', data=self.storage.get_step_data('2'))
@@ -247,8 +248,8 @@ def get_calculate_scaled_ingredients(request, recipe_id):
 
 
 @login_required
-def toggle_favorite(request, pk):
-    recipe = get_object_or_404(Recipe, pk=pk)
+def toggle_favorite(request, recipe_id):
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
     if request.user in recipe.favorite_by.all():
         recipe.favorite_by.remove(request.user)
     else:
@@ -259,3 +260,25 @@ def toggle_favorite(request, pk):
         request=request
     )
     return HttpResponse(html)
+
+
+@login_required
+def rate_recipe(request, recipe_id, score):
+    if request.method != "POST":
+        return HttpResponseForbidden()
+
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    rating, created = RecipeRating.objects.update_or_create(
+        recipe=recipe,
+        user=request.user,
+        defaults={'score': score}
+    )
+
+    average_rating = recipe.average_rating
+
+    return render(request, "cotton/rating_action.html", {
+        "recipe": recipe,
+        "average_rating": average_rating,
+        "score": score,
+    })

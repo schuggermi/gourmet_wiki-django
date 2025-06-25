@@ -1,0 +1,22 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n static allauth account %}
+
+{% block title %}
+    {{ block.super }}
+    - {% trans "Verify Your Email Address" %}
+{% endblock title %}
+
+{% block heading %}
+    <h1>{% translate 'Verify Your Email Address' %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="flex flex-col gap-2 justify-center items-center">
+        <p>
+            {% translate 'We’ve emailed you. Didn’t get it? Check spam or contact us.' %}
+        </p>
+        <c-a animated url=""
+             class="underline">{% translate 'Support' %}
+        </c-a>
+    </div>
+{% endblock content %}

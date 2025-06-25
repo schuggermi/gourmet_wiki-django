@@ -1,0 +1,32 @@
+{% load i18n %}
+
+<button
+        class="btn btn-neutral btn-outline  rounded-full"
+        onclick="
+                event.preventDefault();
+                const input = document.getElementById('{{ field.id_for_label }}');
+                const current = parseInt(input.value) || 0;
+                if (current > 0) input.value = current - 1;
+                "
+>
+    -
+</button>
+
+<div class="flex flex-row-reverse gap-1 items-center w-full">
+    <c-input :field="field" class="text-center" type="number" labeled
+             label="{% if not label %}{{ field.label }}{% else %}{{ label }}{% endif %}">
+        {{ slot }}
+    </c-input>
+</div>
+
+<button
+        class="btn btn-neutral btn-outline rounded-full"
+        onclick="
+                event.preventDefault();
+                const input = document.getElementById('{{ field.id_for_label }}');
+                const current = parseInt(input.value) || 0;
+                input.value = current + 1;
+                "
+>
+    +
+</button>
