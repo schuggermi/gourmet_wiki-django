@@ -1,9 +1,11 @@
+{% load menu_tags %}
+
 <ul class="w-full" id="ingredients">
     {% for ingredient in ingredients %}
         <li class="py-2 flex justify-center {% if forloop.counter < ingredients|length %}border-b-1 border-base-content{% endif %}">
             <div class="w-full grid grid-cols-6 gap-5">
                 <p class="col-span-2 text-end">
-                    <span class="text-secondary font-bold">{{ ingredient.quantity|floatformat:"0" }}</span>
+                    <span class="font-bold">{{ ingredient.quantity|floatformat:"1" }}</span>
                     <span class="font-medium">{{ ingredient.unit }}</span>
                 </p>
                 <p class="col-span-4">{{ ingredient.ingredient }}</p>

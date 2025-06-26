@@ -1,27 +1,23 @@
-import logging
 from pathlib import Path
 from pprint import pprint
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
-from django.forms import model_to_dict
-from django.forms.models import modelformset_factory
-from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 
+from menus.models import Menu
 from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
-from recipes.services.cost_calculator import calculate_recipe_cost
+from recipes.utils import calculate_scaled_ingredients_menu
 
 User = get_user_model()
 
@@ -71,7 +67,6 @@ def add_image_form(request):
     return HttpResponse(html)
 
 
-# @method_decorator(login_required, name='dispatch')
 class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
     form_list = [
         ('0', RecipeForm),
@@ -174,12 +169,6 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.recipe = recipe
                 instance.ingredient = form.cleaned_data['ingredient']
 
-                # exists = type(instance).objects.filter(
-                #     ingredient=instance.ingredient.ingredient,
-                #     recipe=instance.recipe,
-                # ).exists()
-                #
-                # if not exists:
                 instance.save()
 
         # Step 2 – Preparation Steps
@@ -199,15 +188,6 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 if not instance.pk:
                     instance.recipe = recipe
                 instance.order = form.cleaned_data.get('order', index)
-                # instance.save()
-
-                # exists = type(instance).objects.filter(
-                #     recipe=instance.recipe,
-                #     id=instance.pk
-                # ).exists()
-                #
-                # if not exists:
-                #     print("NOT EXISTS")
                 instance.save()
 
         # Step 3 – Images
@@ -244,6 +224,16 @@ def get_calculate_scaled_ingredients(request, recipe_id):
     }
 
     html = render_to_string('recipes/partials/recipe_ingredients_list.html', context)
+    return HttpResponse(html)
+
+
+def get_calculate_scaled_ingredients_menu(request, menu_id):
+    context = calculate_scaled_ingredients_menu(menu_id, int(request.GET.get('portions')))
+    context['current_recipe_slide'] = request.GET.get('current_recipe_slide', 0)
+
+    print("CONTEXT: ", pprint(context, indent=4))
+
+    html = render_to_string('menus/partials/recipe_carousel.html', context)
     return HttpResponse(html)
 
 

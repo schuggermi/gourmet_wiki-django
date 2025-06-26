@@ -12,10 +12,12 @@
                 </figure>
             </figure>
             <div class="flex flex-col justify-between px-4 py-2 h-full w-full overflow-hidden">
-                <h2 class="group-hover:text-primary">
-                    {{ recipe.name }}
-                </h2>
-                <p class="text-sm break-all line-clamp-3">{{ recipe.description }}</p>
+                <div>
+                    <h2 class="group-hover:text-primary">
+                        {{ recipe.name }}
+                    </h2>
+                    <p class="text-sm break-all line-clamp-3">{{ recipe.description }}</p>
+                </div>
                 <div class="flex gap-5 justify-between">
                     <div class="flex gap-5 items-center justify-end w-full">
                         <div class="flex gap-2 items-center">
@@ -25,10 +27,10 @@
                                       d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                             </svg>
                             <p>
-                                <span class="font-bold">{{ recipe.cooking_time_hours }}</span><small>h</small>
+                                <span class="font-bold">{{ recipe.total_time_hours }}</span><small>h</small>
                             </p>
                             <p>
-                                <span class="font-bold">{{ recipe.cooking_time_minutes }}</span><small>min</small>
+                                <span class="font-bold">{{ recipe.total_time_minutes }}</span><small>min</small>
                             </p>
                         </div>
                         <c-rating average_rating="{{ recipe.average_rating }}"></c-rating>

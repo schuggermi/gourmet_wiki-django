@@ -24,6 +24,22 @@ class UnitChoice(models.TextChoices):
     TEE_SPOON = 'tes', _('tes')
 
 
+class CourseTypeChoice(models.TextChoices):
+    AMUSE_BOUCHE = 'amuse_bouche', _('Amuse-bouche')
+    COLD_STARTER = 'cold_starter', _("Hors d'œuvre")
+    SOUP = 'soup', _("Potage")
+    FISH = 'fish', _("Poisson")
+    HOT_STARTER = 'hot_starter', _("Entrée")
+    MAIN = 'main', _("Plat de Résistance")
+    SORBET = 'sorbet', _("Sorbet")
+    ROAST = 'roast', _("Rôti")
+    VEGETABLE = 'vegetable', _("Légumes")
+    SALAD = 'salad', _("Salade")
+    CHEESE = 'cheese', _("Fromage")
+    DESSERT = 'dessert', _("Dessert")
+    DIGESTIVE_DRINK = 'digestive_drink', _("Digestif")
+
+
 class SkillLevelChoice(models.TextChoices):
     BEGINNER = _('Beginner')
     INTERMEDIATE = _('Intermediate')
@@ -43,6 +59,11 @@ class Recipe(models.Model):
         upload_to='recipes/images/',
         null=True,
         blank=True,
+    )
+    course_type = models.CharField(
+        max_length=50,
+        choices=CourseTypeChoice.choices,
+        default=CourseTypeChoice.MAIN,
     )
     portions = models.PositiveIntegerField(
         default=4,
@@ -148,10 +169,10 @@ class Recipe(models.Model):
 
         scaled_ingredients = []
         for ri in self.ingredients.all():
-            scaled_quantity = ri.quantity * scale_factor
+            scaled_quantity = ri.scale_quantity(scale_factor)
             scaled_ingredients.append({
                 'ingredient': ri.ingredient,
-                'quantity': round(scaled_quantity, 2),
+                'quantity': scaled_quantity,
                 'unit': ri.unit,
             })
 
@@ -164,6 +185,7 @@ class RecipeRating(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('recipe', 'user')
@@ -193,10 +215,12 @@ class RecipeIngredient(models.Model):
     ingredient = models.CharField(
         max_length=150,
     )
-    quantity = models.PositiveIntegerField(
+    quantity = models.DecimalField(
+        max_digits=10,
+        decimal_places=4,
         default=0,
         validators=[
-            MinValueValidator(1),
+            MinValueValidator(0.01),
         ]
     )
     unit = models.CharField(
@@ -204,12 +228,22 @@ class RecipeIngredient(models.Model):
         choices=UnitChoice.choices,
         default=UnitChoice.GRAM,
     )
+    price_per_unit = models.DecimalField(
+        max_digits=10,
+        decimal_places=4,
+        help_text="Price per unit in EUR",
+        default=float(0),
+    )
 
     class Meta:
         unique_together = ('recipe', 'ingredient')
 
     def __str__(self):
         return f"{round(self.quantity, 0)}{self.unit} {self.ingredient}"
+
+    def scale_quantity(self, scale_factor: Decimal):
+        quantity = self.quantity * scale_factor
+        return round(quantity, 1)
 
 
 class RecipeImage(models.Model):

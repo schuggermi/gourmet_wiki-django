@@ -38,6 +38,8 @@
         <ul class="absolute z-50 flex gap-5 px-1">
             <li class="btn bg-transparent border-none hover:bg-primary border-primary">
                 <c-a url="{% url 'recipe-list' %}" class="hover:bg-primary">{% translate 'All Recipes' %}</c-a>
+            </li><li class="btn bg-transparent border-none hover:bg-primary border-primary">
+                <c-a url="{% url 'menu_list' %}" class="hover:bg-primary">{% translate 'All Menus' %}</c-a>
             </li>
             {% comment %}<li class="cursor-pointer dropdown dropdown-center dropdown-bottom">
                 <p tabindex="0"

@@ -1,0 +1,15 @@
+<div id="recipe-carousel"
+     class="print:hidden carousel w-full mx-auto">
+    {% for menu_item in menu.items.all %}
+        <div id="recipe-{{ forloop.counter0 }}"
+             class="w-full recipe-slide {% if forloop.counter0 != current_recipe_slide %}hidden{% endif %} print:block">
+            {% include "menus/partials/recipe_detail.html" with menu_item=menu_item recipe=menu_item.recipe %}
+        </div>
+    {% endfor %}
+</div>
+
+{% for menu_item in menu.items.all %}
+    <div class="hidden w-full h-full print:block break-inside-avoid">
+        {% include "menus/partials/recipe_detail.html" with menu_item=menu_item recipe=menu_item.recipe %}
+    </div>
+{% endfor %}

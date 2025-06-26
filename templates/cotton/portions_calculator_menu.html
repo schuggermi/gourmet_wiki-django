@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<div class="print:hidden flex items-center justify-end gap-2 w-full">
+    <button
+            class="btn btn-neutral btn-outline"
+            onclick="
+                                        event.preventDefault();
+                                        const input = document.getElementById('portions');
+                                        const current = parseInt(input.value) || 0;
+                                        if (current > 0) input.value = current - 1;
+                                        this.setAttribute('hx-vals', JSON.stringify({portions: input.value}));
+                                        "
+            hx-get="{% url 'calculate_scaled_ingredients_menu' menu_id=menu.pk %}"
+            hx-target="{{ hx_target }}"
+            hx-swap="outerHTML"
+    >
+        -
+    </button>
+
+    <div class="flex flex-row-reverse gap-1 items-center w-fit">
+        <c-input id="portions" name="portions" value="{{ portions_value }}" disabled
+                 class="text-center max-w-12 font-bold underline"
+                 labeled
+                 label="{% translate 'Pers.' %}"></c-input>
+    </div>
+
+    <button
+            class="btn btn-neutral btn-outline"
+            onclick="
+                                        event.preventDefault();
+                                        const input = document.getElementById('portions');
+                                        const current = parseInt(input.value) || 0;
+                                        input.value = current + 1;
+                                        this.setAttribute('hx-vals', JSON.stringify({portions: input.value}));
+                                        "
+            hx-get="{% url 'calculate_scaled_ingredients_menu' menu_id=menu.pk %}"
+            hx-target="{{ hx_target }}"
+            hx-swap="outerHTML">
+        +
+    </button>
+</div>
+
+<script>
+    document.body.addEventListener('htmx:afterSettle', function (event) {
+        if (event.target.id === 'recipe-carousel') {
+            goToSlide(window.currentRecipeSlide);
+        }
+    });
+</script>

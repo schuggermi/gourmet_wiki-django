@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'menus.apps.MenusConfig'
 ]
 
 MIDDLEWARE = [

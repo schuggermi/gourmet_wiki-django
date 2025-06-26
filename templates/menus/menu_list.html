@@ -3,7 +3,7 @@
 
 {% block title %}
     {{ block.super }}
-    - {% translate 'Search in Recipes' %}
+    - {% translate 'Search in Menus' %}
 {% endblock %}
 
 {% block main_content %}
@@ -11,10 +11,10 @@
 
     <div class="w-full mx-auto flex flex-col gap-10 items-center justify-start">
         <div class="self-start flex flex-col gap-1">
-            <h1>{% translate 'Search in Recipes' %}</h1>
+            <h1>{% translate 'Search in Menus' %}</h1>
             <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
         </div>
 
-        {% include "recipes/partials/recipe_list.html" %}
+        {% include "menus/partials/menu_list.html" %}
     </div>
 {% endblock %}

@@ -29,6 +29,7 @@ class RecipeAdmin(admin.ModelAdmin):
         'working_time_hours', 'working_time_minutes', 'cooking_time_hours', 'cooking_time_minutes',
         'rest_time_hours', 'rest_time_minutes',
     ]
+    search_fields = ('name',)
     inlines = [RecipeImageInline, RecipeIngredientInline, RecipePreparationStepInline]
 
     def get_total_cost(self, obj):
