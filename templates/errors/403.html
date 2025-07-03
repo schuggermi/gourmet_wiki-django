@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Access Denied - Gourmet Wiki{% endblock %}
+
+{% block meta_description %}You don't have permission to access this page on Gourmet Wiki.{% endblock %}
+
+{% block og_title %}Access Denied - Gourmet Wiki{% endblock %}
+{% block og_description %}You don't have permission to access this page on Gourmet Wiki.{% endblock %}
+
+{% block twitter_title %}Access Denied - Gourmet Wiki{% endblock %}
+{% block twitter_description %}You don't have permission to access this page on Gourmet Wiki.{% endblock %}
+
+{% block main_content %}
+    <div class="flex flex-col items-center gap-5 justify-center text-center px-4">
+        <h2>403 - Access Denied</h2>
+        <p>Sorry, you don't have permission to access this page.</p>
+        <div>
+            <p>You might want to:</p>
+            <ul class="list-disc list-inside text-center">
+                <li>Log in with a different account</li>
+                <li>Contact the site administrator if you believe this is an error</li>
+                <li>Return to our homepage</li>
+            </ul>
+        </div>
+        <div class="flex gap-2">
+            <a href="/" class="btn btn-neutral">Return to Homepage</a>
+            <a href="/accounts/login/" class="btn btn-primary">Log In</a>
+        </div>
+    </div>
+{% endblock %}

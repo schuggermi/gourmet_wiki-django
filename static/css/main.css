@@ -2,7 +2,42 @@
 /*@import "@tailwindcss/typography";*/
 
 @plugin "daisyui" {
-    themes: gourmet --default, gourmet --prefersdark, gourmet;
+    themes: gourmet --default, gourmet --prefersdark, gourmet-dark;
+}
+
+@plugin "daisyui/theme" {
+    name: "gourmet-dark";
+    default: false;
+    prefersdark: true;
+    color-scheme: "dark";
+    --color-base-100: oklch(21% 0.006 56.043);
+    --color-base-200: oklch(14% 0.004 49.25);
+    --color-base-300: oklch(0% 0 0);
+    --color-base-content: oklch(98% 0.018 155.826);
+    --color-primary: oklch(87% 0.15 154.449);
+    --color-primary-content: oklch(0% 0 0);
+    --color-secondary: oklch(83% 0.128 66.29);
+    --color-secondary-content: oklch(26% 0.079 36.259);
+    --color-accent: oklch(98% 0.018 155.826);
+    --color-accent-content: oklch(0% 0 0);
+    --color-neutral: oklch(87% 0.15 154.449);
+    --color-neutral-content: oklch(0% 0 0);
+    --color-info: oklch(74% 0.16 232.661);
+    --color-info-content: oklch(29% 0.066 243.157);
+    --color-success: oklch(84% 0.238 128.85);
+    --color-success-content: oklch(27% 0.072 132.109);
+    --color-warning: oklch(82% 0.189 84.429);
+    --color-warning-content: oklch(27% 0.077 45.635);
+    --color-error: oklch(70% 0.191 22.216);
+    --color-error-content: oklch(25% 0.092 26.042);
+    --radius-selector: 0rem;
+    --radius-field: 1rem;
+    --radius-box: 0rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 0;
+    --noise: 0;
 }
 
 
@@ -54,6 +89,10 @@ input[type='number'] {
 }
 
 @layer base {
+    a, p {
+        color: var(--color-base-content);
+    }
+
     h1 {
         @apply text-4xl font-bold;
         color: var(--color-neutral);
@@ -82,6 +121,10 @@ input[type='number'] {
     h6 {
         @apply text-base font-medium;
         color: var(--color-neutral);
+    }
+
+    input, textarea {
+        @apply text-base-content;
     }
 
     /*    .file-input {

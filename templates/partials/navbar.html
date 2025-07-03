@@ -30,16 +30,23 @@
             </ul>
         </div>
         <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="hover:scale-105">
-            <img class="w-42" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
+            <img class="w-42 dark:hidden" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
+                 alt="Gourmet Wiki">
+            <img class="w-42 not-dark:hidden" src="{% static 'images/logo_landscape_gourmet-theme-dark.svg' %}"
                  alt="Gourmet Wiki">
         </c-a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="absolute z-50 flex gap-5 px-1">
-            <li class="btn bg-transparent border-none hover:bg-primary border-primary">
-                <c-a url="{% url 'recipe-list' %}" class="hover:bg-primary">{% translate 'All Recipes' %}</c-a>
-            </li><li class="btn bg-transparent border-none hover:bg-primary border-primary">
-                <c-a url="{% url 'menu_list' %}" class="hover:bg-primary">{% translate 'All Menus' %}</c-a>
+            <li>
+                <c-a url="{% url 'recipe-list' %}" class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
+                    {% translate 'All Recipes' %}
+                </c-a>
+            </li>
+            <li>
+                <c-a url="{% url 'menu_list' %}" class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
+                    {% translate 'All Menus' %}
+                </c-a>
             </li>
             {% comment %}<li class="cursor-pointer dropdown dropdown-center dropdown-bottom">
                 <p tabindex="0"
@@ -97,8 +104,8 @@
                 </div>
                 <ul tabindex="0" class="flex flex-col gap-1 dropdown-content w-max bg-base-300 rounded-sm items-center">
                     {% if user.is_authenticated %}
-                        <li class="w-full bg-transparent border-none hover:bg-primary border-primary rounded-sm px-4 py-2">
-                            <c-a url="{% url 'users-profile' %}" class="flex gap-5 items-center">
+                        <li class="w-full bg-transparent border-none hover:bg-primary group border-primary rounded-sm px-4 py-2">
+                            <c-a url="{% url 'users-profile' %}" class="flex gap-5 items-center group-hover:text-accent-content!">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      class="size-4">
                                     <path fill-rule="evenodd"
@@ -138,8 +145,8 @@
                                 Favorites
                             </c-a>
                         </li>{% endcomment %}
-                        <li class="w-full bg-transparent border-none hover:bg-primary border-primary rounded-sm px-4 py-2">
-                            <c-a url="{% url 'account_logout' %}" class="flex gap-5 items-center">
+                        <li class="w-full bg-transparent border-none hover:bg-primary group border-primary rounded-sm px-4 py-2">
+                            <c-a url="{% url 'account_logout' %}" class="flex gap-5 items-center group-hover:text-accent-content!">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      class="size-4">
                                     <path fill-rule="evenodd"

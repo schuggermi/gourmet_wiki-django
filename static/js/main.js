@@ -1,3 +1,4 @@
+import 'vite/modulepreload-polyfill';
 import '@/css/main.css';
 import Sortable from "sortablejs";
 window.Sortable = Sortable;
