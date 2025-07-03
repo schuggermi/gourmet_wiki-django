@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-from menus.models import MenuCourse, MenuType, MenuItem, Menu
+from menus.models import MenuCourse, MenuItem, Menu
 
 
 @admin.register(MenuCourse)
 class MenuCourseAdmin(admin.ModelAdmin):
-    list_display = ('menu_type', 'course_type', 'order')
-    list_filter = ('menu_type',)
-    ordering = ('menu_type', 'order')
-    search_fields = ('course_type', 'menu_type__name')
+    list_display = ('course_type', 'order')
+    list_filter = ()
+    ordering = ('order',)
+    search_fields = ('course_type', 'menu__name')
 
 
 class MenuCourseInline(admin.TabularInline):
@@ -16,13 +16,6 @@ class MenuCourseInline(admin.TabularInline):
     extra = 1
     ordering = ['order']
     fields = ('order', 'course_type')
-
-
-@admin.register(MenuType)
-class MenuTypeAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    inlines = [MenuCourseInline]
-    search_fields = ('name',)
 
 
 class MenuItemInline(admin.TabularInline):
@@ -34,8 +27,8 @@ class MenuItemInline(admin.TabularInline):
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
-    list_display = ('name', 'menu_type', 'created_at')
-    list_filter = ('menu_type',)
+    list_display = ('name', 'description', 'created_at')
+    list_filter = ('description',)
     inlines = [MenuItemInline]
     search_fields = ('name',)
 
@@ -43,6 +36,6 @@ class MenuAdmin(admin.ModelAdmin):
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('menu', 'menu_course', 'recipe')
-    list_filter = ('menu__menu_type', 'menu_course__course_type')
+    list_filter = ('menu__description', 'menu_course__course_type')
     autocomplete_fields = ['menu', 'menu_course', 'recipe']
     search_fields = ('menu__name', 'recipe__name', 'menu_course__course_type')

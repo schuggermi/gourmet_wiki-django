@@ -4,30 +4,22 @@ from django.db import models
 from recipes.models import Recipe
 
 
-class MenuType(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-
 class MenuCourse(models.Model):
-    menu_type = models.ForeignKey(MenuType, related_name='courses', on_delete=models.CASCADE)
+    menu = models.ForeignKey('Menu', related_name='courses', on_delete=models.CASCADE)
     course_type = models.CharField(max_length=50, choices=Recipe._meta.get_field('course_type').choices)
     order = models.PositiveIntegerField()
 
     class Meta:
-        unique_together = ('menu_type', 'course_type')
+        unique_together = ('menu', 'course_type')
         ordering = ['order']
 
     def __str__(self):
-        return f"{self.menu_type.name} - {self.get_course_type_display()}"
+        return f"{self.menu.name} - {self.get_course_type_display()}"
 
 
 class Menu(models.Model):
     name = models.CharField(max_length=100)
-    menu_type = models.ForeignKey(MenuType, on_delete=models.PROTECT)
+    description = models.TextField(blank=True)
     portions = models.PositiveIntegerField(
         default=4,
         validators=[
