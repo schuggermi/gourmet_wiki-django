@@ -358,6 +358,19 @@ wheels = [
 ]
 
 [[package]]
+name = "crispy-daisyui"
+version = "0.7.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-crispy-forms" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ef/3a/78d9d81882790f2fe0d6148ba3c23fb61e857e4dfd3a6d388bebef180972/crispy_daisyui-0.7.0.tar.gz", hash = "sha256:dad4e713b1b321f69985c10793cb08442281d385c6615cf02d85fb5fb720a093", size = 16148, upload-time = "2024-09-14T17:04:32.74Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/48/a7/a38fcd79707c85e4b90b655c435c76bd216e016f70509c0aa2d97c5e67f0/crispy_daisyui-0.7.0-py3-none-any.whl", hash = "sha256:8215212202095879c38a368d06f9332d0a3aa1c89e9448930bcd1b4ec99b321f", size = 26911, upload-time = "2024-09-14T17:04:31.787Z" },
+]
+
+[[package]]
 name = "cryptography"
 version = "45.0.4"
 source = { registry = "https://pypi.org/simple" }
@@ -460,6 +473,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/37/4e/e8be2accc5e10c899f4d22e6f64686b93733c5ac42524275e627cbf7314f/django_cotton-2.1.2.tar.gz", hash = "sha256:ad467f725239bf43004dad87dfc70f95c08d96efde4166d4bfb815e7cb72c56f", size = 23063, upload-time = "2025-05-11T21:43:58.505Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/45/2b/1285d050801ee92bfe408574954d26aaacbf67e1eb68946a78024fd3d0b8/django_cotton-2.1.2-py3-none-any.whl", hash = "sha256:8492cb7cfe881455a1b9dfaaaec2d1943494a1d3d2e2066ac7da6ce31afceef3", size = 22053, upload-time = "2025-05-11T21:43:56.978Z" },
+]
+
+[[package]]
+name = "django-crispy-forms"
+version = "2.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/88/a1/ffd7b0e160296121d88e3e173165370000ee4de7328f5c4f4b266638dcd9/django_crispy_forms-2.4.tar.gz", hash = "sha256:915e1ffdeb2987d78b33fabfeff8e5203c8776aa910a3a659a2c514ca125f3bd", size = 278932, upload-time = "2025-04-13T07:25:00.176Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1d/ec/a25f81e56a674e63cf6c3dd8e36b1b3fecc238fecd6098504adc0cc61402/django_crispy_forms-2.4-py3-none-any.whl", hash = "sha256:5a4b99876cfb1bdd3e47727731b6d4197c51c0da502befbfbec6a93010b02030", size = 31446, upload-time = "2025-04-13T07:24:58.516Z" },
 ]
 
 [[package]]
@@ -578,11 +603,13 @@ name = "gourmet-wiki"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "crispy-daisyui" },
     { name = "cryptography" },
     { name = "django" },
     { name = "django-allauth" },
     { name = "django-cors-headers" },
     { name = "django-cotton" },
+    { name = "django-crispy-forms" },
     { name = "django-debug-toolbar" },
     { name = "django-formtools" },
     { name = "django-vite" },
@@ -599,11 +626,13 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "crispy-daisyui", specifier = ">=0.7.0" },
     { name = "cryptography", specifier = ">=45.0.4" },
     { name = "django", specifier = ">=5.2.1" },
     { name = "django-allauth", specifier = ">=65.9.0" },
     { name = "django-cors-headers", specifier = ">=4.7.0" },
     { name = "django-cotton", specifier = ">=2.1.2" },
+    { name = "django-crispy-forms", specifier = ">=2.4" },
     { name = "django-debug-toolbar", specifier = ">=5.2.0" },
     { name = "django-formtools", specifier = ">=2.5.1" },
     { name = "django-vite", specifier = ">=3.1.0" },

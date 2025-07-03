@@ -53,19 +53,21 @@ INSTALLED_APPS = [
     'ingredients.apps.IngredientsConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
+    'menus.apps.MenusConfig',
 
     'corsheaders',
     'debug_toolbar',
     'django_vite',
     'django_cotton',
     'formtools',
+    'crispy_forms',
+    'crispy_daisyui',
 
     'allauth',
     'allauth.account',
 
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'menus.apps.MenusConfig'
 ]
 
 MIDDLEWARE = [
@@ -260,3 +262,6 @@ CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if not DEBUG else None
 SESSION_COOKIE_SECURE = True if not DEBUG else False
 CSRF_COOKIE_SECURE = True if not DEBUG else False
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
+CRISPY_TEMPLATE_PACK = 'daisyui'
