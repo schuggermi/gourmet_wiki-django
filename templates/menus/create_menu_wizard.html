@@ -37,7 +37,7 @@
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-accent{% endif %}">
                     <p>
-                        Courses
+                        Courses & Recipes
                     </p>
                 </li>
             </ul>
@@ -63,8 +63,8 @@
                 {% if wizard.steps.current == '0' %}
                     {% include "menus/partials/menu_form.html" with form=wizard.form %}
                 {% elif wizard.steps.current == '1' %}
-                    <h3 class="text-xl font-bold">{% translate 'Menu Courses' %}</h3>
-                    <p class="text-sm text-base-content/70">{% translate 'Add the courses for your menu.' %}</p>
+                    <h3 class="text-xl font-bold">{% translate 'Menu Courses & Recipes' %}</h3>
+                    <p class="text-sm text-base-content/70">{% translate 'Add the courses and select recipes for your menu.' %}</p>
                     {% include "menus/partials/menu_course_form.html" with forms=wizard.form.forms %}
                 {% endif %}
 

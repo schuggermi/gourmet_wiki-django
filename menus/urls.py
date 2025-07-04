@@ -1,6 +1,6 @@
 from django.urls import path
 
-from menus.views import MenuListView, MenuDetailView, CreateMenuWizardView, add_menu_course_form
+from menus.views import MenuListView, MenuDetailView, CreateMenuWizardView, add_menu_course_form, add_menu_item_form
 from recipes.views import get_calculate_scaled_ingredients_menu
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:menu_id>/calculate-scaled-ingredients-menu/', get_calculate_scaled_ingredients_menu,
          name='calculate_scaled_ingredients_menu'),
     path('add-menu-course-form/', add_menu_course_form, name='add_menu_course_form'),
+    path('add-menu-item-form/', add_menu_item_form, name='add_menu_item_form'),
 ]

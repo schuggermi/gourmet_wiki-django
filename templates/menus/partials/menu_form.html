@@ -4,13 +4,13 @@
 <div class="grid gird-cols-1 w-full gap-5">
     <div class="grid grid-cols-2 gap-5">
         <!-- Menu Name -->
-        <div>
+        <div class="col-span-2">
             <c-input :field="form.name" labeled></c-input>
         </div>
 
-        <!-- Menu Type -->
-        <div>
-            <c-input :field="form.description" labeled></c-input>
+        <!-- Menu Description -->
+        <div class="col-span-2">
+            <c-textarea :field="form.description" labeled></c-textarea>
         </div>
 
         <!-- Portions -->

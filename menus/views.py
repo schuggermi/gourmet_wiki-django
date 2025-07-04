@@ -11,15 +11,15 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 
-from menus.forms import MenuForm, MenuCourseForm
-from menus.formsets import MenuCourseFormSet
-from menus.models import Menu, MenuCourse
+from menus.forms import MenuForm, MenuCourseForm, MenuItemForm
+from menus.formsets import MenuCourseFormSet, MenuItemFormSet
+from menus.models import Menu, MenuCourse, MenuItem
 from recipes.utils import calculate_scaled_ingredients_menu
 
 
 def add_menu_course_form(request):
     form_index = int(request.GET.get("form_count", 0))
-    new_form = MenuCourseForm(prefix=f'menu_course-{form_index}')
+    new_form = MenuCourseForm(prefix=f'menu_course-{form_index}', user=request.user)
 
     new_form.fields['DELETE'] = forms.BooleanField(required=False)
 
@@ -29,6 +29,21 @@ def add_menu_course_form(request):
     }
 
     html = render_to_string('menus/partials/menu_course_form_row.html', context)
+    return HttpResponse(html)
+
+
+def add_menu_item_form(request):
+    form_index = int(request.GET.get("form_count", 0))
+    new_form = MenuItemForm(prefix=f'menu_item-{form_index}', user=request.user)
+
+    new_form.fields['DELETE'] = forms.BooleanField(required=False)
+
+    context = {
+        'form': new_form,
+        'form_index': form_index,
+    }
+
+    html = render_to_string('menus/partials/menu_item_form_row.html', context)
     return HttpResponse(html)
 
 
@@ -64,6 +79,7 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
         self.menu_id = None
         self.menu_instance = None
         self.menu_course_instances = {}
+        self.menu_courses = {}
 
     def dispatch(self, request, *args, **kwargs):
         self.menu_id = kwargs.get('menu_id')
@@ -91,9 +107,14 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
                 queryset = self.menu_instance.courses.all()
             else:
                 queryset = MenuCourse.objects.none()
+
+            # Get the form kwargs for each form in the formset
+            form_kwargs = {'user': self.request.user}
+
             kwargs.update({
                 'prefix': 'menu_course',
                 'queryset': queryset,
+                'form_kwargs': form_kwargs,
             })
             return MenuCourseFormSet(**kwargs)
         return super().get_form(step, data, files)
@@ -135,9 +156,23 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
             if form.cleaned_data.get('DELETE'):
                 continue
 
-            instance = form.save(commit=False)
-            instance.menu_id = menu.id
-            instance.order = form.cleaned_data['ORDER']
-            instance.save()
+            # Get the recipe from the form
+            recipe = form.cleaned_data.get('recipe')
+            if not recipe:
+                continue
+
+            # Save the MenuCourse instance
+            menu_course = form.save(commit=False)
+            menu_course.menu_id = menu.id
+            menu_course.order = form.cleaned_data['ORDER']
+            menu_course.save()
+
+            # Create and save the MenuItem instance
+            menu_item = MenuItem(
+                menu_id=menu.id,
+                menu_course=menu_course,
+                recipe=recipe
+            )
+            menu_item.save()
 
         return redirect(reverse('menu_detail', kwargs={'pk': menu.id}))
