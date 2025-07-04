@@ -1,0 +1,42 @@
+{% load i18n %}
+
+<div class="grid gird-cols-1 w-3xl gap-5">
+    <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
+
+    <div id="menu-course-formset" class="flex flex-col gap-5 w-full">
+        {% for form in forms %}
+            {% include 'menus/partials/menu_course_form_row.html' with form=form form_index=forloop.counter0 %}
+        {% endfor %}
+    </div>
+
+    <button type="button"
+            class="btn btn-secondary w-fit"
+            hx-get="{% url 'add_menu_course_form' %}"
+            hx-target="#menu-course-formset"
+            hx-swap="beforeend"
+            hx-vals="js:{form_count: document.querySelectorAll('#menu-course-formset .formset-form').length}"
+            id="add-menu-course">
+        {% translate '+ Add Course' %}
+    </button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');
+    });
+</script>
+
+<script>
+    window.addEventListener('load', () => {
+        (function () {
+            const sortable = document.querySelector("#menu-course-formset");
+
+            new Sortable(sortable, {
+                animation: 150,
+                dragClass: 'text-secondary!',
+                handle: '.drag-handle',
+                onEnd: () => reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS'),
+            });
+        })();
+    });
+</script>

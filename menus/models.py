@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from recipes.models import Recipe
+
+User = get_user_model()
 
 
 class MenuCourse(models.Model):
@@ -28,6 +31,10 @@ class Menu(models.Model):
         ]
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
 
     def total_time_hours(self):
         return sum([menu_item.recipe.total_time_hours for menu_item in self.items.all()])

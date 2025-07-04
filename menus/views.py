@@ -1,13 +1,14 @@
 from pathlib import Path
 
+from django import forms
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse
+from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 
 from menus.forms import MenuForm, MenuCourseForm
@@ -19,6 +20,9 @@ from recipes.utils import calculate_scaled_ingredients_menu
 def add_menu_course_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = MenuCourseForm(prefix=f'menu_course-{form_index}')
+
+    new_form.fields['DELETE'] = forms.BooleanField(required=False)
+    new_form.fields['ORDER'] = forms.IntegerField(required=False)
 
     context = {
         'form': new_form,
@@ -60,6 +64,7 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
         super().__init__(*args, **kwargs)
         self.menu_id = None
         self.menu_instance = None
+        self.menu_course_instances = {}
 
     def dispatch(self, request, *args, **kwargs):
         self.menu_id = kwargs.get('menu_id')
@@ -84,7 +89,7 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
             return MenuForm(**kwargs)
         elif step == '1':
             if self.menu_instance:
-                queryset = self.menu_instance.get_course_types
+                queryset = self.menu_instance.courses.all()
             else:
                 queryset = MenuCourse.objects.none()
             kwargs.update({
@@ -115,19 +120,46 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
         # Step 1 – Menu Courses
         courses_formset = self.get_form(step='1', data=self.storage.get_step_data('1'))
         if not courses_formset.is_valid():
-            print("Courses formset validation failed")
+            print("FORMSET ERRORS: ", courses_formset.errors)
+            print("Formset is NOT valid.")
+            for i, form in enumerate(courses_formset.forms):
+                print(f"Form #{i} errors:", form.errors)
             return self.render_revalidation_failure(step='1', form=courses_formset)
 
-        for index, form in enumerate(courses_formset):
-            if form.data.get(f"{form.prefix}-DELETE", False):
-                if form.instance.pk:
-                    form.instance.delete()
-            else:
-                instance = form.save(commit=False)
-                if not instance.pk:
-                    instance.menu = menu
-                instance.order = form.cleaned_data.get('order', index)
-                instance.course_type = form.cleaned_data['course_type']
-                instance.save()
+        ordered_course_forms = []
+
+        for form in courses_formset.forms:
+            if (
+                form.cleaned_data.get('DELETE') or
+                'ORDER' not in form.cleaned_data
+            ):
+                continue
+
+            order_value = form.cleaned_data.get('ORDER')
+            ordered_course_forms.append((order_value, form))
+
+        for _, form in sorted(ordered_course_forms, key=lambda x: x[0]):
+            course = form.save(commit=False)
+            course.order = form.cleaned_data['ORDER']
+            course.save()
+
+        for form in courses_formset.deleted_forms:
+            if form.instance.pk:
+                form.instance.delete()
+
+        # print("COURSES FORMS: ", courses_formset.forms)
+        # print("COURSES ORDERED FORMS: ", courses_formset.ordered_forms)
+        #
+        # for index, form in enumerate(courses_formset.ordered_forms):
+        #     print("CLEANED DATA: ", form.cleaned_data)
+        #     if form.data.get(f"{form.prefix}-DELETE") == 'on':
+        #         if form.instance.pk:
+        #             form.instance.delete()
+        #     else:
+        #         instance = form.save(commit=False)
+        #         if not instance.pk:
+        #             instance.menu = menu
+        #         instance.order = form.cleaned_data[courses_formset.ordering_field_name]
+        #         instance.save()
 
         return redirect(reverse('menu_detail', kwargs={'pk': menu.id}))
