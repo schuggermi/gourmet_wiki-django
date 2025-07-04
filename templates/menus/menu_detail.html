@@ -59,9 +59,9 @@
                 <div class="flex gap-5 items-center w-full">
                     <p><b>{% translate 'Select Course:' %}</b></p>
                     <div id="recipe-carousel-buttons" class="flex gap-2">
-                        {% for menu_item in menu.items.all %}
+                        {% for menu_item in menu.courses.all %}
                             <button onclick="goToSlide({{ forloop.counter0 }})" data-index="{{ forloop.counter0 }}"
-                                    class="btn btn-primary">{{ menu_item.menu_course.get_course_type_display }}</button>
+                                    class="btn btn-primary">{{ menu_item.get_course_type_display }}</button>
                         {% endfor %}
                     </div>
                 </div>

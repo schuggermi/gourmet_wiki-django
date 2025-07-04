@@ -13,6 +13,9 @@ export function reindexFormset(formsetSelector, totalFormsSelector) {
     if (formsetSelector === '#preparation-step-formset') {
         prefix = 'recipe_preparation_step';
     }
+    if (formsetSelector === '#menu-course-formset') {
+        prefix = 'menu_course';
+    }
 
     rows.forEach((row, index) => {
         // Update row ID

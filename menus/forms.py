@@ -10,6 +10,8 @@ class MenuForm(forms.ModelForm):
 
 
 class MenuCourseForm(forms.ModelForm):
+    ORDER = forms.IntegerField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = MenuCourse
         fields = ['course_type']
