@@ -76,8 +76,37 @@ def get_recipes_by_course_type(request):
     })
 
 
+def menu_list_partial(request):
+    """
+    View to render the menu list partial for htmx requests
+    """
+    queryset = Menu.objects.all()
+    search_query = request.GET.get('search', '')
+    if search_query:
+        queryset = queryset.filter(name__icontains=search_query)
+
+    context = {
+        'object_list': queryset,
+        'search_query': search_query,
+    }
+
+    return render(request, 'menus/partials/menu_list.html', context)
+
+
 class MenuListView(ListView):
     model = Menu
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('search', '')
+        return context
 
 
 class MenuDetailView(DetailView):

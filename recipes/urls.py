@@ -1,10 +1,12 @@
 from django.urls import path
 
 from recipes.views import RecipeListView, CreateRecipeWizardView, add_ingredient_form, add_image_form, \
-    add_preparation_step_form, RecipeDetailView, get_calculate_scaled_ingredients, toggle_favorite, rate_recipe
+    add_preparation_step_form, RecipeDetailView, get_calculate_scaled_ingredients, toggle_favorite, rate_recipe, \
+    recipe_list_partial
 
 urlpatterns = [
     path('', RecipeListView.as_view(), name='recipe-list'),
+    path('partial/', recipe_list_partial, name='recipe-list-partial'),
     path('create/', CreateRecipeWizardView.as_view(), name='recipe-create'),
     path('<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'),
     path('favorite/<int:recipe_id>/', toggle_favorite, name='recipe-favorite'),

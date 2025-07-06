@@ -24,6 +24,35 @@ User = get_user_model()
 class RecipeListView(ListView):
     model = Recipe
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            queryset = queryset.filter(name__icontains=search_query)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('search', '')
+        return context
+
+
+def recipe_list_partial(request):
+    """
+    View to render the recipe list partial for htmx requests
+    """
+    queryset = Recipe.objects.all()
+    search_query = request.GET.get('search', '')
+    if search_query:
+        queryset = queryset.filter(name__icontains=search_query)
+
+    context = {
+        'object_list': queryset,
+        'search_query': search_query,
+    }
+
+    return render(request, 'recipes/partials/recipe_list.html', context)
+
 
 def add_preparation_step_form(request):
     form_index = int(request.GET.get("form_count", 0))

@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="grid grid-cols-2 gap-5 w-full mx-auto pb-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-full mx-auto pb-10">
     {% for menu in object_list %}
         <a href="{% url 'menu_detail' pk=menu.pk %}"
            class="overflow-hidden w-full h-full flex items-center rounded-md bg-transparent outline-1 outline-neutral group hover:outline-2 hover:outline-primary cursor-pointer shadow-md hover:bg-base-primary/50 transition-shadow group">
