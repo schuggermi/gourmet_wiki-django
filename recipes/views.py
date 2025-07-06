@@ -1,5 +1,4 @@
 from pathlib import Path
-from pprint import pprint
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -56,7 +55,6 @@ def add_image_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = RecipeImageForm(prefix=f'recipe_image-{form_index}')
 
-    print("NEW FORM: ", new_form)
 
     context = {
         'form': new_form,
@@ -128,9 +126,6 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 queryset = self.recipe_instance.images.all()
             else:
                 queryset = RecipeImage.objects.none()
-            print("Prepopulating images for recipe:", self.recipe_instance)
-            for img in queryset:
-                print(" -", img.pk, img.image.url)
             kwargs.update({
                 'queryset': queryset,
                 'prefix': 'recipe_image',
@@ -161,7 +156,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             return self.render_revalidation_failure(step='1', form=ingredient_formset)
 
         for form in ingredient_formset:
-            if form.data.get(f"{form.prefix}-DELETE", False):
+            if form.data.get(f"{form.prefix}-DELETE") == 'on':
                 if form.instance.pk:
                     form.instance.delete()
             else:
@@ -177,8 +172,6 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             return self.render_revalidation_failure(step='2', form=step_formset)
 
         for index, form in enumerate(step_formset):
-            print("FORM DATA: ", form.data)
-            print("FORM PREFIX: ", form.prefix)
             if form.data.get(f"{form.prefix}-DELETE") == 'on':
                 if form.instance.pk:
                     form.instance.delete()
@@ -200,7 +193,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             return self.render_revalidation_failure(step='3', form=image_formset)
 
         for index, form in enumerate(image_formset):
-            if form.data.get(f"{form.prefix}-DELETE", False):
+            if form.data.get(f"{form.prefix}-DELETE") == 'on':
                 if form.instance.pk:
                     form.instance.delete()
             else:
@@ -231,7 +224,6 @@ def get_calculate_scaled_ingredients_menu(request, menu_id):
     context = calculate_scaled_ingredients_menu(menu_id, int(request.GET.get('portions')))
     context['current_recipe_slide'] = request.GET.get('current_recipe_slide', 0)
 
-    print("CONTEXT: ", pprint(context, indent=4))
 
     html = render_to_string('menus/partials/recipe_carousel.html', context)
     return HttpResponse(html)

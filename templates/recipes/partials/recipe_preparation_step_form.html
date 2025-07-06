@@ -32,18 +32,14 @@
         });
 
         function focusFirstInput() {
-            console.log("Get called")
-            const totalFormsInput = document.querySelector('#id_recipe_preparation_step-TOTAL_FORMS');
-            totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
-
             const forms = document.querySelectorAll('.formset-form');
             const lastForm = forms[forms.length - 1];
             const firstInput = lastForm.querySelector('input:not([type="hidden"])');
 
-            console.log("First input: ")
-            console.log(firstInput)
+            if (firstInput) {
+                firstInput.focus();
+            }
 
-            firstInput.focus();
             reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');
         }
     });

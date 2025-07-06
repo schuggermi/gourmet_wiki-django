@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div id="menu_course-{{ form_index }}" class="formset-form flex items-start gap-3 w-full">
-    {{ form.ORDER.as_hidden }}
+    {{ form.ORDER }}
     {{ form.DELETE.as_hidden }}
 
     <div class="formset-form-content flex gap-5 items-start w-full">
@@ -12,22 +12,12 @@
             <!-- Course Type -->
             <div>
                 <c-select :field="form.course_type"></c-select>
-                {% for error in form.course_type.errors %}
-                    <div class="text-red-400">
-                        {{ error }}
-                    </div>
-                {% endfor %}
             </div>
 
             <div class="col-span-1 flex justify-end gap-5 w-full">
                 <!-- Recipe -->
                 <div class="w-full">
                     <c-select :field="form.recipe"></c-select>
-                    {% for error in form.recipe.errors %}
-                        <div class="text-red-400">
-                            {{ error }}
-                        </div>
-                    {% endfor %}
                 </div>
                 <div class="flex items-center gap-2">
                     <p class="cursor-pointer self-center w-fit"

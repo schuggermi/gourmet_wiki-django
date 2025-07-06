@@ -68,21 +68,16 @@
             });
 
             document.addEventListener('htmx:afterSwap', function (event) {
-                const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
-                totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
-
-                const formset = document.querySelector("#image-formset")
-                const forms = formset.querySelectorAll('.formset-form')
-                const lastForm = forms[forms.length - 1]
-                const imageInput = lastForm.querySelector('input[id$="image"]')
-
-                console.log("INPUUT: ")
-                console.log(imageInput)
+                const formset = document.querySelector("#image-formset");
+                const forms = formset.querySelectorAll('.formset-form');
+                const lastForm = forms[forms.length - 1];
+                const imageInput = lastForm.querySelector('input[id$="image"]');
 
                 updateMsg();
-                imageInput.click();
+                if (imageInput) {
+                    imageInput.click();
+                }
 
-                {#imageUploaded();#}
                 reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
             });
 

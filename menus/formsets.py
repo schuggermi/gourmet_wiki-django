@@ -10,7 +10,6 @@ class BaseMenuCourseFormSet(BaseModelFormSet):
         super().clean()
 
         if any(self.errors):
-            print("ERRORS: ", self.errors)
             return
 
         valid_forms = 0
@@ -45,7 +44,6 @@ class BaseMenuItemFormSet(BaseModelFormSet):
         super().clean()
 
         if any(self.errors):
-            print("ERRORS: ", self.errors)
             return
 
         valid_forms = 0

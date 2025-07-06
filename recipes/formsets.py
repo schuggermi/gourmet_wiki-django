@@ -1,4 +1,3 @@
-from pprint import pprint
 
 from django import forms
 from django.forms.formsets import DELETION_FIELD_NAME
@@ -65,15 +64,11 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
             if not form.cleaned_data:
                 continue
 
-            print(f"{form.cleaned_data=}")
-
             if form.cleaned_data.get('DELETE'):
                 continue
 
             required_fields = [field_name for field_name, field in form.fields.items()
                                if field.required and field_name not in ('DELETE', 'id')]
-
-            print(f"{required_fields=}")
 
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 
@@ -111,8 +106,6 @@ class BaseRecipeImageFormSet(BaseModelFormSet):
             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
                 required_fields = [field_name for field_name, field in form.fields.items()
                                    if field.required and field_name not in ('DELETE', 'order', 'id')]
-
-                print(f"{required_fields=}")
 
                 all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
 

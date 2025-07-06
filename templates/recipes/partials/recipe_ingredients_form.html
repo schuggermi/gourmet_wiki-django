@@ -26,17 +26,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('htmx:afterSwap', function (event) {
-            const totalFormsInput = document.querySelector('#id_recipe_ingredient-TOTAL_FORMS');
-            totalFormsInput.value = parseInt(totalFormsInput.value) + 1;
+            const forms = document.querySelectorAll('.formset-form');
+            const lastForm = forms[forms.length - 1];
+            const firstInput = lastForm.querySelector('input:not([type="hidden"])');
 
-            const forms = document.querySelectorAll('.formset-form')
-            const lastForm = forms[forms.length - 1]
-            const firstInput = lastForm.querySelector('input:not([type="hidden"])')
-
-            console.log("INPUUT: ")
-            console.log(firstInput)
-
-            firstInput.focus();
+            if (firstInput) {
+                firstInput.focus();
+            }
 
             reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');
         });

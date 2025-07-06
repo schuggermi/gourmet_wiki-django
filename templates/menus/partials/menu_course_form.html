@@ -22,6 +22,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('htmx:afterSwap', function (event) {
+            reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');
+        });
+
         reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');
     });
 </script>

@@ -22,6 +22,7 @@ def add_menu_course_form(request):
     new_form = MenuCourseForm(prefix=f'menu_course-{form_index}', user=request.user)
 
     new_form.fields['DELETE'] = forms.BooleanField(required=False)
+    new_form.fields['ORDER'] = forms.IntegerField(required=True)
 
     context = {
         'form': new_form,
@@ -127,7 +128,6 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
         )
 
         if not menu_form.is_valid():
-            print("Menu form validation failed")
             return self.render_revalidation_failure(step='0', form=menu_form)
 
         if self.menu_instance:
@@ -140,20 +140,16 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
         # Step 1 – Menu Courses
         courses_formset = self.get_form(step='1', data=self.storage.get_step_data('1'))
         if not courses_formset.is_valid():
-            print("FORMSET ERRORS: ", courses_formset.errors)
-            print("Formset is NOT valid.")
-            for i, form in enumerate(courses_formset.forms):
-                print(f"Form #{i} errors:", form.errors)
             return self.render_revalidation_failure(step='1', form=courses_formset)
 
-        # Handle deleted forms first
-        for form in courses_formset.deleted_forms:
-            if form.instance.pk:
-                form.instance.delete()
-
-        # Process the ordered forms using Django's built-in ordering
-        for index, form in enumerate(courses_formset.ordered_forms):
-            if form.cleaned_data.get('DELETE'):
+        # Process all forms in the formset
+        for index, form in enumerate(courses_formset):
+            # Handle deleted forms
+            if form.data.get(f"{form.prefix}-DELETE") == 'on':
+                if form.instance.pk:
+                    # If we're deleting a menu course, also delete any associated menu items
+                    MenuItem.objects.filter(menu_course=form.instance).delete()
+                    form.instance.delete()
                 continue
 
             # Get the recipe from the form
@@ -164,15 +160,19 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
             # Save the MenuCourse instance
             menu_course = form.save(commit=False)
             menu_course.menu_id = menu.id
-            menu_course.order = form.cleaned_data['ORDER']
+            menu_course.order = form.cleaned_data.get('ORDER', index)
             menu_course.save()
 
-            # Create and save the MenuItem instance
-            menu_item = MenuItem(
+            # Check if a MenuItem already exists for this menu course
+            menu_item, created = MenuItem.objects.get_or_create(
                 menu_id=menu.id,
                 menu_course=menu_course,
-                recipe=recipe
+                defaults={'recipe': recipe}
             )
-            menu_item.save()
+
+            # If the MenuItem exists but the recipe has changed, update it
+            if not created and menu_item.recipe != recipe:
+                menu_item.recipe = recipe
+                menu_item.save()
 
         return redirect(reverse('menu_detail', kwargs={'pk': menu.id}))
