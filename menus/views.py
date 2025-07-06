@@ -4,7 +4,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse
+from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -14,6 +15,7 @@ from formtools.wizard.views import SessionWizardView
 from menus.forms import MenuForm, MenuCourseForm, MenuItemForm
 from menus.formsets import MenuCourseFormSet, MenuItemFormSet
 from menus.models import Menu, MenuCourse, MenuItem
+from recipes.models import Recipe
 from recipes.utils import calculate_scaled_ingredients_menu
 
 
@@ -46,6 +48,32 @@ def add_menu_item_form(request):
 
     html = render_to_string('menus/partials/menu_item_form_row.html', context)
     return HttpResponse(html)
+
+
+def get_recipes_by_course_type(request):
+    """
+    AJAX view to get recipes filtered by course_type
+    """
+    course_type = request.GET.get('course_type')
+    form_prefix = request.GET.get('form_prefix')
+
+    if not course_type:
+        return JsonResponse({'error': 'Course type is required'}, status=400)
+
+    # Get recipes filtered by course_type and user (created or favorited)
+    recipes = Recipe.objects.filter(
+        course_type=course_type
+    ).filter(
+        Q(created_by=request.user) | Q(favorite_by=request.user)
+    ).distinct()
+
+    # Format recipes as options for select field
+    recipe_options = [{'value': recipe.id, 'text': recipe.name} for recipe in recipes]
+
+    return JsonResponse({
+        'recipes': recipe_options,
+        'form_prefix': form_prefix
+    })
 
 
 class MenuListView(ListView):

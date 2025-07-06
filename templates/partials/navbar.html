@@ -39,12 +39,14 @@
     <div class="navbar-center hidden lg:flex">
         <ul class="absolute z-50 flex gap-5 px-1">
             <li>
-                <c-a url="{% url 'recipe-list' %}" class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
+                <c-a url="{% url 'recipe-list' %}"
+                     class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
                     {% translate 'All Recipes' %}
                 </c-a>
             </li>
             <li>
-                <c-a url="{% url 'menu_list' %}" class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
+                <c-a url="{% url 'menu_list' %}"
+                     class="btn btn-neutral btn-outline bg-transparent border-transparent hover:bg-primary hover:text-accent-content">
                     {% translate 'All Menus' %}
                 </c-a>
             </li>
@@ -79,11 +81,18 @@
                     <path d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z"></path>
                 </svg>
             </c-a>
+            <c-a url="{% url 'menu_create' %}"
+                 class="hover:scale-105 tooltip tooltip-bottom tooltip-primary"
+                 data-tip="{% translate 'Add Menu' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8 text-neutral hover:text-primary drop-shadow-sm">
+                    <path d="M6 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H6ZM15.75 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3H18a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3h-2.25ZM6 12.75a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3v-2.25a3 3 0 0 0-3-3H6ZM17.625 13.5a.75.75 0 0 0-1.5 0v2.625H13.5a.75.75 0 0 0 0 1.5h2.625v2.625a.75.75 0 0 0 1.5 0v-2.625h2.625a.75.75 0 0 0 0-1.5h-2.625V13.5Z"></path>
+                </svg>
+            </c-a>
             <c-a url="{% url 'users-profile-recipes' %}"
                  class="hover:scale-105 tooltip tooltip-bottom tooltip-primary" data-tip="{% translate 'Cookbook' %}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                      class="size-8 text-neutral hover:text-primary drop-shadow-sm">
-                    <path d="M5.566 4.657A4.505 4.505 0 0 1 6.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0 0 15.75 3h-7.5a3 3 0 0 0-2.684 1.657ZM2.25 12a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3v-6ZM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 0 1 6.75 6h10.5a3 3 0 0 1 2.683 1.657A4.505 4.505 0 0 0 18.75 7.5H5.25Z"></path>
+                    <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z"></path>
                 </svg>
             </c-a>
             <c-a url="{% url 'users-profile-favorite-recipes' %}"
@@ -105,7 +114,8 @@
                 <ul tabindex="0" class="flex flex-col gap-1 dropdown-content w-max bg-base-300 rounded-sm items-center">
                     {% if user.is_authenticated %}
                         <li class="w-full bg-transparent border-none hover:bg-primary group border-primary rounded-sm px-4 py-2">
-                            <c-a url="{% url 'users-profile' %}" class="flex gap-5 items-center group-hover:text-accent-content!">
+                            <c-a url="{% url 'users-profile' %}"
+                                 class="flex gap-5 items-center group-hover:text-accent-content!">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      class="size-4">
                                     <path fill-rule="evenodd"
@@ -146,7 +156,8 @@
                             </c-a>
                         </li>{% endcomment %}
                         <li class="w-full bg-transparent border-none hover:bg-primary group border-primary rounded-sm px-4 py-2">
-                            <c-a url="{% url 'account_logout' %}" class="flex gap-5 items-center group-hover:text-accent-content!">
+                            <c-a url="{% url 'account_logout' %}"
+                                 class="flex gap-5 items-center group-hover:text-accent-content!">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                      class="size-4">
                                     <path fill-rule="evenodd"

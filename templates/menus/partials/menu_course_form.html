@@ -24,10 +24,72 @@
     document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('htmx:afterSwap', function (event) {
             reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');
+            setupCourseTypeChangeListeners();
         });
 
         reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');
+        setupCourseTypeChangeListeners();
     });
+
+    function setupCourseTypeChangeListeners() {
+        // Find all form rows
+        const formRows = document.querySelectorAll('#menu-course-formset .formset-form');
+
+        formRows.forEach(formRow => {
+            // Find the course type select element in this form row
+            const courseTypeSelect = formRow.querySelector('select[id$="-course_type"]');
+            if (courseTypeSelect) {
+                // Remove existing event listeners to avoid duplicates
+                courseTypeSelect.removeEventListener('change', handleCourseTypeChange);
+                // Add event listener for change
+                courseTypeSelect.addEventListener('change', handleCourseTypeChange);
+            }
+        });
+    }
+
+    function handleCourseTypeChange(event) {
+        const courseTypeSelect = event.target;
+        const courseType = courseTypeSelect.value;
+        const formId = courseTypeSelect.id;
+        const formPrefix = formId.substring(0, formId.lastIndexOf('-'));
+
+        if (!courseType) return;
+
+        // Make AJAX request to get recipes for the selected course type
+        fetch(`/menus/get-recipes-by-course-type/?course_type=${courseType}&form_prefix=${formPrefix}`)
+            .then(response => response.json())
+            .then(data => {
+                // Get the form row container
+                const formRow = courseTypeSelect.closest('.formset-form');
+                if (!formRow) return;
+
+                // Get the recipe select container
+                const recipeSelectContainer = formRow.querySelector('.recipe-select-container');
+                if (!recipeSelectContainer) return;
+
+                // Find the existing select element
+                const existingSelect = recipeSelectContainer.querySelector('select');
+                if (!existingSelect) return;
+
+                // Clear existing options
+                existingSelect.innerHTML = '';
+
+                // Add empty option
+                const emptyOption = document.createElement('option');
+                emptyOption.value = '';
+                emptyOption.textContent = '---------';
+                existingSelect.appendChild(emptyOption);
+
+                // Add new options
+                data.recipes.forEach(recipe => {
+                    const option = document.createElement('option');
+                    option.value = recipe.value;
+                    option.textContent = recipe.text;
+                    existingSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching recipes:', error));
+    }
 </script>
 
 <script>

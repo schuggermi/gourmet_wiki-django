@@ -22,14 +22,14 @@ class RecipePreparationStepInline(admin.TabularInline):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     readonly_fields = ['get_total_cost', 'created_at']
-    list_display = ['name', 'get_total_cost', 'skill_level', 'portions', 'created_by', 'created_at']
+    list_display = ['name', 'course_type', 'get_total_cost', 'skill_level', 'portions', 'created_by', 'created_at']
     fields = [
-        'name', 'description', 'skill_level', 'thumbnail_image', 'created_by', 'created_at', 'get_total_cost',
+        'name', 'description', 'course_type', 'skill_level', 'thumbnail_image', 'created_by', 'created_at', 'get_total_cost',
         'portions',
         'working_time_hours', 'working_time_minutes', 'cooking_time_hours', 'cooking_time_minutes',
         'rest_time_hours', 'rest_time_minutes',
     ]
-    search_fields = ('name',)
+    search_fields = ('name', 'course_type')
     inlines = [RecipeImageInline, RecipeIngredientInline, RecipePreparationStepInline]
 
     def get_total_cost(self, obj):
