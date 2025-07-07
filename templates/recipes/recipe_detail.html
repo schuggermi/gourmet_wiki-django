@@ -18,12 +18,12 @@
             <div class="flex gap-5 items-center">
                 {% include "recipes/partials/favorite_button.html" %}
                 {% if recipe.created_by == user %}
-                    <c-rating average_rating="{{ recipe.average_rating }}"></c-rating>
+                    <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                     <c-a animated type="btn" url="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn-neutral!">Edit
-                        Recipe
+                        Recipe {{ object.is_published }}
                     </c-a>
                 {% else %}
-                    <c-rating-action average_rating="{{ recipe.average_rating }}"></c-rating-action>
+                    <c-rating-action data-average-rating="{{ recipe.average_rating }}"></c-rating-action>
                 {% endif %}
             </div>
         </div>

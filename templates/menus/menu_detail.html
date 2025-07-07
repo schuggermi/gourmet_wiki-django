@@ -16,10 +16,11 @@
 
         <div class="w-full flex justify-between items-start">
             <div class="flex flex-col gap-1">
-                <h2>{{ menu.name }}</h2>
-                <c-a animated reverted visible_animation url="javascript:history.back();" class="print:hidden">Go back</c-a>
+                <h2>Menu: {{ menu.name }}</h2>
+                <c-a animated reverted visible_animation url="javascript:history.back();" class="print:hidden">Go back
+                </c-a>
             </div>
-            <button onclick="printElement('print-area')" class="cursor-pointer print:hidden">
+            <button onclick="printElement('print-area')" class="cursor-pointer print:hidden hidden md:block">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                      class="size-6 hover:size-7">
                     <path fill-rule="evenodd"
@@ -30,7 +31,9 @@
         </div>
 
         <div class="flex flex-col gap-10 w-full h-full">
-            <p>{{ menu.menu_type.description }}</p>
+            {% if menu.description %}
+                <p>{{ menu.description }}</p>
+            {% endif %}
 
             <!-- Total Time -->
             <div class="flex gap-5 w-fit">
@@ -55,10 +58,10 @@
                 </div>
             </div>
 
-            <div class="flex justify-between print:hidden">
-                <div class="flex gap-5 items-center w-full">
+            <div class="flex flex-col gap-5 md:flex-row md:justify-between print:hidden">
+                <div class="flex flex-col md:flex-row gap-5 md:items-center w-full">
                     <p><b>{% translate 'Select Course:' %}</b></p>
-                    <div id="recipe-carousel-buttons" class="flex gap-2">
+                    <div id="recipe-carousel-buttons" class="flex flex-col md:flex-row gap-2">
                         {% for menu_item in menu.courses.all %}
                             <button onclick="goToSlide({{ forloop.counter0 }})" data-index="{{ forloop.counter0 }}"
                                     class="btn btn-primary">{{ menu_item.get_course_type_display }}</button>
@@ -76,6 +79,13 @@
 
     <script>
         window.currentRecipeSlide = 0;
+
+        function attachPrintHandler() {
+            const printButton = document.querySelector('[onclick*="printElement"]');
+            if (printButton) {
+                printButton.onclick = () => printElement('print-area');
+            }
+        }
 
         function goToSlide(index) {
             document.querySelectorAll('.recipe-slide').forEach((el, i) => {
@@ -96,6 +106,7 @@
         }
 
         goToSlide(window.currentRecipeSlide);
+        attachPrintHandler();
     </script>
 
     <script>

@@ -4,10 +4,6 @@
 <div class="grid gird-cols-1 w-full gap-5">
     <!-- Recipe Name -->
     <div>
-        <label for="{{ form.name.id_for_label }}" class="hidden">
-            {{ form.name.label }}
-        </label>
-
         <c-input :field="form.name"></c-input>
     </div>
 
@@ -18,6 +14,29 @@
         </label>
 
         <c-textarea :field="form.description"></c-textarea>
+    </div>
+
+    <!-- Recipe Is Published -->
+    <div class="flex flex-col gap-1 w-fit">
+        <p class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                 class="size-6 text-secondary!">
+                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                <path fill-rule="evenodd"
+                      d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                      clip-rule="evenodd"></path>
+            </svg>
+            {{ form.is_published.label }}
+        </p>
+        <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full justify-center">
+            <c-input type="checkbox"
+                     id="{{ form.is_published.id_for_label }}"
+                     name="{{ form.is_published.html_name }}"
+                     :value="form.is_published.value"
+                     check_value="True"
+                     hx_on="change:document.getElementById('{{ form.is_published.id_for_label }}').value = 'True';"
+            ></c-input>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 gap-5">
@@ -39,7 +58,7 @@
                 </label>
                 {{ form.skill_level.as_hidden }}
 
-                <div class="grid grid-cols-{{ form.fields.skill_level.choices|length }} gap-5 w-full">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
                     {% for value, label in form.fields.skill_level.choices %}
                         <div class="flex flex-col gap-2 items-center">
                             <c-input type="checkbox"
@@ -84,7 +103,8 @@
                 <div class="labeled-number-input flex w-full">
                     <div class="flex items-center gap-2 w-full">
                         <div class="flex items-center gap-2 w-full">
-                            <c-number-action-input :field="form.portions" no_errors></c-number-action-input>
+                            <c-number-action-input :field="form.portions"
+                                                   no_errors>{% translate 'Persons' %}</c-number-action-input>
                         </div>
                     </div>
                 </div>
@@ -101,13 +121,15 @@
                 </svg>
                 {% translate 'Working Time' %}
             </p>
-            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.working_time_hours" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.working_time_hours" no_errors>
+                        <p>{{ form.working_time_hours.label }}</p></c-number-action-input>
                 </div>
 
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.working_time_minutes" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.working_time_minutes" no_errors>
+                        <p>{{ form.working_time_minutes.label }}</p></c-number-action-input>
                 </div>
             </div>
         </div>
@@ -122,13 +144,15 @@
                 </svg>
                 {% translate 'Cooking Time' %}
             </p>
-            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.cooking_time_hours" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.cooking_time_hours" no_errors>
+                        <p>{{ form.cooking_time_hours.label }}</p></c-number-action-input>
                 </div>
 
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.cooking_time_minutes" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.cooking_time_minutes" no_errors>
+                        <p>{{ form.cooking_time_minutes.label }}</p></c-number-action-input>
                 </div>
             </div>
         </div>
@@ -143,13 +167,15 @@
                 </svg>
                 {% translate 'Resting Time' %}
             </p>
-            <div class="grid grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.rest_time_hours" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.rest_time_hours" no_errors>
+                        <p>{{ form.rest_time_hours.label }}</p></c-number-action-input>
                 </div>
 
                 <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.rest_time_minutes" no_errors></c-number-action-input>
+                    <c-number-action-input :field="form.rest_time_minutes" no_errors>
+                        <p>{{ form.rest_time_minutes.label }}</p></c-number-action-input>
                 </div>
             </div>
         </div>

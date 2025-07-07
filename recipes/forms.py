@@ -14,7 +14,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = [
-            'name', 'description', 'skill_level', 'portions', 'working_time_hours', 'working_time_minutes',
+            'name', 'is_published', 'description', 'skill_level', 'portions', 'working_time_hours', 'working_time_minutes',
             'cooking_time_hours', 'cooking_time_minutes', 'rest_time_hours', 'rest_time_minutes',
         ]  # thumbnail_image
         widgets = {
@@ -22,6 +22,7 @@ class RecipeForm(forms.ModelForm):
                 'placeholder': 'Name your creation (e.g. Spicy Thai Basil Chicken)',
                 'maxlength': Recipe._meta.get_field('name').max_length,
             }),
+            'is_published': forms.CheckboxInput(attrs={}),
             'description': forms.Textarea(attrs={
                 'rows': 3,
                 'cols': 20,
@@ -111,7 +112,7 @@ class RecipeIngredientForm(forms.ModelForm):
                 'placeholder': 'Butter'
             }),
             'quantity': forms.NumberInput(attrs={
-                'placeholder': 'Quantity'
+                'placeholder': '0'
             }),
             'unit': forms.Select(attrs={
             }),

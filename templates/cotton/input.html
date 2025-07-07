@@ -21,7 +21,7 @@
 {% endif %}
 <input {{ field.field.widget.attrs|render_attrs }}
         type="{{ type }}"
-        {% if value == check_value %}checked{% endif %}
+        {% if value|stringformat:"s" == check_value|stringformat:"s" %}checked{% endif %}
         {% if disabled %}disabled{% endif %}
         id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
         name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"

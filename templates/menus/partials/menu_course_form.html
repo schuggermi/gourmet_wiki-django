@@ -1,9 +1,9 @@
 {% load i18n %}
 
-<div class="grid gird-cols-1 w-3xl gap-5">
+<div class="grid gird-cols-1 gap-5">
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-    <div id="menu-course-formset" class="flex flex-col gap-5 w-full">
+    <div id="menu-course-formset" class="flex flex-col gap-2 md:gap-5 w-full">
         {% for form in forms %}
             {% include 'menus/partials/menu_course_form_row.html' with form=form form_index=forloop.counter0 %}
         {% endfor %}

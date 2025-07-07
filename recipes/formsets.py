@@ -80,7 +80,7 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
                 ingredients.add(ingredient)
 
         if valid_forms == 0 and self.forms:
-            self._non_form_errors.append("Ingredients must not be empty.")
+            self._non_form_errors.append("Add at least one ingredient.")
 
 
 RecipeIngredientFormSet = modelformset_factory(

@@ -25,8 +25,10 @@
         {% endif %}
     {% endfor %}
 </select>
-{% for error in field.errors %}
-    <div class="text-red-400">
-        {{ error }}
-    </div>
-{% endfor %}
+{% if not no_errors %}
+    {% for error in field.errors %}
+        <div class="text-red-400">
+            - {{ error }}
+        </div>
+    {% endfor %}
+{% endif %}

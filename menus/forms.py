@@ -38,7 +38,7 @@ class MenuCourseForm(forms.ModelForm):
 
         # Set recipe queryset based on user
         if user:
-            recipe_queryset = Recipe.objects.filter(
+            recipe_queryset = Recipe.objects.exclude(is_published=False).filter(
                 Q(created_by=user) | Q(favorite_by=user)
             ).distinct()
 

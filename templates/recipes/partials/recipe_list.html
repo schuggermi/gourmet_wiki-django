@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5 w-full mx-auto pb-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 3xl:grid-cols-3 gap-5 w-full mx-auto pb-10">
     {% for recipe in object_list %}
         <a href="{% url 'recipe-detail' pk=recipe.pk %}"
            class="overflow-hidden w-full h-full flex items-center rounded-md bg-transparent outline-1 outline-neutral group hover:outline-2 hover:outline-primary cursor-pointer shadow-md hover:bg-base-primary/50 transition-shadow group">
@@ -40,7 +40,7 @@
                                 <span class="font-bold">{{ recipe.total_time_minutes }}</span><small>min</small>
                             </p>
                         </div>
-                        <c-rating average_rating="{{ recipe.average_rating }}"></c-rating>
+                        <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                     </div>
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

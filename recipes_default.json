@@ -1,0 +1,1412 @@
+[
+  {
+    "name": "Rote-Bete-Carpaccio mit lauwarmem Ziegenkäse an Feldsalat",
+    "description": "Feines Carpaccio aus Roter Bete mit warmem Ziegenkäse, mariniertem Feldsalat und fruchtiger Vinaigrette – eine elegante, leichte Vorspeise.",
+    "course_type": "hot_starter",
+    "skill_level": "Beginner",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 25,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 4,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Rote Bete, gekocht",
+        "quantity": 4,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Feldsalat",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Walnüsse, gehackt",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Orange, unbehandelt",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Zwiebel",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Ziegenkäse-Taler",
+        "quantity": 4,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Dornfelder",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Johannisbeersaft",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Balsamico-Essig, dunkel",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 140,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Apfelsaft",
+        "quantity": 20,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Zucker",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Senf",
+        "quantity": 1,
+        "unit": "sp"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "20 ml Balsamico, Apfelsaft, 40 ml Olivenöl und die halbe Zwiebel mit einem Pürierstab zerkleinern. Mit Pfeffer, Salz, Senf und Zucker abschmecken, kühl stellen.",
+        "order": 1
+      },
+      {
+        "step_text": "Backofen auf 140 °C Umluft vorheizen.",
+        "order": 2
+      },
+      {
+        "step_text": "Feldsalat gründlich in kaltem Wasser waschen.",
+        "order": 3
+      },
+      {
+        "step_text": "Dornfelder, Johannisbeersaft, restlichen Balsamico, Orangenabrieb und -saft sowie 100 ml Olivenöl verrühren, mit Senf, Salz und Pfeffer abschmecken. Kalt stellen.",
+        "order": 4
+      },
+      {
+        "step_text": "Rote Bete in dünne Scheiben schneiden, auf einem hitzebeständigen Teller auslegen, Ziegenkäsetaler daraufsetzen und ca. 4 Min. im Ofen erwärmen.",
+        "order": 5
+      },
+      {
+        "step_text": "Vinaigrette über dem Carpaccio verteilen.",
+        "order": 6
+      },
+      {
+        "step_text": "Feldsalat mit dem Apfel-Balsamico-Dressing marinieren und auf das Carpaccio geben.",
+        "order": 7
+      },
+      {
+        "step_text": "Mit gehackten Walnüssen bestreuen und servieren.",
+        "order": 8
+      }
+    ]
+  },
+  {
+    "name": "Lauwarmer Orangen-Chicorée-Salat mit Wasabi-Limetten-Vinaigrette und Thunfisch",
+    "description": "Ein raffinierter Salat aus lauwarmem Chicorée mit fruchtigen Orangenfilets, pikantem Thunfisch und einer würzigen Wasabi-Limetten-Vinaigrette – frisch, leicht und aromatisch.",
+    "course_type": "hot_starter",
+    "skill_level": "Intermediate",
+    "portions": 2,
+    "working_time_hours": 0,
+    "working_time_minutes": 30,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 5,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 2,
+    "ingredients": [
+      {
+        "ingredient": "Honig",
+        "quantity": 2,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Wasabi-Paste",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Meersalz",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Chili-Flocken",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Limettensaft",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Walnussöl",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Koriander, gehackt",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Thunfischfilet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Weiße Sesamsamen",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Schwarze Sesamsamen",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Orangenfilets",
+        "quantity": 10,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Orangensaft",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Chicorée",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Granatapfelkerne",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Walnüsse",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Sesamöl",
+        "quantity": 1,
+        "unit": "sp"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Für die Wasabi-Limetten-Vinaigrette Honig, Wasabi, Meersalz, Chili-Flocken, Limettensaft, Walnussöl und Koriander verrühren.",
+        "order": 1
+      },
+      {
+        "step_text": "Orangenfilets aus der Orange schneiden.",
+        "order": 2
+      },
+      {
+        "step_text": "Granatapfelkerne auslösen.",
+        "order": 3
+      },
+      {
+        "step_text": "Chicorée in 5 mm breite Streifen schneiden.",
+        "order": 4
+      },
+      {
+        "step_text": "Schwarzen und weißen Sesam vermischen und den Thunfisch beidseitig darin panieren.",
+        "order": 5
+      },
+      {
+        "step_text": "Thunfisch in heißem Sesamöl kurz anbraten, dann herausnehmen und ruhen lassen.",
+        "order": 6
+      },
+      {
+        "step_text": "In der heißen Pfanne Orangensaft, 1 TL Honig und eine Prise Salz erhitzen.",
+        "order": 7
+      },
+      {
+        "step_text": "Chicorée-Streifen in die Pfanne geben und kurz schwenken.",
+        "order": 8
+      },
+      {
+        "step_text": "Thunfisch in dünne Scheiben schneiden und mit Orangenfilets, Chicorée, Granatapfelkernen und Vinaigrette anrichten.",
+        "order": 9
+      }
+    ]
+  },
+  {
+    "name": "Gedünstetes Gemüse mit Bulgur & Rucola",
+    "description": "Ein leichtes, aromatisches Gericht mit gedünstetem Gemüse, fruchtigen Blaubeeren und würzigem Bulgur – ideal für ein gesundes Mittag- oder Abendessen.",
+    "course_type": "vegetable",
+    "skill_level": "Beginner",
+    "portions": 2,
+    "working_time_hours": 0,
+    "working_time_minutes": 25,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 20,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Bulgur",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Kurkuma",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Knoblauchzehen",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Zitronensaft",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Sojasoße",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Wasser",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Wasser (für Gemüse)",
+        "quantity": 3,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Zwiebel",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Karotten",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Aubergine",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Zucchini",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Sesamsahne",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Chilischote",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Blaubeeren",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Murray-River-Salz",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Rucola",
+        "quantity": 0.25,
+        "unit": "piece"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Gemüse waschen und schälen. Karottenschalen, Knoblauch, Zwiebelschalen, Kurkuma und 4 Tassen Wasser aufkochen und 10 Minuten köcheln lassen.",
+        "order": 1
+      },
+      {
+        "step_text": "Zwiebeln, Karotten, Zucchini und Aubergine in feine Streifen schneiden, Chili hacken.",
+        "order": 2
+      },
+      {
+        "step_text": "Gemüsebrühe durch ein Sieb abgießen, aufkochen, Sojasoße und Zitronensaft zugeben. Bulgur hinzufügen und 7 Minuten kochen.",
+        "order": 3
+      },
+      {
+        "step_text": "Große Pfanne erhitzen, 3 EL Wasser und das Gemüse zugeben, 5 Minuten mit Deckel dünsten. Zwischendurch umrühren.",
+        "order": 4
+      },
+      {
+        "step_text": "Olivenöl, Sesamsahne, Salz und Blaubeeren hinzufügen und 1 Minute braten.",
+        "order": 5
+      },
+      {
+        "step_text": "Rucola waschen und zusammen mit dem Gemüse und Bulgur anrichten.",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "name": "Gebratene Hähnchenbrust auf Spargel-Spinat-Salat mit Honig-Senf-Dressing",
+    "description": "Zarte Hähnchenbruststreifen auf einem frischen Spargel- und Spinatsalat, verfeinert mit einem aromatischen Honig-Senf-Dressing und Parmesan.",
+    "course_type": "salad",
+    "skill_level": "Beginner",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 20,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 15,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Hähnchenbrust",
+        "quantity": 640,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Spargel",
+        "quantity": 1000,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Butter",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Blattspinat",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Kirschtomaten",
+        "quantity": 12,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Parmesan",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Balsamico",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Zitronensaft",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 6,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Dijonsenf",
+        "quantity": 2,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Honig",
+        "quantity": 2,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": 1,
+        "unit": "tes"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Hähnchenbrust in Streifen schneiden, in wenig Öl leicht anbraten und würzen.",
+        "order": 1
+      },
+      {
+        "step_text": "Spargel im unteren Drittel schälen, in Butter ca. 10 Minuten anbraten, würzen.",
+        "order": 2
+      },
+      {
+        "step_text": "Blattspinat waschen und auf einem Teller anrichten. Spargel und halbierte Kirschtomaten darüber verteilen.",
+        "order": 3
+      },
+      {
+        "step_text": "Für das Dressing alle Zutaten vermischen und über den Spinat geben.",
+        "order": 4
+      },
+      {
+        "step_text": "Mit Parmesan bestreuen und servieren.",
+        "order": 5
+      }
+    ]
+  },
+  {
+    "name": "Fruchtiger Rucola-Fenchel-Salat mit gebratenen Rinderfiletstreifen & Walnüssen",
+    "description": "Ein frischer Salat aus Rucola, Fenchel und Orangen, kombiniert mit saftigen Rinderfiletstreifen und knackigen Walnüssen – ideal für leichte Genießer.",
+    "course_type": "salad",
+    "skill_level": "Intermediate",
+    "portions": 2,
+    "working_time_hours": 0,
+    "working_time_minutes": 20,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 10,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 10,
+    "ingredients": [
+      {
+        "ingredient": "Rinderfilet",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Rucola",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Fenchelknollen",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Orangen",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 3,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Apfelessig",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Walnüsse",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Stiele vom Rucola abtrennen, einige beiseitestellen.",
+        "order": 1
+      },
+      {
+        "step_text": "Fenchel halbieren, Strunk entfernen, in feine Scheiben schneiden und 5-10 Min. in gesalzenem kaltem Wasser ruhen lassen.",
+        "order": 2
+      },
+      {
+        "step_text": "Eine Orange schälen und in Scheiben schneiden, die andere halbieren und auspressen. Saft zu den Scheiben geben.",
+        "order": 3
+      },
+      {
+        "step_text": "Rinderfilet in Olivenöl anbraten, mit Salz und Pfeffer würzen.",
+        "order": 4
+      },
+      {
+        "step_text": "Rucola mit Fenchel vermengen. Apfelessig und Olivenöl zu Orangen geben, mit Salz und Pfeffer abschmecken.",
+        "order": 5
+      },
+      {
+        "step_text": "Rucola-Fenchel-Mischung mit Dressing vermengen, Rinderfilet in Scheiben darauflegen und mit Walnüssen garnieren.",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "name": "Rinderfilet-Burger an Avocadocreme mit frischem Rucola und Sesam",
+    "description": "Saftiger Rinderfilet-Burger mit cremiger Avocado, frischem Rucola, karamellisierten Zwiebeln und würzigen Tomaten – ein Genuss mit Sesambrötchen.",
+    "course_type": "main",
+    "skill_level": "Intermediate",
+    "portions": 2,
+    "working_time_hours": 0,
+    "working_time_minutes": 30,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 35,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Sesambrötchen",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Rinderfilet",
+        "quantity": 250,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Knoblauchzehen",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Rosmarin",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Tomaten",
+        "quantity": 3,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Essig",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Zucker",
+        "quantity": 2,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": 2,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Chili-Flocken",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Zwiebeln",
+        "quantity": 4,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Avocado",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Crème fraîche",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Limette",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Rucola",
+        "quantity": 1,
+        "unit": "piece"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Backofen auf 100° C vorheizen.",
+        "order": 1
+      },
+      {
+        "step_text": "Rinderfilet mit Salz und Pfeffer würzen.",
+        "order": 2
+      },
+      {
+        "step_text": "Öl, Rosmarin und Knoblauch in Pfanne erhitzen, Rinderfilet 1-2 Min. anbraten.",
+        "order": 3
+      },
+      {
+        "step_text": "Rinderfilet in feuerfeste Form geben, 25-30 Min. im Ofen garen.",
+        "order": 4
+      },
+      {
+        "step_text": "Avocado halbieren, Fruchtfleisch mit Crème fraîche, Knoblauch, Limettensaft pürieren. Mit Salz und Pfeffer abschmecken.",
+        "order": 5
+      },
+      {
+        "step_text": "Rucola waschen und trocken schleudern.",
+        "order": 6
+      },
+      {
+        "step_text": "Zwiebeln in Ringe schneiden, in Öl anbraten, mit Salz und Zucker würzen, mit Essig ablöschen.",
+        "order": 7
+      },
+      {
+        "step_text": "Tomaten würfeln, mit Essig, Salz, Zucker, Pfeffer und Chili-Flocken vermischen.",
+        "order": 8
+      },
+      {
+        "step_text": "Sesambrötchen toasten. Unterseite mit Avocadocreme bestreichen.",
+        "order": 9
+      },
+      {
+        "step_text": "Fleisch in Streifen schneiden und auf Brötchen legen, mit Avocadocreme, Rucola, Zwiebeln und Tomaten belegen. Brötchen schließen.",
+        "order": 10
+      }
+    ]
+  },
+  {
+    "name": "Kirschen-Gazpacho mit Rucola",
+    "description": "Erfrischende Kirschen-Gazpacho mit frischem Rucola, kombiniert mit Tomaten, Gurke und Paprika – perfekt für heiße Tage.",
+    "course_type": "cold_starter",
+    "skill_level": "Beginner",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 15,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 0,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Kirschen, entkernt",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Tomaten",
+        "quantity": 5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Salatgurke",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "rote Paprika",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "grüne Paprika",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Knoblauchzehen",
+        "quantity": 3,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 4,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Weinessig",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Rucola",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": 1,
+        "unit": "tes"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Kirschen, Tomaten, Gurke, rote und grüne Paprika, Knoblauch, Olivenöl und Weinessig im Mixer mixen.",
+        "order": 1
+      },
+      {
+        "step_text": "In einem Weinglas servieren und mit frischem Rucola garnieren.",
+        "order": 2
+      }
+    ]
+  },
+  {
+    "name": "Vegane Tomaten-Quiche",
+    "description": "Köstliche vegane Tomaten-Quiche mit cremiger Seidentofu-Füllung und frischen Kräutern auf Vollkorn-Weizenteig.",
+    "course_type": "vegetable",
+    "skill_level": "Intermediate",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 45,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 45,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 30,
+    "ingredients": [
+      {
+        "ingredient": "Vollkorn Weizenmehl",
+        "quantity": 330,
+        "unit": "g"
+      },
+      {
+        "ingredient": "vegane Margarine",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Wasser",
+        "quantity": 80,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Meersalz",
+        "quantity": 0.35,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Seidentofu",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Cherrytomaten",
+        "quantity": 400,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Speisestärke",
+        "quantity": 2,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Meersalz",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Kurkuma",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Muskat, frisch gerieben",
+        "quantity": 0.1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Pfeffer, frisch gemahlen",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Thymian, frisch",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Oregano, frisch",
+        "quantity": 1,
+        "unit": "tes"
+      },
+      {
+        "ingredient": "Schnittlauch, frisch",
+        "quantity": 1,
+        "unit": "sp"
+      },
+      {
+        "ingredient": "Basilikum, frisch",
+        "quantity": 3,
+        "unit": "sp"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Alle Teigzutaten zu einem glatten Teig verarbeiten.",
+        "order": 1
+      },
+      {
+        "step_text": "Teig abdecken und 30 min im Kühlschrank ruhen lassen.",
+        "order": 2
+      },
+      {
+        "step_text": "Cherrytomaten halbieren. Seidentofu mit Olivenöl, Speisestärke, Salz und Gewürzen pürieren. Kräuter fein hacken und unterrühren.",
+        "order": 3
+      },
+      {
+        "step_text": "Teig auf Backpapier in Quiche-Form ausrollen, andrücken und bei 200°C 10 min vorbacken.",
+        "order": 4
+      },
+      {
+        "step_text": "Füllung auf den Teig verteilen, mit Tomaten belegen.",
+        "order": 5
+      },
+      {
+        "step_text": "Quiche bei 200°C 20 min backen, dann auf 175°C reduzieren und weitere 15 min backen.",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "name": "Apfel-Kürbis-Ragout mit Couscous",
+    "description": "Herzhaftes Apfel-Kürbis-Ragout mit aromatischen Gewürzen, serviert auf fluffigem Couscous.",
+    "course_type": "vegetable",
+    "skill_level": "Intermediate",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 30,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 30,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 5,
+    "ingredients": [
+      {
+        "ingredient": "Zwiebeln",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Knoblauchzehen",
+        "quantity": 2,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "rote Chilischote",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Hokkaido-Kürbis",
+        "quantity": 600,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Karotten",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": 2,
+        "unit": "EL"
+      },
+      {
+        "ingredient": "Tomatenmark",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Currypulver",
+        "quantity": 3,
+        "unit": "TL"
+      },
+      {
+        "ingredient": "Zimt",
+        "quantity": 1.5,
+        "unit": "TL"
+      },
+      {
+        "ingredient": "gemahlener Kreuzkümmel",
+        "quantity": 1,
+        "unit": "TL"
+      },
+      {
+        "ingredient": "Gemüsebrühe",
+        "quantity": 700,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Erdnussmus",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "schwarzer Pfeffer",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Couscous",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "ingredient": "säuerliche Äpfel",
+        "quantity": 250,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Cayennepfeffer",
+        "quantity": 0.1,
+        "unit": "Msp"
+      },
+      {
+        "ingredient": "Petersilie",
+        "quantity": 1,
+        "unit": "Bund"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Zwiebeln, Knoblauch und Chili fein würfeln.",
+        "order": 1
+      },
+      {
+        "step_text": "Kürbis waschen, putzen, halbieren, Kerne entfernen, in 1 cm breite Spalten und 1-2 cm dicke Stücke schneiden.",
+        "order": 2
+      },
+      {
+        "step_text": "Karotten schälen und in kleine Würfel schneiden.",
+        "order": 3
+      },
+      {
+        "step_text": "Zwiebeln in Olivenöl bei kleiner Hitze ca. 4 min anschwitzen. Tomatenmark, Chili, Curry, Zimt und Kreuzkümmel zugeben und kurz mit anbraten. Mit Gemüsebrühe ablöschen.",
+        "order": 4
+      },
+      {
+        "step_text": "Erdnussmus, Salz, Pfeffer, Kürbis und Karotten zugeben, mischen, aufkochen und bei kleiner Hitze im geschlossenen Topf ca. 15 min kochen lassen.",
+        "order": 5
+      },
+      {
+        "step_text": "Couscous nach Packungsanleitung zubereiten.",
+        "order": 6
+      },
+      {
+        "step_text": "Apfel in 1 cm große Würfel schneiden, zum Ragout geben und 5 min bei geschlossenem Deckel ohne Hitze ziehen lassen. Abschmecken.",
+        "order": 7
+      },
+      {
+        "step_text": "Petersilie grob hacken.",
+        "order": 8
+      },
+      {
+        "step_text": "Ragout auf Couscous anrichten und mit Petersilie bestreuen.",
+        "order": 9
+      }
+    ]
+  },
+  {
+    "name": "Gebratene Putenbrust mit Kürbis und Pastinakenpüree",
+    "description": "Saftige Putenbrust mit gewürzten Kürbisspalten und cremigem Pastinakenpüree.",
+    "course_type": "meat",
+    "skill_level": "Intermediate",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 20,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 40,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Pastinake",
+        "quantity": 600,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Butter",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Zwiebel",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Knoblauchzehen",
+        "quantity": 2,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Muskat",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Hokkaidokürbis",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Chili",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Kurkuma",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Putenbrust",
+        "quantity": 700,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Cayennepfeffer",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Rosmarin",
+        "quantity": null,
+        "unit": null
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Kürbis halbieren, entkernen, in Spalten schneiden und mit Olivenöl, Chili, Kurkuma, Salz und Pfeffer marinieren.",
+        "order": 1
+      },
+      {
+        "step_text": "Pastinake in Stücke schneiden, Zwiebel und Knoblauch anschwitzen, mit Gemüsebrühe aufgießen.",
+        "order": 2
+      },
+      {
+        "step_text": "Wenn Pastinaken weich sind, Brühe abgießen, Pastinaken pürieren und mit Salz, Pfeffer, Muskat und Butter abschmecken.",
+        "order": 3
+      },
+      {
+        "step_text": "Putenbrust mit Cayennepfeffer, Salz, Pfeffer und Rosmarin würzen und anbraten.",
+        "order": 4
+      },
+      {
+        "step_text": "Kürbisspalten bei geringer Hitze anbraten.",
+        "order": 5
+      },
+      {
+        "step_text": "Püree bei schwacher Hitze erwärmen, auf Tellern anrichten: Püree in die Mitte, Putenbrust darauf, Kürbisspalten darum.",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "name": "Lachsfilet auf Wirsing-Risotto mit Feigen-Chutney",
+    "description": "Zartes Lachsfilet auf cremigem Wirsing-Risotto, begleitet von fruchtigem Feigen-Chutney.",
+    "course_type": "fish",
+    "skill_level": "Intermediate",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 30,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 40,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Wirsing",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Risotto-Reis",
+        "quantity": 300,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Zwiebel",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Knoblauchzehe",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Butter",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Rinderbrühe",
+        "quantity": 1200,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Salz",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Pfeffer",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Weißwein",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Lachsfilet ohne Haut",
+        "quantity": 800,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Zitrone",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Olivenöl",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Rosmarin (frisch)",
+        "quantity": null,
+        "unit": null
+      },
+      {
+        "ingredient": "Feigen",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Gelierzucker (2:1)",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Balsamico",
+        "quantity": null,
+        "unit": null
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Wirsing blanchieren und in feine Streifen schneiden.",
+        "order": 1
+      },
+      {
+        "step_text": "Feigen klein schneiden, mit Gelierzucker, Zitronensaft und Balsamico mischen, aufkochen und 3 Min. kochen lassen. In Gläser füllen, verschließen und auf den Kopf stellen.",
+        "order": 2
+      },
+      {
+        "step_text": "Zwiebel und Knoblauch fein würfeln und mit 20 g Butter glasig anschwitzen. Reis zugeben und kurz mit anschwitzen.",
+        "order": 3
+      },
+      {
+        "step_text": "Optional mit Weißwein ablöschen und einkochen lassen.",
+        "order": 4
+      },
+      {
+        "step_text": "Erhitzte Rinderbrühe nach und nach zum Reis geben, dabei oft umrühren bis cremig.",
+        "order": 5
+      },
+      {
+        "step_text": "Wirsing und restliche Butter unter den fertigen Risotto heben und abschmecken.",
+        "order": 6
+      },
+      {
+        "step_text": "Zitrone auspressen, Lachsfilet mit Salz, Pfeffer und Zitronensaft würzen.",
+        "order": 7
+      },
+      {
+        "step_text": "Olivenöl in Pfanne erhitzen, Lachsfilet beidseitig anbraten, nach Belieben mit frischem Rosmarin aromatisieren.",
+        "order": 8
+      },
+      {
+        "step_text": "Lachsfilet zusammen mit dem Wirsing-Risotto und Feigen-Chutney servieren.",
+        "order": 9
+      }
+    ]
+  },
+  {
+    "name": "Rinderfiletstreifen in Sesampanade mit Zucchininudeln und Zitronen-Buttermilch-Soße",
+    "description": "Knusprige Rinderfiletstreifen in einer Sesampanade auf frischen Zucchininudeln, serviert mit einer leichten Zitronen-Buttermilch-Soße.",
+    "course_type": "main",
+    "skill_level": "Intermediate",
+    "portions": 2,
+    "working_time_hours": 0,
+    "working_time_minutes": 20,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 20,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Zucchini",
+        "quantity": 1.5,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Rinderfilet",
+        "quantity": 250,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Sesamsaat",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Speisestärke",
+        "quantity": 2,
+        "unit": "EL"
+      },
+      {
+        "ingredient": "Sesamöl",
+        "quantity": 1,
+        "unit": "EL"
+      },
+      {
+        "ingredient": "Zitrone",
+        "quantity": 0.5,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Gemüsebrühe",
+        "quantity": 75,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Buttermilch",
+        "quantity": 35,
+        "unit": "ml"
+      },
+      {
+        "ingredient": "Schalotte",
+        "quantity": 0.5,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Knoblauchzehe",
+        "quantity": 1,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Öl",
+        "quantity": 1,
+        "unit": "EL"
+      },
+      {
+        "ingredient": "Wasser",
+        "quantity": 1,
+        "unit": "EL"
+      },
+      {
+        "ingredient": "Kirschtomaten",
+        "quantity": 6,
+        "unit": "pcs"
+      },
+      {
+        "ingredient": "Rucola",
+        "quantity": 50,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Kirschtomaten waschen und halbieren.",
+        "order": 1
+      },
+      {
+        "step_text": "Mit einem Sparschäler aus der Zucchini Nudeln schälen.",
+        "order": 2
+      },
+      {
+        "step_text": "Rinderfilet in 2 cm dicke Scheiben schneiden. Speisestärke mit Sesamsaat mischen und die Filetstücke darin wenden.",
+        "order": 3
+      },
+      {
+        "step_text": "Schale der halben Zitrone abreiben, Saft auspressen.",
+        "order": 4
+      },
+      {
+        "step_text": "Schalotte und Knoblauch schälen, klein schneiden und in Öl 2-3 Minuten andünsten. Mit Gemüsebrühe, Zitronensaft und Buttermilch ablöschen und ca. 5 Minuten köcheln lassen. Mit Speisestärke abbinden.",
+        "order": 5
+      },
+      {
+        "step_text": "Zucchininudeln ca. 1 Minute in kochendem, leicht gesalzenem Wasser garen.",
+        "order": 6
+      },
+      {
+        "step_text": "Rinderfiletstreifen in Sesamöl goldbraun anbraten und auf Küchenpapier abtropfen lassen.",
+        "order": 7
+      },
+      {
+        "step_text": "Zucchininudeln auf einem tiefen Teller anrichten, Soße darübergeben und die Rinderfiletstreifen darauflegen. Mit halbierten Kirschtomaten und Rucola garnieren.",
+        "order": 8
+      }
+    ]
+  }
+]

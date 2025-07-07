@@ -73,7 +73,7 @@ class Recipe(models.Model):
         ]
     )
     working_time_hours = models.PositiveIntegerField(
-        verbose_name=_('h'),
+        verbose_name=_('Hours'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -81,7 +81,7 @@ class Recipe(models.Model):
         ]
     )
     working_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('min'),
+        verbose_name=_('Minutes'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -89,7 +89,7 @@ class Recipe(models.Model):
         ]
     )
     cooking_time_hours = models.PositiveIntegerField(
-        verbose_name=_('h'),
+        verbose_name=_('Hours'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -97,7 +97,7 @@ class Recipe(models.Model):
         ]
     )
     cooking_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('min'),
+        verbose_name=_('Minutes'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -105,7 +105,7 @@ class Recipe(models.Model):
         ]
     )
     rest_time_hours = models.PositiveIntegerField(
-        verbose_name=_('h'),
+        verbose_name=_('Hours'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -113,7 +113,7 @@ class Recipe(models.Model):
         ]
     )
     rest_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('min'),
+        verbose_name=_('Minutes'),
         default=0,
         validators=[
             MinValueValidator(0),
@@ -130,6 +130,7 @@ class Recipe(models.Model):
         related_name='favorite_recipes',
         blank=True,
     )
+    is_published = models.BooleanField(verbose_name=_('Published'), default=False)
 
     @property
     def total_cost(self):
@@ -224,7 +225,6 @@ class RecipeIngredient(models.Model):
     quantity = models.DecimalField(
         max_digits=10,
         decimal_places=4,
-        default=0,
         validators=[
             MinValueValidator(0.01),
         ]

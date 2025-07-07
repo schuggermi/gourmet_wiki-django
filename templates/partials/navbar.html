@@ -41,7 +41,7 @@
             </li>{% endcomment %}
         </ul>
     </div>
-    <div class="navbar-end gap-5">
+    <div class="navbar-end gap-2 md:gap-5">
         {% if user.is_authenticated %}
             <div class="hidden md:flex gap-2 h-full items-center">
                 <c-quick-actions></c-quick-actions>
@@ -126,8 +126,8 @@
                 <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content" %}</li>
             </ul>
         {% endif %}
-        <div class="dropdown dropdown-end w-max">
-            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <div class="dropdown dropdown-end w-max lg:hidden">
+            <div tabindex="0" role="button" class="btn btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                      stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

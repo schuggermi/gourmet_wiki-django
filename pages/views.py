@@ -1,4 +1,5 @@
-from django.db.models import Count, Avg, ExpressionWrapper, F, FloatField, Q
+from django.db.models import Count, Avg, ExpressionWrapper, F, FloatField, Q, Func, Value, CharField
+from django.db.models.functions import Concat
 from django.shortcuts import render
 from django.utils.timezone import now
 
@@ -9,14 +10,21 @@ def home(request):
     context = {}
     today = now().date()
 
-    top_recipes = (
-        Recipe.objects.annotate(
-            avg_rating_today=Avg('ratings__score', filter=Q(ratings__rated_at__date=today))
+    daily_random_recipes = (
+        Recipe.objects.filter(is_published=True).annotate(
+            hash_order=Func(
+                Concat(
+                    F('id'),
+                    Value(str(today)),
+                    output_field=CharField()  # 👈 This line is important
+                ),
+                function='md5',
+                output_field=CharField()  # 👈 This is also required
+            )
         )
-        .filter(avg_rating_today__isnull=False)
-        .order_by('-avg_rating_today')[:4]
+        .order_by('hash_order')[:4]
     )
 
-    context['top_recipes'] = top_recipes
+    context['daily_random_recipes'] = daily_random_recipes
 
     return render(request, "pages/home.html", context)

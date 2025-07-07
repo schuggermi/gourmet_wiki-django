@@ -26,7 +26,7 @@
             <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
         </div>
 
-        <div class="self-center flex flex-col gap-10 w-3xl max-w-3xl">
+        <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
             <ul class="steps steps-vertical step-primary lg:steps-horizontal w-full">
                 <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-accent{% endif %}">
                     <p>
@@ -55,13 +55,13 @@
                 {{ wizard.management_form }}
 
                 {% if wizard.form.non_form_errors %}
-                    <div class="alert alert-outline alert-error">
+                    <div class="alert alert-outline alert-error rounded-sm">
                         {{ wizard.form.non_form_errors }}
                     </div>
                 {% endif %}
 
                 {% if wizard.form.non_field_errors %}
-                    <div class="alert alert-outline alert-error">
+                    <div class="alert alert-outline alert-error rounded-sm">
                         {{ wizard.form.non_field_errors }}
                     </div>
                 {% endif %}

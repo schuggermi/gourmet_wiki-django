@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
+from django.db.models.sql import Query
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
@@ -26,9 +27,13 @@ class RecipeListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        queryset = queryset.filter(is_published=True)
+
         search_query = self.request.GET.get('search', '')
         if search_query:
             queryset = queryset.filter(name__icontains=search_query)
+
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -42,6 +47,9 @@ def recipe_list_partial(request):
     View to render the recipe list partial for htmx requests
     """
     queryset = Recipe.objects.all()
+
+    queryset = queryset.filter(is_published=True)
+
     search_query = request.GET.get('search', '')
     if search_query:
         queryset = queryset.filter(name__icontains=search_query)

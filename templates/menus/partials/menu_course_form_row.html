@@ -4,22 +4,25 @@
     {{ form.ORDER.as_hidden }}
     {{ form.DELETE.as_hidden }}
 
-    <div class="formset-form-content flex gap-5 items-start w-full">
-        <p class="step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>
+    <div class="flex flex-col gap-1">
+        <div class="formset-form-content flex gap-5 items-start w-full">
+            <p class="step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>
 
-        <!-- Course Type and Recipe -->
-        <div class="w-full grid grid-cols-2 gap-5">
-            <!-- Course Type -->
-            <div>
-                <c-select :field="form.course_type"></c-select>
-            </div>
-
-            <div class="col-span-1 flex justify-end gap-5 w-full">
-                <!-- Recipe -->
-                <div class="w-full recipe-select-container">
-                    <c-select :field="form.recipe"></c-select>
+            <!-- Course Type and Recipe -->
+            <div class="w-full grid grid-cols-5 gap-2 md:gap-5">
+                <!-- Course Type -->
+                <div class="col-span-2">
+                    <c-select :field="form.course_type" no_errors></c-select>
                 </div>
-                <div class="flex items-center gap-2">
+
+                <div class="col-span-2 flex justify-end gap-5 w-full">
+                    <!-- Recipe -->
+                    <div class="w-full recipe-select-container">
+                        <c-select :field="form.recipe" no_errors></c-select>
+                    </div>
+                </div>
+
+                <div class="col-span-1 flex items-center gap-2">
                     <p class="cursor-pointer self-center w-fit"
                        title="{% translate 'Remove this Course' %}"
                        onclick="this.closest('.formset-form').classList.add('hidden'); this.closest('.formset-form-content').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#menu-course-formset', '#id_menu_course-TOTAL_FORMS');"
@@ -40,5 +43,6 @@
                 </div>
             </div>
         </div>
+        <c-form-errors :field="form.course_type"></c-form-errors>
     </div>
 </div>

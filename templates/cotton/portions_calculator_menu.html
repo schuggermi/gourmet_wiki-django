@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="print:hidden flex items-center justify-end gap-2 w-full">
+<div class="print:hidden flex items-center gap-2 w-full">
     <button
             class="btn btn-neutral btn-outline"
             onclick="
@@ -12,7 +12,7 @@
                                         "
             hx-get="{% url 'calculate_scaled_ingredients_menu' menu_id=menu.pk %}"
             hx-target="{{ hx_target }}"
-            hx-swap="outerHTML"
+            hx-swap="innerHTML"
     >
         -
     </button>
@@ -35,7 +35,8 @@
                                         "
             hx-get="{% url 'calculate_scaled_ingredients_menu' menu_id=menu.pk %}"
             hx-target="{{ hx_target }}"
-            hx-swap="outerHTML">
+            hx-swap="innerHTML"
+    >
         +
     </button>
 </div>
@@ -45,5 +46,6 @@
         if (event.target.id === 'recipe-carousel') {
             goToSlide(window.currentRecipeSlide);
         }
+        attachPrintHandler();
     });
 </script>
