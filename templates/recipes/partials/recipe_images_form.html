@@ -13,6 +13,11 @@
             {{ wizard.form.non_field_errors }}
         </div>
     {% endif %}
+    {% if wizard.form.errors %}
+        <div class="alert alert-danger">
+            {{ wizard.form.errors }}
+        </div>
+    {% endif %}
 
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
@@ -46,9 +51,6 @@
             (function () {
                 const sortable = document.querySelector("#image-formset");
 
-                console.log("SORTABLE")
-                console.log(sortable)
-
                 new Sortable(sortable, {
                     animation: 150,
                     dragClass: 'border-secondary!',
@@ -58,6 +60,9 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Call updateMsg on page load to ensure correct initial state
+            updateMsg();
+
             document.addEventListener('htmx:configRequest', function (event) {
                 const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
                 const totalForms = parseInt(totalFormsInput.value);
@@ -83,63 +88,39 @@
 
             document.getElementById('image-formset').addEventListener('change', (event) => {
                 const input = event.target;
-                console.log("INPUT: ")
-                console.log(input)
                 if (input.matches('input[type="file"]')) {
-{% comment %}                    const storeId = input.id;
-                    const label = document.getElementById(`${storeId}--name`);
-                    if (label) {
-                        label.textContent = input.files[0] ? input.files[0].name : "No file chosen";
-                    }{% endcomment %}
+                    // Call imageUploaded function when a file is selected
+                    if (input.files && input.files[0]) {
+                        const formRow = input.closest('.formset-form');
+                        const previewImage = formRow.querySelector('.preview-image');
+                        const imageLabel = formRow.querySelector('span');
+
+                        // Update the label with the file name
+                        if (imageLabel) {
+                            imageLabel.textContent = input.files[0].name;
+                        }
+
+                        // Update the preview image
+                        if (previewImage) {
+                            const imageUrl = URL.createObjectURL(input.files[0]);
+                            previewImage.style.backgroundImage = `url("${imageUrl}")`;
+                        }
+                    }
                 }
             });
         });
 
         function updateMsg() {
-            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            // Count visible form elements instead of relying on TOTAL_FORMS
+            const visibleForms = document.querySelectorAll('#image-formset .formset-form:not(.hidden)').length;
             const noImagesUploadedMsg = document.getElementById('no-images-uploaded');
 
-            if (parseInt(totalFormsInput.value) >= 1) {
+            if (visibleForms > 0) {
                 noImagesUploadedMsg.classList.add('hidden');
-            } else if (parseInt(totalFormsInput.value) === 0) {
+            } else {
                 noImagesUploadedMsg.classList.remove('hidden');
             }
         }
 
-        function imageUploaded() {
-            const uploadImage = document.getElementById('upload-image');
-            console.log("Upload image: ")
-            console.log(uploadImage)
-            console.log("Files: ")
-            console.log(uploadImage.files)
-            const formset = document.getElementById('image-formset');
-
-            updateMsg();
-
-            const forms = formset.querySelectorAll('.formset-form')
-            const lastForm = forms[forms.length - 1]
-            console.log(lastForm)
-            const imageLabel = lastForm.querySelector('span')
-            const imageInput = lastForm.querySelector('input[id$="image"]')
-
-            const previewImage = lastForm.querySelector('.preview-image')
-            console.log(imageLabel)
-            console.log(imageInput)
-
-            imageLabel.textContent = uploadImage.files[0] ? uploadImage.files[0].name : "No file chosen";
-
-            console.log("I am here: ")
-            console.log(uploadImage.files)
-
-            if (uploadImage.files && uploadImage.files[0] && !imageInput.files) {
-                imageInput.files = uploadImage.files;
-                {#const fileTransfer = new DataTransfer();#}
-                const imageUrl = URL.createObjectURL(uploadImage.files[0]);
-                previewImage.style.backgroundImage = `url("${imageUrl}")`;
-                {#fileTransfer.items.add(uploadImage.files[0]);#}
-                {#imageInput.files = fileTransfer.files;#}
-            } else {
-                {#previewImage.style.backgroundImage = `url("${URL.createObjectURL(imageInput.files[0])}")`;#}
-            }
-        }
+        // Function removed as it's no longer needed - functionality implemented in the change event listener
     </script>

@@ -14,7 +14,8 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = [
-            'name', 'is_published', 'description', 'skill_level', 'portions', 'working_time_hours', 'working_time_minutes',
+            'name', 'is_published', 'description', 'skill_level', 'portions', 'working_time_hours',
+            'working_time_minutes',
             'cooking_time_hours', 'cooking_time_minutes', 'rest_time_hours', 'rest_time_minutes',
         ]  # thumbnail_image
         widgets = {
@@ -79,16 +80,6 @@ class RecipePreparationStepForm(forms.ModelForm):
             }),
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        for field_name in self.fields:
-            if self.errors.get(field_name):
-                old_class = self.fields[field_name].widget.attrs.get('class', '')
-                self.fields[field_name].widget.attrs['class'] = (
-                        old_class + ' border-3 border-red-400'
-                )
-
     def clean(self):
         cleaned_data = super().clean()
 
@@ -146,7 +137,7 @@ class RatingForm(forms.ModelForm):
 class RecipeImageForm(forms.ModelForm):
     class Meta:
         model = RecipeImage
-        fields = ['image', 'caption', 'order']
+        fields = ['image', 'caption']
         widgets = {
             'image': forms.FileInput(attrs={
                 'accept': 'image/*',

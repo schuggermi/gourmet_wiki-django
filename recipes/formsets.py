@@ -105,7 +105,7 @@ class BaseRecipeImageFormSet(BaseModelFormSet):
         for form in self.forms:
             if form.cleaned_data and not form.cleaned_data.get('DELETE'):
                 required_fields = [field_name for field_name, field in form.fields.items()
-                                   if field.required and field_name not in ('DELETE', 'order', 'id')]
+                                   if field.required and field_name not in ('DELETE', )]
 
                 all_required_filled = all(form.cleaned_data.get(field_name) for field_name in required_fields)
 

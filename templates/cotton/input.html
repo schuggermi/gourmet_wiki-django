@@ -27,8 +27,7 @@
         name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
         value="{% if field %}{{ field.value|default_if_none:'' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value }}{% endif %}"
         placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-        class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}
-                {% if field and field.errors %}{{ error_class }}{% endif %}"
+        class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% endif %}"
         hx-on="{{ hx_on }}"
 >
 {% if not no_errors %}
@@ -38,4 +37,3 @@
         </div>
     {% endfor %}
 {% endif %}
-

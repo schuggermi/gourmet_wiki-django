@@ -1,6 +1,4 @@
 export function reindexFormset(formsetSelector, totalFormsSelector) {
-    console.log("Reindexing formset");
-    console.log(formsetSelector)
     const formset = document.querySelector(`${formsetSelector}`);
     const rows = formset.querySelectorAll(`.formset-form:not(.hidden)`);
     const totalFormsInput = document.querySelector(totalFormsSelector);
@@ -22,7 +20,6 @@ export function reindexFormset(formsetSelector, totalFormsSelector) {
         const newRowId = `${prefix}-${index}`;
         row.id = newRowId;
 
-        console.log(row)
         // Update order input inside this row
         const orderInput = row.querySelector(`[id$='-ORDER']`);
         if (orderInput) {
