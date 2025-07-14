@@ -72,7 +72,7 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     class Meta:
         model = RecipePreparationStep
-        fields = ['step_text', 'order']
+        fields = ['step_text']
         widgets = {
             'step_text': forms.TextInput(attrs={
                 'placeholder': 'e.g. Heat 2 tbsp of oil in a wok over medium-high heat.'

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Test Recipe 1",
+    "description": "A test recipe with duplicate ingredients and empty units",
+    "course_type": "main",
+    "skill_level": "Beginner",
+    "portions": 4,
+    "working_time_hours": 0,
+    "working_time_minutes": 30,
+    "cooking_time_hours": 0,
+    "cooking_time_minutes": 15,
+    "rest_time_hours": 0,
+    "rest_time_minutes": 0,
+    "ingredients": [
+      {
+        "ingredient": "Test Ingredient 1",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Test Ingredient 1",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "ingredient": "Test Ingredient 2",
+        "quantity": 2,
+        "unit": ""
+      }
+    ],
+    "steps": [
+      {
+        "step_text": "Test Step 1",
+        "order": 0
+      },
+      {
+        "step_text": "Test Step 2",
+        "order": 1
+      }
+    ]
+  }
+]

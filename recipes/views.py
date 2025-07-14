@@ -1,10 +1,12 @@
 from pathlib import Path
 
+from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 from django.db.models.sql import Query
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
@@ -52,7 +54,7 @@ def recipe_list_partial(request):
 
     search_query = request.GET.get('search', '')
     if search_query:
-        queryset = queryset.filter(name__icontains=search_query)
+        queryset = queryset.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
 
     context = {
         'object_list': queryset,
@@ -65,6 +67,9 @@ def recipe_list_partial(request):
 def add_preparation_step_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = RecipePreparationStepForm(prefix=f'recipe_preparation_step-{form_index}')
+
+    new_form.fields['DELETE'] = forms.BooleanField(required=False)
+    new_form.fields['ORDER'] = forms.IntegerField(required=True)
 
     context = {
         'form': new_form,
