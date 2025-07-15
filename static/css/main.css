@@ -100,7 +100,7 @@ input[type='number'] {
 
     h2 {
         @apply text-3xl font-semibold;
-        color: var(--color-neutral);
+        color: var(--color-secondary);
     }
 
     h3 {
