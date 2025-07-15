@@ -15,6 +15,9 @@ def handler403(request, exception):
     return render(request, 'errors/403.html', status=403)
 
 urlpatterns = [
+                  path('test/404/', lambda request: render(request, "errors/404.html", status=404)),
+                  path('test/500/', lambda request: render(request, "errors/500.html", status=404)),
+                  path('test/403/', lambda request: render(request, "errors/403.html", status=404)),
                   path('admin/', admin.site.urls),
                   path('', include('pages.urls'), name='pages'),
                   path('recipes/', include('recipes.urls'), name='recipes'),
