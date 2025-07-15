@@ -5,7 +5,7 @@
     {{ wizard.form.management_form }}
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-    <div id="preparation-step-formset" class="flex flex-col gap-5 w-full">
+    <div id="preparation-step-formset" class="flex flex-col gap-2 md:gap-5 w-full">
         {% for form in forms %}
             {% include 'recipes/partials/preparation_step_form_row.html' with form=form form_index=forloop.counter0 %}
         {% endfor %}

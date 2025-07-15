@@ -1,6 +1,9 @@
 {% load static %}
 
 <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 3xl:grid-cols-2 gap-5 w-full mx-auto pb-10">
+    {% if not object_list %}
+        <p class="mx-auto">We don't have any Recipes listed yet.</p>
+    {% endif %}
     {% for recipe in object_list %}
         <a href="{% url 'recipe-detail' pk=recipe.pk %}"
            class="overflow-hidden w-full h-full flex flex-col md:flex-row items-center rounded-md bg-transparent outline-1 outline-neutral group hover:outline-2 hover:outline-primary cursor-pointer shadow-md hover:bg-base-primary/50 transition-shadow group">

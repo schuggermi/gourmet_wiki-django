@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div>
-    <div id="recipe_ingredient-{{ form_index }}" class="formset-form flex items-start gap-1">
+    <div id="recipe_ingredient-{{ form_index }}" class="formset-form flex flex-col items-start gap-1">
         <div class="grid grid-cols-3 gap-2 items-start w-full">
             {{ form.id }}
             {{ form.DELETE.as_hidden }}
@@ -9,18 +9,18 @@
 
             <!-- Ingredient -->
             <div>
-                <c-input :field="form.ingredient"></c-input>
+                <c-input :field="form.ingredient" no_errors></c-input>
             </div>
 
-            <div class="flex items-center gap-1 w-full">
-                <c-number-action-input :field="form.quantity" :label="form.unit.value"
+            <div class="labeled-number-input flex w-full gap-1">
+                <c-number-action-input :field="form.quantity"
                                        no_errors></c-number-action-input>
             </div>
 
-
             <!-- Ingredient Quantity, Unit & Delete -->
             <div class="flex">
-                <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"></c-select>
+                <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"
+                          no_errors></c-select>
 
                 <p class="cursor-pointer self-center w-fit ps-5"
                    title="{% translate 'Remove this Ingredient' %}"
@@ -35,5 +35,23 @@
                 </p>
             </div>
         </div>
+        {% if form.errors %}
+            {% for error in form.ingredient.errors %}
+                <div class="text-red-400">
+                    - {{ error }}
+                </div>
+            {% endfor %}
+            {% for error in form.quantity.errors %}
+                <div class="text-red-400">
+                    - {{ error }}
+                </div>
+            {% endfor %}
+            {% for error in form.unit.errors %}
+                <div class="text-red-400">
+                    - {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
     </div>
 </div>

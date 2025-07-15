@@ -16,29 +16,6 @@
         <c-textarea :field="form.description"></c-textarea>
     </div>
 
-    <!-- Recipe Is Published -->
-    <div class="flex flex-col gap-1 w-fit">
-        <p class="flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                 class="size-6 text-secondary!">
-                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
-                <path fill-rule="evenodd"
-                      d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
-                      clip-rule="evenodd"></path>
-            </svg>
-            {{ form.is_published.label }}
-        </p>
-        <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full justify-center">
-            <c-input type="checkbox"
-                     id="{{ form.is_published.id_for_label }}"
-                     name="{{ form.is_published.html_name }}"
-                     :value="form.is_published.value"
-                     check_value="True"
-                     hx_on="change:document.getElementById('{{ form.is_published.id_for_label }}').value = 'True';"
-            ></c-input>
-        </div>
-    </div>
-
     <div class="grid grid-cols-1 gap-5">
         <!-- Recipe Skill Level -->
         <div class="flex flex-col gap-1 w-full">
@@ -101,12 +78,8 @@
             </p>
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                 <div class="labeled-number-input flex w-full">
-                    <div class="flex items-center gap-2 w-full">
-                        <div class="flex items-center gap-2 w-full">
-                            <c-number-action-input :field="form.portions"
-                                                   no_errors>{% translate 'Persons' %}</c-number-action-input>
-                        </div>
-                    </div>
+                    <c-number-action-input :field="form.portions"
+                                           no_errors>{% translate 'Persons' %}</c-number-action-input>
                 </div>
             </div>
         </div>
@@ -177,6 +150,29 @@
                     <c-number-action-input :field="form.rest_time_minutes" no_errors>
                         <p>{{ form.rest_time_minutes.label }}</p></c-number-action-input>
                 </div>
+            </div>
+        </div>
+
+        <!-- Recipe Is Published -->
+        <div class="flex flex-col gap-1 w-fit">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                     class="size-6 text-secondary!">
+                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                    <path fill-rule="evenodd"
+                          d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                {{ form.is_published.label }}
+            </p>
+            <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full justify-center">
+                <c-input type="checkbox"
+                         id="{{ form.is_published.id_for_label }}"
+                         name="{{ form.is_published.html_name }}"
+                         :value="form.is_published.value"
+                         check_value="True"
+                         hx_on="change:document.getElementById('{{ form.is_published.id_for_label }}').value = 'True';"
+                ></c-input>
             </div>
         </div>
     </div>

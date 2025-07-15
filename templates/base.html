@@ -23,21 +23,7 @@
           content="{% block og_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:image" content="
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta property="og:locale" content="en_US">
@@ -116,6 +102,15 @@
         } else {
             navbar.classList.remove("bg-base-200", "shadow-md");
             navbar.classList.add("bg-base-100");
+        }
+    });
+
+     document.body.addEventListener('htmx:responseError', function (event) {
+        if (event.detail.xhr.status === 401) {
+            const data = JSON.parse(event.detail.xhr.responseText);
+            if (data.redirect) {
+                window.location.href = data.redirect;
+            }
         }
     });
 </script>

@@ -7,15 +7,11 @@
 {% endblock title %}
 
 {% block main_content %}
-    <div class="w-full h-full md:flex flex-col gap-10 md:items-center md:justify-center pb-10">
-        <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="hover:scale-105">
-            <img class="max-w-sm mx-auto" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
-                 alt="Gourmet Wiki">
-        </c-a>
-        <h1>{% translate 'Delete Your Account' %}</h1>
+    <div class="flex flex-col gap-5 justify-start items-center max-w-sm text-center w-full">
+        <h2>{% translate 'Delete Your Account' %}</h2>
 
-        <div class="h-full flex flex-col gap-20 justify-center items-center max-w-sm">
-            <div class="bg-base-primary p-5 rounded-lg w-full">
+        <div class="flex flex-col gap-5 justify-center items-center max-w-sm w-full">
+            <div class="bg-base-primary w-full">
                 {% if token_fail %}
                     <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
                         <p>The password reset link was invalid, possibly because it has already been used.</p>
@@ -27,11 +23,11 @@
                     </div>
                 {% else %}
                     {% url 'account_reset_password_from_key' as action_url %}
-                    <form id="delete-form" method="post" class="flex flex-col gap-5 w-full text-center">
+                    <form id="delete-form" method="post" class="flex flex-col gap-5 w-full text-start">
                         {% csrf_token %}
 
-                        <p>{% translate 'Are you sure you want to delete your account? This action cannot be undone.' %}</p>
-                        <c-a url="{% url 'users-profile' %}" class="btn btn-neutral btn-outline w-full">
+                        <p class="text-center">{% translate 'Are you sure you want to delete your account? This action cannot be undone.' %}</p>
+                        <c-a url="{% url 'users-profile' %}" class="btn! btn-neutral! btn-outline!">
                             {% trans "Cancel" %}
                         </c-a>
 
@@ -63,7 +59,7 @@
                 {% endif %}
             </div>
 
-            <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
+            <div class="text-center flex flex-col gap-1 items-center">
                 <p> Please contact us if you have any trouble deleting your account. </p>
                 <c-a animated url=""
                      class="underline">{% translate 'Support' %}</c-a>

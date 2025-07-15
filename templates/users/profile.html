@@ -25,7 +25,7 @@
             </div>
 
             <div class="flex-grow">
-                <h2 class="text-primary break-all wrap-break-word">{{ user.username }}</h2>
+                <h3 class="text-primary break-all wrap-break-word">{{ user.username }}</h3>
                 <div class="flex flex-col gap-2">
                     <p class="break-all wrap-break-word">{{ object.user.get_full_name }}</p>
                     <div class="flex flex-col">
@@ -122,7 +122,7 @@
             </a>
         </div>
 
-        <div class="col-span-2 grid grid-cols-2 flex gap-2">
+        <div class="col-span-2 grid grid-cols-2 md:flex gap-2">
             <c-a url="{% url 'user-delete' %}" class="btn btn-error btn-outline">{% translate 'Delete Account' %}</c-a>
             <c-a url="{% url 'account_change_password' %}"
                  class="btn btn-neutral btn-outline">{% translate 'Change Password' %}</c-a>

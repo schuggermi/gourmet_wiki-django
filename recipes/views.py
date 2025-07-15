@@ -273,14 +273,19 @@ def get_calculate_scaled_ingredients_menu(request, menu_id):
 
 @login_required
 def toggle_favorite(request, recipe_id):
+    if request.method != "POST":
+        return HttpResponseForbidden()
+
     recipe = get_object_or_404(Recipe, pk=recipe_id)
-    if request.user in recipe.favorite_by.all():
-        recipe.favorite_by.remove(request.user)
+    user = request.user
+
+    if user in recipe.favorite_by.all():
+        recipe.favorite_by.remove(user)
     else:
-        recipe.favorite_by.add(request.user)
+        recipe.favorite_by.add(user)
     html = render_to_string(
         "recipes/partials/favorite_button.html",
-        {"recipe": recipe, "user": request.user},
+        {"recipe": recipe, "user": user},
         request=request
     )
     return HttpResponse(html)
