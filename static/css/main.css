@@ -5,7 +5,7 @@
     themes: gourmet --default, gourmet --prefersdark, gourmet-dark;
 }
 
-@plugin "daisyui/theme" {
+/*@plugin "daisyui/theme" {
     name: "gourmet-dark";
     default: false;
     prefersdark: true;
@@ -38,12 +38,48 @@
     --border: 1px;
     --depth: 0;
     --noise: 0;
+}*/
+
+
+@plugin "daisyui/theme" {
+    name: "gourmet-dark";
+    default: true;
+    prefersdark: true;
+    color-scheme: "dark";
+    --color-base-100: oklch(13% 0.028 261.692);
+    --color-base-200: oklch(21% 0.034 264.665);
+    --color-base-300: oklch(27% 0.033 256.848);
+    --color-base-content: oklch(96% 0.003 264.542);
+    --color-primary: oklch(87% 0.15 154.449);
+    --color-primary-content: oklch(26% 0.065 152.934);
+    --color-secondary: oklch(82% 0.111 230.318);
+    --color-secondary-content: oklch(29% 0.066 243.157);
+    --color-accent: oklch(80% 0.105 251.813);
+    --color-accent-content: oklch(28% 0.091 267.935);
+    --color-neutral: oklch(27% 0.033 256.848);
+    --color-neutral-content: oklch(98% 0.002 247.839);
+    --color-info: oklch(70% 0.165 254.624);
+    --color-info-content: oklch(28% 0.091 267.935);
+    --color-success: oklch(79% 0.209 151.711);
+    --color-success-content: oklch(26% 0.065 152.934);
+    --color-warning: oklch(75% 0.183 55.934);
+    --color-warning-content: oklch(26% 0.079 36.259);
+    --color-error: oklch(71% 0.194 13.428);
+    --color-error-content: oklch(27% 0.105 12.094);
+    --radius-selector: 0.25rem;
+    --radius-field: 0.5rem;
+    --radius-box: 0.25rem;
+    --size-selector: 0.28125rem;
+    --size-field: 0.21875rem;
+    --border: 0.5px;
+    --depth: 0;
+    --noise: 0;
 }
 
 
 @plugin "daisyui/theme" {
     name: "gourmet";
-    default: true;
+    default: false;
     prefersdark: false;
     color-scheme: "light";
     --color-base-100: oklch(98% 0.018 155.826);
@@ -89,44 +125,35 @@ input[type='number'] {
 }
 
 @layer base {
-    a, p {
-        /*color: var(--color-base-content);*/
-    }
-
     h1 {
-        @apply text-4xl font-bold;
-        color: var(--color-neutral);
+        @apply text-2xl font-bold;
     }
 
     h2 {
-        @apply text-3xl font-semibold;
-        color: var(--color-secondary);
+        @apply text-xl font-semibold;
     }
 
     h3 {
-        @apply text-2xl font-semibold;
-        color: var(--color-neutral);
+        @apply text-lg font-semibold;
     }
 
-    h4 {
-        @apply text-xl font-medium;
-        color: var(--color-neutral);
-    }
+    /*    h4 {
+            @apply text-md font-medium;
+            color: var(--color-neutral);
+        }
 
-    h5 {
-        @apply text-lg font-medium;
-        color: var(--color-neutral);
-    }
+        h5 {
+            @apply text-sm font-medium;
+            color: var(--color-neutral);
+        }
 
-    h6 {
-        @apply text-base font-medium;
-        color: var(--color-neutral);
-    }
-
-    input, textarea {
-        @apply text-base-content;
-    }
-
+        h6 {
+            @apply text-base font-medium;
+            color: var(--color-neutral);
+        }*/
+    /*input, textarea {*/
+    /*    @apply text-base-content;*/
+    /*}*/
     /*    .file-input {
             @apply input bg-base-content text-accent-content w-full rounded-sm;
         }

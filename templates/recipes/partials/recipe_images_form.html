@@ -21,7 +21,7 @@
 
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-    <div id="image-formset" class="grid grid-cols-5 gap-5 w-full">
+    <div id="image-formset" class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 w-full">
         {% for form in forms %}
             {% include "recipes/partials/image_form_row.html" with form=form form_index=forloop.counter0 %}
         {% endfor %}
@@ -32,7 +32,7 @@
     </div>
 
     <div id="upload-image"
-         class="btn btn-secondary w-fit"
+         class="btn btn-accent w-fit"
          hx-get="{% url 'add_image_form' %}"
          hx-target="#image-formset"
          hx-swap="beforeend"

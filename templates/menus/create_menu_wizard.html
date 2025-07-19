@@ -3,7 +3,7 @@
 
 {% block title %}
     {{ block.super }}
-    {% if wizard.form.instance %}
+    {% if wizard.form.instance.pk %}
         - {% translate 'Edit Menu' %}
     {% else %}
         - {% translate 'Add Menu' %}
@@ -20,11 +20,8 @@
     <div class="flex flex-col gap-10 w-full pb-10">
         <div class="flex flex-col gap-1 w-full">
             <h2 class="self-start flex gap-5 items-center w-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                     class="size-8 text-neutral drop-shadow-sm">
-                    <path d="M6 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H6ZM15.75 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3H18a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3h-2.25ZM6 12.75a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3v-2.25a3 3 0 0 0-3-3H6ZM17.625 13.5a.75.75 0 0 0-1.5 0v2.625H13.5a.75.75 0 0 0 0 1.5h2.625v2.625a.75.75 0 0 0 1.5 0v-2.625h2.625a.75.75 0 0 0 0-1.5h-2.625V13.5Z"></path>
-                </svg>
-                {% if wizard.form.instance %}
+                <c-add-menu-icon></c-add-menu-icon>
+                {% if wizard.form.instance.pk %}
                     {% translate 'Edit Menu' %}
                 {% else %}
                     {% translate 'Add Menu' %}
@@ -34,13 +31,13 @@
         </div>
 
         <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
-            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-full">
-                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-accent{% endif %}">
+            <ul class="steps steps-vertical step-secondary lg:steps-horizontal w-full">
+                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
                     <p>
                         Details
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-accent{% endif %}">
+                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
                     <p>
                         Courses & Recipes
                     </p>

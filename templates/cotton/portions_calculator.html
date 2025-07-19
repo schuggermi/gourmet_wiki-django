@@ -2,7 +2,7 @@
 
 <div class="print:hidden flex items-center gap-2 w-fit">
     <button
-            class="btn btn-neutral btn-outline"
+            class="btn btn-accent btn-outline"
             onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('portions');
@@ -21,11 +21,11 @@
         <c-input id="portions" name="portions" value="{{ portions_value }}" disabled
                  class="text-center max-w-12 font-bold underline"
                  labeled
-                 label="{% translate 'Pers.' %}"></c-input>
+                 label="{% translate 'Portions' %}"></c-input>
     </div>
 
     <button
-            class="btn btn-neutral btn-outline"
+            class="btn btn-accent btn-outline"
             onclick="
                                         event.preventDefault();
                                         const input = document.getElementById('portions');

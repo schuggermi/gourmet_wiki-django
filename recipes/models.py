@@ -154,7 +154,7 @@ class Recipe(models.Model):
     def get_thumbnail_image_dark(self):
         if self.images.exists():
             return self.images.first().image.url
-        return settings.STATIC_URL + 'images/placeholder_recipe-dark.png'
+        return settings.STATIC_URL + 'images/placeholder_recipe.png'
 
     @property
     def ordered_preparation_steps(self):

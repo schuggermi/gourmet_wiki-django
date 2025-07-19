@@ -66,95 +66,8 @@
     </div>
 
     <div class="grid grid-cols-2 gap-5">
-        <!-- Recipe Portions -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="size-6 text-secondary!">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
-                </svg>
-                {% translate 'Portions' %}
-            </p>
-            <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
-                <div class="labeled-number-input flex w-full">
-                    <c-number-action-input :field="form.portions"
-                                           no_errors>{% translate 'Persons' %}</c-number-action-input>
-                </div>
-            </div>
-        </div>
-
-        <!-- Working Time -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="size-6 text-secondary!">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                </svg>
-                {% translate 'Working Time' %}
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.working_time_hours" no_errors>
-                        <p>{{ form.working_time_hours.label }}</p></c-number-action-input>
-                </div>
-
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.working_time_minutes" no_errors>
-                        <p>{{ form.working_time_minutes.label }}</p></c-number-action-input>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cooking Time -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="size-6 text-secondary!">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                </svg>
-                {% translate 'Cooking Time' %}
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.cooking_time_hours" no_errors>
-                        <p>{{ form.cooking_time_hours.label }}</p></c-number-action-input>
-                </div>
-
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.cooking_time_minutes" no_errors>
-                        <p>{{ form.cooking_time_minutes.label }}</p></c-number-action-input>
-                </div>
-            </div>
-        </div>
-
-        <!-- Resting Time -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="size-6 text-secondary!">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                </svg>
-                {% translate 'Resting Time' %}
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.rest_time_hours" no_errors>
-                        <p>{{ form.rest_time_hours.label }}</p></c-number-action-input>
-                </div>
-
-                <div class="flex items-center gap-2 w-full">
-                    <c-number-action-input :field="form.rest_time_minutes" no_errors>
-                        <p>{{ form.rest_time_minutes.label }}</p></c-number-action-input>
-                </div>
-            </div>
-        </div>
-
         <!-- Recipe Is Published -->
-        <div class="flex flex-col gap-1 w-fit">
+        <div class="flex flex-col gap-1 w-full">
             <p class="flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                      class="size-6 text-secondary!">
@@ -173,6 +86,93 @@
                          check_value="True"
                          hx_on="change:document.getElementById('{{ form.is_published.id_for_label }}').value = 'True';"
                 ></c-input>
+            </div>
+        </div>
+
+        <!-- Recipe Portions -->
+        <div class="flex flex-col gap-1 w-full">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6 text-secondary!">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
+                </svg>
+                {% translate 'Portions' %}
+            </p>
+            <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.portions" no_errors label="{% translate 'Persons' %}">
+                    </c-number-action-input>
+                </div>
+            </div>
+        </div>
+
+        <!-- Working Time -->
+        <div class="flex flex-col gap-1 w-full">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6 text-secondary!">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                </svg>
+                {% translate 'Working Time' %}
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.working_time_hours" no_errors
+                                           label="{{ form.working_time_hours.label }}"></c-number-action-input>
+                </div>
+
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.working_time_minutes" no_errors
+                                           label="{{ form.working_time_minutes.label }}"></c-number-action-input>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cooking Time -->
+        <div class="flex flex-col gap-1 w-full">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6 text-secondary!">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                </svg>
+                {% translate 'Cooking Time' %}
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.cooking_time_hours" no_errors
+                                           label="{{ form.cooking_time_hours.label }}"></c-number-action-input>
+                </div>
+
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.cooking_time_minutes" no_errors
+                                           label="{{ form.cooking_time_minutes.label }}"></c-number-action-input>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resting Time -->
+        <div class="flex flex-col gap-1 w-full">
+            <p class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="size-6 text-secondary!">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                </svg>
+                {% translate 'Resting Time' %}
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.rest_time_hours" no_errors
+                                           label="{{ form.rest_time_hours.label }}"></c-number-action-input>
+                </div>
+
+                <div class="flex items-center gap-2 w-full">
+                    <c-number-action-input :field="form.rest_time_minutes" no_errors
+                                           label="{{ form.rest_time_minutes.label }}"></c-number-action-input>
+                </div>
             </div>
         </div>
     </div>

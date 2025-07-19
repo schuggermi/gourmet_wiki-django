@@ -8,7 +8,7 @@
     {{ form.DELETE.as_hidden }}
     {{ form.ORDER.as_hidden }}
 
-    <div class="formset-form-content flex gap-5 items-center w-full relative">
+    <div class="formset-form-content flex gap-5 w-fit items-center relative">
         <label for="{{ form.image.id_for_label }}" class="hidden">
             {{ form.image.label }}
         </label>
@@ -17,11 +17,11 @@
             {{ form.image }}
         </div>
 
-        <div class="preview group/preview relative w-full">
+        <div class="preview group/preview relative">
             <p class="step-label text-secondary font-bold text-sm absolute -top-5 -left-3 z-20">{{ form_index|add:"1" }}.</p>
 
-            <div class="preview-image w-full h-24 rounded-md bg-contain bg-center bg-no-repeat"
-                 style="background-image: {% if form.instance.pk %}url('{{ form.instance.image.url }}'){% else %}none{% endif %}; aspect-ratio: 16/9; object-fit: contain;"></div>
+            <div class="h-24 w-24 aspect-square preview-image rounded-md bg-cover bg-center bg-no-repeat"
+                 style="background-image: {% if form.instance.pk %}url('{{ form.instance.image.url }}'){% else %}none{% endif %};"></div>
 
             <p class="absolute -bottom-2 -right-2 hover:scale-105 p-1 remove-image cursor-pointer self-center btn btn-error rounded-full h-6 w-6"
                title="{% translate 'Remove this Image' %}"

@@ -2,37 +2,30 @@
 
 <img class="w-42 hidden print:block" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
      alt="Logo Landscape - Gourmet Wiki">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 w-full mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 w-full mx-auto">
     <!-- Image Carousel -->
     <div class="carousel carousel-start w-full aspect-video rounded-sm print:hidden">
         {% with images=recipe.images.all %}
             {% for image in images %}
                 <div id="{{ image.image.name }}"
-                     class="carousel-item relative w-full bg-cover bg-center bg-no-repeat rounded-sm"
+                     class="carousel-item relative w-full bg-cover bg-center bg-no-repeat"
                      style="background-image: url('{{ image.image.url }}');"
                 >
                 </div>
             {% endfor %}
             {% if not recipe.images.all %}
                 <div id="placeholder"
-                     class="dark:hidden carousel-item relative w-full bg-cover bg-center bg-no-repeat rounded-sm"
+                     class="carousel-item relative w-full bg-contain bg-center bg-no-repeat rounded-md"
                      style="background-image: url('{{ recipe.get_thumbnail_image }}');"
-                >
-                </div>
-                <div id="placeholder"
-                     class="not-dark:hidden carousel-item relative w-full bg-cover bg-center bg-no-repeat rounded-sm"
-                     style="background-image: url('{{ recipe.get_thumbnail_image_dark }}');"
                 >
                 </div>
             {% endif %}
         {% endwith %}
     </div>
 
-    <img src="
-
-            {% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
+    <img src="{% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
          alt="{{ recipe.images.first.caption }}"
-         class="hidden print:block w-full aspect-video rounded-sm shadow-lg object-cover"/>
+         class="hidden print:block w-full aspect-video rounded-md shadow-md object-contain"/>
 
     <!-- Recipe Details -->
     <div class="flex flex-col gap-5 justify-between">
@@ -148,10 +141,10 @@
 
     <!-- Recipe Ingredients -->
     <div class="flex flex-col gap-5 justify-start w-full">
-        <div class="flex flex-col gap-5 md:flex-row md:justify-between md:items-center w-full">
-            <h3>{% translate 'Ingredients' %}</h3>
+        <div class="flex flex-col gap-5 md:flex-row-reverse md:justify-between md:items-center w-full">
             <c-portions-calculator :recipe="recipe" portions_value="{{ recipe.portions }}"
                                    hx_target="#ingredients"></c-portions-calculator>
+            <h3>{% translate 'Ingredients' %}</h3>
         </div>
 
         {% include 'recipes/partials/recipe_ingredients_list.html' with ingredients=recipe.ingredients.all %}
