@@ -4,8 +4,8 @@
   "description": "",
   "main": "vite.config.mjs",
   "scripts": {
-    "dev": "npx vite",
-    "build": "npx vite build"
+    "dev": "vite",
+    "build": "vite build"
   },
   "private": true,
   "devDependencies": {
