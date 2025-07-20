@@ -8,7 +8,7 @@ services:
 
   backend:
     build: ./app
-    command: gunicorn gourmet_wiki.wsgi:application --bind 0.0.0.0:8000 && npm run build
+    command: gunicorn gourmet_wiki.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/app
       - static_volume:/app/staticfiles
