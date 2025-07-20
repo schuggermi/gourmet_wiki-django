@@ -23,8 +23,11 @@ ENV PATH="/usr/local/bin:$PATH"
 ENV SECRET_KEY "Zj4WG8b2pVCmKHhaJNtLhobfbGTEEBaxuc1Vv4wneEnRpDiv1R"
 ENV DEBUG "False"
 
-# Install Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    ca-certificates && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm install
