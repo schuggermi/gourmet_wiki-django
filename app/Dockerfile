@@ -27,6 +27,7 @@ ENV DEBUG "False"
 RUN apt-get update && apt-get install -y nodejs npm
 
 # Build Vite assets
-RUN npm install
+RUN npm install && npm run build
 
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput && python manage.py makemigrations --noinput &&  \
+    python manage.py migrate --noinput
