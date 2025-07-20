@@ -6,17 +6,17 @@ FROM python:${PYTHON_VERSION}
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir -p /code
+RUN mkdir -p /app
 
-WORKDIR /code
+WORKDIR /app
 
-COPY requirements.txt /code
+COPY requirements.txt /app
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir uv && \
     /usr/local/bin/uv pip install --system -r requirements.txt
 
-COPY . /code
+COPY . /app
 
 ENV PATH="/usr/local/bin:$PATH"
 
