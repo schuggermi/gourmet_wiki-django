@@ -27,19 +27,19 @@
                     {% translate 'Add Menu' %}
                 {% endif %}
             </h2>
-            <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
+            <c-go-back></c-go-back>
         </div>
 
         <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
             <ul class="steps steps-vertical step-secondary lg:steps-horizontal w-full">
                 <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
                     <p>
-                        Details
+                        {% translate 'Details' %}
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
                     <p>
-                        Courses & Recipes
+                        {% translate 'Courses & Recipes' %}
                     </p>
                 </li>
             </ul>
@@ -65,7 +65,7 @@
                 {% if wizard.steps.current == '0' %}
                     {% include "menus/partials/menu_form.html" with form=wizard.form %}
                 {% elif wizard.steps.current == '1' %}
-                    <h3 class="text-xl font-bold">{% translate 'Menu Courses & Recipes' %}</h3>
+                    <h3 class="text-xl font-bold">{% translate 'Courses & Recipes' %}</h3>
                     <p class="text-sm text-base-content/70">{% translate 'Add the courses and select recipes for your menu.' %}</p>
                     {% include "menus/partials/menu_course_form.html" with forms=wizard.form.forms %}
                 {% endif %}

@@ -17,8 +17,7 @@
         <div class="w-full flex justify-between items-start">
             <div class="flex flex-col gap-1">
                 <h2>Menu: {{ menu.name }}</h2>
-                <c-a animated reverted visible_animation url="javascript:history.back();" class="print:hidden">Go back
-                </c-a>
+                <c-go-back></c-go-back>
             </div>
             <button onclick="printElement('print-area')" class="cursor-pointer print:hidden hidden md:block">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"

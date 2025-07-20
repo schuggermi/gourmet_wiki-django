@@ -26,29 +26,29 @@
                     {% translate 'Add Recipe' %}
                 {% endif %}
             </h2>
-            <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
+            <c-go-back></c-go-back>
         </div>
 
         <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
             <ul class="steps steps-vertical step-secondary lg:steps-horizontal w-full">
                 <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
                     <p>
-                        Details
+                        {% translate 'Details' %}
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
                     <p>
-                        Ingredients
+                        {% translate 'Ingredients' %}
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}">
                     <p>
-                        Preparation Steps
+                        {% translate 'Preparation Steps' %}
                     </p>
                 </li>
                 <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-secondary{% endif %}">
                     <p>
-                        Images
+                        {% translate 'Images' %}
                     </p>
                 </li>
             </ul>

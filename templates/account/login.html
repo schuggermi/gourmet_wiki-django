@@ -52,7 +52,7 @@
             {% endif %}
 
             <div class="text-center flex flex-col gap-1 items-center">
-                <p>You don't have an account at Gourmet-Wiki yet?</p>
+                <p>{% translate "You don't have an account at Gourmet-Wiki yet?" %}</p>
                 <c-a animated url="{% url 'account_signup' %}"
                      class="underline">{% translate 'Sign Up Now' %}</c-a>
             </div>

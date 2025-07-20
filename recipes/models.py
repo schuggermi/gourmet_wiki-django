@@ -5,8 +5,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Avg
-from django.utils.translation.trans_null import gettext_lazy as _
-
+from django.utils.translation import gettext_lazy as _
 from ingredients.models import Ingredient
 from recipes.services.cost_calculator import calculate_recipe_cost
 
@@ -41,10 +40,10 @@ class CourseTypeChoice(models.TextChoices):
 
 
 class SkillLevelChoice(models.TextChoices):
-    BEGINNER = _('Beginner')
-    INTERMEDIATE = _('Intermediate')
-    ADVANCED = _('Advanced')
-    PROFESSIONAL = _('Professional')
+    BEGINNER = 'beginner', _('Beginner')
+    INTERMEDIATE = 'intermediate', _('Intermediate')
+    ADVANCED = 'advanced', _('Advanced')
+    PROFESSIONAL = 'professional', _('Professional')
 
 
 class Recipe(models.Model):

@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
 
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 
@@ -20,7 +22,7 @@ class RecipeForm(forms.ModelForm):
         ]  # thumbnail_image
         widgets = {
             'name': forms.TextInput(attrs={
-                'placeholder': 'Name your creation (e.g. Spicy Thai Basil Chicken)',
+                'placeholder': _("Name your creation (e.g. Spicy Thai Basil Chicken)"),
                 'maxlength': Recipe._meta.get_field('name').max_length,
             }),
             'is_published': forms.CheckboxInput(attrs={}),
@@ -29,7 +31,7 @@ class RecipeForm(forms.ModelForm):
                 'cols': 20,
                 'wrap': 'soft',
                 'resize': False,
-                'placeholder': 'e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili.',
+                'placeholder': _("e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili."),
                 'maxlength': Recipe._meta.get_field('description').max_length,
             }),
             # 'thumbnail_image': forms.FileInput(attrs={
@@ -37,7 +39,7 @@ class RecipeForm(forms.ModelForm):
             #     'accept': 'image/*'
             # }),
             'skill_level': forms.Select(attrs={
-                'placeholder': 'Choose a Skill Level'
+                'placeholder': _("Choose a Skill Level")
             }),
             'portions': forms.NumberInput(attrs={
                 'min': 1,
@@ -76,7 +78,7 @@ class RecipePreparationStepForm(forms.ModelForm):
         fields = ['step_text']
         widgets = {
             'step_text': forms.TextInput(attrs={
-                'placeholder': 'e.g. Heat 2 tbsp of oil in a wok over medium-high heat.'
+                'placeholder': _("e.g. Heat 2 tbsp of oil in a wok over medium-high heat.")
             }),
         }
 

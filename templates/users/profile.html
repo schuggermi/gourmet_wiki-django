@@ -3,15 +3,13 @@
 
 {% block title %}
     {{ block.super }}
-    - Your Profile
+    - {% translate 'Your Profile' %}
 {% endblock %}
 
 {% block main_content %}
     <div class="self-start flex flex-col gap-1">
-        <h2>
-            Your Profile <br>
-        </h2>
-        <c-a animated reverted visible_animation url="javascript:history.back();">Go back</c-a>
+        <h2>{% translate 'Your Profile' %}</h2>
+        <c-go-back></c-go-back>
     </div>
 
 
@@ -30,7 +28,7 @@
                     <div class="flex flex-col">
                         <p class="break-all wrap-break-word">{{ object.user.email }}</p>
                         <c-a url="{% url 'account_email' %}" class="text-accent font-light hover:underline" animated>
-                            Change Your Email
+                            {% translate 'Change Your Email' %}
                         </c-a>
                     </div>
                     <p class="break-all wrap-break-word"><b>{% translate 'Member since' %}:</b>
@@ -43,14 +41,14 @@
             <a href="{% url 'recipe-create' %}" class="h-20 w-full btn btn-neutral">
                 <p class="flex gap-5 items-center">
                     <c-add-recipe-icon></c-add-recipe-icon>
-                    Add Recipe
+                    {% translate 'Add Recipe' %}
                 </p>
             </a>
 
             <a href="{% url 'menu_create' %}" class="h-20 w-full btn btn-neutral">
                 <p class="flex gap-5 items-center">
                     <c-add-menu-icon></c-add-menu-icon>
-                    Add Menu
+                    {% translate 'Add Menu' %}
                 </p>
             </a>
 
@@ -58,9 +56,9 @@
                 <div class="flex gap-5 items-start">
                     <c-cookbook-icon></c-cookbook-icon>
                     <div class="flex flex-col">
-                        Cookbook
+                        {% translate 'Cookbook' %}
                         <small>
-                            <span class="text-info">{{ object.user.recipe_set.all|length }} Recipes</span>
+                            <span class="text-info">{{ object.user.recipe_set.all|length }} {% translate 'Recipes' %}</span>
                         </small>
                     </div>
                 </div>
@@ -70,9 +68,9 @@
                 <div class="flex gap-5 items-start">
                     <c-favorites-icon></c-favorites-icon>
                     <div class="flex flex-col">
-                        Favorites
+                        {% translate 'Favorites' %}
                         <small>
-                            <span class="text-info">{{ object.user.favorite_recipes.all|length }} Recipes</span>
+                            <span class="text-info">{{ object.user.favorite_recipes.all|length }} {% translate 'Recipes' %}</span>
                         </small>
                     </div>
                 </div>

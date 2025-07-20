@@ -1,0 +1,640 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-20 08:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: recipes/forms.py:25
+msgid "Name your creation (e.g. Spicy Thai Basil Chicken)"
+msgstr "Benenne deine Kreation (z.B. Würziges Thai-Basilikum-Hähnchen)"
+
+#: recipes/forms.py:34
+msgid "e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili."
+msgstr ""
+"z.B. Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
+
+#: recipes/forms.py:42
+#, fuzzy
+#| msgid "Skill Level"
+msgid "Choose a Skill Level"
+msgstr "Schwierigkeitsgrad"
+
+#: recipes/forms.py:81
+msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
+msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
+
+#: recipes/models.py:16
+msgid "piece"
+msgstr "Stück"
+
+#: recipes/models.py:17
+msgid "g"
+msgstr "g"
+
+#: recipes/models.py:18
+msgid "kg"
+msgstr "kg"
+
+#: recipes/models.py:19
+msgid "l"
+msgstr "l"
+
+#: recipes/models.py:20
+msgid "ml"
+msgstr "ml"
+
+#: recipes/models.py:21
+msgid "oz"
+msgstr "oz"
+
+#: recipes/models.py:22
+msgid "sp"
+msgstr "EL"
+
+#: recipes/models.py:23
+msgid "tes"
+msgstr "TL"
+
+#: recipes/models.py:27
+msgid "Amuse-bouche"
+msgstr "Amuse-Bouche"
+
+#: recipes/models.py:28
+msgid "Hors d'œuvre"
+msgstr "Vorspeise"
+
+#: recipes/models.py:29
+msgid "Potage"
+msgstr "Suppe"
+
+#: recipes/models.py:30
+msgid "Poisson"
+msgstr "Fischgericht"
+
+#: recipes/models.py:31
+msgid "Entrée"
+msgstr "Zwischengericht"
+
+#: recipes/models.py:32
+msgid "Plat de Résistance"
+msgstr "Hauptgericht"
+
+#: recipes/models.py:33
+msgid "Sorbet"
+msgstr "Sorbet"
+
+#: recipes/models.py:34
+msgid "Rôti"
+msgstr "Braten"
+
+#: recipes/models.py:35
+msgid "Légumes"
+msgstr "Gemüse"
+
+#: recipes/models.py:36
+msgid "Salade"
+msgstr "Salat"
+
+#: recipes/models.py:37
+msgid "Fromage"
+msgstr "Käse"
+
+#: recipes/models.py:38
+msgid "Dessert"
+msgstr "Dessert"
+
+#: recipes/models.py:39
+msgid "Digestif"
+msgstr "Digestif"
+
+#: recipes/models.py:43
+msgid "Beginner"
+msgstr "Anfänger"
+
+#: recipes/models.py:44
+msgid "Intermediate"
+msgstr "Fortgeschritten"
+
+#: recipes/models.py:45
+msgid "Advanced"
+msgstr "Erfahren"
+
+#: recipes/models.py:46
+msgid "Professional"
+msgstr "Profi"
+
+#: recipes/models.py:75 recipes/models.py:91 recipes/models.py:107
+msgid "Hours"
+msgstr "Stunden"
+
+#: recipes/models.py:83 recipes/models.py:99 recipes/models.py:115
+msgid "Minutes"
+msgstr "Minuten"
+
+#: recipes/models.py:132
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:10
+msgid "Confirm Email Address"
+msgstr "E-Mail-Adresse bestätigen"
+
+#: templates/account/email_confirm.html:22
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"addressfor user %(user_display)s."
+msgstr ""
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> die E-"
+"Mail-Adresse von %(user_display)s ist."
+
+#: templates/account/email_confirm.html:25
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: templates/account/email_confirm.html:29
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different "
+"account."
+msgstr ""
+"%(email)s kann nicht bestätigt werden, da sie bereits von einem anderen "
+"Konto bestätigt wurde."
+
+#: templates/account/email_confirm.html:34
+msgid "This email confirmation link expired or is invalid."
+msgstr "Dieser Bestätigungslink ist abgelaufen oder ungültig."
+
+#: templates/account/email_confirm.html:36
+msgid "Issue a new email confirmation request"
+msgstr "Neue E-Mail-Bestätigungsanfrage senden"
+
+#: templates/account/email_confirm.html:45
+#: templates/account/password_reset.html:44
+#: templates/account/password_reset_done.html:20
+#: templates/account/password_reset_from_key.html:24
+#: templates/account/password_reset_from_key_done.html:30
+#: templates/account/verification_sent.html:19
+#: templates/users/user_confirm_delete.html:65
+msgid "Support"
+msgstr "Support"
+
+#: templates/account/login.html:6 templates/account/login.html:10
+msgid "Log In Now"
+msgstr "Jetzt anmelden"
+
+#: templates/account/login.html:39
+msgid "Forgot your password?"
+msgstr "Passwort vergessen?"
+
+#: templates/account/login.html:45
+#: templates/account/password_reset_from_key.html:6
+#: templates/socialaccount/login.html:6
+msgid "Sign In"
+msgstr "Anmelden"
+
+#: templates/account/login.html:55
+msgid "You don't have an account at Gourmet-Wiki yet?"
+msgstr "Du hast noch kein Konto bei Gourmet-Wiki?"
+
+#: templates/account/login.html:57 templates/account/signup.html:6
+#: templates/account/signup.html:10
+msgid "Sign Up Now"
+msgstr "Jetzt registrieren"
+
+#: templates/account/login.html:66 templates/account/signup.html:75
+msgid "Sign in with a passkey"
+msgstr "Mit Passkey anmelden"
+
+#: templates/account/login.html:71 templates/account/signup.html:80
+msgid "Send me a sign-in code"
+msgstr "Sende mir einen Anmeldecode"
+
+#: templates/account/password_reset.html:6
+#: templates/account/password_reset.html:10
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:10
+msgid "Password Reset"
+msgstr "Passwort zurücksetzen"
+
+#: templates/account/password_reset.html:21
+msgid "Enter your email to receive a password reset link."
+msgstr ""
+"Gib deine E-Mail-Adresse ein, um einen Link zum Zurücksetzen des Passworts "
+"zu erhalten."
+
+#: templates/account/password_reset.html:36
+msgid "Reset My Password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/account/password_reset_done.html:15
+#: templates/account/verification_sent.html:16
+msgid "We’ve emailed you. Didn’t get it? Check spam or contact us."
+msgstr ""
+"Wir haben dir eine E-Mail geschickt. Nicht erhalten? Schau im Spam-Ordner "
+"nach oder kontaktiere uns."
+
+#: templates/account/password_reset_from_key.html:11
+#: templates/account/password_reset_from_key_done.html:12
+msgid "Bad Token"
+msgstr "Ungültiges Token"
+
+#: templates/account/password_reset_from_key.html:13
+#: templates/account/password_reset_from_key_done.html:6
+#: templates/account/password_reset_from_key_done.html:14
+#: templates/users/profile.html:82
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: templates/account/password_reset_from_key.html:19
+#: templates/account/password_reset_from_key_done.html:24
+msgid "Your password is now changed."
+msgstr "Dein Passwort wurde erfolgreich geändert."
+
+#: templates/account/signup.html:54
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: templates/account/signup.html:66 templates/errors/403.html:28
+#: templates/partials/navbar.html:71
+msgid "Log In"
+msgstr "Anmelden"
+
+#: templates/account/verification_sent.html:6
+#: templates/account/verification_sent.html:10
+msgid "Verify Your Email Address"
+msgstr "Bestätige deine E-Mail-Adresse"
+
+#: templates/cotton/dock.html:7 templates/cotton/quick_actions.html:4
+#: templates/users/profile.html:59 templates/users/recipe_list.html:6
+#: templates/users/recipe_list.html:16
+msgid "Cookbook"
+msgstr "Kochbuch"
+
+#: templates/cotton/dock.html:13 templates/cotton/quick_actions.html:8
+#: templates/users/favorite_recipe_list.html:16 templates/users/profile.html:71
+msgid "Favorites"
+msgstr "Favoriten"
+
+#: templates/cotton/dock.html:19 templates/cotton/quick_actions.html:13
+#: templates/recipes/create_recipe_wizard.html:9
+#: templates/recipes/create_recipe_wizard.html:26
+#: templates/users/profile.html:44 templates/users/recipe_list.html:27
+#: templates/users/recipe_list.html:34
+msgid "Add Recipe"
+msgstr "Rezept hinzufügen"
+
+#: templates/cotton/dock.html:25 templates/cotton/quick_actions.html:18
+#: templates/menus/create_menu_wizard.html:9
+#: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:51
+msgid "Add Menu"
+msgstr "Menü hinzufügen"
+
+#: templates/cotton/go_back.html:3 templates/partials/go_back.html:10
+msgid "Go back"
+msgstr "Zurück"
+
+#: templates/cotton/portions_calculator.html:24
+#: templates/menus/partials/menu_form.html:24
+#: templates/recipes/partials/recipe_details_form.html:100
+msgid "Portions"
+msgstr "Portionen"
+
+#: templates/cotton/portions_calculator_menu.html:24
+msgid "Pers."
+msgstr "Pers."
+
+#: templates/errors/403.html:4 templates/errors/403.html:8
+#: templates/errors/403.html:11
+msgid "Access Denied - Gourmet Wiki"
+msgstr "Zugriff verweigert – Gourmet Wiki"
+
+#: templates/errors/403.html:6 templates/errors/403.html:9
+#: templates/errors/403.html:12
+msgid "You don't have permission to access this page on Gourmet Wiki."
+msgstr ""
+"Du hast keine Berechtigung, auf diese Seite von Gourmet Wiki zuzugreifen."
+
+#: templates/errors/403.html:16
+msgid "403 - Access Denied"
+msgstr "403 – Zugriff verweigert"
+
+#: templates/errors/403.html:17
+msgid "Sorry, you don't have permission to access this page."
+msgstr "Leider hast du keine Berechtigung, diese Seite zu öffnen."
+
+#: templates/errors/403.html:21
+msgid "Log in with a different account"
+msgstr "Mit einem anderen Konto anmelden"
+
+#: templates/errors/403.html:22
+msgid "Contact the site administrator if you believe this is an error"
+msgstr ""
+"Kontaktiere den Administrator, wenn du glaubst, dass es sich um einen Fehler "
+"handelt"
+
+#: templates/errors/403.html:23
+msgid "Return to our homepage"
+msgstr "Zurück zur Startseite"
+
+#: templates/errors/403.html:27
+msgid "Return to Homepage"
+msgstr "Zur Startseite"
+
+#: templates/menus/create_menu_wizard.html:7
+#: templates/menus/create_menu_wizard.html:25
+msgid "Edit Menu"
+msgstr "Menü bearbeiten"
+
+#: templates/menus/create_menu_wizard.html:37
+#: templates/recipes/create_recipe_wizard.html:36
+msgid "Details"
+msgstr "Details"
+
+#: templates/menus/create_menu_wizard.html:42
+#: templates/menus/create_menu_wizard.html:68
+#, fuzzy
+#| msgid "Menu Courses & Recipes"
+msgid "Courses & Recipes"
+msgstr "Gänge & Rezepte"
+
+#: templates/menus/create_menu_wizard.html:69
+msgid "Add the courses and select recipes for your menu."
+msgstr "Füge Gänge hinzu und wähle Rezepte für dein Menü aus."
+
+#: templates/menus/create_menu_wizard.html:90
+msgid "Create Menu"
+msgstr "Menü erstellen"
+
+#: templates/menus/create_menu_wizard.html:92
+#: templates/recipes/create_recipe_wizard.html:101
+msgid "Next"
+msgstr "Weiter"
+
+#: templates/menus/menu_detail.html:46
+msgid "Total Time"
+msgstr "Gesamtzeit"
+
+#: templates/menus/menu_detail.html:62
+msgid "Select Course:"
+msgstr "Gang auswählen:"
+
+#: templates/menus/menu_list.html:6 templates/menus/menu_list.html:15
+msgid "Search in Menus"
+msgstr "In Menüs suchen"
+
+#: templates/menus/menu_list.html:21
+msgid "Search menus..."
+msgstr "Menüs durchsuchen..."
+
+#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:23
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/menus/partials/menu_course_form.html:19
+msgid "+ Add Course"
+msgstr "+ Gang hinzufügen"
+
+#: templates/menus/partials/menu_course_form_row.html:27
+msgid "Remove this Course"
+msgstr "Diesen Gang entfernen"
+
+#: templates/menus/partials/menu_item_form.html:19
+msgid "+ Add Menu Item"
+msgstr "+ Menüpunkt hinzufügen"
+
+#: templates/menus/partials/menu_item_form_row.html:16
+msgid "Remove this Menu Item"
+msgstr "Diesen Menüpunkt entfernen"
+
+#: templates/menus/partials/menu_list.html:5
+msgid "We don’t have any Menus listed yet."
+msgstr "Es sind noch keine Menüs vorhanden."
+
+#: templates/menus/partials/recipe_detail.html:43
+#: templates/recipes/partials/recipe_detail.html:39
+msgid "No description for this recipe."
+msgstr "Keine Beschreibung für dieses Rezept."
+
+#: templates/menus/partials/recipe_detail.html:82
+#: templates/recipes/partials/recipe_detail.html:78
+msgid "Total"
+msgstr "Gesamt"
+
+#: templates/menus/partials/recipe_detail.html:98
+#: templates/recipes/partials/recipe_detail.html:94
+msgid "Cooking"
+msgstr "Kochzeit"
+
+#: templates/menus/partials/recipe_detail.html:114
+#: templates/recipes/partials/recipe_detail.html:110
+msgid "Working"
+msgstr "Arbeitszeit"
+
+#: templates/menus/partials/recipe_detail.html:130
+#: templates/recipes/partials/recipe_detail.html:126
+msgid "Resting"
+msgstr "Ruhezeit"
+
+#: templates/menus/partials/recipe_detail.html:152
+#: templates/recipes/create_recipe_wizard.html:41
+#: templates/recipes/partials/recipe_detail.html:147
+msgid "Ingredients"
+msgstr "Zutaten"
+
+#: templates/menus/partials/recipe_detail.html:162
+#: templates/recipes/create_recipe_wizard.html:46
+#: templates/recipes/partials/recipe_detail.html:155
+msgid "Preparation Steps"
+msgstr "Zubereitungsschritte"
+
+#: templates/menus/partials/recipe_detail.html:167
+#: templates/recipes/partials/recipe_detail.html:160
+msgid "Preparation Step"
+msgstr "Zubereitungsschritt"
+
+#: templates/pages/home.html:7
+msgid "Daily Highlights"
+msgstr "Tägliche Highlights"
+
+#: templates/partials/navbar.html:18 templates/partials/navbar.html:82
+msgid "All Recipes"
+msgstr "Alle Rezepte"
+
+#: templates/partials/navbar.html:24 templates/partials/navbar.html:87
+msgid "All Menus"
+msgstr "Alle Menüs"
+
+#: templates/partials/navbar.html:49 templates/users/profile.html:6
+#: templates/users/profile.html:11
+msgid "Your Profile"
+msgstr "Dein Profil"
+
+#: templates/partials/navbar.html:56
+msgid "Logout"
+msgstr ""
+
+#: templates/partials/navbar.html:61
+msgid "Login"
+msgstr ""
+
+#: templates/partials/navbar.html:64
+#, fuzzy
+#| msgid "Sign Up"
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: templates/recipes/create_recipe_wizard.html:7
+#: templates/recipes/create_recipe_wizard.html:23
+msgid "Edit Recipe"
+msgstr "Rezept bearbeiten"
+
+#: templates/recipes/create_recipe_wizard.html:51
+#, fuzzy
+#| msgid "Images"
+msgid "Images"
+msgstr "Bilder"
+
+#: templates/recipes/create_recipe_wizard.html:99
+msgid "Create Recipe"
+msgstr "Rezept erstellen"
+
+#: templates/recipes/partials/favorite_button.html:12
+msgid "Add to favorites"
+msgstr "Zu Favoriten hinzufügen"
+
+#: templates/recipes/partials/image_form_row.html:27
+msgid "Remove this Image"
+msgstr "Dieses Bild entfernen"
+
+#: templates/recipes/partials/ingredient_form_row.html:26
+msgid "Remove this Ingredient"
+msgstr "Diese Zutat entfernen"
+
+#: templates/recipes/partials/preparation_step_form_row.html:20
+msgid "Remove this Preparation Step"
+msgstr "Diesen Zubereitungsschritt entfernen"
+
+#: templates/recipes/partials/recipe_details_form.html:29
+msgid "Skill Level"
+msgstr "Schwierigkeitsgrad"
+
+#: templates/recipes/partials/recipe_details_form.html:104
+msgid "Persons"
+msgstr "Personen"
+
+#: templates/recipes/partials/recipe_details_form.html:118
+msgid "Working Time"
+msgstr "Arbeitszeit"
+
+#: templates/recipes/partials/recipe_details_form.html:141
+msgid "Cooking Time"
+msgstr "Kochzeit"
+
+#: templates/recipes/partials/recipe_details_form.html:164
+msgid "Resting Time"
+msgstr "Ruhezeit"
+
+#: templates/recipes/partials/recipe_images_form.html:30
+msgid "No Images uploaded yet."
+msgstr "Noch keine Bilder hochgeladen."
+
+#: templates/recipes/partials/recipe_images_form.html:46
+msgid "Upload Image (max. 10 files)"
+msgstr "Bild hochladen (max. 10 Dateien)"
+
+#: templates/recipes/partials/recipe_list.html:5
+msgid "We don't have any Recipes listed yet."
+msgstr "Es sind noch keine Rezepte vorhanden."
+
+#: templates/recipes/partials/recipe_preparation_step_form.html:21
+msgid "+ Add Preparation Step"
+msgstr "+ Zubereitungsschritt hinzufügen"
+
+#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
+#: templates/users/favorite_recipe_list.html:25
+#: templates/users/favorite_recipe_list.html:28
+msgid "Search in Recipes"
+msgstr "In Rezepten suchen"
+
+#: templates/recipes/recipe_list.html:21
+msgid "Search recipes..."
+msgstr "Rezepte durchsuchen..."
+
+#: templates/socialaccount/login.html:10
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr "Anmelden über %(provider)s"
+
+#: templates/socialaccount/login.html:17
+#, python-format
+msgid "You are about to sign in using a third-party account from %(provider)s."
+msgstr "Du wirst dich mit einem Drittanbieter-Konto von %(provider)s anmelden."
+
+#: templates/socialaccount/login.html:20
+msgid "Continue"
+msgstr "Weiter"
+
+#: templates/socialaccount/snippets/login.html:7
+msgid "Or use a Third-Party"
+msgstr "Oder Drittanbieter verwenden"
+
+#: templates/users/favorite_recipe_list.html:24
+msgid "You don't have any Favorites added yet."
+msgstr "Du hast noch keine Favoriten hinzugefügt."
+
+#: templates/users/profile.html:31
+msgid "Change Your Email"
+msgstr "E-Mail-Adresse ändern"
+
+#: templates/users/profile.html:34
+msgid "Member since"
+msgstr "Mitglied seit"
+
+#: templates/users/profile.html:61 templates/users/profile.html:73
+msgid "Recipes"
+msgstr "Rezepte"
+
+#: templates/users/profile.html:83
+msgid "Delete Account"
+msgstr "Konto löschen"
+
+#: templates/users/recipe_list.html:24
+msgid "You don't have any Recipes added yet."
+msgstr "Du hast noch keine Rezepte hinzugefügt."
+
+#: templates/users/user_confirm_delete.html:6
+#: templates/users/user_confirm_delete.html:11
+#: templates/users/user_confirm_delete.html:55
+msgid "Delete Your Account"
+msgstr "Dein Konto löschen"
+
+#: templates/users/user_confirm_delete.html:21
+msgid "Try Again"
+msgstr "Erneut versuchen"
+
+#: templates/users/user_confirm_delete.html:29
+msgid ""
+"Are you sure you want to delete your account? This action cannot be undone."
+msgstr ""
+"Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig "
+"gemacht werden."
+
+#: templates/users/user_confirm_delete.html:31
+msgid "Cancel"
+msgstr "Abbrechen"

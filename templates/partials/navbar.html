@@ -45,29 +45,29 @@
                             <c-a url="{% url 'users-profile' %}"
                                  class="flex gap-5 items-center">
                                 <c-profile-icon size="size-4"></c-profile-icon>
-                                Your Profile
+                                {% translate 'Your Profile' %}
                             </c-a>
                         </li>
                         <li class="w-full">
                             <c-a url="{% url 'account_logout' %}"
                                  class="flex gap-5 items-center">
                                 <c-logout-icon size="size-4"></c-logout-icon>
-                                Logout
+                                {% translate 'Logout' %}
                             </c-a>
                         </li>
                     {% else %}
                         <li class="hover:bg-primary">
-                            <c-a animated url="{% url 'account_login' %}">Login</c-a>
+                            <c-a animated url="{% url 'account_login' %}">{% translate 'Login' %}</c-a>
                         </li>
                         <li class="hover:bg-primary">
-                            <c-a animated url="{% url 'account_signup' %}">Sign up</c-a>
+                            <c-a animated url="{% url 'account_signup' %}">{% translate 'Sign up' %}</c-a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
         {% else %}
             <ul class="p-2 w-fit rounded-lg">
-                <li>{% include "partials/go_to.html" with url_name="account_login" text="Login" color="text-base-content" %}</li>
+                <li><c-a url="{% url 'account_login' %}">{% translate 'Log In' %}</c-a></li>
             </ul>
         {% endif %}
         <div class="dropdown dropdown-end w-max lg:hidden">

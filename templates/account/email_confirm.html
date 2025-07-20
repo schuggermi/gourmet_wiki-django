@@ -19,23 +19,14 @@
                 <form action="{{ action_url }}" method="post" class="flex flex-col gap-5 w-full text-center">
                     {% csrf_token %}
 
-                    <p>
-                        {% blocktrans with confirmation.email_address.email as email %}
-                            Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address
-                            for user {{ user_display }}.
-                        {% endblocktrans %}
-                    </p>
+                    <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email addressfor user {{ user_display }}.{% endblocktrans %}</p>
 
                     <button type="submit" class="btn btn-primary w-full">
                         {% trans "Confirm" %}
                     </button>
                 </form>
             {% else %}
-                <p class="text-error">
-                    {% blocktrans %}
-                        Unable to confirm {{ email }} because it is already confirmed by a different account.
-                    {% endblocktrans %}
-                </p>
+                <p class="text-error">{% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}</p>
             {% endif %}
         {% else %}
             <div class="flex flex-col gap-2 justify-center items-center">
