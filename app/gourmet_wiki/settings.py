@@ -260,7 +260,7 @@ LOGGING = {
     },
 }
 
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', ['http://localhost:5173', 'http://localhost:8000']).split(' ')
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5173 http://localhost:8000').split(' ')
 
 CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "http://localhost:5173")
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "http://localhost:5173")
