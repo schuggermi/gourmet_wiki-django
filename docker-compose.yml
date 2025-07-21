@@ -31,7 +31,7 @@ services:
       - static_volume:/app/staticfiles
       - assets_volume:/app/assets
       - media_volume:/app/media
-      - certbot-webroot:/var/www/certbot
+      - /home/deployer/certbot-webroot:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
