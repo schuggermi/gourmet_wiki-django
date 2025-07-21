@@ -6,20 +6,19 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Cloud
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to Hetzner
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Deploy to Hetzner server
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: 22
           script: |
             cd /home/deployer/gourmet_wiki-django
             git pull origin master
             docker-compose down
             docker-compose build
             docker-compose up -d
-
