@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show SSH key length
+        run: echo "${{ secrets.SSH_KEY }}" | wc -l
+
       - name: Deploy to Hetzner server
         uses: appleboy/ssh-action@v0.1.7
         with:
