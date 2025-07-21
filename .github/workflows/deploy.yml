@@ -13,6 +13,15 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      - name: Check if SSH_KEY is set
+        run: |
+          if [ -z "${{ secrets.SSH_KEY }}" ]; then
+            echo "❌ SSH_KEY is empty"
+            exit 1
+          else
+            echo "✅ SSH_KEY is set"
+          fi
+
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
