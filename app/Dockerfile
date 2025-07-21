@@ -32,5 +32,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install && npm run build
 
-RUN python manage.py collectstatic --noinput && python manage.py makemigrations --noinput &&  \
+RUN python manage.py makemigrations --noinput &&  \
     python manage.py migrate --noinput
+
+RUN python manage.py collectstatic --no-input
