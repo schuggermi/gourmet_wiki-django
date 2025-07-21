@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy App to Cloud
+    name: Deploy to Cloud
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Copy files to server (optional)
+      - name: Debug SSH target
+        run: echo "Connecting to ${{ secrets.USERNAME }}@${{ secrets.HOST }}"
+
+      - name: Update project in cloud
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             cd ${{ secrets.PROJECT_PATH }}
