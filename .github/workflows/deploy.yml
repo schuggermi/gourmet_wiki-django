@@ -13,6 +13,11 @@ jobs:
       SSH_HOST: ${{ secrets.HOST }}
 
     steps:
+      - name: Print env vars
+        run: |
+          echo "User: $SSH_USER"
+          echo "Host: $SSH_HOST"
+
       - name: Add SSH key and scan host
         run: |
           mkdir -p ~/.ssh
