@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show SSH key length
-        run: echo "${{ secrets.SSH_KEY }}" | wc -l
+      - name: Debug SSH Key
+        run: |
+          echo "${{ secrets.SSH_KEY }}" | wc -l  # Should return > 1
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
+
 
       - name: Deploy to Hetzner server
         uses: appleboy/ssh-action@v0.1.7
