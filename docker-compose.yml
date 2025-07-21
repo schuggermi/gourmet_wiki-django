@@ -12,6 +12,7 @@ services:
     volumes:
       - ./app:/app
       - static_volume:/app/staticfiles
+      - assets_volume:/app/assets
       - media_volume:/app/media
     env_file: .env
     depends_on:
@@ -28,8 +29,9 @@ services:
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - static_volume:/app/staticfiles
+      - assets_volume:/app/assets
       - media_volume:/app/media
-      - /home/deployer/certbot-webroot:/var/www/certbot
+      - certbot-webroot:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - backend
@@ -38,5 +40,6 @@ services:
 volumes:
   postgres_data:
   static_volume:
+  assets_volume:
   media_volume:
   certbot_webroot:
