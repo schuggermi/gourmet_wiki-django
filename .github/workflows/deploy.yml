@@ -28,12 +28,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
       - name: Debug SSH target
-        run: echo "Connecting to ${{ vars.USERNAME }}@${{ vars.HOST }}"
+        run: echo "Connecting to ${{ secrets.USERNAME }}@${{ secrets.HOST }}"
 
       - name: Update project in cloud
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ vars.USERNAME }}@${{ vars.HOST }} << 'EOF'
-            cd ${{ vars.PROJECT_PATH }}
+          ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            cd ${{ secrets.PROJECT_PATH }}
             git pull origin master
             docker-compose down
             docker-compose build
