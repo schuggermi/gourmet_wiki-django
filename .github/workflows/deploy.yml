@@ -9,19 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Add SSH key
+      - name: Add SSH key and scan host
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_secret_key
-          chmod 600 ~/.ssh/id_secret_key
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-      - name: Debug SSH Key
-        run: |
-          echo "${{ secrets.SSH_KEY }}" | wc -l  # Should return > 1
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_secret_key
-          chmod 600 ~/.ssh/id_secret_key
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_secret_key ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
 
+      - name: Test SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
 
       - name: Deploy to Hetzner server
         uses: appleboy/ssh-action@v0.1.7
@@ -29,7 +26,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          port: 22
           script: |
             cd /home/deployer/gourmet_wiki-django
             git pull origin master
