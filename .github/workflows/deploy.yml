@@ -9,12 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_secret_key
+          chmod 600 ~/.ssh/id_secret_key
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
       - name: Debug SSH Key
         run: |
           echo "${{ secrets.SSH_KEY }}" | wc -l  # Should return > 1
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_secret_key
+          chmod 600 ~/.ssh/id_secret_key
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_secret_key ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
 
 
       - name: Deploy to Hetzner server
