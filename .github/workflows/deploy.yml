@@ -8,17 +8,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      SSH_USER: ${{ secrets.USER }}
+      SSH_HOST: ${{ secrets.HOST }}
+
     steps:
       - name: Add SSH key and scan host
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
 
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} 'echo "Connected!"'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" 'echo "Connected!"'
 
       - name: Deploy to Hetzner server
         uses: appleboy/ssh-action@v0.1.7
