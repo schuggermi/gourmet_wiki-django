@@ -6,28 +6,35 @@ on:
 
 jobs:
   deploy:
+    environment: rocky-4gb-fsn1-2
     runs-on: ubuntu-latest
-
-    env:
-      SSH_USER: ${{ secrets.USER }}
-      SSH_HOST: ${{ secrets.HOST }}
 
     steps:
       - name: Print env vars
+        env:
+          USER: ${{ secrets.USER }}
+          HOST: ${{ secrets.HOST }}
         run: |
-          echo "User: $SSH_USER"
-          echo "Host: $SSH_HOST"
+          echo "User: $USER"
+          echo "Host: $HOST"
 
       - name: Add SSH key and scan host
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.HOST }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
 
       - name: Test SSH connection
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          USER: ${{ secrets.USER }}
+          HOST: ${{ secrets.HOST }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa "$SSH_USER@$SSH_HOST" 'echo "Connected!"'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa $USER@$HOST 'echo "Connected!"'
 
       - name: Deploy to Hetzner server
         uses: appleboy/ssh-action@v0.1.7
