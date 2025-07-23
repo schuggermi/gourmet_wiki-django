@@ -297,13 +297,13 @@ msgstr "Favoriten"
 #: templates/users/profile.html:44 templates/users/recipe_list.html:27
 #: templates/users/recipe_list.html:34
 msgid "Add Recipe"
-msgstr "Rezept hinzufügen"
+msgstr "Neues Rezept"
 
 #: templates/cotton/dock.html:25 templates/cotton/quick_actions.html:18
 #: templates/menus/create_menu_wizard.html:9
 #: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:51
 msgid "Add Menu"
-msgstr "Menü hinzufügen"
+msgstr "Neues Menü"
 
 #: templates/cotton/go_back.html:3 templates/partials/go_back.html:10
 msgid "Go back"

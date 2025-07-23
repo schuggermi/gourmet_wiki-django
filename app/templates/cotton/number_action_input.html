@@ -13,11 +13,10 @@
     </svg>
 </button>
 
-<div class="grid {% if label %}grid-cols-2{% else %}grid-cols-1{% endif %} gap-2 items-center w-full">
-    <c-input :field="field" class="text-center" type="number" labeled
-             label="{% if not label %}{{ field.label }}{% else %}{{ label }}{% endif %}">
+<div class="grid {% if label %}grid-cols-2{% else %}grid-cols-1{% endif %} gap-2 items-center w-fit">
+    <c-input :field="field" class="text-center" type="number">
     </c-input>
-    {{ label }}
+    <small>{{ label }}</small>
 </div>
 
 <button class="cursor-pointer" onclick="

@@ -62,7 +62,7 @@
 <body class="w-full min-h-screen h-full bg-base-100 pt-16 pb-20">
 
 {% include "partials/navbar.html" %}
-<div class="relative h-full w-full md:max-w-3/4 mx-auto flex flex-col gap-5 items-center justify-start pt-5 px-4">
+<div class="relative h-full w-full md:max-w-3/4 mx-auto flex flex-col gap-5 items-center justify-start py-10 px-4">
     {% block main_content %}
     {% endblock %}
 </div>
@@ -90,29 +90,6 @@
 {% endif %}
 
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-
-<script>
-    const navbar = document.getElementById("navbar");
-
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 65) {
-            navbar.classList.add("bg-base-200", "shadow-md");
-            navbar.classList.remove("bg-base-100");
-        } else {
-            navbar.classList.remove("bg-base-200", "shadow-md");
-            navbar.classList.add("bg-base-100");
-        }
-    });
-
-     document.body.addEventListener('htmx:responseError', function (event) {
-        if (event.detail.xhr.status === 401) {
-            const data = JSON.parse(event.detail.xhr.responseText);
-            if (data.redirect) {
-                window.location.href = data.redirect;
-            }
-        }
-    });
-</script>
 
 </body>
 </html>

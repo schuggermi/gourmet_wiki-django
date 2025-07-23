@@ -25,22 +25,23 @@
                                   clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    {% include "recipes/partials/favorite_button.html" %}
                 </div>
                 {% if recipe.created_by == user %}
                     <div class="flex gap-5 items-center">
                         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
-                        <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}" class="btn btn-accent btn-outline">
+                        <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
+                             class="btn btn-accent btn-outline">
                             Edit Recipe
                         </c-a>
                     </div>
                 {% else %}
                     <c-rating-action data-average-rating="{{ recipe.average_rating }}"></c-rating-action>
+                    {% include "recipes/partials/favorite_button.html" %}
                 {% endif %}
             </div>
         </div>
 
-        <div id="print-area" class="flex flex-col gap-10 w-full bg-base-300 p-4 rounded-sm">
+        <div id="print-area" class="flex flex-col gap-10 w-full bg-neutral p-4 rounded-sm">
             {% include "recipes/partials/recipe_detail.html" %}
         </div>
     </div>

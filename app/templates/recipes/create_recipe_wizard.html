@@ -30,23 +30,23 @@
         </div>
 
         <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
-            <ul class="steps steps-vertical step-secondary lg:steps-horizontal w-full">
-                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-secondary{% endif %}">
+            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-full">
+                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-primary{% endif %}">
                     <p>
                         {% translate 'Details' %}
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-secondary{% endif %}">
+                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-primary{% endif %}">
                     <p>
                         {% translate 'Ingredients' %}
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-secondary{% endif %}">
+                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-primary{% endif %}">
                     <p>
                         {% translate 'Preparation Steps' %}
                     </p>
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-secondary{% endif %}">
+                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-primary{% endif %}">
                     <p>
                         {% translate 'Images' %}
                     </p>
