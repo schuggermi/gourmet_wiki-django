@@ -212,6 +212,7 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {

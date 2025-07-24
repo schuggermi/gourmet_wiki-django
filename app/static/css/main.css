@@ -126,31 +126,33 @@ input[type='number'] {
 
 @layer base {
     h1 {
-        @apply text-2xl font-bold;
+        @apply text-3xl font-bold;
     }
 
     h2 {
-        @apply text-xl font-semibold;
+        @apply text-2xl font-semibold;
     }
 
     h3 {
-        @apply text-lg font-semibold;
+        @apply text-xl font-semibold;
     }
 
-    /*    h4 {
-            @apply text-md font-medium;
-            color: var(--color-neutral);
-        }
+    h4 {
+        @apply text-lg font-medium;
+    }
 
-        h5 {
-            @apply text-sm font-medium;
-            color: var(--color-neutral);
-        }
+    h5 {
+        @apply text-sm font-medium;
+    }
 
-        h6 {
-            @apply text-base font-medium;
-            color: var(--color-neutral);
-        }*/
+    h6 {
+        @apply text-base font-medium;
+    }
+
+    small {
+        @apply text-sm;
+    }
+
     /*input, textarea {*/
     /*    @apply text-base-content;*/
     /*}*/
