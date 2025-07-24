@@ -1,12 +1,12 @@
-{% load menu_tags %}
+{% load menu_tags i18n %}
 
 <ul class="w-full" id="ingredients">
     {% for ingredient in ingredients %}
-        <li class="py-2 flex justify-center {% if forloop.counter < ingredients|length %}border-b-1 border-base-content{% endif %}">
+        <li class="py-2 flex justify-center {% if forloop.counter < ingredients|length %}border-accent/20 border-b-[1px]{% endif %}">
             <div class="w-full grid grid-cols-6 gap-5">
                 <p class="col-span-2 text-end">
                     <span class="font-bold">{{ ingredient.quantity|floatformat:"1" }}</span>
-                    <span class="font-medium">{{ ingredient.unit }}</span>
+                    <span class="font-medium">{{ ingredient.get_unit_display }}</span>
                 </p>
                 <p class="col-span-4">{{ ingredient.ingredient }}</p>
             </div>

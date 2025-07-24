@@ -222,10 +222,10 @@ class RecipeIngredient(models.Model):
         max_length=150,
     )
     quantity = models.DecimalField(
-        max_digits=10,
-        decimal_places=4,
+        max_digits=4,
+        decimal_places=1,
         validators=[
-            MinValueValidator(0.01),
+            MinValueValidator(0.1),
         ]
     )
     unit = models.CharField(

@@ -1,8 +1,8 @@
 {% load static i18n %}
 
-<img class="w-42 hidden print:block" src="{% static 'images/logo_landscape_gourmet-theme3.svg' %}"
+<img class="w-42 hidden print:block" src="{% static 'images/logo.png' %}"
      alt="Logo Landscape - Gourmet Wiki">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 w-full mx-auto">
+<div class="grid grid-cols-1 print:grid-cols-2 lg:grid-cols-2 gap-5 lg:gap-10 w-full mx-auto">
     <!-- Image Carousel -->
     <div class="carousel carousel-start w-full aspect-video rounded-sm print:hidden">
         {% with images=recipe.images.all %}
@@ -23,25 +23,28 @@
         {% endwith %}
     </div>
 
-    <img src="{% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
-         alt="{{ recipe.images.first.caption }}"
-         class="hidden print:block w-full aspect-video rounded-md shadow-md object-contain"/>
-
     <!-- Recipe Details -->
-    <div class="flex flex-col gap-5 justify-between">
-        <div class="flex flex-col gap-5">
-            <h2 class="wrap-break-word break-all">{{ recipe.name }}</h2>
+    <div class="flex flex-col gap-5 justify-between print:col-span-2">
+        <div class="flex flex-row print:flex-row-reverse w-full gap-5">
+            <img src="
+                    {% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
+                 alt="{{ recipe.images.first.caption }}"
+                 class="hidden print:block w-full aspect-video rounded-md shadow-md object-cover"/>
 
-            <p class="break-words whitespace-normal">
-                {% if recipe.description != "" %}
-                    {{ recipe.description }}
-                {% else %}
-                    {% translate 'No description for this recipe.' %}
-                {% endif %}
-            </p>
+            <div class="flex flex-col gap-5">
+                <h2 class="break-words hyphens-auto">{{ recipe.name }}</h2>
+
+                <p class="break-words hyphens-auto">
+                    {% if recipe.description != "" %}
+                        {{ recipe.description }}
+                    {% else %}
+                        {% translate 'No description for this recipe.' %}
+                    {% endif %}
+                </p>
+            </div>
         </div>
 
-        <div class="flex flex-col gap-5">
+        <div class="flex flex-col print:flex-row gap-5">
             <!-- Skill Level -->
             <div class="flex gap-5">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -154,11 +157,11 @@
     <div class="flex flex-col gap-5 justify-start">
         <h3>{% translate 'Preparation Steps' %}</h3>
 
-        <ul class="flex flex-col gap-5">
+        <ul class="flex flex-col">
             {% for step in recipe.ordered_preparation_steps %}
-                <li class="flex flex-col gap-1">
-                    <p class="w-fit relative">{% translate 'Preparation Step' %} <span
-                            class="font-extrabold">{{ step.order|add:"1" }}</span></p>
+                <li class="flex flex-row gap-1 py-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
+                    <p class="w-fit relative"><span class="font-extrabold">{{ step.order|add:"1" }}.</span></p>
+                    {#                    {% translate 'Preparation Step' %}#}
                     <p class="ps-5">{{ step.step_text }}</p>
                 </li>
             {% endfor %}

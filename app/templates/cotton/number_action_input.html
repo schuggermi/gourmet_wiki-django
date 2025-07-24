@@ -1,13 +1,14 @@
 {% load i18n %}
 
 <button class="cursor-pointer" onclick="
-                event.preventDefault();
-                const input = document.getElementById('{{ field.id_for_label }}');
-                const current = parseInt(input.value) || 0;
-                if (current > 0) input.value = current - 1;
-                "
+        event.preventDefault();
+        const input = document.getElementById('{{ field.id_for_label }}');
+        const current = parseInt(input.value) || 0;
+        if (current > 0) input.value = current - 1;
+        "
 >
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-shadow-lg hover:text-secondary">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+         class="size-4 text-shadow-lg hover:text-secondary">
         <path fill-rule="evenodd" d="M4.25 12a.75.75 0 0 1 .75-.75h14a.75.75 0 0 1 0 1.5H5a.75.75 0 0 1-.75-.75Z"
               clip-rule="evenodd"></path>
     </svg>
@@ -16,15 +17,17 @@
 <div class="grid {% if label %}grid-cols-2{% else %}grid-cols-1{% endif %} gap-2 items-center w-fit">
     <c-input :field="field" class="text-center" type="number">
     </c-input>
-    <small>{{ label }}</small>
+    {% if label %}
+        <small>{{ label }}</small>
+    {% endif %}
 </div>
 
 <button class="cursor-pointer" onclick="
-                event.preventDefault();
-                const input = document.getElementById('{{ field.id_for_label }}');
-                const current = parseInt(input.value) || 0;
-                input.value = current + 1;
-                "
+        event.preventDefault();
+        const input = document.getElementById('{{ field.id_for_label }}');
+        const current = parseInt(input.value) || 0;
+        input.value = current + 1;
+        "
 >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-shadow-lg">
         <path fill-rule="evenodd"
