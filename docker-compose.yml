@@ -1,6 +1,7 @@
 services:
   web:
     build: ./app
+    container_name: gourmet-wiki_web
     command: gunicorn gourmet_wiki.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/app
@@ -66,6 +67,7 @@ services:
         target: /var/lib/postgresql/data
   nginx:
     image: nginx:alpine
+    container_name: gourmet-wiki_nginx
     ports:
       - "80:80"
       - "443:443"
