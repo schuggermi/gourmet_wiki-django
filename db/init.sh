@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+echo "Creating databases and users:"
+echo "EMT DB: $EMT_POSTGRES_DB"
+echo "EMT USER: $EMT_POSTGRES_USER"
+echo "EMT PASSWORD: $EMT_POSTGRES_PASSWORD"
+
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     CREATE DATABASE ${WEB_POSTGRES_DB};
     CREATE DATABASE ${EMT_POSTGRES_DB};
