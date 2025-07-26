@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-# Create and write to debug log (no +x needed on log file)
-echo "Loaded env: EMT user is ${EMT_POSTGRES_USER}" > /tmp/debug.log
+echo "Starting DB init..."
 
+# Create DBs and users using the default POSTGRES_DB
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     CREATE DATABASE "${WEB_POSTGRES_DB}";
     CREATE DATABASE "${EMT_POSTGRES_DB}";
@@ -13,10 +13,24 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 
     GRANT ALL PRIVILEGES ON DATABASE "${WEB_POSTGRES_DB}" TO "${WEB_POSTGRES_USER}";
     GRANT ALL PRIVILEGES ON DATABASE "${EMT_POSTGRES_DB}" TO "${EMT_POSTGRES_USER}";
+EOSQL
 
+# Grant schema and default privileges in WEB_POSTGRES_DB
+psql -v ON_ERROR_STOP=1 --username "$WEB_POSTGRES_USER" --dbname "${WEB_POSTGRES_DB}" <<-EOSQL
     GRANT USAGE ON SCHEMA public TO "${WEB_POSTGRES_USER}";
     GRANT CREATE ON SCHEMA public TO "${WEB_POSTGRES_USER}";
 
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO "${WEB_POSTGRES_USER}";
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO "${WEB_POSTGRES_USER}";
+EOSQL
+
+# Grant schema and default privileges in EMT_POSTGRES_DB
+psql -v ON_ERROR_STOP=1 --username "$EMT_POSTGRES_USER" --dbname "${EMT_POSTGRES_DB}" <<-EOSQL
     GRANT USAGE ON SCHEMA public TO "${EMT_POSTGRES_USER}";
     GRANT CREATE ON SCHEMA public TO "${EMT_POSTGRES_USER}";
+
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO "${EMT_POSTGRES_USER}";
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO "${EMT_POSTGRES_USER}";
 EOSQL
+
+echo "DB init finished."
