@@ -34,4 +34,7 @@ RUN npm install && npm run build
 
 RUN chmod +x /app/entrypoint.sh
 
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
+
 ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
