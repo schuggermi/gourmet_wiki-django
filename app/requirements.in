@@ -1,3 +1,4 @@
+django
 django-cors-headers
 django-debug-toolbar
 django-vite
@@ -8,3 +9,6 @@ crispy-daisyui
 django-allauth
 django-allauth[socialaccount]
 psycopg2-binary
+python-dotenv
+gunicorn
+whitenoise
