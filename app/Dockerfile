@@ -20,9 +20,6 @@ COPY . /app
 
 ENV PATH="/usr/local/bin:$PATH"
 
-ENV SECRET_KEY "Zj4WG8b2pVCmKHhaJNtLhobfbGTEEBaxuc1Vv4wneEnRpDiv1R"
-ENV DEBUG "False"
-
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \

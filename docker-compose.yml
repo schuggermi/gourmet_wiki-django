@@ -13,6 +13,8 @@ services:
     restart: always
     networks:
       - gourmet-wiki_net
+    env_file:
+      - .env
   emt:
     image: listmonk/listmonk:latest
     container_name: gourmet-wiki_emt
@@ -37,6 +39,8 @@ services:
       TZ: Etc/UTC
       LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER:-}
       LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD:-}
+    env_file:
+      - .env
     volumes:
       - ./uploads:/listmonk/uploads:rw
   db:
@@ -55,6 +59,8 @@ services:
       EMT_POSTGRES_DB: ${EMT_POSTGRES_DB}
       EMT_POSTGRES_USER: ${EMT_POSTGRES_USER}
       EMT_POSTGRES_PASSWORD: ${EMT_POSTGRES_PASSWORD}
+    env_file:
+      - .env
 #    healthcheck:
 #      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
 #      interval: 10s
@@ -83,6 +89,8 @@ services:
     restart: always
     networks:
       - gourmet-wiki_net
+    env_file:
+      - .env
 
 volumes:
   static_volume:
