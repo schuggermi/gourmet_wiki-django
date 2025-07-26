@@ -5,7 +5,7 @@ touch /tmp/debug.log
 chmod +x /tmp/debug.log
 echo "Loaded env: EMT user is ${EMT_POSTGRES_USER}" > /tmp/debug.log
 
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
     CREATE DATABASE ${WEB_POSTGRES_DB};
     CREATE DATABASE ${EMT_POSTGRES_DB};
 
