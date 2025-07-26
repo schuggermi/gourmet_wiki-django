@@ -45,5 +45,6 @@ jobs:
           script: |
             cd /home/deployer/gourmet_wiki-django
             git pull origin master
+            chmod +x ./db/init.sh
             docker compose pull
             docker compose up -d --build
