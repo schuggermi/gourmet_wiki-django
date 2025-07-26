@@ -1,0 +1,10 @@
+django-cors-headers
+django-debug-toolbar
+django-vite
+django-cotton
+django-formtools
+django-crispy-forms
+crispy-daisyui
+django-allauth
+django-allauth[socialaccount]
+psycopg2-binary
