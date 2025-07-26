@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Loaded env: EMT user is ${EMT_POSTGRES_USER}" > /docker-entrypoint-initdb.d/debug.log
+touch /tmp/debug.log
+chmod +x /tmp/debug.log
+echo "Loaded env: EMT user is ${EMT_POSTGRES_USER}" > /tmp/debug.log
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     CREATE DATABASE ${WEB_POSTGRES_DB};
