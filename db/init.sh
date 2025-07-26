@@ -16,7 +16,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
 EOSQL
 
 # Grant schema and default privileges in WEB_POSTGRES_DB
-psql -v ON_ERROR_STOP=1 --username "$WEB_POSTGRES_USER" --dbname "${WEB_POSTGRES_DB}" <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "${WEB_POSTGRES_DB}" <<-EOSQL
     GRANT USAGE ON SCHEMA public TO "${WEB_POSTGRES_USER}";
     GRANT CREATE ON SCHEMA public TO "${WEB_POSTGRES_USER}";
 
@@ -25,7 +25,7 @@ psql -v ON_ERROR_STOP=1 --username "$WEB_POSTGRES_USER" --dbname "${WEB_POSTGRES
 EOSQL
 
 # Grant schema and default privileges in EMT_POSTGRES_DB
-psql -v ON_ERROR_STOP=1 --username "$EMT_POSTGRES_USER" --dbname "${EMT_POSTGRES_DB}" <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "${EMT_POSTGRES_DB}" <<-EOSQL
     GRANT USAGE ON SCHEMA public TO "${EMT_POSTGRES_USER}";
     GRANT CREATE ON SCHEMA public TO "${EMT_POSTGRES_USER}";
 
