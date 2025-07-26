@@ -32,7 +32,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install && npm run build
 
-RUN python manage.py makemigrations --noinput &&  \
-    python manage.py migrate --noinput
+RUN chmod +x /app/entrypoint.sh
 
-RUN python manage.py collectstatic --no-input
+ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
