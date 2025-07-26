@@ -1,12 +1,10 @@
-services:
-  db:
-    image: postgres:16
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file: .env
-    restart: always
+x-db-credentials: &db-credentials
+  POSTGRES_USER: &db-user ${POSTGRES_USER}
+  POSTGRES_PASSWORD: &db-password ${POSTGRES_PASSWORD}
+  POSTGRES_DB: &db-name ${EMT_POSTGRES_DB}
 
-  backend:
+services:
+  web:
     build: ./app
     command: gunicorn gourmet_wiki.wsgi:application --bind 0.0.0.0:8000
     volumes:
@@ -14,13 +12,55 @@ services:
       - static_volume:/app/staticfiles
       - assets_volume:/app/assets
       - media_volume:/app/media
-    env_file: .env
     depends_on:
       - db
-    expose:
-      - 8000
     restart: always
-
+    networks:
+      - gourmet-wiki_net
+  emt:
+    image: listmonk/listmonk:latest
+    container_name: gourmet-wiki_emt
+    restart: unless-stopped
+    networks:
+      - gourmet-wiki_net
+    hostname: emt.gourmet-wiki.app
+    depends_on:
+      - db
+    command: [ sh, -c, "./listmonk --install --idempotent --yes && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''" ]
+    environment:
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__user: *db-user
+      LISTMONK_db__password: *db-password
+      LISTMONK_db__database: *db-name
+      LISTMONK_db__host: db
+      LISTMONK_db__port: 5432
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+      TZ: Etc/UTC
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER:-}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD:-}
+    volumes:
+      - ./uploads:/listmonk/uploads:rw
+  db:
+    image: postgres:17-alpine
+    container_name: gourmet-wiki_db
+    restart: unless-stopped
+    networks:
+      - gourmet-wiki_net
+    environment:
+      <<: *db-credentials
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    volumes:
+      - ./db/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - type: volume
+        source: gourmet-wiki_data
+        target: /var/lib/postgresql/data
   nginx:
     image: nginx:alpine
     ports:
@@ -36,10 +76,15 @@ services:
     depends_on:
       - backend
     restart: always
+    networks:
+      - gourmet-wiki_net
 
 volumes:
-  postgres_data:
   static_volume:
   assets_volume:
   media_volume:
   certbot_webroot:
+  gourmet-wiki_data:
+
+networks:
+  gourmet-wiki_net:
