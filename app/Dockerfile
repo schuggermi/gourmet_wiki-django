@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y \
 RUN npm install && npm run build
 
 RUN chmod +x /app/entrypoint.sh
+RUN chmod +x /db/init.sh
 
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
 RUN chmod +x /usr/local/bin/wait-for-it.sh
