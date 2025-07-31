@@ -1,26 +1,21 @@
 services:
-  db:
-    image: postgres:16
-    env_file: .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
-  backend:
-    build:
-      context: ./app
+  web:
+    build: ./app
+    container_name: gourmet-wiki_web
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./app:/app
-    ports:
-      - "8000:8000"
-    env_file: .env
     depends_on:
       - db
-
+    restart: always
+    networks:
+      - gourmet-wiki_net
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
   frontend:
     build:
       context: ./app
@@ -28,10 +23,72 @@ services:
     command: sh -c "npm install && npm run dev -- --host"
     volumes:
       - ./app:/app
+    networks:
+      - gourmet-wiki_net
     ports:
       - "5173:5173"
+    env_file:
+      - .env
     depends_on:
-      - backend
+      - web
+  emt:
+    image: listmonk/listmonk:latest
+    container_name: gourmet-wiki_emt
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    networks:
+      - gourmet-wiki_net
+    hostname: emt.example.com
+    depends_on:
+      - db
+    command: [ sh, -c, "./listmonk --install --idempotent --yes && ./listmonk --upgrade --yes && ./listmonk" ]
+    environment:
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__user: ${EMT_POSTGRES_USER}
+      LISTMONK_db__password: ${EMT_POSTGRES_PASSWORD}
+      LISTMONK_db__database: ${EMT_POSTGRES_DB}
+      LISTMONK_db__host: db
+      LISTMONK_db__port: 5432
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+      TZ: Etc/UTC
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER:-}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD:-}
+    env_file:
+      - .env
+    volumes:
+      - ./uploads:/listmonk/uploads:rw
+  db:
+    image: postgres:17-alpine
+    container_name: gourmet-wiki_db
+    restart: unless-stopped
+    networks:
+      - gourmet-wiki_net
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      WEB_POSTGRES_DB: ${WEB_POSTGRES_DB}
+      WEB_POSTGRES_USER: ${WEB_POSTGRES_USER}
+      WEB_POSTGRES_PASSWORD: ${WEB_POSTGRES_PASSWORD}
+      EMT_POSTGRES_DB: ${EMT_POSTGRES_DB}
+      EMT_POSTGRES_USER: ${EMT_POSTGRES_USER}
+      EMT_POSTGRES_PASSWORD: ${EMT_POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - ./db/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - type: volume
+        source: gourmet-wiki_data
+        target: /var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  gourmet-wiki_data:
+
+networks:
+  gourmet-wiki_net:

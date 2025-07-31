@@ -18,6 +18,8 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print("BASE_DIR", BASE_DIR)
+
 logger = logging.getLogger('allauth')
 logger.setLevel(logging.DEBUG)
 
@@ -288,3 +290,7 @@ CSRF_COOKIE_SECURE = True if not DEBUG else False
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
 CRISPY_TEMPLATE_PACK = 'daisyui'
+
+LISTMONK_API_USERNAME = os.getenv('LISTMONK_API_USERNAME')
+LISTMONK_API_URL = os.getenv('LISTMONK_API_URL')
+LISTMONK_API_TOKEN = os.getenv('LISTMONK_API_TOKEN')
