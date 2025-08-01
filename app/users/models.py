@@ -12,15 +12,18 @@ class SkillLevelChoice(models.TextChoices):
     PROFESSIONAL = 'professional', _('Professional')
 
 
+from django.utils.translation import gettext_lazy as _
+
+
 class UserLevelChoice(models.TextChoices):
-    LEVEL_1 = '1', _('Küchenneuling')
-    LEVEL_2 = '2', _('Rezeptentdecker:in')
-    LEVEL_3 = '3', _('Küchenkenner:in')
-    LEVEL_4 = '4', _('Wissensstifter:in')
-    LEVEL_5 = '5', _('Community-Vorreiter:in')
-    LEVEL_6 = '6', _('Fachautor:in')
-    LEVEL_7 = '7', _('Küchenmentor:in')
-    LEVEL_8 = '8', _('GourmetMaster:in')
+    LEVEL_1 = '1', _('Kitchen Newbie')
+    LEVEL_2 = '2', _('Recipe Explorer')
+    LEVEL_3 = '3', _('Kitchen Connoisseur')
+    LEVEL_4 = '4', _('Knowledge Contributor')
+    LEVEL_5 = '5', _('Community Pioneer')
+    LEVEL_6 = '6', _('Professional Author')
+    LEVEL_7 = '7', _('Kitchen Mentor')
+    LEVEL_8 = '8', _('Gourmet Master')
 
     @classmethod
     def get_next_level(cls, current_level):
@@ -32,24 +35,64 @@ class UserLevelChoice(models.TextChoices):
 
 
 LEVEL_DESCRIPTIONS = {
-    1: _("Einstieg in die Plattform"),
-    2: _("Erste eigene Inhalte"),
-    3: _("Beiträge mit Mehrwert"),
-    4: _("Starker fachlicher Beitrag"),
-    5: _("Hohe Aktivität & Qualität"),
-    6: _("Anerkanntes Fachprofil"),
-    7: _("Unterstützt andere aktiv"),
-    8: _("Repräsentiert die Plattform"),
+    1: _("Entry into the platform"),
+    2: _("First own contributions"),
+    3: _("Contributions with added value"),
+    4: _("Strong professional contribution"),
+    5: _("High activity & quality"),
+    6: _("Recognized professional profile"),
+    7: _("Actively supports others"),
+    8: _("Represents the platform"),
 }
 
 
 class UserRole(models.TextChoices):
-    GUEST = 'guest', _('Gast')
-    MEMBER = 'member', _('Mitglied')
-    AUTHOR = 'author', _('Autor:in')
-    EXPERT = 'expert', _('Expert:in')
-    CURATOR = 'curator', _('Kurator:in')
+    GUEST = 'guest', _('Guest')
+    MEMBER = 'member', _('Member')
+    AUTHOR = 'author', _('Author')
+    EXPERT = 'expert', _('Expert')
+    CURATOR = 'curator', _('Curator')
     ADMIN = 'admin', _('Admin')
+
+
+# class UserLevelChoice(models.TextChoices):
+#     LEVEL_1 = '1', _('Küchenneuling')
+#     LEVEL_2 = '2', _('Rezeptentdecker:in')
+#     LEVEL_3 = '3', _('Küchenkenner:in')
+#     LEVEL_4 = '4', _('Wissensstifter:in')
+#     LEVEL_5 = '5', _('Community-Vorreiter:in')
+#     LEVEL_6 = '6', _('Fachautor:in')
+#     LEVEL_7 = '7', _('Küchenmentor:in')
+#     LEVEL_8 = '8', _('GourmetMaster:in')
+#
+#     @classmethod
+#     def get_next_level(cls, current_level):
+#         try:
+#             idx = list(cls).index(cls(current_level))
+#             return list(cls)[idx + 1] if idx + 1 < len(cls) else None
+#         except ValueError:
+#             return None
+#
+#
+# LEVEL_DESCRIPTIONS = {
+#     1: _("Einstieg in die Plattform"),
+#     2: _("Erste eigene Inhalte"),
+#     3: _("Beiträge mit Mehrwert"),
+#     4: _("Starker fachlicher Beitrag"),
+#     5: _("Hohe Aktivität & Qualität"),
+#     6: _("Anerkanntes Fachprofil"),
+#     7: _("Unterstützt andere aktiv"),
+#     8: _("Repräsentiert die Plattform"),
+# }
+#
+#
+# class UserRole(models.TextChoices):
+#     GUEST = 'guest', _('Gast')
+#     MEMBER = 'member', _('Mitglied')
+#     AUTHOR = 'author', _('Autor:in')
+#     EXPERT = 'expert', _('Expert:in')
+#     CURATOR = 'curator', _('Kurator:in')
+#     ADMIN = 'admin', _('Admin')
 
 
 class Profile(models.Model):

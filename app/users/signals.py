@@ -1,5 +1,7 @@
 from allauth.account.signals import user_signed_up, email_confirmed
+from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -26,6 +28,8 @@ def reward_recipe_submission(sender, instance, created, **kwargs):
 @receiver(email_confirmed)
 def award_member_badge_on_email_confirmed(request, email_address, **kwargs):
     user = email_address.user
+
+    user.groups.add(Group.objects.get(name='Member'))
 
     profile = getattr(user, 'profile', None)
     if profile:

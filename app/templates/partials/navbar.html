@@ -1,12 +1,10 @@
 {% load static i18n %}
 
-<div id="navbar" class="h-16 navbar bg-base-100 shadow-accent shadow-xs fixed top-0 w-full transition-all duration-300 z-50 px-2">
+<div id="navbar" class="h-16 navbar bg-base-100 shadow-accent shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
     <div class="navbar-start flex gap-3">
         <c-a url="{% url 'home' %}" title="Gourmet Wiki">
             <img class="w-42 max-w-42" src="{% static 'images/logo.png' %}"
                  alt="Gourmet Wiki">
-{#            {% comment %}            <img class="w-42 not-dark:hidden" src="{% static 'images/logo_landscape_gourmet-theme-dark.svg' %}"#}
-{#                 alt="Gourmet Wiki">{% endcomment %}#}
         </c-a>
     </div>
     <div class="navbar-center hidden lg:flex">

@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block main_content %}
+    <div class="self-start flex flex-col gap-1">
+        <h1>{% translate 'Terms of Use' %}</h1>
+        <c-go-back></c-go-back>
+    </div>
+
+    <div class="flex flex-col gap-20 w-full">
+        <div class="flex flex-col gap-5">
+            <h2>{% translate 'Welcome to Gourmet Wiki!' %}</h2>
+
+            <p>
+                {% blocktranslate %}
+                    These Terms of Use (“Terms”) govern your access to and use of the Gourmet Wiki platform.
+                {% endblocktranslate %}
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '1. Eligibility' %}</h2>
+
+            <div>
+                <p>
+                    {% blocktranslate %}
+                        You must be at least 16 years old and provide accurate registration information.
+                    {% endblocktranslate %}
+                </p>
+                <p>
+                    {% blocktranslate %}
+                        By using Google Social Auth, you authorize us to retrieve basic profile data (name and email)
+                        via OAuth2.
+                    {% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '2. User Accounts' %}</h2>
+
+            <div>
+                <p>{% translate 'You must create an account to access community features.' %}</p>
+                <p>{% translate 'You agree to keep your login credentials secure and notify us of any unauthorized use.' %}</p>
+            </div>
+
+            <div>
+                <p>
+                    {% blocktranslate %}
+                        <strong>Unconfirmed accounts</strong> are deleted after 3 days.
+                    {% endblocktranslate %}
+                </p>
+                <p>
+                    {% blocktranslate %}
+                        <strong>Inactive accounts</strong> are deleted after 2 years.
+                    {% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '3. Community Conduct' %}</h2>
+
+            <div>
+                <h3>{% translate 'Be respectful. The following is prohibited:' %}</h3>
+                <ul class="flex flex-col list-disc ps-4">
+                    <li>{% translate 'Beleidigende oder rechtswidrige Inhalte / Offensive or illegal content' %}</li>
+                    <li>{% translate 'Belästigung anderer Nutzer / Harassing other users' %}</li>
+                    <li>{% translate 'Manipulation der Plattform / Exploiting or manipulating the platform' %}</li>
+                </ul>
+            </div>
+
+            <p>{% translate 'We reserve the right to remove content and restrict accounts.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '4. User Content' %}</h2>
+
+            <div>
+                <p>{% translate 'You retain ownership of your submitted content.' %}</p>
+                <p>{% translate 'You grant us a non-exclusive, worldwide, royalty-free license to display and distribute your content.' %}</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '5. Payments' %}</h2>
+
+            <p>
+                {% blocktranslate %}
+                    Paid services are processed via <strong>Stripe</strong>.
+                {% endblocktranslate %}
+            </p>
+
+            <div>
+                <p>{% translate 'You agree to the use of Stripe:' %}</p>
+                <p><a class="underline" href="https://stripe.com/privacy">https://stripe.com/privacy</a></p>
+            </div>
+
+            <p>{% translate 'We do not store any payment data.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '6. Email Communication' %}</h2>
+
+            <div>
+                <h3>{% translate 'After registration, you will receive:' %}</h3>
+                <ul class="flex flex-col list-disc ps-4">
+                    <li>{% translate 'a confirmation email' %}</li>
+                    <li>{% translate 'occasional newsletters' %}</li>
+                </ul>
+            </div>
+
+            <p>{% translate 'You may unsubscribe at any time.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '7. Intellectual Property' %}</h2>
+
+            <p>{% translate 'All content not submitted by users is protected by copyright.' %}</p>
+            <p>{% translate 'No reproduction without permission.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '8. Limitation of Liability' %}</h2>
+
+            <div>
+                <h3>{% translate 'We are not liable for:' %}</h3>
+                <ul class="flex flex-col list-disc ps-4">
+                    <li>{% translate 'Data loss' %}</li>
+                    <li>{% translate 'User-generated content' %}</li>
+                    <li>{% translate 'Downtime or indirect damages' %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '9. Termination' %}</h2>
+
+            <div>
+                <h3>{% translate 'We may suspend or delete accounts in case of:' %}</h3>
+                <ul class="flex flex-col list-disc ps-4">
+                    <li>{% translate 'Violations of these terms' %}</li>
+                    <li>{% translate 'Abuse' %}</li>
+                    <li>{% translate 'Service termination' %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '10. Modifications' %}</h2>
+
+            <p>{% translate 'We may modify these Terms and will notify you of significant changes.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '11. Governing Law' %}</h2>
+
+            <p>{% translate 'These Terms are governed by the laws of Germany.' %}</p>
+            <p>{% translate 'Jurisdiction lies with the operator’s location, where permitted.' %}</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '12. Contact' %}</h2>
+            
+            <div>
+                <p><strong>Gourmet Wiki</strong></p>
+                <p>Michael Schuchowski</p>
+                <p>Trützschlerstr. 5</p>
+                <p>12487 Berlin</p>
+                <p><a class="underline" href="mailto:support@gourmet-wiki.app">support@gourmet-wiki.app</a></p>
+            </div>
+        </div>
+
+        <p>{% translate 'Effective Date:' %} 31.07.2025</p>
+    </div>
+{% endblock %}

@@ -28,3 +28,14 @@ def home(request):
     context['daily_random_recipes'] = daily_random_recipes
 
     return render(request, "pages/home.html", context)
+
+
+def imprint(request):
+    return render(request, 'pages/imprint.html')
+
+
+def privacy(request):
+    return render(request, 'pages/privacy.html')
+
+def terms_of_use(request):
+    return render(request, 'pages/terms_of_use.html')

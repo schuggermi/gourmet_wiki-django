@@ -245,6 +245,8 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
+
+
         return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 

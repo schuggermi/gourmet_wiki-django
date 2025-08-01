@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block main_content %}
+    <div class="self-start flex flex-col gap-1">
+        <h1>{% translate 'Privacy Policy' %}</h1>
+        <c-go-back></c-go-back>
+    </div>
+
+    <div class="flex flex-col gap-20">
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '1. Controller' %}</h2>
+
+            <div class="flex flex-col gap-5">
+                <h3>{% translate 'The controller responsible for data processing on this website is:' %}</h3>
+
+                <div>
+                    <p>Michael Schuchowski</p>
+                    <p>Gourmet Wiki</p>
+                    <p>Trützschlerstr. 5</p>
+                    <p>12487 Berlin</p>
+                    <p>Germany</p>
+                    <p>Email: <a class="underline" href="mailto:support@gourmet-wiki.app">support@gourmet-wiki.app</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '2. Collection and Storage of Personal Data and the Nature and Purpose of Their Use' %}</h2>
+
+            <div class="flex flex-col gap-5">
+                <h3>{% translate 'a) Registration' %}</h3>
+                <p>
+                    {% blocktranslate %}
+                        When registering on Gourmet Wiki, we collect the following personal data:
+                    {% endblocktranslate %}
+                </p>
+                <ul class="flex flex-col list-disc ps-4">
+                    <li>{% translate 'First name' %}</li>
+                    <li>{% translate 'Last name' %}</li>
+                    <li>{% translate 'Email address' %}</li>
+                    <li>{% translate 'Password (stored in encrypted form)' %}</li>
+                </ul>
+                <p>{% translate 'This data is necessary to create and manage your user account and to enable the use of community features.' %}</p>
+            </div>
+
+            <div class="flex flex-col gap-5">
+                <h3>{% translate 'b) Google Social Auth' %}</h3>
+                <p>
+                    {% blocktranslate %}
+                        Alternatively, you can log in using Google. This uses an OAuth2 login process. Google provides
+                        us with basic profile data (name and email address). No additional data is transmitted.
+                    {% endblocktranslate %}
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-5">
+                <h3>{% translate 'c) Email Confirmation & Newsletter' %}</h3>
+                <p>
+                    {% blocktranslate %}
+                        After registration, you will receive a confirmation email to verify your email address.
+                        Additionally, we may send you newsletters with new features or relevant content. You can
+                        unsubscribe from the newsletter at any time using the unsubscribe link at the bottom of each
+                        email or by contacting us at support@gourmet-wiki.app.
+                    {% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '3. Use of Cookies' %}</h2>
+
+            <p>
+                {% blocktranslate %}
+                    Gourmet Wiki uses cookies and similar technologies to provide you with a smooth user experience
+                    (e.g., login sessions, security, CSRF protection). The use of cookies is based on our legitimate
+                    interest in providing a technically error-free and optimized service (Art. 6 para. 1 lit. f GDPR).
+                {% endblocktranslate %}
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '4. Stripe (Payment Provider)' %}</h2>
+
+            <div class="flex flex-col gap-5">
+                <p>
+                    {% blocktranslate %}
+                        For paid features or services, we use Stripe, a payment provider based in both the US and the EU
+                        (Stripe Payments Europe, Ltd., Ireland). During a transaction, your browser automatically
+                        transmits
+                        personal payment data to Stripe. The processing is carried out on the basis of Art. 6 para. 1
+                        lit. b
+                        GDPR (contract fulfillment).
+                    {% endblocktranslate %}
+                </p>
+
+                <div>
+                    <p>{% translate 'More information:' %}</p>
+                    <p><a class="underline" href="https://stripe.com/privacy">https://stripe.com/privacy</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '5. Data Retention and Deletion' %}</h2>
+
+            <ul class="flex flex-col list-disc ps-4">
+                <li>{% translate 'Unconfirmed accounts are automatically deleted after 3 days.' %}</li>
+                <li>{% translate 'Inactive accounts are deleted after 2 years of inactivity.' %}</li>
+                <li>{% translate 'All other data is only stored as long as necessary for the intended purpose or as legally required.' %}</li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '6. Your Rights' %}</h2>
+
+            <div class="flex flex-col gap-5">
+                <h3>{% translate 'You have the right to:' %}</h3>
+                <p>
+                    {% blocktranslate %}
+                        Request information about the personal data we hold about you (Art. 15 GDPR),
+                        Request correction or completion of inaccurate or incomplete data (Art. 16 GDPR),
+                        Request deletion of your personal data (Art. 17 GDPR),
+                        Request restriction of processing (Art. 18 GDPR),
+                        Receive your personal data in a structured, commonly used format (Art. 20 GDPR),
+                        Lodge a complaint with a supervisory authority (Art. 77 GDPR).
+                    {% endblocktranslate %}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '7. Data Security' %}</h2>
+
+            <p>
+                {% blocktranslate %}
+                    We implement current technical and organizational security measures to protect your data from
+                    manipulation, loss, destruction, or unauthorized access. Passwords are stored only in encrypted
+                    form.
+                {% endblocktranslate %}
+            </p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <h2>{% translate '8. Changes to This Privacy Policy' %}</h2>
+
+            <p>
+                {% blocktranslate %}
+                    We reserve the right to amend this privacy policy to comply with new legal requirements or due to
+                    changes in our services.
+                {% endblocktranslate %}
+            </p>
+        </div>
+
+        <p>{% translate 'Effective date:' %} 31.07.2025</p>
+    </div>
+{% endblock %}
