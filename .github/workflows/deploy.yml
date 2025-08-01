@@ -46,6 +46,4 @@ jobs:
             cd /home/deployer/gourmet_wiki-django
             git pull origin master
             chmod +x ./db/init.sh
-            docker compose pull
             docker compose up -d --build
-            docker exec -it gourmet-wiki_web /bin/bash -c "npm run build && python manage.py collectstatic --no-input"
