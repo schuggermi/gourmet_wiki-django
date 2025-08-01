@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-RUN npm install && npm run build
+RUN npm install
 
 COPY entrypoint.sh /app/
 
