@@ -3,21 +3,27 @@
 
 {% get_providers as socialaccount_providers %}
 {% if socialaccount_providers %}
-    <div class="h-full flex flex-col gap-20 justify-center items-center w-full">
+    <div class="h-full flex flex-col gap-20 justify-center items-center">
         {% for provider in socialaccount_providers %}
             {% if provider.id == "openid" %}
                 {% for brand in provider.get_brands %}
                     {% provider_login_url provider openid=brand.openid_url process=process as href %}
-            <c-a :url="href" class="btn btn-accent btn-outline w-full">
-                {{ name }}
-            </c-a>
+                    <c-a :url="href" class="btn btn-accent btn-outline">
+                        {{ name }}
+                    </c-a>
                 {% endfor %}
+            {% elif provider.id == "google" %}
+                {% provider_login_url provider process=process as google_login_url %}
+                <a href="{{ google_login_url }}" class="btn btn-accent flex gap-5">
+                    <c-google-icon></c-google-icon>
+                    {% translate 'Continue with Google' %}
+                </a>
+            {% else %}
+                {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+                <c-a :url="href" class="btn btn-accent btn-outline rounded-2xl!" animated>
+                    {{ provider.name }}
+                </c-a>
             {% endif %}
-
-            {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
-            <c-a :url="href" class="btn btn-accent btn-outline w-full rounded-2xl!" animated>
-                {{ provider.name }}
-            </c-a>
 
         {% endfor %}
         {#            {% if not SOCIALACCOUNT_ONLY %}#}

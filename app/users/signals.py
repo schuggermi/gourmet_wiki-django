@@ -25,15 +25,24 @@ def reward_recipe_submission(sender, instance, created, **kwargs):
         profile.update_level()
 
 
-@receiver(email_confirmed)
-def award_member_badge_on_email_confirmed(request, email_address, **kwargs):
-    user = email_address.user
-
+@receiver(user_signed_up)
+def handle_user_signed_up(request, user, **kwargs):
     user.groups.add(Group.objects.get(name='Member'))
 
     profile = getattr(user, 'profile', None)
     if profile:
         award_badge(profile, Badge.MEMBER)
+
+
+# @receiver(email_confirmed)
+# def award_member_badge_on_email_confirmed(request, email_address, **kwargs):
+#     user = email_address.user
+#
+#     user.groups.add(Group.objects.get(name='Member'))
+#
+#     profile = getattr(user, 'profile', None)
+#     if profile:
+#         award_badge(profile, Badge.MEMBER)
 
 
 def award_badge(profile, badge_name):
