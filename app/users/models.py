@@ -191,11 +191,11 @@ class Profile(models.Model):
 
 
 class Badge(models.TextChoices):
-    MEMBER = 'member', 'Member'
+    MEMBER = 'member', _('Member')
 
 
 BADGE_DESCRIPTIONS = {
-    Badge.MEMBER: "Joined as a Community Member",
+    Badge.MEMBER: _("Joined as a Community Member"),
 }
 
 
@@ -208,7 +208,8 @@ class UserBadge(models.Model):
         unique_together = ('profile', 'badge')
 
     def __str__(self):
-        return f"{self.get_badge_display()} since {self.awarded_at.strftime('%d.%m.%Y')}"
+        since = _("since")
+        return f"{self.get_badge_display()} {since} {self.awarded_at.strftime('%d.%m.%Y')}"
 
     @property
     def description(self):
