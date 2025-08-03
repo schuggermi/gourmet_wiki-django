@@ -307,7 +307,7 @@ msgstr "Nutzungsbedingungen"
 
 #: templates/cotton/footer.html:22
 msgid "Privacy policy"
-msgstr "Datenschutzerklärung"
+msgstr "Datenschutz<wbr>erklärung"
 
 #: templates/cotton/footer.html:23 templates/pages/imprint.html:7
 msgid "Imprint"
@@ -571,7 +571,7 @@ msgstr "Zahlungsabwicklung erfolgt über:"
 
 #: templates/pages/privacy.html:7
 msgid "Privacy Policy"
-msgstr "Datenschutzbestimmungen"
+msgstr "Datenschutz<wbr>bestimmungen"
 
 #: templates/pages/privacy.html:13
 msgid "1. Controller"
@@ -762,7 +762,7 @@ msgstr "Stand:"
 
 #: templates/pages/terms_of_use.html:7
 msgid "Terms of Use"
-msgstr "Nutzungsbedingungen"
+msgstr "Nutzungs<wbr>bedingungen"
 
 #: templates/pages/terms_of_use.html:13
 msgid "Welcome to Gourmet Wiki!"

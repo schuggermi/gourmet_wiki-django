@@ -4,7 +4,7 @@
 {% block main_content %}
     <!-- Top 4 Recipes Of The Day -->
     <div class="flex flex-col gap-5 w-full">
-        <h1>{% translate 'Daily Highlights' %}</h1>
+        <h1 class="text-center">{% translate 'Daily Highlights' %}</h1>
         {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}
     </div>
 {% endblock %}

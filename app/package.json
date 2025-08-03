@@ -10,10 +10,10 @@
   "private": true,
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.16",
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.8",
     "daisyui": "^5.0.43",
     "sortablejs": "^1.15.6",

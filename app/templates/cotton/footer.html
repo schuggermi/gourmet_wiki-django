@@ -15,7 +15,7 @@
         <a class="link link-hover">Jobs</a>
         <a class="link link-hover">Press kit</a>
     </nav>{% endcomment %}
-    <nav>
+    <nav class="flex flex-col">
         <h6 class="footer-title">{% translate 'Legal' %}</h6>
         <a class="link link-hover" href="{% url 'terms_of_use' %}">{% translate 'Terms of use' %}</a>
         <a class="link link-hover" href="{% url 'privacy' %}">{% translate 'Privacy policy' %}</a>
@@ -31,7 +31,7 @@
             © 2025 Gourmet Wiki
         </p>
     </aside>
-    <nav class="md:place-self-center md:justify-self-end">
+    {% comment %}<nav class="md:place-self-center md:justify-self-end">
         <div class="grid grid-flow-col gap-4">
             <a>
                 <svg
@@ -67,5 +67,5 @@
                 </svg>
             </a>
         </div>
-    </nav>
+    </nav>{% endcomment %}
 </footer>
