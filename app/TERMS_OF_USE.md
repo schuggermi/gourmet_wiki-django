@@ -41,6 +41,10 @@ You agree to keep your login credentials secure and notify us of any unauthorize
 Verhalte dich respektvoll. Folgendes ist verboten:  
 Be respectful. The following is prohibited:
 
+- Offensive or illegal content
+- Harassing other users
+- Exploiting or manipulating the platform
+
 - Beleidigende oder rechtswidrige Inhalte / Offensive or illegal content
 - Belästigung anderer Nutzer / Harassing other users
 - Manipulation der Plattform / Exploiting or manipulating the platform

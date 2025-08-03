@@ -10,30 +10,17 @@
 
     <div class="flex flex-col gap-20 w-full">
         <div class="flex flex-col gap-5">
-            <h2>{% translate 'Welcome to Gourmet Wiki!' %}</h2>
+            <h2>{% blocktranslate %}Welcome to Gourmet Wiki!{% endblocktranslate %}</h2>
 
-            <p>
-                {% blocktranslate %}
-                    These Terms of Use (“Terms”) govern your access to and use of the Gourmet Wiki platform.
-                {% endblocktranslate %}
-            </p>
+            <p>{% blocktranslate %}These Terms of Use (“Terms”) govern your access to and use of the Gourmet Wiki platform.{% endblocktranslate %}</p>
         </div>
 
         <div class="flex flex-col gap-5">
             <h2>{% translate '1. Eligibility' %}</h2>
 
             <div>
-                <p>
-                    {% blocktranslate %}
-                        You must be at least 16 years old and provide accurate registration information.
-                    {% endblocktranslate %}
-                </p>
-                <p>
-                    {% blocktranslate %}
-                        By using Google Social Auth, you authorize us to retrieve basic profile data (name and email)
-                        via OAuth2.
-                    {% endblocktranslate %}
-                </p>
+                <p>{% blocktranslate %}You must be at least 16 years old and provide accurate registration information.{% endblocktranslate %}</p>
+                <p>{% blocktranslate %}By using Google Social Auth, you authorize us to retrieve basic profile data (name and email) via OAuth2.{% endblocktranslate %}</p>
             </div>
         </div>
 
@@ -46,16 +33,8 @@
             </div>
 
             <div>
-                <p>
-                    {% blocktranslate %}
-                        <strong>Unconfirmed accounts</strong> are deleted after 3 days.
-                    {% endblocktranslate %}
-                </p>
-                <p>
-                    {% blocktranslate %}
-                        <strong>Inactive accounts</strong> are deleted after 2 years.
-                    {% endblocktranslate %}
-                </p>
+                <p>{% blocktranslate %}<strong>Unconfirmed accounts</strong> are deleted after 3 days.{% endblocktranslate %}</p>
+                <p>{% blocktranslate %}<strong>Inactive accounts</strong> are deleted after 2 years.{% endblocktranslate %}</p>
             </div>
         </div>
 
@@ -65,9 +44,9 @@
             <div>
                 <h3>{% translate 'Be respectful. The following is prohibited:' %}</h3>
                 <ul class="flex flex-col list-disc ps-4">
-                    <li>{% translate 'Beleidigende oder rechtswidrige Inhalte / Offensive or illegal content' %}</li>
-                    <li>{% translate 'Belästigung anderer Nutzer / Harassing other users' %}</li>
-                    <li>{% translate 'Manipulation der Plattform / Exploiting or manipulating the platform' %}</li>
+                    <li>{% translate 'Offensive or illegal content' %}</li>
+                    <li>{% translate 'Harassing other users' %}</li>
+                    <li>{% translate 'Exploiting or manipulating the platform' %}</li>
                 </ul>
             </div>
 
@@ -86,11 +65,7 @@
         <div class="flex flex-col gap-5">
             <h2>{% translate '5. Payments' %}</h2>
 
-            <p>
-                {% blocktranslate %}
-                    Paid services are processed via <strong>Stripe</strong>.
-                {% endblocktranslate %}
-            </p>
+            <p>{% blocktranslate %}Paid services are processed via <strong>Stripe</strong>.{% endblocktranslate %}</p>
 
             <div>
                 <p>{% translate 'You agree to the use of Stripe:' %}</p>

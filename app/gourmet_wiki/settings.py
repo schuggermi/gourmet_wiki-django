@@ -167,10 +167,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'de'  # en-us
 
-# LANGUAGES = [
-#     ('en', 'English'),
-#     ('de', 'German'),
-# ]
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'German'),
+]
 
 TIME_ZONE = 'UTC'
 

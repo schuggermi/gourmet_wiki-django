@@ -1,5 +1,7 @@
+Imprint
 Impressum
 
+Information in accordance with Section 5 TMG (German Telemedia Act):
 Angaben gemäß § 5 TMG:
 
 Michael Schuchowski
@@ -8,14 +10,19 @@ Trützschlerstr. 5
 12487 Berlin
 Deutschland
 
+Contact:
 Kontakt:
 E-Mail: support@gourmet-wiki.app
 
+Responsible for content according to § 55 Abs. 2 RStV:
 Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
 Michael Schuchowski
 Trützschlerstr. 5
 12487 Berlin
+
+Disclaimer
 Haftungsausschluss
+Liability for content
 Haftung für Inhalte
 
 Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
@@ -29,10 +36,12 @@ Urheberrecht
 
 Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
 Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+
 Plattform der EU-Kommission zur Online-Streitbeilegung:
 
 https://ec.europa.eu/consumers/odr/
 Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+
 Diensteanbieter & Hosting
 
 Diese Website wird betrieben auf Servern von:
@@ -56,25 +65,6 @@ https://stripe.com
 
 ENGLISH:
 
-
-Imprint
-
-Information in accordance with Section 5 TMG (German Telemedia Act):
-
-Max Mustermann
-Gourmet Wiki
-Musterstraße 1
-12345 Musterstadt
-Germany
-
-Contact:
-Email: support@gourmet-wiki.app
-
-Responsible for content according to § 55 Abs. 2 RStV:
-Max Mustermann
-Musterstraße 1
-12345 Musterstadt
-Germany
 Disclaimer
 Liability for content
 
@@ -89,6 +79,7 @@ Copyright
 
 The content and works created by the website operator on these pages are subject to German copyright law.
 Third-party contributions are marked as such. Any duplication, processing, distribution, or any form of use outside the limits of copyright law requires the written consent of the respective author or creator.
+
 EU Dispute Resolution
 
 The European Commission provides a platform for online dispute resolution (ODR):

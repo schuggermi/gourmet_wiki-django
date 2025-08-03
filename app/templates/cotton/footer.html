@@ -16,7 +16,7 @@
         <a class="link link-hover">Press kit</a>
     </nav>{% endcomment %}
     <nav>
-        <h6 class="footer-title">Legal</h6>
+        <h6 class="footer-title">{% translate 'Legal' %}</h6>
         <a class="link link-hover" href="{% url 'terms_of_use' %}">{% translate 'Terms of use' %}</a>
         <a class="link link-hover" href="{% url 'privacy' %}">{% translate 'Privacy policy' %}</a>
         <a class="link link-hover" href="{% url 'imprint' %}">{% translate 'Imprint' %}</a>
@@ -25,8 +25,7 @@
 <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
     <aside class="flex flex-col gap-2 grid-flow-col items-start">
         <c-a url="{% url 'home' %}" title="Gourmet Wiki">
-            <img class="w-42 max-w-42" src="{% static 'images/logo.png' %}"
-                 alt="Gourmet Wiki">
+            <img class="w-42 max-w-42" src="{% static 'images/logo.png' %}" alt="Gourmet Wiki">
         </c-a>
         <p>
             © 2025 Gourmet Wiki
