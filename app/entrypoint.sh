@@ -9,5 +9,6 @@ npm run build
 python manage.py makemigrations --settings=gourmet_wiki.settings
 python manage.py migrate --settings=gourmet_wiki.settings
 python manage.py collectstatic --settings=gourmet_wiki.settings --no-input --clear
+python manage.py compilemessages --settings=gourmet_wiki.settings
 
 exec "$@"
