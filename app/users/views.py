@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
 from django.views.generic import DetailView, ListView, DeleteView
 
 from recipes.models import Recipe
@@ -26,7 +25,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
         return user.profile if user else None
 
 
-class UserRecipeListView(ListView):
+class UserRecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
     template_name = "users/recipe_list.html"
 
@@ -34,7 +33,7 @@ class UserRecipeListView(ListView):
         return User.objects.get(pk=self.request.user.pk).recipe_set.all()
 
 
-class UserFavoriteRecipeListView(ListView):
+class UserFavoriteRecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
     template_name = "users/favorite_recipe_list.html"
 

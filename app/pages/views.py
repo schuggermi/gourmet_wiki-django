@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Avg, ExpressionWrapper, F, FloatField, Q, Func, Value, CharField
 from django.db.models.functions import Concat
 from django.shortcuts import render
@@ -6,6 +7,7 @@ from django.utils.timezone import now
 from recipes.models import Recipe
 
 
+@login_required
 def home(request):
     context = {}
     today = now().date()

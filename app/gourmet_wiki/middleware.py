@@ -20,8 +20,9 @@ from django.conf import settings
 
 EXEMPT_URLS = [
     '/accounts/login/',
-    'accounts/logout/',
-    re.compile(r'^accounts/confirm-email/[\w\-.:]+/?$'),
+    '/accounts/logout/',
+    re.compile(r'^accounts/confirm-email/?$'),
+    re.compile(r'^accounts/confirm-email/.+/?$'),  # <-- key part!
     '/admin/',
     '/imprint/',
     '/privacy/',

@@ -2,6 +2,7 @@ from pathlib import Path
 
 from django import forms
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
@@ -19,6 +20,7 @@ from recipes.models import Recipe
 from recipes.utils import calculate_scaled_ingredients_menu
 
 
+@login_required
 def add_menu_course_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = MenuCourseForm(prefix=f'menu_course-{form_index}', user=request.user)
@@ -35,6 +37,7 @@ def add_menu_course_form(request):
     return HttpResponse(html)
 
 
+@login_required
 def add_menu_item_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = MenuItemForm(prefix=f'menu_item-{form_index}', user=request.user)
@@ -50,6 +53,7 @@ def add_menu_item_form(request):
     return HttpResponse(html)
 
 
+@login_required
 def get_recipes_by_course_type(request):
     """
     AJAX view to get recipes filtered by course_type
@@ -76,6 +80,7 @@ def get_recipes_by_course_type(request):
     })
 
 
+@login_required
 def menu_list_partial(request):
     """
     View to render the menu list partial for htmx requests
@@ -93,7 +98,7 @@ def menu_list_partial(request):
     return render(request, 'menus/partials/menu_list.html', context)
 
 
-class MenuListView(ListView):
+class MenuListView(LoginRequiredMixin, ListView):
     model = Menu
 
     def get_queryset(self):
@@ -109,7 +114,7 @@ class MenuListView(ListView):
         return context
 
 
-class MenuDetailView(DetailView):
+class MenuDetailView(LoginRequiredMixin, DetailView):
     model = Menu
 
     def get_context_data(self, **kwargs):

@@ -25,6 +25,7 @@ urlpatterns = [
                   path('test/403/', lambda request: render(request, "errors/403.html", status=404)),
                   path('admin/', admin.site.urls),
                   path('', include('pages.urls'), name='pages'),
+                  path('', include('core.urls'), name='core'),
                   path('recipes/', include('recipes.urls'), name='recipes'),
                   path('ingredients/', include('ingredients.urls'), name='ingredients'),
                   path('menus/', include('menus.urls'), name='menus'),
