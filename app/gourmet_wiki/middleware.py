@@ -1,3 +1,5 @@
+import re
+
 from django.utils import translation
 
 
@@ -17,8 +19,13 @@ from django.shortcuts import redirect
 from django.conf import settings
 
 EXEMPT_URLS = [
-    settings.LOGIN_URL, '/admin/login/', '/admin/', '/accounts/logout/', '/accounts/login/', '/privacy/', '/imprint/',
-    '/terms_of_use/'
+    '/accounts/login/',
+    'accounts/logout/',
+    re.compile(r'^accounts/confirm-email/[\w\-.:]+/?$'),
+    '/admin/',
+    '/imprint/',
+    '/privacy/',
+    '/terms_of_use/',
 ]
 
 
