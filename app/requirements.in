@@ -14,3 +14,4 @@ gunicorn
 whitenoise
 pillow
 listmonk
+django-ratelimit

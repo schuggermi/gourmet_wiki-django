@@ -84,9 +84,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    # 'gourmet_wiki.middleware.RequireLoginMiddleware',  # only for dev env
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'users.middleware.HTMXLoginRedirectMiddleware',
+    'gourmet_wiki.middleware.SuspiciousRequestMiddleware',
+    'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

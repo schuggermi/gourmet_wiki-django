@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Avg, ExpressionWrapper, F, FloatField, Q, Func, Value, CharField
+from django.db.models import F, Func, Value, CharField
 from django.db.models.functions import Concat
 from django.shortcuts import render
 from django.utils.timezone import now
@@ -38,6 +38,7 @@ def imprint(request):
 
 def privacy(request):
     return render(request, 'pages/privacy.html')
+
 
 def terms_of_use(request):
     return render(request, 'pages/terms_of_use.html')
