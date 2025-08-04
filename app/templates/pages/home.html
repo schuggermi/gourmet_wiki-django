@@ -1,10 +1,71 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block main_content %}
-    <!-- Top 4 Recipes Of The Day -->
-    <div class="flex flex-col gap-5 w-full">
-        <h1 class="text-center">{% translate 'Daily Highlights' %}</h1>
-        {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}
+    <div class="flex flex-col gap-20">
+        <!-- Hero Section -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 w-full bg-base-200 rounded-lg">
+            <div class="relative bg-cover bg-center bg-no-repeat rounded-tl-lg rounded-tr-lg"
+                 style="background-image: url('{% static "images/hero_background.jpg" %}')">
+
+                <!-- Dark overlay -->
+                <div class="absolute inset-0 bg-base-100/70 z-0"></div>
+
+                <!-- Content in front -->
+                <div class="relative z-10 flex flex-col gap-10 justify-start p-5 text-white">
+                    <h1 class="text-secondary xl:text-center">{% translate 'Share your culinary expertise with the world.' %}</h1>
+
+                    <div class="flex flex-col gap-2">
+                        <h2 class="xl:text-center">{% translate 'Be part of the Gourmet Wiki launch.' %}</h2>
+                        <p class="xl:text-center">{% translate 'Gourmet Wiki invites professional chefs, food bloggers, and culinary experts to help build a global knowledge platform for basic recipes and kitchen know-how.' %}</p>
+                    </div>
+
+                    <div class="flex flex-col gap-5 items-center">
+                        <h3>{% translate '📩 Ready to contribute?' %}</h3>
+                        <div class="flex flex-col xl:flex-row gap-2">
+                            <c-a url="{% url 'recipe-create' %}"
+                                 class="btn btn-md xl:btn-lg btn-primary">{% translate 'Submit your first recipe' %}</c-a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col gap-10 justify-between p-5">
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate '🌍 Our Mission:' %}</h3>
+                    <p>{% translate 'To create a free, reliable source for essential recipes and kitchen techniques — open to everyone, everywhere.' %}</p>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <h3>{% translate "🔎 We're looking for:" %}</h3>
+                    <ul class="list-disc ps-4">
+                        <li>{% translate 'Authentic, tested recipes' %}</li>
+                        <li>{% translate 'Practical tips & techniques' %}</li>
+                        <li>{% translate 'Food bloggers & chefs' %}</li>
+                        <li>{% translate 'Culinary educators & specialist authors' %}</li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <h3>{% translate "🎁 What's in it for you?" %}</h3>
+                    <ul class="list-disc ps-4">
+                        <li>{% translate 'Visibility at launch' %}</li>
+                        <li>{% translate 'Author profile & backlinks' %}</li>
+                        <li>{% translate 'Early contributor status in a pioneering food project' %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-20">
+            <!-- Top 4 Recipes Of The Day -->
+            {% if daily_random_recipes %}
+                <div class="flex flex-col gap-5 w-full">
+                    <h2>{% translate 'Daily Highlights' %}</h2>
+                    {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

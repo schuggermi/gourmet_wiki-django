@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
-from django.db.models.sql import Query
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
@@ -96,7 +95,6 @@ def add_ingredient_form(request):
 def add_image_form(request):
     form_index = int(request.GET.get("form_count", 0))
     new_form = RecipeImageForm(prefix=f'recipe_image-{form_index}')
-
 
     context = {
         'form': new_form,
@@ -245,8 +243,6 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
-
-
         return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 
@@ -267,7 +263,6 @@ def get_calculate_scaled_ingredients(request, recipe_id):
 def get_calculate_scaled_ingredients_menu(request, menu_id):
     context = calculate_scaled_ingredients_menu(menu_id, int(request.GET.get('portions')))
     context['current_recipe_slide'] = request.GET.get('current_recipe_slide', 0)
-
 
     html = render_to_string('menus/partials/recipe_carousel.html', context)
     return HttpResponse(html)

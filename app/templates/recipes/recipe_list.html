@@ -19,7 +19,7 @@
             <form class="w-full md:w-fit flex gap-2 items-center" hx-get="{% url 'recipe-list-partial' %}" hx-target="#recipe-list-container"
                   hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
                 <c-input name="search" placeholder="{% translate 'Search recipes...' %}"
-                         value="{{ search_query }}" class="bg-base-300"></c-input>
+                         value="{{ search_query }}"></c-input>
                 <button type="submit" class="btn btn-accent">{% translate 'Search' %}</button>
             </form>
         </div>

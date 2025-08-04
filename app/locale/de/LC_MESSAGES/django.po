@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-03 03:27+0000\n"
+"POT-Creation-Date: 2025-08-04 14:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,30 +199,37 @@ msgstr "Support"
 msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
-#: templates/account/login.html:39
+#: templates/account/login.html:11
+msgid ""
+"<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
+"something up!"
+msgstr "<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind noch "
+"am Kochen!"
+
+#: templates/account/login.html:40
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/login.html:45
+#: templates/account/login.html:46
 #: templates/account/password_reset_from_key.html:6
 #: templates/socialaccount/login.html:6
 msgid "Sign In"
 msgstr "Anmelden"
 
-#: templates/account/login.html:55
+#: templates/account/login.html:56
 msgid "You don't have an account at Gourmet-Wiki yet?"
 msgstr "Du hast noch kein Konto bei Gourmet-Wiki?"
 
-#: templates/account/login.html:57 templates/account/signup.html:6
+#: templates/account/login.html:58 templates/account/signup.html:6
 #: templates/account/signup.html:10
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:66 templates/account/signup.html:75
+#: templates/account/login.html:67 templates/account/signup.html:75
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:71 templates/account/signup.html:80
+#: templates/account/login.html:72 templates/account/signup.html:80
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -482,7 +489,81 @@ msgstr "Zubereitungsschritte"
 msgid "Preparation Step"
 msgstr "Zubereitungsschritt"
 
-#: templates/pages/home.html:7
+#: templates/pages/home.html:16
+msgid "Share your culinary expertise with the world."
+msgstr "Teile dein kulinarisches Wissen mit der Welt."
+
+#: templates/pages/home.html:19
+msgid "Be part of the Gourmet Wiki launch."
+msgstr "Sei Teil des GourmetWiki-Starts."
+
+#: templates/pages/home.html:20
+msgid ""
+"Gourmet Wiki invites professional chefs, food bloggers, and culinary experts "
+"to help build a global knowledge platform for basic recipes and kitchen know-"
+"how."
+msgstr ""
+"Gourmet Wiki lädt Profiköche, Food-Blogger und kulinarische Expert:innen "
+"ein, eine globale Wissensplattform für Grundrezepte und Küchen-Know-how "
+"mitzugestalten."
+
+#: templates/pages/home.html:24
+msgid "📩 Ready to contribute?"
+msgstr "📩 Bereit mitzumachen?"
+
+#: templates/pages/home.html:27
+msgid "Submit your first recipe"
+msgstr "Erstes Rezept einreichen"
+
+#: templates/pages/home.html:36
+msgid "🌍 Our Mission:"
+msgstr "🌍 Unsere Mission:"
+
+#: templates/pages/home.html:37
+msgid ""
+"To create a free, reliable source for essential recipes and kitchen "
+"techniques — open to everyone, everywhere."
+msgstr ""
+"Eine kostenlose, verlässliche Quelle für grundlegende Rezepte und "
+"Küchentechniken schaffen — offen für alle, überall."
+
+#: templates/pages/home.html:41
+msgid "🔎 We're looking for:"
+msgstr "🔎 Wir suchen:"
+
+#: templates/pages/home.html:43
+msgid "Authentic, tested recipes"
+msgstr "Authentische, erprobte Rezepte"
+
+#: templates/pages/home.html:44
+msgid "Practical tips & techniques"
+msgstr "Praktische Tipps & Küchenwissen"
+
+#: templates/pages/home.html:45
+msgid "Food bloggers & chefs"
+msgstr "Food-Blogger & Köche"
+
+#: templates/pages/home.html:46
+msgid "Culinary educators & specialist authors"
+msgstr "Kulinarische Fachautor:innen und Ausbilder:innen"
+
+#: templates/pages/home.html:51
+msgid "🎁 What's in it for you?"
+msgstr "🎁 Deine Vorteile:"
+
+#: templates/pages/home.html:53
+msgid "Visibility at launch"
+msgstr "Sichtbarkeit beim Start"
+
+#: templates/pages/home.html:54
+msgid "Author profile & backlinks"
+msgstr "Autorenprofil & Backlinks"
+
+#: templates/pages/home.html:55
+msgid "Early contributor status in a pioneering food project"
+msgstr "Früher Mitgestalter eines wegweisenden Food-Projekts"
+
+#: templates/pages/home.html:65
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -1176,7 +1257,6 @@ msgstr[1] ""
 "\n"
 "                                %(recipe_count)s Rezepte\n"
 "                            "
-
 
 #: templates/users/profile.html:110
 msgid "Delete Account"

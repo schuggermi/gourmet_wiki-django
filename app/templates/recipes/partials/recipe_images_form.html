@@ -45,82 +45,83 @@
         </svg>
         {% translate 'Upload Image (max. 10 files)' %}
     </div>
+</div>
 
-    <script>
-        window.addEventListener('load', () => {
-            (function () {
-                const sortable = document.querySelector("#image-formset");
+<script>
+    window.addEventListener('load', () => {
+        (function () {
+            const sortable = document.querySelector("#image-formset");
 
-                new Sortable(sortable, {
-                    animation: 150,
-                    dragClass: 'border-secondary!',
-                    onEnd: () => reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'),
-                });
-            })();
+            new Sortable(sortable, {
+                animation: 150,
+                dragClass: 'border-secondary!',
+                onEnd: () => reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS'),
+            });
+        })();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Call updateMsg on page load to ensure correct initial state
+        updateMsg();
+
+        document.addEventListener('htmx:configRequest', function (event) {
+            const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
+            const totalForms = parseInt(totalFormsInput.value);
+
+            if (totalForms >= 10) {
+                event.preventDefault();
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Call updateMsg on page load to ensure correct initial state
+        document.addEventListener('htmx:afterSwap', function (event) {
+            const formset = document.querySelector("#image-formset");
+            const forms = formset.querySelectorAll('.formset-form');
+            const lastForm = forms[forms.length - 1];
+            const imageInput = lastForm.querySelector('input[id$="image"]');
+
             updateMsg();
+            if (imageInput) {
+                imageInput.click();
+            }
 
-            document.addEventListener('htmx:configRequest', function (event) {
-                const totalFormsInput = document.querySelector('#id_recipe_image-TOTAL_FORMS');
-                const totalForms = parseInt(totalFormsInput.value);
+            reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
+        });
 
-                if (totalForms >= 10) {
-                    event.preventDefault();
-                }
-            });
+        document.getElementById('image-formset').addEventListener('change', (event) => {
+            const input = event.target;
+            if (input.matches('input[type="file"]')) {
+                // Call imageUploaded function when a file is selected
+                if (input.files && input.files[0]) {
+                    const formRow = input.closest('.formset-form');
+                    const previewImage = formRow.querySelector('.preview-image');
+                    const imageLabel = formRow.querySelector('span');
 
-            document.addEventListener('htmx:afterSwap', function (event) {
-                const formset = document.querySelector("#image-formset");
-                const forms = formset.querySelectorAll('.formset-form');
-                const lastForm = forms[forms.length - 1];
-                const imageInput = lastForm.querySelector('input[id$="image"]');
+                    // Update the label with the file name
+                    if (imageLabel) {
+                        imageLabel.textContent = input.files[0].name;
+                    }
 
-                updateMsg();
-                if (imageInput) {
-                    imageInput.click();
-                }
-
-                reindexFormset('#image-formset', '#id_recipe_image-TOTAL_FORMS');
-            });
-
-            document.getElementById('image-formset').addEventListener('change', (event) => {
-                const input = event.target;
-                if (input.matches('input[type="file"]')) {
-                    // Call imageUploaded function when a file is selected
-                    if (input.files && input.files[0]) {
-                        const formRow = input.closest('.formset-form');
-                        const previewImage = formRow.querySelector('.preview-image');
-                        const imageLabel = formRow.querySelector('span');
-
-                        // Update the label with the file name
-                        if (imageLabel) {
-                            imageLabel.textContent = input.files[0].name;
-                        }
-
-                        // Update the preview image
-                        if (previewImage) {
-                            const imageUrl = URL.createObjectURL(input.files[0]);
-                            previewImage.style.backgroundImage = `url("${imageUrl}")`;
-                        }
+                    // Update the preview image
+                    if (previewImage) {
+                        const imageUrl = URL.createObjectURL(input.files[0]);
+                        previewImage.style.backgroundImage = `url("${imageUrl}")`;
                     }
                 }
-            });
-        });
-
-        function updateMsg() {
-            // Count visible form elements instead of relying on TOTAL_FORMS
-            const visibleForms = document.querySelectorAll('#image-formset .formset-form:not(.hidden)').length;
-            const noImagesUploadedMsg = document.getElementById('no-images-uploaded');
-
-            if (visibleForms > 0) {
-                noImagesUploadedMsg.classList.add('hidden');
-            } else {
-                noImagesUploadedMsg.classList.remove('hidden');
             }
-        }
+        });
+    });
 
-        // Function removed as it's no longer needed - functionality implemented in the change event listener
-    </script>
+    function updateMsg() {
+        // Count visible form elements instead of relying on TOTAL_FORMS
+        const visibleForms = document.querySelectorAll('#image-formset .formset-form:not(.hidden)').length;
+        const noImagesUploadedMsg = document.getElementById('no-images-uploaded');
+
+        if (visibleForms > 0) {
+            noImagesUploadedMsg.classList.add('hidden');
+        } else {
+            noImagesUploadedMsg.classList.remove('hidden');
+        }
+    }
+
+    // Function removed as it's no longer needed - functionality implemented in the change event listener
+</script>

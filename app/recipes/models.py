@@ -162,7 +162,7 @@ class Recipe(models.Model):
     @property
     def average_rating(self):
         avg = self.ratings.aggregate(avg=Avg('score'))['avg']
-        return round(avg or 0, 1)
+        return round(max(0, avg if avg is not None else 0), 1)
 
     def __str__(self):
         return self.name
