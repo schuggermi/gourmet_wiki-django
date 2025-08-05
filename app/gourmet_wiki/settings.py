@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'menus.apps.MenusConfig',
+    'wiki.apps.WikiConfig',
 
     'corsheaders',
     'debug_toolbar',
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
     'formtools',
     'crispy_forms',
     'crispy_daisyui',
+    'reversion',
 
     'allauth',
     'allauth.account',

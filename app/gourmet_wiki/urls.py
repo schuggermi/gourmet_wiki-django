@@ -26,6 +26,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('pages.urls'), name='pages'),
                   path('', include('core.urls'), name='core'),
+                  path('wiki/', include('wiki.urls'), name='wiki'),
                   path('recipes/', include('recipes.urls'), name='recipes'),
                   path('ingredients/', include('ingredients.urls'), name='ingredients'),
                   path('menus/', include('menus.urls'), name='menus'),

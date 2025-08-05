@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load markdown_extras %}
+
+{% block main_content %}
+    {% for article in articles %}
+        <article class="wiki-content">
+            {{ article.rendered_html|safe }}
+        </article>
+    {% endfor %}
+
+{% endblock %}
+
+

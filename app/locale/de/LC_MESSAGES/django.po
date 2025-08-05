@@ -495,7 +495,7 @@ msgstr "Teile dein kulinarisches Wissen mit der Welt."
 
 #: templates/pages/home.html:19
 msgid "Be part of the Gourmet Wiki launch."
-msgstr "Sei Teil des GourmetWiki-Starts."
+msgstr "Sei von Anfang an Teil von Gourmet Wiki."
 
 #: templates/pages/home.html:20
 msgid ""

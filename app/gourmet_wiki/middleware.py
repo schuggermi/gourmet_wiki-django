@@ -38,7 +38,7 @@ class GlobalRateLimitMiddleware:
         usage = get_usage(
             group='global',
             key=lambda r, req: ip,
-            rate='5/m',
+            rate='100/m',
             request=request,
             increment=True
         )
