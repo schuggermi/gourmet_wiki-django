@@ -13,14 +13,20 @@
         <ul class="absolute z-50 flex gap-5 px-1">
             <li>
                 <c-a url="{% url 'recipe-list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'recipe-list' %}btn-neutral{% endif %}">
+                     class="btn {% if request.resolver_match.url_name == 'recipe-list' %}btn-accent{% endif %}">
                     {% translate 'All Recipes' %}
                 </c-a>
             </li>
             <li>
                 <c-a url="{% url 'menu_list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'menu_list' %}btn-neutral{% endif %}">
+                     class="btn {% if request.resolver_match.url_name == 'menu_list' %}btn-accent{% endif %}">
                     {% translate 'All Menus' %}
+                </c-a>
+            </li>
+            <li>
+                <c-a url="{% url 'wiki:article_list' %}"
+                     class="btn {% if request.resolver_match.url_name == 'article_list' %}btn-accent{% endif %}">
+                    {% translate 'Wiki' %}
                 </c-a>
             </li>
         </ul>
@@ -36,7 +42,11 @@
                      class="w-12 h-12 mask mask-hexagon-2 bg-accent group-hover/avatar:scale-105">
                     {#                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>#}
                     <p class="uppercase text-center text-accent-content w-full h-full flex items-center justify-center">
-                        {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+                        {% if user.get_full_name %}
+                            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+                        {% else %}
+                            {{ user.username|slice:":1" }}
+                        {% endif %}
                     </p>
                 </div>
                 <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max bg-neutral">
@@ -86,6 +96,11 @@
                 <li>
                     <c-a url="{% url 'menu_list' %}">
                         {% translate 'All Menus' %}
+                    </c-a>
+                </li>
+                <li>
+                    <c-a url="{% url 'wiki:article_list' %}">
+                        {% translate 'Wiki' %}
                     </c-a>
                 </li>
             </ul>

@@ -8,73 +8,95 @@
 
 {% block heading %}
     <h1 class="text-center">{% translate 'Log In Now' %}</h1>
-    <p class="text-center">{% blocktranslate %}<span class="text-secondary">🚧 Access Limited</span><br>We’re cooking something up!{% endblocktranslate %}</p>
+    <p class="text-center">{% blocktranslate %}<span class="text-secondary">🚧 Access Limited</span><br>We’re cooking
+        something up!{% endblocktranslate %}</p>
 {% endblock %}
 
 {% block content %}
-    <div class="flex flex-col gap-5 justify-center items-center max-w-sm w-full">
-        {% if not SOCIALACCOUNT_ONLY %}
-            <div class="bg-base-primary w-full">
-                {% url 'account_login' as login_url %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        <div class="bg-base-primary w-full">
+            {% url 'account_login' as login_url %}
 
-                <form action="{{ login_url }}" method="post" class="flex flex-col gap-5 w-full text-start">
-                    {% csrf_token %}
+            <form action="{{ login_url }}" method="post" class="flex flex-col gap-5 w-full text-start max-w-sm mx-auto">
+                {% csrf_token %}
 
-                    <div class="flex flex-col w-full gap-3">
-                        {% if form.non_field_errors %}
-                            <ul>
-                                {% for error in form.non_field_errors %}
-                                    <li><p class="text-red-400 text-center">{{ error }}</p></li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+                <div class="flex flex-col w-full gap-3">
+                    {% if form.non_field_errors %}
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li><p class="text-red-400 text-center">{{ error }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
 
-                        <div>
-                            <c-input :field="form.login" type="text"></c-input>
-                        </div>
-
-                        <div class="w-full">
-                            <c-input :field="form.password" type="password"></c-input>
-
-                            <a href="{% url 'account_reset_password' %}">
-                                <small>{% translate 'Forgot your password?' %}</small>
-                            </a>
-                        </div>
+                    <div>
+                        <c-input :field="form.login" type="text"></c-input>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-full">
-                        {% trans "Sign In" %}
-                    </button>
-                </form>
-            </div>
+                    <div>
+                        <div class="relative w-full">
+                            <c-input :field="form.password" type="password" class="w-full pr-10">
+                                <button type="button" id="togglePassword"
+                                        class="absolute inset-y-0 z-20 right-0 flex items-center pr-3 cursor-pointer text-base-content/50 hover:text-base-content">
+                                    <!-- Augen-Icon -->
+                                    <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg"
+                                         class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </c-input>
+                        </div>
+                        <a href="{% url 'account_reset_password' %}">
+                            <small>{% translate 'Forgot your password?' %}</small>
+                        </a>
+                    </div>
+                </div>
 
-            {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                <button type="submit" class="btn btn-primary w-full">
+                    {% trans "Sign In" %}
+                </button>
+            </form>
+        </div>
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+
+        <div class="text-center flex flex-col gap-1 items-center">
+            <p>{% translate "You don't have an account at Gourmet Wiki yet?" %}</p>
+            <c-a animated url="{% url 'account_signup' %}"
+                 class="underline">{% translate 'Sign Up Now' %}</c-a>
+        </div>
+    {% endif %}
+    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+        {% element hr %}
+        {% endelement %}
+        {% element button_group vertical=True %}
+            {% if PASSKEY_LOGIN_ENABLED %}
+                {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
+                    {% trans "Sign in with a passkey" %}
+                {% endelement %}
             {% endif %}
+            {% if LOGIN_BY_CODE_ENABLED %}
+                {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
+                    {% trans "Send me a sign-in code" %}
+                {% endelement %}
+            {% endif %}
+        {% endelement %}
+    {% endif %}
 
-            <div class="text-center flex flex-col gap-1 items-center">
-                <p>{% translate "You don't have an account at Gourmet-Wiki yet?" %}</p>
-                <c-a animated url="{% url 'account_signup' %}"
-                     class="underline">{% translate 'Sign Up Now' %}</c-a>
-            </div>
-        {% endif %}
-        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
-            {% element hr %}
-            {% endelement %}
-            {% element button_group vertical=True %}
-                {% if PASSKEY_LOGIN_ENABLED %}
-                    {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
-                        {% trans "Sign in with a passkey" %}
-                    {% endelement %}
-                {% endif %}
-                {% if LOGIN_BY_CODE_ENABLED %}
-                    {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
-                        {% trans "Send me a sign-in code" %}
-                    {% endelement %}
-                {% endif %}
-            {% endelement %}
-        {% endif %}
-    </div>
+    <script>
+        const passwordInput = document.getElementById("id_password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+        });
+    </script>
 {% endblock content %}
 
 {% block extra_body %}

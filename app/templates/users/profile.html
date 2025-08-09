@@ -7,57 +7,60 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="self-start flex flex-col gap-1">
-        <h1>{% translate 'Your Profile' %}</h1>
-        <c-go-back></c-go-back>
-    </div>
+    <div class="container py-20">
+        <div class="self-start flex flex-col gap-1">
+            <h1>{% translate 'Your Profile' %}</h1>
+            <c-go-back></c-go-back>
+        </div>
 
-
-    <div class="grid grid-cols-2 md:grid-cols-2 gap-10 w-full min-w-0">
-        <div class="col-span-2 w-full flex flex-col lg:flex-row gap-5">
-            <div class="mx-auto lg:mx-0 shrink-0 shadow-md w-32 h-32 md:w-36 md:h-36 mask mask-hexagon-2 bg-base-200 group-hover/avatar:scale-105">
-                <p class="uppercase text-center text-base-content text-5xl! w-full h-full flex items-center justify-center">
-                    {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
-                </p>
-            </div>
-
-            <div class="flex-grow flex flex-col gap-5">
-                <h2 class="break-all wrap-break-word">{{ user.username }}</h2>
-
-                <div class="flex flex-col gap-2">
-                    <p><span class="text-secondary">{{ object.get_level_display }}</span></p>
-                    <progress title="{{ object.points }}" class="progress progress-accent w-56"
-                              value="{{ object.points }}" max="{{ object.max_points_to_next_level }}"></progress>
-                    <small>
-                        {% blocktrans with points=object.missing_points_to_next_level level=object.get_next_level_display_name %}
-                            {{ points }} points missing till next level
-                            <span class="text-secondary">{{ level }}</span>{% endblocktrans %}</small>
+        <div class="grid grid-cols-2 md:grid-cols-2 gap-10 w-full min-w-0 pt-20">
+            <div class="col-span-2 w-full flex flex-col lg:flex-row gap-5">
+                <div class="mx-auto lg:mx-0 shrink-0 shadow-md w-32 h-32 md:w-36 md:h-36 mask mask-hexagon-2 bg-base-200 group-hover/avatar:scale-105">
+                    <p class="uppercase text-center text-base-content text-5xl! w-full h-full flex items-center justify-center">
+                        {% if user.get_full_name %}
+                            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+                        {% else %}
+                            {{ user.username|slice:":1" }}
+                        {% endif %}                </p>
                 </div>
 
+                <div class="flex-grow flex flex-col gap-5">
+                    <h2 class="break-all wrap-break-word">{{ user.username }}</h2>
 
-                {% comment %}<div class="flex flex-col">
+                    <div class="flex flex-col gap-2">
+                        <p><span class="text-secondary">{{ object.get_level_display }}</span></p>
+                        <progress title="{{ object.points }}" class="progress progress-accent w-56"
+                                  value="{{ object.points }}" max="{{ object.max_points_to_next_level }}"></progress>
+                        <small>
+                            {% blocktrans with points=object.missing_points_to_next_level level=object.get_next_level_display_name %}
+                                {{ points }} points missing till next level
+                                <span class="text-secondary">{{ level }}</span>{% endblocktrans %}</small>
+                    </div>
+
+
+                    {% comment %}<div class="flex flex-col">
                     <p class="break-all wrap-break-word">{{ object.user.email }}</p>
                     <c-a url="{% url 'account_email' %}" class="text-accent font-light hover:underline" animated>
                             {% translate 'Change Your Email' %}
                         </c-a>
                 </div>{% endcomment %}
+                </div>
             </div>
-        </div>
 
-        <ul class="flex gap-2 flex-wrap">
-            <p class="font-bold">{% translate 'Badges:' %}</p>
-            {% for badge in object.badges.all %}
-                <li class="badge badge-sm badge-accent font-bold break-all wrap-break-word">{{ badge }}</li>
-            {% endfor %}
-        </ul>
+            <ul class="flex gap-2 flex-wrap">
+                <p class="font-bold">{% translate 'Badges:' %}</p>
+                {% for badge in object.badges.all %}
+                    <li class="badge badge-sm badge-accent font-bold break-all wrap-break-word">{{ badge }}</li>
+                {% endfor %}
+            </ul>
 
-        <div class="col-span-2 grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-5 w-full">
-            <a href="{% url 'users-profile-recipes' %}" class="h-20 w-full btn btn-neutral">
-                <div class="flex gap-5 items-center">
-                    <c-cookbook-icon></c-cookbook-icon>
-                    <div class="flex flex-col">
-                        <h4>{% translate 'Cookbook' %}</h4>
-                        <small>
+            <div class="col-span-2 grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-5 w-full">
+                <a href="{% url 'users-profile-recipes' %}" class="h-20 w-full btn btn-neutral">
+                    <div class="flex gap-5 items-center">
+                        <c-cookbook-icon></c-cookbook-icon>
+                        <div class="flex flex-col">
+                            <h4>{% translate 'Cookbook' %}</h4>
+                            <small>
                             <span class="text-secondary">
                             {% blocktrans count recipe_count=object.user.recipe_set.all|length %}
                                 {{ recipe_count }} Recipe
@@ -65,17 +68,17 @@
                                 {{ recipe_count }} Recipes
                             {% endblocktrans %}
                             </span>
-                        </small>
+                            </small>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="{% url 'users-profile-favorite-recipes' %}" class="h-20 w-full btn btn-neutral">
-                <div class="flex gap-5 items-center">
-                    <c-favorites-icon></c-favorites-icon>
-                    <div class="flex flex-col">
-                        <h4>{% translate 'Favorites' %}</h4>
-                        <small>
+                <a href="{% url 'users-profile-favorite-recipes' %}" class="h-20 w-full btn btn-neutral">
+                    <div class="flex gap-5 items-center">
+                        <c-favorites-icon></c-favorites-icon>
+                        <div class="flex flex-col">
+                            <h4>{% translate 'Favorites' %}</h4>
+                            <small>
                             <span class="text-secondary">
                             {% blocktrans count recipe_count=object.user.favorite_recipes.all|length %}
                                 {{ recipe_count }} Recipe
@@ -83,30 +86,32 @@
                                 {{ recipe_count }} Recipes
                             {% endblocktrans %}
                             </span>
-                        </small>
+                            </small>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="{% url 'recipe-create' %}" class="h-20 w-full btn btn-neutral">
-                <p class="flex gap-5 items-center">
-                    <c-add-recipe-icon></c-add-recipe-icon>
-                <h4>{% translate 'Add Recipe' %}</h4>
-                </p>
-            </a>
+                <a href="{% url 'recipe-create' %}" class="h-20 w-full btn btn-neutral">
+                    <p class="flex gap-5 items-center">
+                        <c-add-recipe-icon></c-add-recipe-icon>
+                    <h4>{% translate 'Add Recipe' %}</h4>
+                    </p>
+                </a>
 
-            <a href="{% url 'menu_create' %}" class="h-20 w-full btn btn-neutral">
-                <p class="flex gap-5 items-center">
-                    <c-add-menu-icon></c-add-menu-icon>
-                <h4>{% translate 'Add Menu' %}</h4>
-                </p>
-            </a>
-        </div>
+                <a href="{% url 'menu_create' %}" class="h-20 w-full btn btn-neutral">
+                    <p class="flex gap-5 items-center">
+                        <c-add-menu-icon></c-add-menu-icon>
+                    <h4>{% translate 'Add Menu' %}</h4>
+                    </p>
+                </a>
+            </div>
 
-        <div class="col-span-2 grid grid-cols-2 md:flex gap-2">
-            <c-a url="{% url 'account_change_password' %}"
-                 class="btn btn-accent btn-outline">{% translate 'Change Password' %}</c-a>
-            <c-a url="{% url 'user-delete' %}" class="btn btn-error btn-outline">{% translate 'Delete Account' %}</c-a>
+            <div class="col-span-2 grid grid-cols-2 md:flex gap-2">
+                <c-a url="{% url 'account_change_password' %}"
+                     class="btn btn-accent btn-outline">{% translate 'Change Password' %}</c-a>
+                <c-a url="{% url 'user-delete' %}"
+                     class="btn btn-error btn-outline">{% translate 'Delete Account' %}</c-a>
+            </div>
         </div>
     </div>
 {% endblock %}

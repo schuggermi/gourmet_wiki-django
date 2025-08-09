@@ -1,6 +1,10 @@
+{% load recipe_tags %}
+
+{% user_rating recipe as my_rating %}
+
 {% for i in "12345" %}
     {% with star_value=forloop.counter %}
-        {% if star_value <= score %}
+        {% if star_value <= score or star_value <= my_rating %}
             <button
                     hx-post="{% url 'recipe-rate' recipe.id star_value %}"
                     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'

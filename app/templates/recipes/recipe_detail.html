@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load recipe_tags i18n static %}
+{% load i18n static %}
 
 {% block title %}
     {{ block.super }}
@@ -10,7 +10,7 @@
 {% block main_content %}
     {{ block.super }}
 
-    <div class="w-full flex flex-col gap-5 items-center justify-start rounded-sm">
+    <div class="container pt-10 px-4 lg:pt-20 mx-auto flex flex-col gap-20 items-center justify-start">
         <div class="w-full flex flex-col md:flex-row justify-between md:items-center gap-5">
             <div class="flex flex-col gap-1 md:items-center">
                 <c-go-back></c-go-back>
@@ -30,18 +30,18 @@
                     <div class="flex gap-5 items-center">
                         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                         <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
-                             class="btn btn-accent btn-outline">
-                            Edit Recipe
-                        </c-a>
+                             class="btn btn-accent btn-outline">{% translate 'Edit Recipe' %}</c-a>
                     </div>
                 {% else %}
+{#                    {% user_rating recipe as my_rating %}#}
+                    {{ user_rating }}
                     <c-rating-action data-average-rating="{{ recipe.average_rating }}"></c-rating-action>
                     {% include "recipes/partials/favorite_button.html" %}
                 {% endif %}
             </div>
         </div>
 
-        <div id="print-area" class="flex flex-col gap-10 w-full bg-neutral p-4 rounded-sm">
+        <div id="print-area" class="flex flex-col gap-10 w-full bg-neutral p-5 md:p-10 rounded-sm">
             {% include "recipes/partials/recipe_detail.html" %}
         </div>
     </div>

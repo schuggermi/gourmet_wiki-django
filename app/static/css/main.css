@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&wght@700&display=swap');
 
 @import "tailwindcss";
-
-/*@plugin "@tailwindcss/typography";*/
+@tailwind utilities;
 
 @plugin "daisyui" {
     themes: gourmet --default, gourmet --prefersdark, gourmet-dark;
@@ -172,6 +171,9 @@ input[type='number'] {
         @apply text-base sm:text-lg font-normal leading-relaxed text-neutral-content break-words whitespace-normal text-balance;
     }
 
+    a.missing-link {
+        @apply text-error decoration-dotted underline;
+    }
 
     /*input, textarea {*/
     /*    @apply text-base-content;*/

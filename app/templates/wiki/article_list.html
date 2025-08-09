@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block main_content %}
+    <div class="container pt-10 px-4 lg:pt-20 flex flex-col gap-20">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5">
+            <div>
+                <h1>{% translate 'Wiki' %}</h1>
+                <c-go-back></c-go-back>
+            </div>
+
+            <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'recipe-list-partial' %}"
+                  hx-target="#recipe-list-container"
+                  hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
+                <c-input name="search" placeholder="{% translate 'Search...' %}"
+                         value="{{ search_query }}"></c-input>
+                <button type="submit" class="btn btn-accent">{% translate 'Search' %}</button>
+            </form>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10">
+            {% for category, articles in category_articles %}
+                <div class="flex flex-col gap-2">
+                    <h2 class="">{{ category.name }}</h2>
+                    <ul>
+                        {% for article in articles %}
+                            <li>
+                                <a href="{% url 'wiki:article_detail' article.slug %}">{{ article.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

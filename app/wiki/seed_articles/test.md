@@ -1,17 +1,19 @@
 ---
-title: What is Umami?
-slug: what-is-umami
-summary: An introduction to the savory fifth taste.
+title: What is Grilling?
+slug: what-is-grilling
+summary: An introduction to Grilling.
 author_email: admin@example.com
 category: Taste Profiles
 is_draft: false
+version: 0.1
 ---
 
-Umami is a flavor category that describes a savory taste...
-
+Grilling is a technique...
+ 
 ## History
 
-Umami was discovered in Japan...
+Grilling was discovered years before...
+
 
 - bli
 - bla

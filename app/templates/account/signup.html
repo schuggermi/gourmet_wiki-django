@@ -11,78 +11,77 @@
 {% endblock heading %}
 
 {% block content %}
-    <div class="flex flex-col gap-5 justify-center items-center max-w-sm">
-        {% if not SOCIALACCOUNT_ONLY %}
-            <div class="bg-base-primary">
-                {% url 'account_signup' as signup_url %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        <div class="bg-base-primary">
+            {% url 'account_signup' as signup_url %}
 
-                <form action="{{ signup_url }}" method="post" class="flex flex-col gap-5 w-full">
-                    {% csrf_token %}
+            <form action="{{ signup_url }}" method="post"
+                  class="flex flex-col gap-5 w-full text-start max-w-sm mx-auto">
+                {% csrf_token %}
 
-                    <div class="flex flex-col w-full gap-2">
-                        {% if form.non_field_errors %}
-                            <ul>
-                                {% for error in form.non_field_errors %}
-                                    <li><p class="text-red-400 text-center">{{ error }}</p></li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
+                <div class="flex flex-col w-full gap-2">
+                    {% if form.non_field_errors %}
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li><p class="text-red-400 text-center">{{ error }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
 
-                        <div class="flex gap-2">
-                            <div class="text-start">
-                                <c-input :field="form.first_name" type="text"></c-input>
-                            </div>
-                            <div class="text-start">
-                                <c-input :field="form.last_name" type="text"></c-input>
-                            </div>
+                    <div class="flex gap-2">
+                        <div class="text-start">
+                            <c-input :field="form.first_name" type="text"></c-input>
                         </div>
                         <div class="text-start">
-                            <c-input :field="form.email" type="text"></c-input>
-                        </div>
-                        <div class="text-start">
-                            <c-input :field="form.username" type="text"></c-input>
-                        </div>
-                        <div class="text-start">
-                            <c-input :field="form.password1" type="password"></c-input>
-                        </div>
-                        <div class="text-start">
-                            <c-input :field="form.password2" type="password"></c-input>
+                            <c-input :field="form.last_name" type="text"></c-input>
                         </div>
                     </div>
+                    <div class="text-start">
+                        <c-input :field="form.email" type="text"></c-input>
+                    </div>
+                    <div class="text-start">
+                        <c-input :field="form.username" type="text"></c-input>
+                    </div>
+                    <div class="text-start">
+                        <c-input :field="form.password1" type="password"></c-input>
+                    </div>
+                    <div class="text-start">
+                        <c-input :field="form.password2" type="password"></c-input>
+                    </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary w-full">
-                        {% trans "Sign Up" %}
-                    </button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-primary w-full">
+                    {% trans "Sign Up" %}
+                </button>
+            </form>
+        </div>
 
-            {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+
+        <div class="text-center flex flex-col gap-1 items-center">
+            <p>{% translate 'You already have an account at Gourmet Wiki?' %}</p>
+            <c-a animated url="{% url 'account_login' %}"
+                 class="underline">{% translate 'Log In' %}</c-a>
+        </div>
+    {% endif %}
+    {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+        {% element hr %}
+        {% endelement %}
+        {% element button_group vertical=True %}
+            {% if PASSKEY_LOGIN_ENABLED %}
+                {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
+                    {% trans "Sign in with a passkey" %}
+                {% endelement %}
             {% endif %}
-
-            <div class="text-center flex flex-col gap-1 items-center">
-                <p>You already have an account at Gourmet-Wiki?</p>
-                <c-a animated url="{% url 'account_login' %}"
-                     class="underline">{% translate 'Log In' %}</c-a>
-            </div>
-        {% endif %}
-        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
-            {% element hr %}
-            {% endelement %}
-            {% element button_group vertical=True %}
-                {% if PASSKEY_LOGIN_ENABLED %}
-                    {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
-                        {% trans "Sign in with a passkey" %}
-                    {% endelement %}
-                {% endif %}
-                {% if LOGIN_BY_CODE_ENABLED %}
-                    {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
-                        {% trans "Send me a sign-in code" %}
-                    {% endelement %}
-                {% endif %}
-            {% endelement %}
-        {% endif %}
-    </div>
+            {% if LOGIN_BY_CODE_ENABLED %}
+                {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
+                    {% trans "Send me a sign-in code" %}
+                {% endelement %}
+            {% endif %}
+        {% endelement %}
+    {% endif %}
 {% endblock content %}
 
 {% block extra_body %}

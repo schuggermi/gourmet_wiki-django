@@ -3,98 +3,115 @@
 {% load i18n %}
 
 {% block main_content %}
-    <div class="self-start flex flex-col gap-1">
-        <h1>{% translate 'Imprint' %}</h1>
-        <c-go-back></c-go-back>
-    </div>
+    <div class="container mx-auto pt-10 px-4 lg:pt-20 flex flex-col gap-20">
+        <div class="self-start flex flex-col gap-1">
+            <h1>{% translate 'Imprint' %}</h1>
+            <c-go-back></c-go-back>
+        </div>
 
-    <div class="flex flex-col gap-20">
-        <div class="flex flex-col gap-5">
-            <h2>{% translate 'Information in accordance with Section 5 TMG (German Telemedia Act):' %}</h2>
+        <div class="flex flex-col gap-20">
+            <div class="flex flex-col gap-5">
+                <h2>{% translate 'Information in accordance with Section 5 TMG (German Telemedia Act):' %}</h2>
+
+                <div class="flex flex-col gap-5">
+                    <div>
+                        <p>Michael Schuchowski</p>
+                        <p>Gourmet Wiki</p>
+                        <p>Trützschlerstr. 5</p>
+                        <p>12487 Berlin</p>
+                        <p>Germany</p>
+                    </div>
+
+                    <div>
+                        <h3>{% translate 'Contact:' %}</h3>
+                        <p>Email: <a class="underline"
+                                     href="mailto:support@gourmet-wiki.app">support@gourmet-wiki.app</a></p>
+                    </div>
+                </div>
+            </div>
 
             <div class="flex flex-col gap-5">
+                <h2>{% translate 'Responsible for content according to § 55 Abs. 2 RStV:' %}</h2>
+
                 <div>
                     <p>Michael Schuchowski</p>
-                    <p>Gourmet Wiki</p>
                     <p>Trützschlerstr. 5</p>
                     <p>12487 Berlin</p>
                     <p>Germany</p>
                 </div>
+            </div>
 
-                <div>
-                    <h3>{% translate 'Contact:' %}</h3>
-                    <p>Email: <a class="underline" href="mailto:support@gourmet-wiki.app">support@gourmet-wiki.app</a></p>
+            <div class="flex flex-col gap-10">
+                <h2>{% translate 'Disclaimer' %}</h2>
+
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate 'Liability for content' %}</h3>
+                    <p>
+                        {% blocktranslate %}As a service provider, we are responsible for our own content on these pages
+                            in accordance with general laws under § 7(1) TMG. According to §§ 8 to 10 TMG, we are not
+                            obligated to monitor transmitted or stored third-party information or investigate
+                            circumstances that indicate illegal activity. Obligations to remove or block the use of
+                            information under general laws remain unaffected.{% endblocktranslate %}
+                    </p>
                 </div>
-            </div>
-        </div>
 
-        <div class="flex flex-col gap-5">
-            <h2>{% translate 'Responsible for content according to § 55 Abs. 2 RStV:' %}</h2>
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate 'Liability for links' %}</h3>
+                    <p>
+                        {% blocktranslate %}Our website contains links to external websites of third parties over which
+                            we have no control. Therefore, we cannot accept any responsibility for their content. The
+                            respective provider or operator of the linked pages is always responsible for the content of
+                            those pages.{% endblocktranslate %}
+                    </p>
+                </div>
 
-            <div>
-                <p>Michael Schuchowski</p>
-                <p>Trützschlerstr. 5</p>
-                <p>12487 Berlin</p>
-                <p>Germany</p>
-            </div>
-        </div>
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate 'Copyright' %}</h3>
+                    <p>
+                        {% blocktranslate %}The content and works created by the website operator on these pages are
+                            subject to German copyright law. Third-party contributions are marked as such. Any
+                            duplication, processing, distribution, or any form of use outside the limits of copyright
+                            law requires the written consent of the respective author or creator.{% endblocktranslate %}
+                    </p>
+                </div>
 
-        <div class="flex flex-col gap-10">
-            <h2>{% translate 'Disclaimer' %}</h2>
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate 'EU Dispute Resolution' %}</h3>
+                    <p>
+                        {% blocktranslate %}The European Commission provides a platform for online dispute resolution
+                            (ODR): https://ec.europa.eu/consumers/odr/. We are neither willing nor obliged to
+                            participate in dispute resolution proceedings before a consumer arbitration
+                            board.{% endblocktranslate %}
+                    </p>
+                </div>
 
-            <div class="flex flex-col gap-5">
-                <h3>{% translate 'Liability for content' %}</h3>
-                <p>
-                    {% blocktranslate %}As a service provider, we are responsible for our own content on these pages in accordance with general laws under § 7(1) TMG. According to §§ 8 to 10 TMG, we are not obligated to monitor transmitted or stored third-party information or investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information under general laws remain unaffected.{% endblocktranslate %}
-                </p>
-            </div>
+                <div class="flex flex-col gap-5">
+                    <h3>{% translate 'Hosting & Payment Provider' %}</h3>
 
-            <div class="flex flex-col gap-5">
-                <h3>{% translate 'Liability for links' %}</h3>
-                <p>
-                    {% blocktranslate %}Our website contains links to external websites of third parties over which we have no control. Therefore, we cannot accept any responsibility for their content. The respective provider or operator of the linked pages is always responsible for the content of those pages.{% endblocktranslate %}
-                </p>
-            </div>
+                    <div class="flex flex-col gap-2">
+                        <h4>{% translate 'This website is hosted by:' %}</h4>
 
-            <div class="flex flex-col gap-5">
-                <h3>{% translate 'Copyright' %}</h3>
-                <p>
-                    {% blocktranslate %}The content and works created by the website operator on these pages are subject to German copyright law. Third-party contributions are marked as such. Any duplication, processing, distribution, or any form of use outside the limits of copyright law requires the written consent of the respective author or creator.{% endblocktranslate %}
-                </p>
-            </div>
-
-            <div class="flex flex-col gap-5">
-                <h3>{% translate 'EU Dispute Resolution' %}</h3>
-                <p>
-                    {% blocktranslate %}The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/. We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.{% endblocktranslate %}
-                </p>
-            </div>
-
-            <div class="flex flex-col gap-5">
-                <h3>{% translate 'Hosting & Payment Provider' %}</h3>
-
-                <div class="flex flex-col gap-2">
-                    <h4>{% translate 'This website is hosted by:' %}</h4>
-
-                    <div>
-                        <p>Hetzner Online GmbH</p>
-                        <p>Industriestr. 25</p>
-                        <p>91710 Gunzenhausen</p>
-                        <p>Germany</p>
-                        <p><a class="underline" href="https://www.hetzner.com" target="_blank">https://www.hetzner.com</a></p>
+                        <div>
+                            <p>Hetzner Online GmbH</p>
+                            <p>Industriestr. 25</p>
+                            <p>91710 Gunzenhausen</p>
+                            <p>Germany</p>
+                            <p><a class="underline" href="https://www.hetzner.com" target="_blank">https://www.hetzner.com</a>
+                            </p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="flex flex-col gap-2">
-                    <h4>{% translate 'Payments are processed by:' %}</h4>
+                    <div class="flex flex-col gap-2">
+                        <h4>{% translate 'Payments are processed by:' %}</h4>
 
-                    <div>
-                        <p>Stripe Payments Europe, Ltd.</p>
-                        <p>1 Grand Canal Street Lower</p>
-                        <p>Grand Canal Dock</p>
-                        <p>Dublin</p>
-                        <p>Ireland</p>
-                        <p><a class="underline" href="https://stripe.com" target="_blank">https://stripe.com</a></p>
+                        <div>
+                            <p>Stripe Payments Europe, Ltd.</p>
+                            <p>1 Grand Canal Street Lower</p>
+                            <p>Grand Canal Dock</p>
+                            <p>Dublin</p>
+                            <p>Ireland</p>
+                            <p><a class="underline" href="https://stripe.com" target="_blank">https://stripe.com</a></p>
+                        </div>
                     </div>
                 </div>
             </div>

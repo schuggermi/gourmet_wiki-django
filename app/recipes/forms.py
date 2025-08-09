@@ -161,9 +161,8 @@ class RecipeImageForm(forms.ModelForm):
 
     def clean_image(self):
         image = self.cleaned_data.get('image')
-
-        if not image and self.instance and self.instance.pk:
-            return self.instance.image
+        if not image and not self.instance.image:
+            raise forms.ValidationError(_("This field is required."))
         return image
 
     # def clean(self):
