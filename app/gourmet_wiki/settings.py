@@ -18,8 +18,6 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-print("BASE_DIR", BASE_DIR)
-
 logger = logging.getLogger('allauth')
 logger.setLevel(logging.DEBUG)
 
@@ -58,6 +56,7 @@ INSTALLED_APPS = [
     'menus.apps.MenusConfig',
     'wiki.apps.WikiConfig',
 
+    'rest_framework',
     'corsheaders',
     'debug_toolbar',
     'django_vite',
@@ -298,3 +297,6 @@ CRISPY_TEMPLATE_PACK = 'daisyui'
 LISTMONK_API_USERNAME = os.getenv('LISTMONK_API_USERNAME')
 LISTMONK_API_URL = os.getenv('LISTMONK_API_URL')
 LISTMONK_API_TOKEN = os.getenv('LISTMONK_API_TOKEN')
+
+USDA_FDC_API_KEY = os.getenv('USDA_FDC_API_KEY')
+USDA_FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1"

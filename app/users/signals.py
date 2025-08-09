@@ -20,9 +20,12 @@ def create_profile_on_signup(sender, request, user, **kwargs):
 @receiver(post_save, sender=Recipe)
 def reward_recipe_submission(sender, instance, created, **kwargs):
     if created:
-        profile = instance.created_by.profile
-        profile.points += 25  # Points per Recipe
-        profile.update_level()
+        try:
+            profile = instance.created_by.profile
+            profile.points += 25  # Points per Recipe
+            profile.update_level()
+        except Profile.DoesNotExist:
+            pass
 
 
 @receiver(user_signed_up)

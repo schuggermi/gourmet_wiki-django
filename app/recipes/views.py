@@ -1,4 +1,5 @@
 from pathlib import Path
+from pprint import pprint
 
 from django import forms
 from django.conf import settings
@@ -202,7 +203,10 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             else:
                 instance = form.save(commit=False)
                 instance.recipe = recipe
+                print("CLEANED INGREDIENT: ", form.cleaned_data['ingredient'])
                 instance.ingredient = form.cleaned_data['ingredient']
+
+                pprint(instance, indent=4)
 
                 instance.save()
 

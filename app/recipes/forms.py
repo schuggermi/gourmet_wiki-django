@@ -2,8 +2,9 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
+
+from ingredients.models import Ingredient
 
 INPUT_CLASSES = ''
 NUMBER_INPUT_CLASSES = 'input bg-base-content rounded-sm w-full'
@@ -101,31 +102,29 @@ class RecipeIngredientForm(forms.ModelForm):
         model = RecipeIngredient
         fields = ['ingredient', 'quantity', 'unit']
         widgets = {
-            'ingredient': forms.TextInput(attrs={
-                'placeholder': 'Butter'
-            }),
-            'quantity': forms.NumberInput(attrs={
-                'placeholder': '0'
-            }),
-            'unit': forms.Select(attrs={
-            }),
+            'ingredient': forms.HiddenInput(),  # hide actual ingredient field
+            'quantity': forms.NumberInput(attrs={'placeholder': '0'}),
+            'unit': forms.Select(),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Ingredient is no longer required from the HTML form
+        self.fields['ingredient'].required = False
 
     def clean(self):
         cleaned_data = super().clean()
 
-        if self.errors:
-            return cleaned_data
-
-        # Check if both ingredient and quantity are provided
-        ingredient = cleaned_data.get('ingredient')
-        quantity = cleaned_data.get('quantity')
-
-        if not ingredient:
-            self.add_error('ingredient', 'This field is required.')
-
-        if not quantity:
-            self.add_error('quantity', 'This field is required.')
+        # If ingredient is missing but q is present in POST data
+        if not cleaned_data.get('ingredient'):
+            q_val = self.data.get(f"{self.prefix}-q") or self.data.get('q')
+            if q_val:
+                # Lookup ingredient instance or create
+                ingredient_obj = Ingredient.objects.filter(name=q_val).first()
+                if ingredient_obj:
+                    cleaned_data['ingredient'] = ingredient_obj
+                else:
+                    self.add_error('ingredient', f"No ingredient found for '{q_val}'")
 
         return cleaned_data
 

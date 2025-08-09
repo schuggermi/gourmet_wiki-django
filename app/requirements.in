@@ -18,3 +18,4 @@ django-ratelimit
 django-reversion
 python-frontmatter
 markdown
+djangorestframework

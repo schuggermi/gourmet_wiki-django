@@ -9,41 +9,9 @@ from django.utils.translation import gettext_lazy as _
 from ingredients.models import Ingredient
 from recipes.services.cost_calculator import calculate_recipe_cost
 
+from core.models import CourseTypeChoice, SkillLevelChoice, UnitChoice
+
 User = get_user_model()
-
-
-class UnitChoice(models.TextChoices):
-    PIECE = 'piece', _('piece')
-    GRAM = 'g', _('g')
-    KILOGRAM = 'kg', _('kg')
-    LITER = 'l', _('l')
-    MILLILITER = 'ml', _('ml')
-    OUNCE = 'oz', _('oz')
-    TABLESPOON = 'sp', _('sp')
-    TEE_SPOON = 'tes', _('tes')
-
-
-class CourseTypeChoice(models.TextChoices):
-    AMUSE_BOUCHE = 'amuse_bouche', _('Amuse-bouche')
-    COLD_STARTER = 'cold_starter', _("Hors d'œuvre")
-    SOUP = 'soup', _("Potage")
-    FISH = 'fish', _("Poisson")
-    HOT_STARTER = 'hot_starter', _("Entrée")
-    MAIN = 'main', _("Plat de Résistance")
-    SORBET = 'sorbet', _("Sorbet")
-    ROAST = 'roast', _("Rôti")
-    VEGETABLE = 'vegetable', _("Légumes")
-    SALAD = 'salad', _("Salade")
-    CHEESE = 'cheese', _("Fromage")
-    DESSERT = 'dessert', _("Dessert")
-    DIGESTIVE_DRINK = 'digestive_drink', _("Digestif")
-
-
-class SkillLevelChoice(models.TextChoices):
-    BEGINNER = 'beginner', _('Beginner')
-    INTERMEDIATE = 'intermediate', _('Intermediate')
-    ADVANCED = 'advanced', _('Advanced')
-    PROFESSIONAL = 'professional', _('Professional')
 
 
 class Recipe(models.Model):
@@ -218,14 +186,16 @@ class RecipeIngredient(models.Model):
         related_name="ingredients",
         on_delete=models.CASCADE
     )
-    ingredient = models.CharField(
-        max_length=150,
+    ingredient = models.ForeignKey(
+        'ingredients.Ingredient',
+        on_delete=models.CASCADE,
+        related_name='recipe_ingredients'
     )
     quantity = models.DecimalField(
-        max_digits=4,
-        decimal_places=1,
+        max_digits=6,
+        decimal_places=2,
         validators=[
-            MinValueValidator(0.1),
+            MinValueValidator(Decimal('0.1')),
         ]
     )
     unit = models.CharField(
@@ -244,7 +214,7 @@ class RecipeIngredient(models.Model):
         unique_together = ('recipe', 'ingredient')
 
     def __str__(self):
-        return f"{round(self.quantity, 0)}{self.unit} {self.ingredient}"
+        return f"{round(self.quantity, 0)}{self.unit} {self.ingredient.name}"
 
     def scale_quantity(self, scale_factor: Decimal):
         quantity = self.quantity * scale_factor

@@ -8,9 +8,23 @@
             {{ form.order.as_hidden }}
 
             <!-- Ingredient -->
-            <div>
+            {% comment %}<div>
                 <c-input :field="form.ingredient" no_errors></c-input>
-            </div>
+            </div>{% endcomment %}
+            <c-input name="q" :id="form.ingredient.id_for_label"
+                     :instance_value="form.instance.ingredient"
+                     placeholder="{% trans 'Search...' %}"
+                     no_errors
+                     list="ingredient-list"
+                     hx_get="{% url 'ingredients:ingredient-options' %}"
+                     hx_trigger="keyup changed delay:300ms"
+                     hx_target="#ingredient-list"
+                     hx_swap="innerHTML"
+                     autocomplete="off"
+            ></c-input>
+            <datalist id="ingredient-list">
+                <!-- options will be populated here -->
+            </datalist>
 
             <div class="flex gap-2 items-center">
                 <c-number-action-input :field="form.quantity"
