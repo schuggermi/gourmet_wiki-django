@@ -203,12 +203,11 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             else:
                 instance = form.save(commit=False)
                 instance.recipe = recipe
-                print("CLEANED INGREDIENT: ", form.cleaned_data['ingredient'])
-                instance.ingredient = form.cleaned_data['ingredient']
 
                 pprint(instance, indent=4)
 
-                instance.save()
+                if not instance.pk:
+                    instance.save()
 
         # Step 2 – Preparation Steps
         step_formset = self.get_form(step='2', data=self.storage.get_step_data('2'))

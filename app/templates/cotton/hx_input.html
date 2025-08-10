@@ -28,6 +28,15 @@
         value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
         placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
         class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% endif %}"
+        {{ attrs }}
+        list="{{ list }}"
+        hx-on="{{ hx_on }}"
+        hx-get="{{ hx_get }}"
+        hx-trigger="{{ hx_trigger }}"
+        hx-target="{{ hx_target }}"
+        hx-swap="{{ hx_swap }}"
+        hx-params="{{ hx_params }}"
+        hx-vals="{{ hx_vals }}"
 >
 {% if not no_errors %}
     {% for error in field.errors %}

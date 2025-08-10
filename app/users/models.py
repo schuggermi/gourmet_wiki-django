@@ -208,8 +208,8 @@ class UserBadge(models.Model):
         unique_together = ('profile', 'badge')
 
     def __str__(self):
-        since = _("since")
-        return f"{self.get_badge_display()} {since} {self.awarded_at.strftime('%d.%m.%Y')}"
+        # since = _("since")
+        return f"{self.get_badge_display()}" #  {since} {self.awarded_at.strftime('%d.%m.%Y')}
 
     @property
     def description(self):

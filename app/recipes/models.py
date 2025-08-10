@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from decimal import Decimal
 
 from django.conf import settings
@@ -132,6 +133,10 @@ class Recipe(models.Model):
         avg = self.ratings.aggregate(avg=Avg('score'))['avg']
         return round(max(0, avg if avg is not None else 0), 1)
 
+    @property
+    def nutrients(self):
+        return self.get_nutrients()
+
     def __str__(self):
         return self.name
 
@@ -151,6 +156,29 @@ class Recipe(models.Model):
             })
 
         return scaled_ingredients
+
+    def get_nutrients(self):
+        ingredients = self.ingredients.all()
+        parsed_nutrients = {}
+
+        for ingredient in ingredients:
+            nutrients = ingredient.ingredient.nutrients.all()
+
+            for nutrient in nutrients:
+                if nutrient.nutrient.fdc_nutrient_id not in parsed_nutrients:
+                    parsed_nutrients[nutrient.nutrient.fdc_nutrient_id] = {
+                        'name': nutrient.nutrient.name,
+                        'amount': nutrient.amount * (float(ingredient.quantity) / 100),
+                        'unit': nutrient.nutrient.get_unit_display(),
+                    }
+                else:
+                    parsed_nutrients[nutrient.nutrient.fdc_nutrient_id]['amount'] += nutrient.amount
+
+        sorted_nutrients = OrderedDict(
+            sorted(parsed_nutrients.items(), key=lambda item: item[1]['name'])
+        )
+
+        return sorted_nutrients
 
 
 class RecipeRating(models.Model):

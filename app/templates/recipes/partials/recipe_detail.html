@@ -1,8 +1,8 @@
-{% load static i18n %}
+{% load static i18n utils %}
 
 <img class="w-42 hidden print:block" src="{% static 'images/logo.png' %}"
      alt="Logo Landscape - Gourmet Wiki">
-<div class="grid grid-cols-1 print:grid-cols-2 lg:grid-cols-2 gap-5 lg:gap-10 w-full mx-auto">
+<div class="grid grid-cols-1 print:grid-cols-2 lg:grid-cols-2 gap-10 lg:gap-20 w-full mx-auto">
     <!-- Image Carousel -->
     <div class="carousel carousel-start w-full aspect-video rounded-sm print:hidden">
         {% with images=recipe.images.all %}
@@ -24,14 +24,16 @@
     </div>
 
     <!-- Recipe Details -->
-    <div class="flex flex-col gap-5 justify-between print:col-span-2">
+    <div class="flex flex-col gap-5 justify-between print:col-span-2 w-full">
         <div class="flex flex-row print:flex-row-reverse w-full gap-5">
             <img src="
+
+
                     {% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
                  alt="{{ recipe.images.first.caption }}"
-                 class="hidden print:block w-full aspect-video rounded-md shadow-md object-contain"/>
+                 class="hidden print:block w-2/4 aspect-video rounded-md shadow-md object-cover"/>
 
-            <div class="flex flex-col gap-5">
+            <div class="flex flex-col gap-5 w-full">
                 <h1 class="break-words hyphens-auto">{{ recipe.name }}</h1>
 
                 <p class="break-words hyphens-auto">
@@ -74,7 +76,7 @@
                       d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
             </svg>
 
-            <div class="w-full grid grid-cols-4 gap-5">
+            <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-5">
                 <!-- Total Time -->
                 <div class="flex flex-col gap-1 w-full">
                     <div class="flex gap-1 border-b-1 border-neutral pb-1">
@@ -159,7 +161,7 @@
 
         <ul class="flex flex-col">
             {% for step in recipe.ordered_preparation_steps %}
-                <li class="flex flex-row gap-1 py-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
+                <li class="flex flex-row gap-1 pb-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
                     <p class="w-fit relative"><span class="font-extrabold">{{ step.order|add:"1" }}.</span></p>
                     {#                    {% translate 'Preparation Step' %}#}
                     <p class="ps-5">{{ step.step_text }}</p>
@@ -167,4 +169,56 @@
             {% endfor %}
         </ul>
     </div>
+
+    <!-- Nutruition Details -->
+    {% if recipe.nutrients %}
+        <div class="print:col-span-2 lg:col-span-2 flex flex-col gap-5">
+            <h3>{% translate 'Nutrition Details' %}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 md:col-span-2 w-full print:col-span-2 print:grid-cols-2 gap-10">
+                {% with half=recipe.nutrients.items|half_length %}
+                    <div class="overflow-x-auto">
+                        <table class="table table-xs">
+                            <thead>
+                            <tr>
+                                <th>{% translate 'Nutrient' %}</th>
+                                <th>{% translate 'Amount' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for nutrient_id, data in recipe.nutrients.items %}
+                                {% if forloop.counter0 < half %}
+                                    <tr class="hover:bg-base-300">
+                                        <td class="py-0 px-2">{{ data.name }}</td>
+                                        <td class="whitespace-nowrap py-0 px-2">{{ data.amount|floatformat:"2" }} {{ data.unit }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="table table-xs">
+                            <thead>
+                            <tr>
+                                <th>{% translate 'Nutrient' %}</th>
+                                <th>{% translate 'Amount' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for nutrient_id, data in recipe.nutrients.items %}
+                                {% if forloop.counter0 >= half %}
+                                    <tr class="hover:bg-base-300">
+                                        <td class="py-0 px-2">{{ data.name }}</td>
+                                        <td class="whitespace-nowrap py-0 px-2">{{ data.amount|floatformat:"2" }} {{ data.unit }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endwith %}
+            </div>
+        </div>
+    {% endif %}
 </div>

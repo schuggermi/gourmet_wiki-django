@@ -6,7 +6,7 @@
             <div class="w-full grid grid-cols-6 gap-5">
                 <p class="col-span-2 text-end">
                     <span class="font-bold">{{ ingredient.quantity|floatformat:"1" }}</span>
-                    <span class="font-medium">{{ ingredient.get_unit_display }}</span>
+                    <span class="font-medium">{{ ingredient.unit }}</span>
                 </p>
                 <p class="col-span-4">{{ ingredient.ingredient }}</p>
             </div>

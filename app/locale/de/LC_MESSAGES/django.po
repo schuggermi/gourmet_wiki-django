@@ -200,13 +200,9 @@ msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
 #: templates/account/login.html:11
-#, fuzzy
-#| msgid ""
-#| "<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
-#| "something up!"
 msgid ""
-"<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking\n"
-"        something up!"
+"<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
+"something up!"
 msgstr ""
 "<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
 "noch am Kochen!"

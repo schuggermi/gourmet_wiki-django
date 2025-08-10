@@ -11,7 +11,7 @@
             {% comment %}<div>
                 <c-input :field="form.ingredient" no_errors></c-input>
             </div>{% endcomment %}
-            <c-input name="q" :id="form.ingredient.id_for_label"
+            <c-hx-input name="q" :id="form.ingredient.id_for_label"
                      :instance_value="form.instance.ingredient"
                      placeholder="{% trans 'Search...' %}"
                      no_errors
@@ -21,7 +21,7 @@
                      hx_target="#ingredient-list"
                      hx_swap="innerHTML"
                      autocomplete="off"
-            ></c-input>
+            ></c-hx-input>
             <datalist id="ingredient-list">
                 <!-- options will be populated here -->
             </datalist>
