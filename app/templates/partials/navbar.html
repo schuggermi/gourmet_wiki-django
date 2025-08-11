@@ -119,7 +119,6 @@
     });
 
     toggle.addEventListener('blur', () => {
-        // Delay to allow click on dropdown items before closing
         setTimeout(() => {
             if (document.activeElement !== toggle && !toggle.contains(document.activeElement)) {
                 toggle.classList.remove('swap-active');

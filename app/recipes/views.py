@@ -107,6 +107,8 @@ def add_image_form(request):
 
 
 class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
+    allowed_groups = ['Admin', 'Author']
+
     form_list = [
         ('0', RecipeForm),
         ('1', RecipeIngredientFormSet),
