@@ -83,11 +83,13 @@
             </ul>
         {% endif %}
         <div class="dropdown dropdown-end w-max lg:hidden">
-            <div tabindex="0" role="button" class="p-2">
-                <c-menu-icon size="size-6"></c-menu-icon>
+            <div tabindex="0" role="button" id="menuToggle" class="p-2 swap" aria-expanded="false">
+                <c-menu-icon size="size-6" classes="swap-off fill-current"></c-menu-icon>
+                <c-menu-icon-open size="size-6" classes="swap-on fill-current"></c-menu-icon-open>
             </div>
 
-            <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max bg-neutral">
+            <ul tabindex="0" id="menuDropdown"
+                class="mt-10 rounded-md dropdown-content menu menu-vertical w-max bg-neutral">
                 <li class="w-full">
                     <c-a url="{% url 'recipe-list' %}">
                         {% translate 'All Recipes' %}
@@ -107,3 +109,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    const toggle = document.getElementById('menuToggle');
+
+    toggle.addEventListener('focus', () => {
+        toggle.classList.add('swap-active');
+        toggle.setAttribute('aria-expanded', 'true');
+    });
+
+    toggle.addEventListener('blur', () => {
+        // Delay to allow click on dropdown items before closing
+        setTimeout(() => {
+            if (document.activeElement !== toggle && !toggle.contains(document.activeElement)) {
+                toggle.classList.remove('swap-active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        }, 150);
+    });
+</script>

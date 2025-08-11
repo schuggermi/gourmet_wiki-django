@@ -78,23 +78,7 @@
     <c-dock></c-dock>
 {% endif %}
 
-{% if messages %}
-    <ul class="fixed bottom-5 right-5 w-fit flex flex-col gap-2">
-        {% for message in messages %}
-            <li class="p-2 bg-base-300 rounded-sm flex gap-1">
-                <button class="btn btn-ghost btn-xs p-1 hover:bg-base-200" onclick="this.parentElement.remove()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-
-                <p>{{ message }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
+{% include "partials/alerts.html" %}
 
 <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 

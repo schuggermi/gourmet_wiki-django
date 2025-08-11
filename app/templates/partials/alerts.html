@@ -1,0 +1,43 @@
+{% if messages %}
+    <ul class="fixed right-2 md:right-5 w-fit max-w-xs flex flex-col gap-2 {% if user.is_authenticated %}bottom-15{% else %}bottom-2 md:bottom-5{% endif %}">
+        {% for message in messages %}
+            <li class="flex gap-2 items-center alert
+                {% if 'success' in message.tags %}
+                    alert-success
+                {% elif 'error' in message.tags %}
+                    alert-error
+                {% elif 'warning' in message.tags %}
+                    alert-warning
+                {% elif 'info' in message.tags %}
+                    alert-info
+                {% else %}
+                    bg-base-300
+                {% endif %}
+            ">
+                <button class="btn btn-ghost btn-xs" onclick="this.parentElement.remove()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-content" fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <p class="text-accent-content leading-tight">{{ message }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.querySelectorAll('.alert').forEach((el) => {
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.5s ease';
+                el.style.opacity = '0';
+
+                setTimeout(() => {
+                    el.remove();
+                }, 500);
+            }, 3000);
+        });
+    </script>
+{% endif %}
