@@ -1,3 +1,4 @@
+import logging
 import re
 
 from django.contrib.auth import get_user_model
@@ -5,6 +6,8 @@ from django.db import models
 from django.utils.text import slugify
 
 User = get_user_model()
+
+logging.getLogger("MARKDOWN").setLevel(logging.WARNING)
 
 
 class Category(models.Model):
@@ -43,22 +46,26 @@ class WikiArticle(models.Model):
                 line if line.strip() else "<br>"
                 for line in self.content.splitlines()
             ),
-            extensions=["extra", "codehilite", "toc", "nl2br"]
+            extensions=["extra", "codehilite", "toc", "nl2br"],
         )
 
         # Step 2: Replace [[wikilinks]] with anchor tags
         def replace_wikilink(match):
             title = match.group(1).strip()
-            slug = title.lower().replace(" ", "-")
-            url = f"/wiki/{slug}/"
-            exists = WikiArticle.objects.filter(slug=slug).exists()
+            linked_article = WikiArticle.objects.filter(title__iexact=title)
 
-            if exists:
+            if linked_article.exists():
+                linked_article = linked_article[0]
+                url = f"/wiki/{linked_article.slug}/"
                 return f'<a href="{url}" class="link">{title}</a>'
             else:
-                return f'<a href="{url}" class="missing-link">{title}</a>'
+                return f'<a href="" class="missing-link">{title}</a>'
 
-        html = re.sub(r"\[\[([^\[\]]+)\]\]", replace_wikilink, html)
+        html = re.sub(
+            r"(?<!\!)\[\[([^\[\]]+)\]\](?!\(\))",
+            replace_wikilink,
+            html
+        )
 
         # Save the final rendered HTML
         self.rendered_html = html

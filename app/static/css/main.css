@@ -181,6 +181,18 @@ input[type='number'] {
         @apply print:text-sm print:leading-relaxed;
     }
 
+    .article > ul {
+        @apply list-disc ps-10;
+    }
+
+    .article > hr {
+        @apply my-10;
+    }
+
+    .article > a, p, li {
+        @apply text-lg lg:text-xl;
+    }
+
     a.missing-link {
         @apply text-error decoration-dotted underline;
         /* Probably no change needed for print here */

@@ -1293,18 +1293,10 @@ msgid "You don't have any Favorites added yet."
 msgstr "Du hast noch keine Favoriten hinzugefügt."
 
 #: templates/users/profile.html:35
-#, fuzzy, python-format
-#| msgid ""
-#| " %(points)s points missing till next level <span class=\"text-"
-#| "secondary\">%(level)s</span>"
-msgid ""
-"\n"
-"                                %(points)s points missing till next level\n"
-"                                <span class=\"text-secondary\">%(level)s</"
-"span>"
-msgstr ""
-" %(points)s Punkte fehlen bis zum nächsten Level <span class=\"text-"
-"secondary\">%(level)s</span>"
+msgid "%(points)s points missing till next level "
+"<span class=\"text-secondary\">%(level)s</span>"
+msgstr "%(points)s Punkte fehlen bis zum nächsten Level "
+"<span class=\"text-secondary\">%(level)s</span>"
 
 #: templates/users/profile.html:52
 msgid "Badges:"
