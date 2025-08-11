@@ -156,23 +156,23 @@ input[type='number'] {
     }
 
     h4 {
-        @apply text-base sm:text-xl md:text-2xl font-medium leading-snug break-words whitespace-normal text-balance;
+        @apply text-base sm:text-xl md:text-2xl font-semibold leading-snug break-words whitespace-normal text-balance;
         @apply print:text-sm print:leading-snug;
     }
 
     h5 {
-        @apply text-sm sm:text-base font-medium text-neutral-500 break-words whitespace-normal text-balance;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance;
         @apply print:text-xs;
     }
 
     h6 {
-        @apply text-xs sm:text-sm font-medium text-neutral-500 break-words whitespace-normal text-balance;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance;
         @apply print:text-[10px];
         /* 10px for extra small print */
     }
 
     small {
-        @apply text-xs sm:text-sm leading-tight text-neutral-400 break-words whitespace-normal text-balance;
+        @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance;
         @apply print:sm:text-xs print:leading-tight;
     }
 

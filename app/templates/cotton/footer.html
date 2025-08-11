@@ -15,11 +15,13 @@
         <a class="link link-hover">Jobs</a>
         <a class="link link-hover">Press kit</a>
     </nav>{% endcomment %}
-    <nav class="flex flex-col">
-        <h6 class="footer-title">{% translate 'Legal' %}</h6>
-        <a class="link link-hover" href="{% url 'terms_of_use' %}">{% translate 'Terms of use' %}</a>
-        <a class="link link-hover" href="{% url 'privacy' %}">{% translate 'Privacy policy' %}</a>
-        <a class="link link-hover" href="{% url 'imprint' %}">{% translate 'Imprint' %}</a>
+    <nav class="flex flex-col gap-5">
+        <h6>{% translate 'Legal' %}</h6>
+        <ul>
+            <li><a class="link link-hover" href="{% url 'terms_of_use' %}">{% translate 'Terms of use' %}</a></li>
+            <li><a class="link link-hover" href="{% url 'privacy' %}">{% translate 'Privacy policy' %}</a></li>
+            <li><a class="link link-hover" href="{% url 'imprint' %}">{% translate 'Imprint' %}</a></li>
+        </ul>
     </nav>
 </footer>
 <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
