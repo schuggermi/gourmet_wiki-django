@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
@@ -17,23 +18,63 @@ class WikiArticleListView(ListView):
     context_object_name = "articles"
 
     def get_queryset(self):
-        return WikiArticle.objects.filter(is_draft=False).order_by("title")
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_draft=False).order_by("title")
+
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) |
+                Q(content__icontains=search_query)
+            )
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        search_query = self.request.GET.get('search', '')
+        context['search_query'] = search_query
+
         categories = Category.objects.order_by("name").all()
+        object_list = []
 
-        category_articles = []
         for category in categories:
-            articles = WikiArticle.objects.filter(
-                is_draft=False,
-                category=category
-            ).order_by("title")
+            articles = self.get_queryset().filter(category=category)
             if articles.exists():
-                category_articles.append((category, articles))
+                object_list.append((category, articles))
 
-        context["category_articles"] = category_articles
+        context["object_list"] = object_list
         return context
+
+
+def article_list_partial(request):
+    """
+    View to render the article list partial for htmx requests
+    """
+    search_query = request.GET.get('search', '')
+
+    base_queryset = WikiArticle.objects.filter(is_draft=False)
+
+    if search_query:
+        base_queryset = base_queryset.filter(
+            Q(title__icontains=search_query) |
+            Q(content__icontains=search_query)
+        )
+
+    categories = Category.objects.order_by("name").all()
+    object_list = []
+
+    for category in categories:
+        articles = base_queryset.filter(category=category).order_by("title")
+        if articles.exists():
+            object_list.append((category, articles))
+
+    context = {
+        'object_list': object_list,
+        'search_query': search_query,
+    }
+
+    return render(request, 'wiki/partials/article_list.html', context)
 
 
 class WikiArticleDetailView(DetailView):

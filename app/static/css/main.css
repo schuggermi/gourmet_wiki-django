@@ -141,43 +141,43 @@ input[type='number'] {
     }
 
     h1 {
-        @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance;
+        @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-lg print:md:text-2xl print:leading-snug;
     }
 
     h2 {
-        @apply text-xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-snug break-words whitespace-normal text-balance;
+        @apply text-xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-snug break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-base print:leading-snug;
     }
 
     h3 {
-        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-snug break-words whitespace-normal text-balance;
+        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-snug break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
     h4 {
-        @apply text-base sm:text-xl md:text-2xl font-semibold leading-snug break-words whitespace-normal text-balance;
+        @apply text-base sm:text-xl md:text-2xl font-semibold leading-snug break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
     h5 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-xs;
     }
 
     h6 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-[10px];
         /* 10px for extra small print */
     }
 
     small {
-        @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance;
+        @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:sm:text-xs print:leading-tight;
     }
 
     a, p {
-        @apply text-base sm:text-lg font-normal leading-relaxed text-neutral-content break-words whitespace-normal text-balance;
+        @apply text-base sm:text-lg font-normal leading-relaxed text-neutral-content break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }
 

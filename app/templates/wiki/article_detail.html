@@ -9,10 +9,12 @@
             </div>
         </div>
 
-        <div class="bg-base-200 p-5 lg:p-10 rounded-lg max-w-none article">
-{#            <pre>{{ article.rendered_html }}</pre>#}
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-base-200 p-5 lg:p-10 rounded-lg max-w-none article break-words whitespace-normal">
+                {#            <pre>{{ article.rendered_html }}</pre>#}
 
-            {{ article.rendered_html|safe }}
+                {{ article.rendered_html|safe }}
+            </div>
         </div>
     </div>
 {% endblock %}
