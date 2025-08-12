@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -12,7 +14,7 @@ def test(request):
     return render(request, 'wiki/test.html', context=context)
 
 
-class WikiArticleListView(ListView):
+class WikiArticleListView(LoginRequiredMixin, ListView):
     model = WikiArticle
     template_name = "wiki/article_list.html"
     context_object_name = "articles"
@@ -47,6 +49,7 @@ class WikiArticleListView(ListView):
         return context
 
 
+@login_required
 def article_list_partial(request):
     """
     View to render the article list partial for htmx requests
@@ -77,7 +80,7 @@ def article_list_partial(request):
     return render(request, 'wiki/partials/article_list.html', context)
 
 
-class WikiArticleDetailView(DetailView):
+class WikiArticleDetailView(LoginRequiredMixin, DetailView):
     model = WikiArticle
     template_name = "wiki/article_detail.html"
     context_object_name = "article"
