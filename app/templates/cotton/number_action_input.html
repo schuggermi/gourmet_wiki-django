@@ -14,11 +14,11 @@
     </svg>
 </button>
 
-<div class="grid {% if label %}grid-cols-2{% else %}grid-cols-1{% endif %} gap-2 items-center w-fit">
+<div class="grid {% if label %}grid-cols-2{% else %}grid-cols-1{% endif %} gap-2 items-center w-full">
     <c-input :field="field" class="text-center" type="number">
     </c-input>
     {% if label %}
-        <small>{{ label }}</small>
+        <small class="w-full text-center">{{ label }}</small>
     {% endif %}
 </div>
 

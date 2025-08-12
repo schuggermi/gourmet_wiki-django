@@ -2,7 +2,7 @@
 
 <div>
     <div id="recipe_ingredient-{{ form_index }}" class="formset-form flex flex-col items-start gap-1">
-        <div class="grid grid-cols-3 gap-2 items-start w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 items-start w-full">
             {{ form.id }}
             {{ form.DELETE.as_hidden }}
             {{ form.order.as_hidden }}
@@ -12,41 +12,62 @@
                 <c-input :field="form.ingredient" no_errors></c-input>
             </div>{% endcomment %}
             <c-hx-input name="q" :id="form.ingredient.id_for_label"
-                     :instance_value="form.instance.ingredient"
-                     placeholder="{% trans 'Search...' %}"
-                     no_errors
-                     list="ingredient-list"
-                     hx_get="{% url 'ingredients:ingredient-options' %}"
-                     hx_trigger="keyup changed delay:300ms"
-                     hx_target="#ingredient-list"
-                     hx_swap="innerHTML"
-                     autocomplete="off"
+                        :instance_value="form.instance.ingredient"
+                        placeholder="{% trans 'Beef...' %}"
+                        no_errors
+                        list="ingredient-list"
+                        hx_get="{% url 'ingredients:ingredient-options' %}"
+                        hx_trigger="keyup changed delay:300ms"
+                        hx_target="#ingredient-list"
+                        hx_swap="innerHTML"
+                        autocomplete="off"
             ></c-hx-input>
             <datalist id="ingredient-list">
                 <!-- options will be populated here -->
             </datalist>
 
-            <div class="flex gap-2 items-center">
-                <c-number-action-input :field="form.quantity"
-                                       no_errors></c-number-action-input>
-            </div>
+            <div class="w-full grid grid-cols-2 gap-5">
+                <!-- Ingredient Quantity -->
+                <div class="flex flex-col gap-1 w-full">
+                    <small class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6 text-secondary!">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
+                        </svg>
+                        {% translate 'Amount' %}
+                    </small>
+                    <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
+                        <div class="flex items-center justify-center gap-5 w-full">
+                            <c-number-action-input :field="form.quantity" no_errors>
+                            </c-number-action-input>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Ingredient Quantity, Unit & Delete -->
-            <div class="flex">
-                <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"
-                          no_errors></c-select>
 
-                <p class="cursor-pointer self-center w-fit ps-5"
-                   title="{% translate 'Remove this Ingredient' %}"
-                   onclick="this.closest('.formset-form').hidden = true; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor"
-                         class="size-6 text-error">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
-                    </svg>
-                </p>
+                <div class="flex gap-5 items-center">
+                    <c-number-action-input :field="form.quantity"
+                                           no_errors></c-number-action-input>
+                </div>
+
+                <!-- Ingredient Quantity, Unit & Delete -->
+                <div class="flex">
+                    <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"
+                              no_errors></c-select>
+
+                    <p class="cursor-pointer self-center w-fit ps-5"
+                       title="{% translate 'Remove this Ingredient' %}"
+                       onclick="this.closest('.formset-form').hidden = true; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor"
+                             class="size-6 text-error">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
+                        </svg>
+                    </p>
+                </div>
             </div>
         </div>
         {% if form.errors %}

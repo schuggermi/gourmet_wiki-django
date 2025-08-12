@@ -19,7 +19,7 @@
         class="{{ default_class }} {{ class }} {% if field and field.errors %} {{ error_class }}{% endif %}"
 >
     {% for value, label in field.field.choices %}
-        {% if forloop.counter0 > 0 %}
+        {% if forloop.counter0 >= 0 %}
             <option value="{{ value }}"
                     {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
         {% endif %}

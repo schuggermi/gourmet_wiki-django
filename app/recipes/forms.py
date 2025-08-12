@@ -38,9 +38,7 @@ class RecipeForm(forms.ModelForm):
             #     'class': FILE_INPUT_CLASSES,
             #     'accept': 'image/*'
             # }),
-            'skill_level': forms.Select(attrs={
-                'placeholder': _("Choose a Skill Level")
-            }),
+            'skill_level': forms.Select(),
             'portions': forms.NumberInput(attrs={
                 'min': 1,
                 'max': 500,

@@ -16,10 +16,13 @@
         <c-textarea :field="form.description"></c-textarea>
     </div>
 
-    <div class="grid grid-cols-1 gap-5">
+    {% comment %}<div class="grid grid-cols-1 gap-5">
+    </div>{% endcomment %}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 items-center justify-items-between gap-5">
         <!-- Recipe Skill Level -->
         <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
+            <small class="flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="size-6 text-secondary!">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -27,15 +30,17 @@
                 </svg>
 
                 {% translate 'Skill Level' %}
-            </p>
+            </small>
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
-                <label for="{{ form.skill_level.id_for_label }}"
+                {% comment %}<label for="{{ form.skill_level.id_for_label }}"
                        class="hidden">
                     {{ form.skill_level.label }}
-                </label>
-                {{ form.skill_level.as_hidden }}
+                </label>{% endcomment %}
+                {% comment %}{{ form.skill_level.as_hidden }}{% endcomment %}
+                <c-select :field="form.skill_level" :instance_value="form.instance.skill_level.id" class="w-fit! px-1!"
+                          no_errors></c-select>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
+                {% comment %}<div class="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
                     {% for value, label in form.fields.skill_level.choices %}
                         <div class="flex flex-col gap-2 items-center">
                             <c-input type="checkbox"
@@ -59,17 +64,14 @@
                             {{ error }}
                         </div>
                     {% endfor %}
-                </div>
+                </div>{% endcomment %}
             </div>
         </div>
 
-    </div>
-
-    <div class="grid grid-cols-2 gap-5">
         <!-- Recipe Is Published -->
         {% if user.is_author %}
             <div class="flex flex-col gap-1 w-full">
-                <p class="flex items-center gap-3">
+                <small class="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                          class="size-6 text-secondary!">
                         <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
@@ -78,7 +80,7 @@
                               clip-rule="evenodd"></path>
                     </svg>
                     {{ form.is_published.label }}
-                </p>
+                </small>
                 <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full justify-center">
                     <c-input type="checkbox"
                              id="{{ form.is_published.id_for_label }}"
@@ -93,16 +95,16 @@
 
         <!-- Recipe Portions -->
         <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
+            <small class="flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="size-6 text-secondary!">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                 </svg>
                 {% translate 'Portions' %}
-            </p>
+            </small>
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
-                <div class="flex items-center gap-2 w-full">
+                <div class="flex items-center justify-center gap-5 w-full">
                     <c-number-action-input :field="form.portions" no_errors label="{% translate 'Persons' %}">
                     </c-number-action-input>
                 </div>
@@ -133,22 +135,22 @@
         </div>{% endcomment %}
 
         <!-- Cooking Time -->
-        <div class="flex flex-col gap-1 w-full">
-            <p class="flex items-center gap-3">
+        <div class="flex flex-col gap-1 w-full col-span-2">
+            <small class="flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="size-6 text-secondary!">
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                 </svg>
                 {% translate 'Cooking Time' %}
-            </p>
+            </small>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
-                <div class="flex items-center gap-2 w-full">
+                <div class="flex items-center justify-center gap-5 w-full">
                     <c-number-action-input :field="form.cooking_time_hours" no_errors
                                            label="{{ form.cooking_time_hours.label }}"></c-number-action-input>
                 </div>
 
-                <div class="flex items-center gap-2 w-full">
+                <div class="flex items-center justify-center gap-5 w-full">
                     <c-number-action-input :field="form.cooking_time_minutes" no_errors
                                            label="{{ form.cooking_time_minutes.label }}"></c-number-action-input>
                 </div>
