@@ -40,22 +40,22 @@ class Recipe(models.Model):
             MaxValueValidator(500),
         ]
     )
-    working_time_hours = models.PositiveIntegerField(
-        verbose_name=_('Hours'),
-        default=0,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(24),
-        ]
-    )
-    working_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('Minutes'),
-        default=0,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(60),
-        ]
-    )
+    # working_time_hours = models.PositiveIntegerField(
+    #     verbose_name=_('Hours'),
+    #     default=0,
+    #     validators=[
+    #         MinValueValidator(0),
+    #         MaxValueValidator(24),
+    #     ]
+    # )
+    # working_time_minutes = models.PositiveIntegerField(
+    #     verbose_name=_('Minutes'),
+    #     default=0,
+    #     validators=[
+    #         MinValueValidator(0),
+    #         MaxValueValidator(60),
+    #     ]
+    # )
     cooking_time_hours = models.PositiveIntegerField(
         verbose_name=_('Hours'),
         default=0,
@@ -72,22 +72,22 @@ class Recipe(models.Model):
             MaxValueValidator(60),
         ]
     )
-    rest_time_hours = models.PositiveIntegerField(
-        verbose_name=_('Hours'),
-        default=0,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(24),
-        ]
-    )
-    rest_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('Minutes'),
-        default=0,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(60),
-        ]
-    )
+    # rest_time_hours = models.PositiveIntegerField(
+    #     verbose_name=_('Hours'),
+    #     default=0,
+    #     validators=[
+    #         MinValueValidator(0),
+    #         MaxValueValidator(24),
+    #     ]
+    # )
+    # rest_time_minutes = models.PositiveIntegerField(
+    #     verbose_name=_('Minutes'),
+    #     default=0,
+    #     validators=[
+    #         MinValueValidator(0),
+    #         MaxValueValidator(60),
+    #     ]
+    # )
     skill_level = models.CharField(
         max_length=50,
         choices=SkillLevelChoice.choices,
@@ -106,11 +106,11 @@ class Recipe(models.Model):
 
     @property
     def total_time_hours(self):
-        return self.working_time_hours + self.cooking_time_hours + self.rest_time_hours
+        return self.cooking_time_hours  # self.working_time_hours + self.cooking_time_hours + self.rest_time_hours
 
     @property
     def total_time_minutes(self):
-        return self.working_time_minutes + self.cooking_time_minutes + self.rest_time_minutes
+        return self.cooking_time_minutes  # self.working_time_minutes + self.cooking_time_minutes + self.rest_time_minutes
 
     @property
     def get_thumbnail_image(self):

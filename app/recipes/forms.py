@@ -17,10 +17,9 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = [
-            'name', 'is_published', 'description', 'skill_level', 'portions', 'working_time_hours',
-            'working_time_minutes',
-            'cooking_time_hours', 'cooking_time_minutes', 'rest_time_hours', 'rest_time_minutes',
-        ]  # thumbnail_image
+            'name', 'is_published', 'description', 'skill_level', 'portions', 'cooking_time_hours',
+            'cooking_time_minutes',
+        ]  # 'thumbnail_image', 'rest_time_hours', 'rest_time_minutes', 'working_time_hours', 'working_time_minutes'
         widgets = {
             'name': forms.TextInput(attrs={
                 'placeholder': _("Name your creation (e.g. Spicy Thai Basil Chicken)"),
@@ -46,14 +45,14 @@ class RecipeForm(forms.ModelForm):
                 'min': 1,
                 'max': 500,
             }),
-            'working_time_hours': forms.NumberInput(attrs={
-                'min': 0,
-                'max': 24,
-            }),
-            'working_time_minutes': forms.NumberInput(attrs={
-                'min': 0,
-                'max': 60,
-            }),
+            # 'working_time_hours': forms.NumberInput(attrs={
+            #     'min': 0,
+            #     'max': 24,
+            # }),
+            # 'working_time_minutes': forms.NumberInput(attrs={
+            #     'min': 0,
+            #     'max': 60,
+            # }),
             'cooking_time_hours': forms.NumberInput(attrs={
                 'min': 0,
                 'max': 24,
@@ -62,14 +61,14 @@ class RecipeForm(forms.ModelForm):
                 'min': 0,
                 'max': 60,
             }),
-            'rest_time_hours': forms.NumberInput(attrs={
-                'min': 0,
-                'max': 24,
-            }),
-            'rest_time_minutes': forms.NumberInput(attrs={
-                'min': 0,
-                'max': 60,
-            }),
+            # 'rest_time_hours': forms.NumberInput(attrs={
+            #     'min': 0,
+            #     'max': 24,
+            # }),
+            # 'rest_time_minutes': forms.NumberInput(attrs={
+            #     'min': 0,
+            #     'max': 60,
+            # }),
         }
 
 
