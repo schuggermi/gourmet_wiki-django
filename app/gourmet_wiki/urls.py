@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 
 def handler404(request, exception):
@@ -32,7 +33,8 @@ urlpatterns = [
                   path('menus/', include('menus.urls'), name='menus'),
                   path('accounts/', include('allauth.urls')),
                   path('users/', include('users.urls')),
-                  path('api-auth/', include('rest_framework.urls'))
+                  path('api-auth/', include('rest_framework.urls')),
+                  path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
               static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
               debug_toolbar_urls()

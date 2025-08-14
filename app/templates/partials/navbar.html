@@ -29,6 +29,12 @@
                     {% translate 'Wiki' %}
                 </c-a>
             </li>
+            <li>
+                <c-a url="{% url 'ingredients:ingredient_list' %}"
+                     class="btn {% if request.resolver_match.url_name == 'ingredient_list' %}btn-accent{% endif %}">
+                    {% translate 'Food Index' %}
+                </c-a>
+            </li>
         </ul>
     </div>
     <div class="navbar-end gap-2 md:gap-5">

@@ -88,7 +88,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'users.middleware.HTMXLoginRedirectMiddleware',
     'gourmet_wiki.middleware.SuspiciousRequestMiddleware',
-    'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
+    # 'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

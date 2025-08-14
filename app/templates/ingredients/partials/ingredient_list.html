@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<div id="article-list-container" class="flex flex-col gap-5 w-full max-w-5xl xl:min-w-5xl mx-auto">
+    <h2>{% translate 'Categories' %}</h2>
+    {% for category, ingredients in object_list %}
+        <div class="join join-vertical gap-5 rounded-lg ">
+            <div class="collapse collapse-arrow join-item bg-base-200 rounded-lg">
+                <!-- Use SAME name for all radios if you want an accordion behavior -->
+                <input type="radio" name="category-accordion"
+                       {% if forloop.counter0 == 0 %}checked="checked"{% endif %}/>
+
+                <div class="collapse-title">
+                    <h3>{{ category.get_translated_name }}</h3>
+                </div>
+
+                <div class="collapse-content">
+                    <ul class="list-disc ps-10">
+                        {% for ingredient in ingredients %}
+                            <li>
+                                <a class="hover:underline"
+                                   href="">{{ ingredient.get_translated_name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

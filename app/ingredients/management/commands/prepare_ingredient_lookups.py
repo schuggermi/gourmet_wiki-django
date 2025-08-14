@@ -1,11 +1,12 @@
 import requests
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from ingredients.models import IngredientLookup
+from ingredients.models import IngredientLookup, Category
 
 PAGE_SIZE = 200  # Max per USDA docs
 
 SEARCH_URL = settings.USDA_FDC_BASE_URL + "/foods/search"
+
 
 class Command(BaseCommand):
     help = "Fetch and store all natural (non-branded) ingredients from USDA API"
@@ -18,8 +19,9 @@ class Command(BaseCommand):
             self.stdout.write(f"Fetching page {page_number}...")
 
             payload = {
-                "query": "",
-                "dataType": ["Foundation"],  # Natural foods only "Survey (FNDDS)", "Foundation", "SR Legacy"
+                "query": ", raw",
+                "dataType": ["SR Legacy", "Survey (FNDDS)", "Foundation"],
+                # Natural foods only "Foundation", "Survey (FNDDS)", "Foundation", "SR Legacy"
                 "pageSize": PAGE_SIZE,
                 "pageNumber": page_number,
             }
@@ -44,12 +46,16 @@ class Command(BaseCommand):
                 break
 
             for food in foods:
+                category = food['foodCategory']
                 fdc_id = food['fdcId']
                 description = food['description']
 
                 obj, created = IngredientLookup.objects.update_or_create(
                     fdc_id=fdc_id,
-                    defaults={'description': description}
+                    defaults={
+                        'description': description,
+                        'category': category
+                    }
                 )
                 if created:
                     self.stdout.write(f"Added ingredient lookup: {description} (fdcId={fdc_id})")
@@ -61,4 +67,5 @@ class Command(BaseCommand):
 
             page_number += 1
 
-        self.stdout.write(self.style.SUCCESS("Successfully fetched and stored all natural ingredients in IngredientLookup."))
+        self.stdout.write(
+            self.style.SUCCESS("Successfully fetched and stored all natural ingredients in IngredientLookup."))
