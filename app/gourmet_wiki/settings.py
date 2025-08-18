@@ -300,3 +300,5 @@ LISTMONK_API_TOKEN = os.getenv('LISTMONK_API_TOKEN')
 
 USDA_FDC_API_KEY = os.getenv('USDA_FDC_API_KEY')
 USDA_FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1"
+
+OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL')

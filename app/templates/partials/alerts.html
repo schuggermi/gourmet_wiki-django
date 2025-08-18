@@ -1,7 +1,7 @@
 {% if messages %}
-    <ul class="fixed right-2 md:right-5 w-fit max-w-xs flex flex-col gap-2 {% if user.is_authenticated %}bottom-15{% else %}bottom-2 md:bottom-5{% endif %}">
+    <ul class="w-full flex flex-col gap-10">
         {% for message in messages %}
-            <li class="flex gap-2 items-center alert
+            <li class="w-full flex flex-row-reverse gap-2 items-center justify-between alert
                 {% if 'success' in message.tags %}
                     alert-success
                 {% elif 'error' in message.tags %}
@@ -15,7 +15,7 @@
                 {% endif %}
             ">
                 <button onclick="this.parentElement.remove()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent-content" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="grow-0 h-4 w-4 text-accent-content" fill="none"
                          viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -23,7 +23,7 @@
                     </svg>
                 </button>
 
-                <p class="text-accent-content leading-tight">{{ message }}</p>
+                <p class="grow text-accent-content leading-tight">{{ message }}</p>
             </li>
         {% endfor %}
     </ul>
@@ -37,7 +37,7 @@
                 setTimeout(() => {
                     el.remove();
                 }, 500);
-            }, 3000);
+            }, 5000);
         });
     </script>
 {% endif %}

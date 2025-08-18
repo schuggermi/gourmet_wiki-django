@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 22:45+0000\n"
+"POT-Creation-Date: 2025-08-15 21:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,7 +124,8 @@ msgstr "Benenne deine Kreation (z.B. Würziges Thai-Basilikum-Hähnchen)"
 
 #: recipes/forms.py:34
 msgid "e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili."
-msgstr "z.B. Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
+msgstr ""
+"z.B. Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
 #: recipes/forms.py:79
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
@@ -156,7 +157,8 @@ msgstr "E-Mail-Adresse bestätigen"
 msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
-msgstr "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> die E-"
+msgstr ""
+"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> die E-"
 "Mail-Adresse von %(user_display)s ist."
 
 #: templates/account/email_confirm.html:25
@@ -168,7 +170,8 @@ msgstr "Bestätigen"
 msgid ""
 "Unable to confirm %(email)s because it is already confirmed by a different "
 "account."
-msgstr "%(email)s kann nicht bestätigt werden, da sie bereits von einem anderen "
+msgstr ""
+"%(email)s kann nicht bestätigt werden, da sie bereits von einem anderen "
 "Konto bestätigt wurde."
 
 #: templates/account/email_confirm.html:34
@@ -194,9 +197,11 @@ msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
 #: templates/account/login.html:11
-msgid "<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
+msgid ""
+"<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
 "something up!"
-msgstr "<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
+msgstr ""
+"<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
 "noch am Kochen!"
 
 #: templates/account/login.html:58
@@ -235,7 +240,8 @@ msgstr "Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:21
 msgid "Enter your email to receive a password reset link."
-msgstr "Gib deine E-Mail-Adresse ein, um einen Link zum Zurücksetzen des Passworts "
+msgstr ""
+"Gib deine E-Mail-Adresse ein, um einen Link zum Zurücksetzen des Passworts "
 "zu erhalten."
 
 #: templates/account/password_reset.html:36
@@ -245,7 +251,8 @@ msgstr "Passwort zurücksetzen"
 #: templates/account/password_reset_done.html:15
 #: templates/account/verification_sent.html:16
 msgid "We’ve emailed you. Didn’t get it? Check spam or contact us."
-msgstr "Wir haben dir eine E-Mail geschickt. Nicht erhalten? Schau im Spam-Ordner "
+msgstr ""
+"Wir haben dir eine E-Mail geschickt. Nicht erhalten? Schau im Spam-Ordner "
 "nach oder kontaktiere uns."
 
 #: templates/account/password_reset_from_key.html:11
@@ -346,7 +353,8 @@ msgstr "Zugriff verweigert – Gourmet Wiki"
 #: templates/errors/403.html:6 templates/errors/403.html:9
 #: templates/errors/403.html:12
 msgid "You don't have permission to access this page on Gourmet Wiki."
-msgstr "Du hast keine Berechtigung, auf diese Seite von Gourmet Wiki zuzugreifen."
+msgstr ""
+"Du hast keine Berechtigung, auf diese Seite von Gourmet Wiki zuzugreifen."
 
 #: templates/errors/403.html:16
 msgid "403 - Access Denied"
@@ -362,7 +370,8 @@ msgstr "Mit einem anderen Konto anmelden"
 
 #: templates/errors/403.html:22
 msgid "Contact the site administrator if you believe this is an error"
-msgstr "Kontaktiere den Administrator, wenn du glaubst, dass es sich um einen Fehler "
+msgstr ""
+"Kontaktiere den Administrator, wenn du glaubst, dass es sich um einen Fehler "
 "handelt"
 
 #: templates/errors/403.html:23
@@ -504,7 +513,8 @@ msgid "Share Your Culinary Expertise"
 msgstr "Teile dein Küchenwissen"
 
 #: templates/pages/home.html:17
-msgid "Join chefs and culinary experts in creating a reliable source for core "
+msgid ""
+"Join chefs and culinary experts in creating a reliable source for core "
 "recipes and techniques"
 msgstr "Werde Teil einer Plattform für erprobte Rezepte und Techniken."
 
@@ -547,7 +557,8 @@ msgid ""
 "                            circumstances that indicate illegal activity. "
 "Obligations to remove or block the use of\n"
 "                            information under general laws remain unaffected."
-msgstr "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf "
+msgstr ""
+"Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf "
 "diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 "
 "TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte "
 "oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu "
@@ -567,7 +578,8 @@ msgid ""
 "                            respective provider or operator of the linked "
 "pages is always responsible for the content of\n"
 "                            those pages."
-msgstr "Unser Angebot enthält ggf. Links zu externen Websites Dritter, auf deren "
+msgstr ""
+"Unser Angebot enthält ggf. Links zu externen Websites Dritter, auf deren "
 "Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden "
 "Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten "
 "ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
@@ -585,7 +597,8 @@ msgid ""
 "form of use outside the limits of copyright\n"
 "                            law requires the written consent of the "
 "respective author or creator."
-msgstr "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten "
+msgstr ""
+"Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten "
 "unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche "
 "gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art "
 "der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der "
@@ -603,7 +616,8 @@ msgid ""
 "                            participate in dispute resolution proceedings "
 "before a consumer arbitration\n"
 "                            board."
-msgstr "Wir sind nicht verpflichtet und nicht bereit, an einem "
+msgstr ""
+"Wir sind nicht verpflichtet und nicht bereit, an einem "
 "Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle "
 "teilzunehmen. https://ec.europa.eu/consumers/odr/"
 
@@ -632,9 +646,11 @@ msgid "The controller responsible for data processing on this website is:"
 msgstr "Verantwortlich für die Datenverarbeitung auf dieser Website ist:"
 
 #: templates/pages/privacy.html:34
-msgid "2. Collection and Storage of Personal Data and the Nature and Purpose of "
+msgid ""
+"2. Collection and Storage of Personal Data and the Nature and Purpose of "
 "Their Use"
-msgstr "2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck von "
+msgstr ""
+"2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck von "
 "deren Verwendung"
 
 #: templates/pages/privacy.html:37
@@ -642,51 +658,57 @@ msgid "a) Registration"
 msgstr "a) Bei Registrierung"
 
 #: templates/pages/privacy.html:38
-msgid "When registering on Gourmet Wiki, we collect the following personal data:"
-msgstr "Bei der Registrierung auf Gourmet Wiki werden folgende personenbezogene Daten erfasst:"
+msgid ""
+"When registering on Gourmet Wiki, we collect the following personal data:"
+msgstr ""
+"Bei der Registrierung auf Gourmet Wiki werden folgende personenbezogene "
+"Daten erfasst:"
 
-#: templates/pages/privacy.html:41
+#: templates/pages/privacy.html:40
 msgid "First name"
 msgstr "Vorname"
 
-#: templates/pages/privacy.html:42
+#: templates/pages/privacy.html:41
 msgid "Last name"
 msgstr "Nachname"
 
-#: templates/pages/privacy.html:43
+#: templates/pages/privacy.html:42
 msgid "Email address"
 msgstr "E-Mail-Adresse bestätigen"
 
-#: templates/pages/privacy.html:44
+#: templates/pages/privacy.html:43
 msgid "Password (stored in encrypted form)"
 msgstr "Passwort (verschlüsselt gespeichert)"
 
-#: templates/pages/privacy.html:46
-msgid "This data is necessary to create and manage your user account and to enable "
+#: templates/pages/privacy.html:45
+msgid ""
+"This data is necessary to create and manage your user account and to enable "
 "the use of community features."
-msgstr "Diese Daten sind notwendig zur Erstellung und Verwaltung eines Nutzerkontos "
+msgstr ""
+"Diese Daten sind notwendig zur Erstellung und Verwaltung eines Nutzerkontos "
 "sowie zur Nutzung der Community-Funktionen."
 
-#: templates/pages/privacy.html:50
+#: templates/pages/privacy.html:49
 msgid "b) Google Social Auth"
 msgstr "b) Google Social Auth"
 
-#: templates/pages/privacy.html:51
+#: templates/pages/privacy.html:50
 msgid ""
 "Alternatively, you can log in using Google. This uses an OAuth2 login\n"
 "                        process. Google provides us with basic profile data "
 "(name and email address). No additional data\n"
 "                        is transmitted."
-msgstr "Alternativ können Sie sich über Google anmelden. Dabei wird Ihnen zur "
+msgstr ""
+"Alternativ können Sie sich über Google anmelden. Dabei wird Ihnen zur "
 "Anmeldung ein OAuth2-Prozess bereitgestellt. Google übermittelt uns Ihre "
 "grundlegenden Profildaten (Name und E-Mail-Adresse). Weitere Daten werden "
 "nicht übertragen."
 
-#: templates/pages/privacy.html:57
+#: templates/pages/privacy.html:56
 msgid "c) Email Confirmation & Newsletter"
 msgstr "c) E-Mail-Bestätigung & Newsletter"
 
-#: templates/pages/privacy.html:58
+#: templates/pages/privacy.html:57
 msgid ""
 "After registration, you will receive a confirmation email to verify your\n"
 "                        email address. Additionally, we may send you "
@@ -695,17 +717,18 @@ msgid ""
 "using the unsubscribe link at the bottom of\n"
 "                        each email or by contacting us at support@gourmet-"
 "wiki.app."
-msgstr "Nach der Registrierung erhalten Sie eine E-Mail zur Bestätigung Ihrer E-Mail-"
+msgstr ""
+"Nach der Registrierung erhalten Sie eine E-Mail zur Bestätigung Ihrer E-Mail-"
 "Adresse. Zusätzlich informieren wir Sie ggf. per Newsletter über neue "
 "Funktionen oder relevante Inhalte. Den Newsletter können Sie jederzeit über "
 "einen Abmeldelink im Footer der E-Mail oder per Nachricht an support@gourmet-"
 "wiki.app abbestellen."
 
-#: templates/pages/privacy.html:66
+#: templates/pages/privacy.html:65
 msgid "3. Use of Cookies"
 msgstr "3. Verwendung von Cookies"
 
-#: templates/pages/privacy.html:68
+#: templates/pages/privacy.html:67
 msgid ""
 "Gourmet Wiki uses cookies and similar technologies to provide you with a "
 "smooth\n"
@@ -714,17 +737,18 @@ msgid ""
 "                    our legitimate interest in providing a technically error-"
 "free and optimized service (Art. 6 para. 1\n"
 "                    lit. f GDPR)."
-msgstr "Gourmet Wiki verwendet Cookies und ähnliche Technologien, um Ihnen ein "
+msgstr ""
+"Gourmet Wiki verwendet Cookies und ähnliche Technologien, um Ihnen ein "
 "reibungsloses Nutzungserlebnis zu ermöglichen (z. B. Login-Sessions, "
 "Sicherheit, CSRF-Schutz). Die Verwendung erfolgt gemäß Art. 6 Abs. 1 lit. f "
 "DSGVO auf Basis unseres berechtigten Interesses an einer technisch "
 "fehlerfreien und optimierten Bereitstellung unserer Dienste."
 
-#: templates/pages/privacy.html:75
+#: templates/pages/privacy.html:74
 msgid "4. Stripe (Payment Provider)"
 msgstr "4. Stripe (Zahlungsdienstleister)"
 
-#: templates/pages/privacy.html:78
+#: templates/pages/privacy.html:77
 msgid ""
 "For paid features or services, we use Stripe, a payment provider based in\n"
 "                        both the US and the EU (Stripe Payments Europe, "
@@ -733,43 +757,46 @@ msgid ""
 "data to Stripe. The processing is carried out\n"
 "                        on the basis of Art. 6 para. 1 lit. b GDPR (contract "
 "fulfillment)."
-msgstr "Für kostenpflichtige Inhalte oder Services nutzen wir Stripe, einen "
+msgstr ""
+"Für kostenpflichtige Inhalte oder Services nutzen wir Stripe, einen "
 "Zahlungsdienstleister mit Sitz in den USA und der EU (Stripe Payments "
 "Europe, Ltd., Irland). Bei einer Transaktion übermittelt Ihr Browser "
 "automatisch personenbezogene Zahlungsdaten an Stripe. Die Verarbeitung "
 "erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)."
 
-#: templates/pages/privacy.html:84
+#: templates/pages/privacy.html:83
 msgid "More information:"
 msgstr "Mehr Informationen:"
 
-#: templates/pages/privacy.html:91
+#: templates/pages/privacy.html:90
 msgid "5. Data Retention and Deletion"
 msgstr "5. Speicherdauer und Löschung"
 
-#: templates/pages/privacy.html:94
+#: templates/pages/privacy.html:93
 msgid "Unconfirmed accounts are automatically deleted after 3 days."
 msgstr "Nicht bestätigte Konten: werden nach 3 Tagen automatisch gelöscht."
 
-#: templates/pages/privacy.html:95
+#: templates/pages/privacy.html:94
 msgid "Inactive accounts are deleted after 2 years of inactivity."
 msgstr "Inaktive Konten: werden nach 2 Jahren Inaktivität gelöscht."
 
-#: templates/pages/privacy.html:96
-msgid "All other data is only stored as long as necessary for the intended purpose "
+#: templates/pages/privacy.html:95
+msgid ""
+"All other data is only stored as long as necessary for the intended purpose "
 "or as legally required."
-msgstr "Weitere Daten werden nur so lange gespeichert, wie dies zur Erfüllung des "
+msgstr ""
+"Weitere Daten werden nur so lange gespeichert, wie dies zur Erfüllung des "
 "jeweiligen Zwecks erforderlich ist oder gesetzlich vorgeschrieben wird."
 
-#: templates/pages/privacy.html:101
+#: templates/pages/privacy.html:100
 msgid "6. Your Rights"
 msgstr "6. Ihre Rechte"
 
-#: templates/pages/privacy.html:104
+#: templates/pages/privacy.html:103
 msgid "You have the right to:"
 msgstr "Sie haben das Recht:"
 
-#: templates/pages/privacy.html:105
+#: templates/pages/privacy.html:104
 msgid ""
 "Request information about the personal data we hold about you (Art. 15 "
 "GDPR),\n"
@@ -781,7 +808,8 @@ msgid ""
 "used format (Art. 20 GDPR), Lodge a\n"
 "                        complaint with a supervisory authority (Art. 77 "
 "GDPR)."
-msgstr "gemäß Art. 15 DSGVO Auskunft über Ihre bei uns gespeicherten Daten zu "
+msgstr ""
+"gemäß Art. 15 DSGVO Auskunft über Ihre bei uns gespeicherten Daten zu "
 "verlangen, gemäß Art. 16 DSGVO Berichtigung unrichtiger oder "
 "Vervollständigung Ihrer gespeicherten Daten zu verlangen, gemäß Art. 17 "
 "DSGVO die Löschung Ihrer bei uns gespeicherten Daten zu verlangen, gemäß "
@@ -789,32 +817,35 @@ msgstr "gemäß Art. 15 DSGVO Auskunft über Ihre bei uns gespeicherten Daten zu
 "DSGVO Ihre Daten in einem strukturierten, gängigen Format zu erhalten, gemäß "
 "Art. 77 DSGVO sich bei einer Aufsichtsbehörde zu beschweren."
 
-#: templates/pages/privacy.html:114
+#: templates/pages/privacy.html:113
 msgid "7. Data Security"
 msgstr "7. Datensicherheit"
 
-#: templates/pages/privacy.html:116
+#: templates/pages/privacy.html:115
 msgid ""
 "We implement current technical and organizational security measures to "
 "protect\n"
 "                    your data frommanipulation, loss, destruction, or "
 "unauthorized access. Passwords are stored only in\n"
 "                    encryptedform."
-msgstr "Wir verwenden aktuelle technische und organisatorische Sicherheitsmaßnahmen, "
+msgstr ""
+"Wir verwenden aktuelle technische und organisatorische Sicherheitsmaßnahmen, "
 "um Ihre Daten vor Manipulation, Verlust, Zerstörung oder unbefugtem Zugriff "
 "zu schützen. Passwörter werden ausschließlich verschlüsselt gespeichert."
 
-#: templates/pages/privacy.html:122
+#: templates/pages/privacy.html:121
 msgid "8. Changes to This Privacy Policy"
 msgstr "8. Änderungen dieser Datenschutzerklärung"
 
-#: templates/pages/privacy.html:124
-msgid "We reserve the right to amend this privacy policy to comply with new legal "
+#: templates/pages/privacy.html:123
+msgid ""
+"We reserve the right to amend this privacy policy to comply with new legal "
 "requirements or due to changes in our services."
-msgstr "Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an neue "
+msgstr ""
+"Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an neue "
 "rechtliche Anforderungen oder bei Änderungen unserer Dienste anzupassen."
 
-#: templates/pages/privacy.html:128
+#: templates/pages/privacy.html:126
 msgid "Effective date:"
 msgstr "Stand:"
 
@@ -827,194 +858,218 @@ msgid "Welcome to Gourmet Wiki!"
 msgstr "Willkommen bei Gourmet Wiki!"
 
 #: templates/pages/terms_of_use.html:16
-msgid "These Terms of Use (“Terms”) govern your access to and use of the Gourmet Wiki platform."
-msgstr "Diese Nutzungsbedingungen („Bedingungen“) regeln den Zugang und die Nutzung der Plattform Gourmet Wiki."
+msgid ""
+"These Terms of Use (“Terms”) govern your access to and use of the Gourmet "
+"Wiki platform."
+msgstr ""
+"Diese Nutzungsbedingungen („Bedingungen“) regeln den Zugang und die Nutzung "
+"der Plattform Gourmet Wiki."
 
-#: templates/pages/terms_of_use.html:21
+#: templates/pages/terms_of_use.html:20
 msgid "1. Eligibility"
 msgstr "1. Nutzungsberechtigung"
 
-#: templates/pages/terms_of_use.html:24
-msgid "You must be at least 16 years old and provide accurate registration information."
-msgstr "Du musst mindestens 16 Jahre alt sein und korrekte Registrierungsdaten angeben."
+#: templates/pages/terms_of_use.html:23
+msgid ""
+"You must be at least 16 years old and provide accurate registration "
+"information."
+msgstr ""
+"Du musst mindestens 16 Jahre alt sein und korrekte Registrierungsdaten "
+"angeben."
 
-#: templates/pages/terms_of_use.html:26
-msgid "By using Google Social Auth, you authorize us to retrieve basic profile data "
+#: templates/pages/terms_of_use.html:24
+msgid ""
+"By using Google Social Auth, you authorize us to retrieve basic profile data "
 "(name and email) via OAuth2."
-msgstr "Bei der Anmeldung über Google erlaubst du uns, grundlegende Profildaten "
+msgstr ""
+"Bei der Anmeldung über Google erlaubst du uns, grundlegende Profildaten "
 "(Name, E-Mail) über OAuth2 abzurufen."
 
-#: templates/pages/terms_of_use.html:32
+#: templates/pages/terms_of_use.html:29
 msgid "2. User Accounts"
 msgstr "2. Benutzerkonten"
 
-#: templates/pages/terms_of_use.html:35
+#: templates/pages/terms_of_use.html:32
 msgid "You must create an account to access community features."
-msgstr "Du musst ein Benutzerkonto anlegen, um Community-Funktionen nutzen zu können."
+msgstr ""
+"Du musst ein Benutzerkonto anlegen, um Community-Funktionen nutzen zu können."
 
-#: templates/pages/terms_of_use.html:36
-msgid "You agree to keep your login credentials secure and notify us of any "
+#: templates/pages/terms_of_use.html:33
+msgid ""
+"You agree to keep your login credentials secure and notify us of any "
 "unauthorized use."
-msgstr "Du verpflichtest dich, deine Zugangsdaten sicher aufzubewahren und uns über "
+msgstr ""
+"Du verpflichtest dich, deine Zugangsdaten sicher aufzubewahren und uns über "
 "Missbrauch zu informieren."
 
-#: templates/pages/terms_of_use.html:40
+#: templates/pages/terms_of_use.html:37
 msgid "<strong>Unconfirmed accounts</strong> are deleted after 3 days."
-msgstr "<strong>Nicht bestätigte Konten</strong> werden nach 3 Tagen automatisch gelöscht."
+msgstr ""
+"<strong>Nicht bestätigte Konten</strong> werden nach 3 Tagen automatisch "
+"gelöscht."
 
-#: templates/pages/terms_of_use.html:42
+#: templates/pages/terms_of_use.html:38
 msgid "<strong>Inactive accounts</strong> are deleted after 2 years."
-msgstr "<strong>Inaktive Konten</strong> werden nach 2 Jahren Inaktivität gelöscht."
+msgstr ""
+"<strong>Inaktive Konten</strong> werden nach 2 Jahren Inaktivität gelöscht."
 
-#: templates/pages/terms_of_use.html:48
+#: templates/pages/terms_of_use.html:43
 msgid "3. Community Conduct"
 msgstr "3. Verhaltensregeln"
 
-#: templates/pages/terms_of_use.html:51
+#: templates/pages/terms_of_use.html:46
 msgid "Be respectful. The following is prohibited:"
 msgstr "Verhalte dich respektvoll. Folgendes ist verboten:"
 
-#: templates/pages/terms_of_use.html:53
+#: templates/pages/terms_of_use.html:48
 msgid "Offensive or illegal content"
 msgstr "Beleidigende oder rechtswidrige Inhalte"
 
-#: templates/pages/terms_of_use.html:54
+#: templates/pages/terms_of_use.html:49
 msgid "Harassing other users"
 msgstr "Belästigung anderer Nutzer"
 
-#: templates/pages/terms_of_use.html:55
+#: templates/pages/terms_of_use.html:50
 msgid "Exploiting or manipulating the platform"
 msgstr "Manipulation der Plattform"
 
-#: templates/pages/terms_of_use.html:59
+#: templates/pages/terms_of_use.html:54
 msgid "We reserve the right to remove content and restrict accounts."
 msgstr "Wir behalten uns vor, Inhalte zu löschen und Nutzer zu sperren."
 
-#: templates/pages/terms_of_use.html:63
+#: templates/pages/terms_of_use.html:58
 msgid "4. User Content"
 msgstr "4. Nutzerinhalte"
 
-#: templates/pages/terms_of_use.html:66
+#: templates/pages/terms_of_use.html:61
 msgid "You retain ownership of your submitted content."
 msgstr "Du behältst das Urheberrecht an deinen Inhalten."
 
-#: templates/pages/terms_of_use.html:67
-msgid "You grant us a non-exclusive, worldwide, royalty-free license to display and distribute your content."
-msgstr "Du gewährst uns eine nicht-exklusive, weltweite, gebührenfreie Lizenz zur Anzeige und Verbreitung."
+#: templates/pages/terms_of_use.html:62
+msgid ""
+"You grant us a non-exclusive, worldwide, royalty-free license to display and "
+"distribute your content."
+msgstr ""
+"Du gewährst uns eine nicht-exklusive, weltweite, gebührenfreie Lizenz zur "
+"Anzeige und Verbreitung."
 
-#: templates/pages/terms_of_use.html:72
+#: templates/pages/terms_of_use.html:67
 msgid "5. Payments"
 msgstr "5. Zahlungen"
 
-#: templates/pages/terms_of_use.html:74
+#: templates/pages/terms_of_use.html:69
 msgid "Paid services are processed via <strong>Stripe</strong>."
-msgstr "Kostenpflichtige Funktionen werden über <strong>Stripe</strong> abgewickelt."
+msgstr ""
+"Kostenpflichtige Funktionen werden über <strong>Stripe</strong> abgewickelt."
 
-#: templates/pages/terms_of_use.html:78
+#: templates/pages/terms_of_use.html:73
 msgid "You agree to the use of Stripe:"
 msgstr "Du erklärst dich mit der Nutzung von Stripe einverstanden:"
 
-#: templates/pages/terms_of_use.html:82
+#: templates/pages/terms_of_use.html:77
 msgid "We do not store any payment data."
 msgstr "Wir speichern keine Zahlungsdaten."
 
-#: templates/pages/terms_of_use.html:86
+#: templates/pages/terms_of_use.html:81
 msgid "6. Email Communication"
 msgstr "6. E-Mail-Kommunikation"
 
-#: templates/pages/terms_of_use.html:89
+#: templates/pages/terms_of_use.html:84
 msgid "After registration, you will receive:"
 msgstr "Nach der Registrierung erhältst du:"
 
-#: templates/pages/terms_of_use.html:91
+#: templates/pages/terms_of_use.html:86
 msgid "a confirmation email"
 msgstr "eine Bestätigungsmail"
 
-#: templates/pages/terms_of_use.html:92
+#: templates/pages/terms_of_use.html:87
 msgid "occasional newsletters"
 msgstr "gelegentliche Newsletter"
 
-#: templates/pages/terms_of_use.html:96
+#: templates/pages/terms_of_use.html:91
 msgid "You may unsubscribe at any time."
 msgstr "Du kannst dich jederzeit abmelden."
 
-#: templates/pages/terms_of_use.html:100
+#: templates/pages/terms_of_use.html:95
 msgid "7. Intellectual Property"
 msgstr "7. Urheberrecht"
 
-#: templates/pages/terms_of_use.html:102
+#: templates/pages/terms_of_use.html:97
 msgid "All content not submitted by users is protected by copyright."
-msgstr "Alle nicht von Nutzern erstellten Inhalte sind urheberrechtlich geschützt."
+msgstr ""
+"Alle nicht von Nutzern erstellten Inhalte sind urheberrechtlich geschützt."
 
-#: templates/pages/terms_of_use.html:103
+#: templates/pages/terms_of_use.html:98
 msgid "No reproduction without permission."
 msgstr "Keine Vervielfältigung ohne Genehmigung."
 
-#: templates/pages/terms_of_use.html:107
+#: templates/pages/terms_of_use.html:102
 msgid "8. Limitation of Liability"
 msgstr "8. Haftung"
 
-#: templates/pages/terms_of_use.html:110
+#: templates/pages/terms_of_use.html:105
 msgid "We are not liable for:"
 msgstr "Wir haften nicht für:"
 
-#: templates/pages/terms_of_use.html:112
+#: templates/pages/terms_of_use.html:107
 msgid "Data loss"
 msgstr "Datenverlust"
 
-#: templates/pages/terms_of_use.html:113
+#: templates/pages/terms_of_use.html:108
 msgid "User-generated content"
 msgstr "Inhalte von Nutzern"
 
-#: templates/pages/terms_of_use.html:114
+#: templates/pages/terms_of_use.html:109
 msgid "Downtime or indirect damages"
 msgstr "Nutzungsausfälle oder indirekte Schäden"
 
-#: templates/pages/terms_of_use.html:120
+#: templates/pages/terms_of_use.html:115
 msgid "9. Termination"
 msgstr "9. Kündigung"
 
-#: templates/pages/terms_of_use.html:123
+#: templates/pages/terms_of_use.html:118
 msgid "We may suspend or delete accounts in case of:"
 msgstr "Wir können Konten sperren oder löschen bei:"
 
-#: templates/pages/terms_of_use.html:125
+#: templates/pages/terms_of_use.html:120
 msgid "Violations of these terms"
 msgstr "Verstoß gegen die Bedingungen"
 
-#: templates/pages/terms_of_use.html:126
+#: templates/pages/terms_of_use.html:121
 msgid "Abuse"
 msgstr "Missbrauch"
 
-#: templates/pages/terms_of_use.html:127
+#: templates/pages/terms_of_use.html:122
 msgid "Service termination"
 msgstr "Einstellung des Dienstes"
 
-#: templates/pages/terms_of_use.html:133
+#: templates/pages/terms_of_use.html:128
 msgid "10. Modifications"
 msgstr "10. Änderungen"
 
-#: templates/pages/terms_of_use.html:135
+#: templates/pages/terms_of_use.html:130
 msgid "We may modify these Terms and will notify you of significant changes."
-msgstr "Wir können die Bedingungen ändern und informieren dich bei wesentlichen Änderungen."
+msgstr ""
+"Wir können die Bedingungen ändern und informieren dich bei wesentlichen "
+"Änderungen."
 
-#: templates/pages/terms_of_use.html:139
+#: templates/pages/terms_of_use.html:134
 msgid "11. Governing Law"
 msgstr "11. Recht"
 
-#: templates/pages/terms_of_use.html:141
+#: templates/pages/terms_of_use.html:136
 msgid "These Terms are governed by the laws of Germany."
 msgstr "Diese Bedingungen unterliegen deutschem Recht."
 
-#: templates/pages/terms_of_use.html:142
+#: templates/pages/terms_of_use.html:137
 msgid "Jurisdiction lies with the operator’s location, where permitted."
 msgstr "Gerichtsstand ist – soweit zulässig – der Sitz des Betreibers."
 
-#: templates/pages/terms_of_use.html:146
+#: templates/pages/terms_of_use.html:141
 msgid "12. Contact"
 msgstr "12. Kontakt"
 
-#: templates/pages/terms_of_use.html:157
+#: templates/pages/terms_of_use.html:152
 msgid "Effective Date:"
 msgstr "Stand:"
 
@@ -1026,10 +1081,9 @@ msgstr "Alle Rezepte"
 msgid "All Menus"
 msgstr "Alle Menüs"
 
-#: templates/partials/navbar.html:29 templates/partials/navbar.html:111
-#: templates/wiki/article_list.html:8
-msgid "Wiki"
-msgstr "Wiki"
+#: templates/partials/navbar.html:29
+msgid "Culinary Wiki"
+msgstr "Kulinarisches Wiki"
 
 #: templates/partials/navbar.html:64 templates/users/profile.html:6
 #: templates/users/profile.html:12
@@ -1047,6 +1101,10 @@ msgstr "Anmelden"
 #: templates/partials/navbar.html:79
 msgid "Sign up"
 msgstr "Registrieren"
+
+#: templates/partials/navbar.html:111 templates/wiki/article_list.html:8
+msgid "Wiki"
+msgstr "Wiki"
 
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
@@ -1168,8 +1226,12 @@ msgstr "Du hast noch keine Favoriten hinzugefügt."
 
 #: templates/users/profile.html:34
 #, python-format
-msgid "%(points)s points missing till next level <span class=\"text-secondary\">%(level)s</span>"
-msgstr "%(points)s Punkte fehlen bis zum nächsten Level <span class=\"text-secondary\">%(level)s</span>"
+msgid ""
+"%(points)s points missing till next level <span class=\"text-"
+"secondary\">%(level)s</span>"
+msgstr ""
+"%(points)s Punkte fehlen bis zum nächsten Level <span class=\"text-"
+"secondary\">%(level)s</span>"
 
 #: templates/users/profile.html:49
 msgid "Badges:"
@@ -1213,8 +1275,11 @@ msgid "Try Again"
 msgstr "Erneut versuchen"
 
 #: templates/users/user_confirm_delete.html:29
-msgid "Are you sure you want to delete your account? This action cannot be undone."
-msgstr "Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+msgid ""
+"Are you sure you want to delete your account? This action cannot be undone."
+msgstr ""
+"Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig "
+"gemacht werden."
 
 #: templates/users/user_confirm_delete.html:31
 msgid "Cancel"

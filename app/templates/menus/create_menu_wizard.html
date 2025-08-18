@@ -45,7 +45,7 @@
             </ul>
 
             <form method="post" id="wizard-form" enctype="multipart/form-data"
-                  class="w-full flex flex-col gap-5">
+                  class="w-full flex flex-col gap-5 bg-base-200 p-4 xl:p-10 rounded-lg">
                 {% csrf_token %}
                 {{ wizard.management_form }}
                 {{ wizard.form.management_form }}
@@ -76,7 +76,7 @@
                                 name="wizard_goto_step"
                                 type="submit"
                                 value="{{ wizard.steps.prev }}"
-                                class="btn btn-accent btn-outline"
+                                class="btn btn-ghost btn-outline"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor" class="size-6">

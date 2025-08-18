@@ -9,8 +9,8 @@
             <span class="text-lg font-semibold text-primary hidden">Gourmet Wiki</span>
         </c-a>
     </div>
-    <div class="navbar-center hidden lg:flex">
-        <ul class="absolute z-50 flex gap-5 px-1">
+    <div class="w-max navbar-center hidden lg:flex flex-1 justify-center">
+        <ul class="flex gap-5 px-1 w-max">
             <li>
                 <c-a url="{% url 'recipe-list' %}"
                      class="btn {% if request.resolver_match.url_name == 'recipe-list' %}btn-accent{% endif %}">
@@ -26,7 +26,7 @@
             <li>
                 <c-a url="{% url 'wiki:article_list' %}"
                      class="btn {% if request.resolver_match.url_name == 'article_list' %}btn-accent{% endif %}">
-                    {% translate 'Wiki' %}
+                    {% translate 'Culinary Wiki' %}
                 </c-a>
             </li>
             <li>
@@ -95,8 +95,8 @@
             </div>
 
             <ul tabindex="0" id="menuDropdown"
-                class="mt-10 rounded-md dropdown-content menu menu-vertical w-max bg-neutral">
-                <li class="w-full">
+                class="mt-10 dropdown-content menu menu-vertical w-max bg-neutral">
+                <li>
                     <c-a url="{% url 'recipe-list' %}">
                         {% translate 'All Recipes' %}
                     </c-a>
@@ -109,6 +109,11 @@
                 <li>
                     <c-a url="{% url 'wiki:article_list' %}">
                         {% translate 'Wiki' %}
+                    </c-a>
+                </li>
+                <li>
+                    <c-a url="{% url 'ingredients:ingredient_list' %}">
+                        {% translate 'Food Index' %}
                     </c-a>
                 </li>
             </ul>

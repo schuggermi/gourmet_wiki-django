@@ -10,9 +10,6 @@ class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(unique=True, max_length=255)
 
-    class Meta:
-        unique_together = ('wweia_fc_code', 'name')
-
     def __str__(self):
         return f"{self.name}"
 
@@ -54,7 +51,10 @@ class Nutrient(models.Model):
         choices=UnitChoice.choices,
         default=UnitChoice.GRAM,
     )
-    slug = models.SlugField(unique=True, max_length=255)
+    slug = models.SlugField(max_length=255)
+
+    class Meta:
+        unique_together = ('fdc_nutrient_id', 'name')
 
     def __str__(self):
         return f"{self.name} ({self.get_unit_display()})"
@@ -91,8 +91,8 @@ class IngredientLookup(models.Model):
 
 class Ingredient(models.Model):
     fdc_id = models.IntegerField(unique=True, null=True, blank=True)
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, blank=True, max_length=255)
+    name = models.CharField(unique=True, max_length=255)
+    slug = models.SlugField(blank=True, max_length=255)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:

@@ -19,3 +19,8 @@ django-reversion
 python-frontmatter
 markdown
 djangorestframework
+langchain-community
+langchain
+langchainhub
+gpt4all
+langchain-ollama
