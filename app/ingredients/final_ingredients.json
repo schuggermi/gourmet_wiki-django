@@ -8706,8 +8706,8 @@
     "id": 2162,
     "name": "Nuts, coconut cream, raw (liquid expressed from grated meat)",
     "name_de": "Nüsse, Kokoscreme, roh (aus geriebenem Fruchtfleisch gepresst)",
-    "category_name": 21,
-    "category_name_de": "",
+    "category_name": "Nut and Seed Products",
+    "category_name_de": "Nuss- und Samenprodukte",
     "fdc_id": 170580
   },
   {
@@ -8850,8 +8850,8 @@
     "id": 2176,
     "name": "Seeds, sesame butter, tahini, from raw and stone ground kernels",
     "name_de": "Samen, Sesambutter, Tahini, aus rohen und steinvermahlenen Kernen",
-    "category_name": 21,
-    "category_name_de": "",
+    "category_name": "Nut and Seed Products",
+    "category_name_de": "Nuss- und Samenprodukte",
     "fdc_id": 169410
   },
   {
