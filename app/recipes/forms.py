@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.db.models import Q
+from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
@@ -116,8 +118,15 @@ class RecipeIngredientForm(forms.ModelForm):
         if not cleaned_data.get('ingredient'):
             q_val = self.data.get(f"{self.prefix}-q") or self.data.get('q')
             if q_val:
-                # Lookup ingredient instance or create
-                ingredient_obj = Ingredient.objects.filter(name=q_val).first()
+                # Get the current language
+                current_lang = translation.get_language()
+
+                # Try to find the ingredient by name or translation
+                ingredient_obj = Ingredient.objects.filter(
+                    Q(name=q_val) |
+                    Q(translations__name=q_val, translations__language_code=current_lang)
+                ).first()
+
                 if ingredient_obj:
                     cleaned_data['ingredient'] = ingredient_obj
                 else:

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Nutrient, Ingredient, IngredientNutrient, IngredientLookup
+from .models import Category, CategoryTranslation, Nutrient, Ingredient, IngredientTranslation, IngredientNutrient, IngredientLookup
 
 
 @admin.register(Category)
@@ -39,3 +39,19 @@ class IngredientNutrientAdmin(admin.ModelAdmin):
     search_fields = ('ingredient__name', 'nutrient__name')
     list_filter = ('nutrient',)
     autocomplete_fields = ('ingredient', 'nutrient')
+
+
+@admin.register(CategoryTranslation)
+class CategoryTranslationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'language_code', 'category')
+    search_fields = ('name', 'category__name')
+    list_filter = ('language_code',)
+    autocomplete_fields = ('category',)
+
+
+@admin.register(IngredientTranslation)
+class IngredientTranslationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'language_code', 'ingredient')
+    search_fields = ('name', 'ingredient__name')
+    list_filter = ('language_code',)
+    autocomplete_fields = ('ingredient',)

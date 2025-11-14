@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
+from django.utils import translation
 from django.views.generic import ListView
 
 from ingredients.models import IngredientLookup, Ingredient, Category
@@ -10,7 +11,26 @@ from ingredients.models import IngredientLookup, Ingredient, Category
 def ingredient_lookup_options(request):
     q = request.GET.get('q', '')
     print(q)
-    results = IngredientLookup.objects.filter(description__icontains=q).order_by('description')[:20] if q else []
+
+    if q:
+        # Get the current language
+        current_lang = translation.get_language()
+
+        # First, try to find ingredients by their translated names
+        translated_ingredients = Ingredient.objects.filter(
+            translations__name__icontains=q,
+            translations__language_code=current_lang
+        ).distinct()
+
+        # Then, find ingredients by their default names
+        default_ingredients = Ingredient.objects.filter(name__icontains=q)
+
+        # Combine the results, prioritizing translated matches
+        results = list(translated_ingredients) + [i for i in default_ingredients if i not in translated_ingredients]
+        results = results[:20]
+    else:
+        results = []
+
     print(results)
     return render(request, 'ingredients/ingredient_options.html', {'ingredients': results})
 
