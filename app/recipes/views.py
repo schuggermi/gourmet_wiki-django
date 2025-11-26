@@ -18,6 +18,7 @@ from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 from django.utils.translation import gettext_lazy as _
 
+from ingredients.models import Ingredient
 from menus.models import Menu
 from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
@@ -154,7 +155,19 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 'prefix': 'recipe_ingredient',
                 'queryset': queryset,
             })
-            return RecipeIngredientFormSet(**kwargs)
+            formset = RecipeIngredientFormSet(**kwargs)
+            # Debug: Print formset validation
+            if data is not None:
+                is_valid = formset.is_valid()
+                print(f"RecipeIngredientFormSet is_valid: {is_valid}")
+                if not is_valid:
+                    print(f"RecipeIngredientFormSet errors: {formset.errors}")
+                    print(f"RecipeIngredientFormSet non_form_errors: {formset.non_form_errors()}")
+                    # Print individual form errors
+                    for i, form in enumerate(formset.forms):
+                        if form.errors:
+                            print(f"Form {i} errors: {form.errors}")
+            return formset
         elif step == '2':
             if self.recipe_instance:
                 queryset = self.recipe_instance.preparation_steps.all().order_by('order')
@@ -204,6 +217,16 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 if form.instance.pk:
                     form.instance.delete()
             else:
+                # Get the ingredient name from the form
+                ingredient_name = form.cleaned_data.get('ingredient_name')
+
+                if ingredient_name:
+                    # Try to find an existing ingredient with this name
+                    ingredient, created = Ingredient.objects.get_or_create(name=ingredient_name)
+
+                    # Set the ingredient on the instance
+                    form.instance.ingredient = ingredient
+
                 instance = form.save(commit=False)
                 instance.recipe = recipe
 

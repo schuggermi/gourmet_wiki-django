@@ -21,21 +21,8 @@
             </small>
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                 <div class="flex items-center justify-center gap-5 w-full">
-                    <c-input :field="form.ingredient"></c-input>
-                    {% comment %}<c-hx-input name="q" :id="form.ingredient.id_for_label"
-                                :instance_value="form.instance.ingredient"
-                                placeholder="{% trans 'Beef...' %}"
-                                no_errors
-                                list="ingredient-list"
-                                hx_get="{% url 'ingredients:ingredient-options' %}"
-                                hx_trigger="keyup changed delay:300ms"
-                                hx_target="#ingredient-list"
-                                hx_swap="innerHTML"
-                                autocomplete="off"
-                    ></c-hx-input>
-                    <datalist id="ingredient-list">
-                        <!-- options will be populated here -->
-                    </datalist>{% endcomment %}
+                    <c-input :field="form.ingredient_name" placeholder="{% trans 'Beef...' %}"></c-input>
+                    {{ form.ingredient }}
                 </div>
             </div>
         </div>
@@ -53,7 +40,7 @@
                 </small>
                 <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                     <div class="flex items-center justify-center gap-5 w-full">
-                        <c-number-action-input :field="form.quantity" no_errors>
+                        <c-number-action-input :field="form.quantity">
                         </c-number-action-input>
                     </div>
                 </div>
@@ -71,8 +58,7 @@
                 </small>
                 <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                     <div class="flex items-center justify-center gap-5 w-full">
-                        <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"
-                                  no_errors></c-select>
+                        <c-select :field="form.unit" :instance_value="form.instance.unit.id" class="w-fit! px-1!"></c-select>
                     </div>
                     <div class="flex items-center justify-center">
                         <!-- Delete -->
@@ -93,7 +79,7 @@
         </div>
     </div>
     {% if form.errors %}
-        {% for error in form.ingredient.errors %}
+        {% for error in form.ingredient_name.errors %}
             <div class="text-red-400">
                 - {{ error }}
             </div>

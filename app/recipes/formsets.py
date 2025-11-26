@@ -67,16 +67,17 @@ class BaseRecipeIngredientFormSet(BaseModelFormSet):
                 continue
 
             required_fields = [field_name for field_name, field in form.fields.items()
-                               if field.required and field_name not in ('DELETE', 'id')]
+                               if field.required and field_name not in ('DELETE', 'id', 'ingredient')]
 
             all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
 
             if all_required_filled:
                 valid_forms += 1
 
-            ingredient = form.cleaned_data.get('ingredient')
-            if ingredient:
-                ingredients.add(ingredient)
+            # Check for ingredient_name instead of ingredient
+            ingredient_name = form.cleaned_data.get('ingredient_name')
+            if ingredient_name:
+                ingredients.add(ingredient_name)
 
         if valid_forms == 0 and self.forms:
             self._non_form_errors.append("Add at least one ingredient.")

@@ -97,12 +97,18 @@ class RecipePreparationStepForm(forms.ModelForm):
 
 
 class RecipeIngredientForm(forms.ModelForm):
+    ingredient_name = forms.CharField(required=True, max_length=255)
+
     class Meta:
         model = RecipeIngredient
         fields = ['ingredient', 'quantity', 'unit']
         widgets = {
             'ingredient': forms.HiddenInput(),  # hide actual ingredient field
-            'quantity': forms.NumberInput(attrs={'placeholder': '0'}),
+            'quantity': forms.NumberInput(attrs={
+                'placeholder': '0',
+                'min': '0.1',  # Add min attribute to match model validator
+                'step': '0.1',  # Allow decimal values
+            }),
             'unit': forms.Select(),
         }
 
@@ -111,28 +117,23 @@ class RecipeIngredientForm(forms.ModelForm):
         # Ingredient is no longer required from the HTML form
         self.fields['ingredient'].required = False
 
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #
-    #     # If ingredient is missing but q is present in POST data
-    #     if not cleaned_data.get('ingredient'):
-    #         q_val = self.data.get(f"{self.prefix}-q") or self.data.get('q')
-    #         if q_val:
-    #             # Get the current language
-    #             current_lang = translation.get_language()
-    #
-    #             # Try to find the ingredient by name or translation
-    #             ingredient_obj = Ingredient.objects.filter(
-    #                 Q(name=q_val) |
-    #                 Q(translations__name=q_val, translations__language_code=current_lang)
-    #             ).first()
-    #
-    #             if ingredient_obj:
-    #                 cleaned_data['ingredient'] = ingredient_obj
-    #             else:
-    #                 self.add_error('ingredient', f"No ingredient found for '{q_val}'")
-    #
-    #     return cleaned_data
+        # Set a default value for quantity to ensure it's always valid
+        if not self.initial.get('quantity'):
+            self.initial['quantity'] = 1.0
+
+        # If we have an instance with an ingredient, populate the ingredient_name field
+        if self.instance and self.instance.pk and self.instance.ingredient:
+            self.fields['ingredient_name'].initial = self.instance.ingredient.name
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        # We're using ingredient_name now, so we don't need to validate ingredient
+        # This prevents the "Please make a valid selection" error
+        if 'ingredient' in cleaned_data:
+            del cleaned_data['ingredient']
+
+        return cleaned_data
 
 
 class RatingForm(forms.ModelForm):
