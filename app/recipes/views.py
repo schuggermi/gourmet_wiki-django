@@ -28,7 +28,7 @@ from recipes.utils import calculate_scaled_ingredients_menu
 User = get_user_model()
 
 
-class RecipeListView(LoginRequiredMixin, ListView):
+class RecipeListView(ListView):
     model = Recipe
 
     def get_queryset(self):
