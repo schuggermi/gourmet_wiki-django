@@ -49,7 +49,7 @@ class WikiArticleListView(LoginRequiredMixin, ListView):
         return context
 
 
-@login_required
+# @login_required
 def article_list_partial(request):
     """
     View to render the article list partial for htmx requests
