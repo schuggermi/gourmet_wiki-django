@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'users.middleware.HTMXLoginRedirectMiddleware',
+    # 'users.middleware.HTMXLoginRedirectMiddleware',
     'gourmet_wiki.middleware.SuspiciousRequestMiddleware',
     # 'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
 ]
