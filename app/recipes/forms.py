@@ -111,28 +111,28 @@ class RecipeIngredientForm(forms.ModelForm):
         # Ingredient is no longer required from the HTML form
         self.fields['ingredient'].required = False
 
-    def clean(self):
-        cleaned_data = super().clean()
-
-        # If ingredient is missing but q is present in POST data
-        if not cleaned_data.get('ingredient'):
-            q_val = self.data.get(f"{self.prefix}-q") or self.data.get('q')
-            if q_val:
-                # Get the current language
-                current_lang = translation.get_language()
-
-                # Try to find the ingredient by name or translation
-                ingredient_obj = Ingredient.objects.filter(
-                    Q(name=q_val) |
-                    Q(translations__name=q_val, translations__language_code=current_lang)
-                ).first()
-
-                if ingredient_obj:
-                    cleaned_data['ingredient'] = ingredient_obj
-                else:
-                    self.add_error('ingredient', f"No ingredient found for '{q_val}'")
-
-        return cleaned_data
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #
+    #     # If ingredient is missing but q is present in POST data
+    #     if not cleaned_data.get('ingredient'):
+    #         q_val = self.data.get(f"{self.prefix}-q") or self.data.get('q')
+    #         if q_val:
+    #             # Get the current language
+    #             current_lang = translation.get_language()
+    #
+    #             # Try to find the ingredient by name or translation
+    #             ingredient_obj = Ingredient.objects.filter(
+    #                 Q(name=q_val) |
+    #                 Q(translations__name=q_val, translations__language_code=current_lang)
+    #             ).first()
+    #
+    #             if ingredient_obj:
+    #                 cleaned_data['ingredient'] = ingredient_obj
+    #             else:
+    #                 self.add_error('ingredient', f"No ingredient found for '{q_val}'")
+    #
+    #     return cleaned_data
 
 
 class RatingForm(forms.ModelForm):

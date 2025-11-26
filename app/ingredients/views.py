@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.utils import translation
 from django.views.generic import ListView
 
-from ingredients.models import IngredientLookup, Ingredient, Category
+from ingredients.models import Ingredient, Category
 
 
 def ingredient_lookup_options(request):
