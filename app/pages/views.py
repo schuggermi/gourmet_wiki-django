@@ -7,7 +7,7 @@ from django.utils.timezone import now
 from recipes.models import Recipe
 
 
-@login_required
+# @login_required
 def home(request):
     context = {}
     today = now().date()
