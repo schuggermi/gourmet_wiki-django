@@ -34,7 +34,7 @@ class RecipeListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        queryset = queryset.filter(is_published=True)
+        # queryset = queryset.filter(is_published=True)
 
         search_query = self.request.GET.get('search', '')
         if search_query:
