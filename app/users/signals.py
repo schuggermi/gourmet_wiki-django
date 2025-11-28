@@ -10,11 +10,13 @@ from users.models import Profile, Badge
 
 User = get_user_model()
 
-
-@receiver(user_signed_up)
-def create_profile_on_signup(sender, request, user, **kwargs):
-    """Create profile specifically when user signs up via allauth"""
-    Profile.objects.get_or_create(user=user)
+@receiver(post_save, sender=User)
+def create_profile_on_user_creation(sender, instance, created, **kwargs):
+    """
+    Automatically create a Profile whenever a new User is created.
+    """
+    if created:
+        Profile.objects.get_or_create(user=instance)
 
 
 @receiver(post_save, sender=Recipe)
