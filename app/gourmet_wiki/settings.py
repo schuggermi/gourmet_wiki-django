@@ -226,7 +226,6 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
-SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -238,10 +237,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
+        # "SCOPE": [
+        #     "profile",
+        #     "email",
+        # ],
         'OAUTH_PKCE_ENABLED': True,
         'EMAIL_AUTHENTICATION': True,
     }
@@ -300,7 +299,7 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-    SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
 CRISPY_TEMPLATE_PACK = 'daisyui'
