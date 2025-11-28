@@ -1,20 +1,20 @@
 {% load i18n %}
 
 <c-a url="{% url 'users-profile-recipes' %}"
-     class="hover:scale-105 tooltip tooltip-bottom tooltip-accent" data-tip="{% translate 'Cookbook' %}">
+     class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent" data-tip="{% translate 'Cookbook' %}">
     <c-cookbook-icon></c-cookbook-icon>
 </c-a>
 <c-a url="{% url 'users-profile-favorite-recipes' %}"
-     class="hover:scale-105 tooltip tooltip-bottom tooltip-accent" data-tip="{% translate 'Favorites' %}">
+     class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent" data-tip="{% translate 'Favorites' %}">
     <c-favorites-icon></c-favorites-icon>
 </c-a>
 <c-a url="{% url 'recipe-create' %}"
-     class="hover:scale-105 tooltip tooltip-bottom tooltip-accent"
+     class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent"
      data-tip="{% translate 'Add Recipe' %}">
     <c-add-recipe-icon></c-add-recipe-icon>
 </c-a>
 <c-a url="{% url 'menu_create' %}"
-     class="hover:scale-105 tooltip tooltip-bottom tooltip-accent"
+     class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent"
      data-tip="{% translate 'Add Menu' %}">
     <c-add-menu-icon></c-add-menu-icon>
 </c-a>

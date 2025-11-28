@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 @plugin "daisyui" {
-    themes: gourmet --default, gourmet --prefersdark, gourmet-dark;
+    themes: gourmet --default, gourmet --prefersdark, gourmet;
 }
 
 :root {
@@ -50,7 +50,7 @@
 
 @plugin "daisyui/theme" {
     name: "gourmet-dark";
-    default: true;
+    default: false;
     prefersdark: true;
     color-scheme: "dark";
     --color-base-100: oklch(14% 0.004 49.25);
@@ -88,7 +88,7 @@
 
 @plugin "daisyui/theme" {
     name: "gourmet";
-    default: false;
+    default: true;
     prefersdark: false;
     color-scheme: "light";
     --color-base-100: oklch(98% 0.018 155.826);
@@ -177,7 +177,7 @@ input[type='number'] {
     }
 
     a, p {
-        @apply text-base sm:text-lg font-normal leading-relaxed text-neutral-content break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-base sm:text-lg font-normal leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }
 
