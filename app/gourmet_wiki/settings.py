@@ -241,7 +241,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        'OAUTH_PKCE_ENABLED': False,
+        'OAUTH_PKCE_ENABLED': True,
         # 'FETCH_USERINFO': False,
     }
 }
