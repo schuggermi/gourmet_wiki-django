@@ -226,6 +226,8 @@ ACCOUNT_FORMS = {
 }
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -233,16 +235,15 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
             'key': ''
         },
-
-        # 'SCOPE': [
-        #     'profile',
-        #     'email',
-        # ],
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
         'OAUTH_PKCE_ENABLED': True,
-        # 'FETCH_USERINFO': False,
+        'EMAIL_AUTHENTICATION': True,
     }
 }
 SITE_ID = 1
@@ -287,9 +288,19 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000').split(' ')
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if not DEBUG else None
-SESSION_COOKIE_SECURE = True if not DEBUG else False
-CSRF_COOKIE_SECURE = True if not DEBUG else False
+if not DEBUG:
+    # Required when behind reverse proxy / load balancer
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Required for third-party OAuth redirect flows (Google, GitHub, etc.)
+    SESSION_COOKIE_SAMESITE = "None"
+    CSRF_COOKIE_SAMESITE = "None"
+
+    # Required because SameSite=None requires secure cookies
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_SSL_REDIRECT = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
 CRISPY_TEMPLATE_PACK = 'daisyui'
