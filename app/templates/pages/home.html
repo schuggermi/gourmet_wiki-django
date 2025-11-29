@@ -91,6 +91,24 @@
         {#                </div>#}
         {#            </div>#}
 
+        <div class="grid grid-rows-2 gap-5 container mx-auto">
+            <div class="grid grid-cols-1 justify-items-center gap-5">
+                <div class="px-10 py-8 w-1/2 bg-base-200 rounded-xl flex flex-col items-center gap-5">
+                    <img class="w-24 h-24" src="{% static "images/ad-blocker_icon.png" %}" alt="Icon">
+                    <h4 class="text-center">{% translate 'Pure culinary experience. Zero ads.' %}</h4>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 justify-items-center gap-5">
+                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5">
+                    <img class="w-24 h-24" src="{% static "images/chefhat_icon.png" %}" alt="Icon">
+                    <h4 class="text-center">{% translate 'Proven chef-level recipes that work anywhere.' %}</h4>
+                </div>
+                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5">
+                    <img class="w-24 h-24" src="{% static "images/community_icon.png" %}" alt="Icon">
+                    <h4 class="text-center ">{% translate 'Where chefs, home cooks, and food lovers connect.' %}</h4>
+                </div>
+            </div>
+        </div>
 
         <!-- Top 4 Recipes Of The Day -->
         {% if daily_random_recipes %}
