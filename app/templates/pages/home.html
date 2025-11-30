@@ -7,7 +7,7 @@
         <div class="flex flex-col items-center justify-center relative py-10 md:p-10 xl:p-20 bg-cover bg-no-repeat bg-center md:bg-center md:bg-[position:center_40%]"
              style="background-image: url('{% static "images/hero_background.webp" %}')">
             <!-- Dark overlay -->
-            <div class="absolute inset-0 bg-neutral/30 dark:bg-base-100/60 z-0"></div>
+            <div class="absolute inset-0 bg-accent/50 dark:bg-base-100/50 z-0"></div>
 
             <!-- Content in front -->
             <div class="relative z-10 flex flex-col gap-10 justify-start p-5 text-white">
@@ -91,20 +91,20 @@
         {#                </div>#}
         {#            </div>#}
 
-        <div class="grid grid-rows-2 gap-5 container mx-auto">
+        <div class="flex flex-col gap-5 container mx-auto px-8">
             <div class="grid grid-cols-1 justify-items-center gap-5">
-                <div class="px-10 py-8 w-1/2 bg-base-200 rounded-xl flex flex-col items-center gap-5">
-                    <img class="w-24 h-24" src="{% static "images/ad-blocker_icon.png" %}" alt="Icon">
+                <div class="px-10 py-8 w-full max-w-full md:max-w-1/2 bg-base-200 rounded-xl flex flex-col items-center gap-5 shadow-md">
+                    <img class="w-20 h-20 md:w-24 md:h-24" src="{% static "images/ad-blocker_icon.png" %}" alt="Icon">
                     <h4 class="text-center">{% translate 'Pure culinary experience. Zero ads.' %}</h4>
                 </div>
             </div>
-            <div class="grid grid-cols-2 justify-items-center gap-5">
-                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5">
-                    <img class="w-24 h-24" src="{% static "images/chefhat_icon.png" %}" alt="Icon">
+            <div class="grid grid-cols-1 md:grid-cols-2 justify-items-center gap-5">
+                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5 shadow-md">
+                    <img class="w-20 h-20 md:w-24 md:h-24" src="{% static "images/chefhat_icon.png" %}" alt="Icon">
                     <h4 class="text-center">{% translate 'Proven chef-level recipes that work anywhere.' %}</h4>
                 </div>
-                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5">
-                    <img class="w-24 h-24" src="{% static "images/community_icon.png" %}" alt="Icon">
+                <div class="px-10 py-8 w-full bg-base-200 rounded-xl flex flex-col items-center gap-5 shadow-md">
+                    <img class="w-20 h-20 md:w-24 md:h-24" src="{% static "images/community_icon.png" %}" alt="Icon">
                     <h4 class="text-center ">{% translate 'Where chefs, home cooks, and food lovers connect.' %}</h4>
                 </div>
             </div>

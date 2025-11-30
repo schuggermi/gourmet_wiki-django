@@ -30,7 +30,7 @@
                     <div class="flex gap-5 items-center">
                         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                         <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
-                             class="btn btn-accent btn-outline">{% translate 'Edit Recipe' %}</c-a>
+                             class="btn btn-primary dark:btn-accent">{% translate 'Edit Recipe' %}</c-a>
                     </div>
                 {% else %}
 {#                    {% user_rating recipe as my_rating %}#}

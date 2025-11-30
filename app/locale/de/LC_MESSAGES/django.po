@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-15 21:46+0000\n"
+"POT-Creation-Date: 2025-11-30 21:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,20 +118,20 @@ msgstr "Erfahren"
 msgid "Professional"
 msgstr "Profi"
 
-#: recipes/forms.py:25
+#: recipes/forms.py:27
 msgid "Name your creation (e.g. Spicy Thai Basil Chicken)"
 msgstr "Benenne deine Kreation (z.B. Würziges Thai-Basilikum-Hähnchen)"
 
-#: recipes/forms.py:34
+#: recipes/forms.py:36
 msgid "e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr ""
 "z.B. Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:79
+#: recipes/forms.py:81
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:161
+#: recipes/forms.py:171
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -196,38 +196,30 @@ msgstr "Support"
 msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
-#: templates/account/login.html:11
-msgid ""
-"<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
-"something up!"
-msgstr ""
-"<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
-"noch am Kochen!"
-
-#: templates/account/login.html:58
+#: templates/account/login.html:59
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/login.html:64
+#: templates/account/login.html:65
 #: templates/account/password_reset_from_key.html:6
 #: templates/socialaccount/login.html:6
 msgid "Sign In"
 msgstr "Anmelden"
 
-#: templates/account/login.html:74
+#: templates/account/login.html:75
 msgid "You don't have an account at Gourmet Wiki yet?"
 msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 
-#: templates/account/login.html:76 templates/account/signup.html:6
+#: templates/account/login.html:77 templates/account/signup.html:6
 #: templates/account/signup.html:10
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:85 templates/account/signup.html:75
+#: templates/account/login.html:86 templates/account/signup.html:75
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:90 templates/account/signup.html:80
+#: templates/account/login.html:91 templates/account/signup.html:80
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -337,7 +329,7 @@ msgstr "Zurück"
 
 #: templates/cotton/portions_calculator.html:24
 #: templates/menus/partials/menu_form.html:24
-#: templates/recipes/partials/recipe_details_form.html:108
+#: templates/recipes/partials/recipe_details_form.html:67
 msgid "Portions"
 msgstr "Portionen"
 
@@ -383,7 +375,7 @@ msgid "Return to Homepage"
 msgstr "Zur Startseite"
 
 #: templates/ingredients/ingredient_list.html:8
-#: templates/partials/navbar.html:35
+#: templates/partials/navbar.html:35 templates/partials/navbar.html:116
 msgid "Food Index"
 msgstr "Lebensmittel-Index"
 
@@ -478,29 +470,26 @@ msgid "Total"
 msgstr "Gesamt"
 
 #: templates/menus/partials/recipe_detail.html:98
-#: templates/recipes/partials/recipe_detail.html:99
 msgid "Cooking"
 msgstr "Kochzeit"
 
 #: templates/menus/partials/recipe_detail.html:114
-#: templates/recipes/partials/recipe_detail.html:115
 msgid "Working"
 msgstr "Arbeitszeit"
 
 #: templates/menus/partials/recipe_detail.html:130
-#: templates/recipes/partials/recipe_detail.html:131
 msgid "Resting"
 msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:152
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:152
+#: templates/recipes/partials/recipe_detail.html:104
 msgid "Ingredients"
 msgstr "Zutaten"
 
 #: templates/menus/partials/recipe_detail.html:162
 #: templates/recipes/create_recipe_wizard.html:46
-#: templates/recipes/partials/recipe_detail.html:160
+#: templates/recipes/partials/recipe_detail.html:112
 msgid "Preparation Steps"
 msgstr "Zubereitungsschritte"
 
@@ -523,6 +512,18 @@ msgid "Get Started"
 msgstr "Jetzt mitmachen"
 
 #: templates/pages/home.html:98
+msgid "Pure culinary experience. Zero ads."
+msgstr "Pure Kulinarik. Null Werbung."
+
+#: templates/pages/home.html:104
+msgid "Proven chef-level recipes that work anywhere."
+msgstr "Profi-Rezepte, die überall funktionieren."
+
+#: templates/pages/home.html:108
+msgid "Where chefs, home cooks, and food lovers connect."
+msgstr "Wo Köche & Genießer zusammenkommen."
+
+#: templates/pages/home.html:116
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -1128,17 +1129,23 @@ msgstr "Zu Favoriten hinzufügen"
 msgid "Remove this Image"
 msgstr "Dieses Bild entfernen"
 
-#: templates/recipes/partials/ingredient_form_row.html:17
+#: templates/recipes/partials/ingredient_form_row.html:20
+msgid "Ingredient"
+msgstr "Zutat"
+
+#: templates/recipes/partials/ingredient_form_row.html:24
 msgid "Beef..."
 msgstr "Rindfleisch..."
 
 #: templates/recipes/partials/ingredient_form_row.html:39
-#: templates/recipes/partials/recipe_detail.html:184
-#: templates/recipes/partials/recipe_detail.html:205
 msgid "Amount"
 msgstr "Menge"
 
-#: templates/recipes/partials/ingredient_form_row.html:61
+#: templates/recipes/partials/ingredient_form_row.html:57
+msgid "Unit"
+msgstr "Einheit"
+
+#: templates/recipes/partials/ingredient_form_row.html:66
 msgid "Remove this Ingredient"
 msgstr "Diese Zutat entfernen"
 
@@ -1146,24 +1153,15 @@ msgstr "Diese Zutat entfernen"
 msgid "Remove this Preparation Step"
 msgstr "Diesen Zubereitungsschritt entfernen"
 
-#: templates/recipes/partials/recipe_detail.html:176
-msgid "Nutrition Details"
-msgstr "Nährwertangaben"
-
-#: templates/recipes/partials/recipe_detail.html:183
-#: templates/recipes/partials/recipe_detail.html:204
-msgid "Nutrient"
-msgstr "Nährstoff"
-
-#: templates/recipes/partials/recipe_details_form.html:33
+#: templates/recipes/partials/recipe_details_form.html:26
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: templates/recipes/partials/recipe_details_form.html:112
+#: templates/recipes/partials/recipe_details_form.html:71
 msgid "Persons"
 msgstr "Personen"
 
-#: templates/recipes/partials/recipe_details_form.html:150
+#: templates/recipes/partials/recipe_details_form.html:85
 msgid "Cooking Time"
 msgstr "Kochzeit"
 
@@ -1381,6 +1379,19 @@ msgstr "Admin"
 #: users/models.py:198
 msgid "Joined as a Community Member"
 msgstr "Als Community-Mitglied beigetreten"
+
+#~ msgid ""
+#~ "<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
+#~ "something up!"
+#~ msgstr ""
+#~ "<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
+#~ "noch am Kochen!"
+
+#~ msgid "Nutrition Details"
+#~ msgstr "Nährwertangaben"
+
+#~ msgid "Nutrient"
+#~ msgstr "Nährstoff"
 
 #~ msgid "Choose a Skill Level"
 #~ msgstr "Schwierigkeitsgrad"
