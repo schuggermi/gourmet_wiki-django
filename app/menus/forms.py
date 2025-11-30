@@ -1,5 +1,6 @@
 from django import forms
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 
 from menus.models import Menu, MenuCourse, MenuItem
 from recipes.models import Recipe
@@ -12,14 +13,14 @@ class MenuForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Give your menu a name (e.g. Weekend Dinner Special)',
+                    'placeholder': _('Give your menu a name (e.g. Weekend Dinner Special)'),
                 }
             ),
             'description': forms.Textarea(
                 attrs={
                     'rows': 3,
                     'cols': 40,
-                    'placeholder': 'e.g. A curated selection of comforting dishes for a cozy weekend dinner.',
+                    'placeholder': _('e.g. A curated selection of comforting dishes for a cozy weekend dinner.'),
                 }
             ),
         }

@@ -337,3 +337,37 @@ def rate_recipe(request, recipe_id, score):
         "average_rating": average_rating,
         "score": score,
     })
+
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    # Check if the user is the owner of the recipe
+    if recipe.created_by != request.user:
+        return HttpResponseForbidden()
+
+    if request.method == "POST":
+        # Verify the confirmation code
+        confirmation_code = request.POST.get('confirmation_code')
+        expected_code = request.session.get('recipe_delete_code')
+
+        if confirmation_code == expected_code:
+            # Delete the recipe
+            recipe.delete()
+            messages.success(request, _('Recipe successfully deleted.'))
+            return redirect('recipe-list')
+        else:
+            messages.error(request, _('Invalid confirmation code.'))
+            return redirect('recipe-detail', pk=recipe_id)
+
+    # Generate a random confirmation code
+    import random
+    import string
+    confirmation_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    request.session['recipe_delete_code'] = confirmation_code
+
+    return render(request, "recipes/partials/delete_confirmation_modal.html", {
+        "recipe": recipe,
+        "confirmation_code": confirmation_code,
+    })

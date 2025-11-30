@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-30 21:30+0000\n"
+"POT-Creation-Date: 2025-11-30 22:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,6 +118,14 @@ msgstr "Erfahren"
 msgid "Professional"
 msgstr "Profi"
 
+#: menus/forms.py:16
+msgid "Give your menu a name (e.g. Weekend Dinner Special)"
+msgstr "Geben Sie Ihrem Menü einen Namen (z. B. Wochenend-Dinner-Spezial)"
+
+#: menus/forms.py:23
+msgid "e.g. A curated selection of comforting dishes for a cozy weekend dinner."
+msgstr "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches Wochenendessen."
+
 #: recipes/forms.py:27
 msgid "Name your creation (e.g. Spicy Thai Basil Chicken)"
 msgstr "Benenne deine Kreation (z.B. Würziges Thai-Basilikum-Hähnchen)"
@@ -146,6 +154,14 @@ msgstr "Minuten"
 #: recipes/models.py:101
 msgid "Published"
 msgstr "Veröffentlicht"
+
+#: recipes/views.py:358
+msgid "Recipe successfully deleted."
+msgstr "Rezept erfolgreich gelöscht."
+
+#: recipes/views.py:361
+msgid "Invalid confirmation code."
+msgstr "Ungültiger Bestätigungscode."
 
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:10
@@ -1121,6 +1137,36 @@ msgstr "Bilder"
 msgid "Create Recipe"
 msgstr "Rezept erstellen"
 
+#: templates/recipes/partials/delete_confirmation_modal.html:5
+#: templates/recipes/partials/delete_confirmation_modal.html:21
+#: templates/recipes/recipe_detail.html:35
+msgid "Delete Recipe"
+msgstr "Rezept löschen"
+
+#: templates/recipes/partials/delete_confirmation_modal.html:6
+msgid "Are you sure you want to delete this recipe?"
+msgstr "Bist du sicher, dass du dieses Rezept löschen möchtest?"
+
+#: templates/recipes/partials/delete_confirmation_modal.html:7
+msgid ""
+"This action cannot be undone. To confirm, please enter the following code:"
+msgstr ""
+"Diese Aktion kann nicht rückgängig gemacht werden. Bitte gib zur Bestätigung "
+"den folgenden Code ein:"
+
+#: templates/recipes/partials/delete_confirmation_modal.html:14
+msgid "Confirmation Code"
+msgstr "Bestätigungscode"
+
+#: templates/recipes/partials/delete_confirmation_modal.html:16
+msgid "Enter the code above"
+msgstr "Gib den obigen Code ein"
+
+#: templates/recipes/partials/delete_confirmation_modal.html:20
+#: templates/users/user_confirm_delete.html:31
+msgid "Cancel"
+msgstr "Abbrechen"
+
 #: templates/recipes/partials/favorite_button.html:12
 msgid "Add to favorites"
 msgstr "Zu Favoriten hinzufügen"
@@ -1278,10 +1324,6 @@ msgid ""
 msgstr ""
 "Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig "
 "gemacht werden."
-
-#: templates/users/user_confirm_delete.html:31
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: users/management/commands/initgroups.py:11 users/models.py:50
 msgid "Guest"

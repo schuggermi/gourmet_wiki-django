@@ -31,6 +31,9 @@
                         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                         <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
                              class="btn btn-primary dark:btn-accent">{% translate 'Edit Recipe' %}</c-a>
+                        <c-a url="#delete_confirmation_modal" animated onclick="showDeleteModal()" class="btn btn-error">
+                            {% translate 'Delete Recipe' %}
+                        </c-a>
                     </div>
                 {% else %}
 {#                    {% user_rating recipe as my_rating %}#}
@@ -76,5 +79,26 @@
                 printWindow.close();
             };
         }
+
+        function showDeleteModal() {
+            // Fetch the delete confirmation modal
+            fetch("{% url 'recipe-delete' recipe_id=object.pk %}")
+                .then(response => response.text())
+                .then(html => {
+                    // Add the modal to the page
+                    const modalContainer = document.createElement('div');
+                    modalContainer.innerHTML = html;
+                    document.body.appendChild(modalContainer);
+
+                    // The modal is already set to open in the template
+                })
+                .catch(error => {
+                    console.error('Error fetching delete modal:', error);
+                });
+        }
     </script>
+
+    {% if recipe.created_by == user %}
+    <!-- Delete confirmation modal will be loaded here dynamically -->
+    {% endif %}
 {% endblock %}
