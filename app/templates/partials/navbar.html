@@ -10,7 +10,7 @@
         </c-a>
     </div>
     <div class="w-max navbar-center hidden lg:flex flex-1 justify-center">
-        <ul class="flex gap-5 px-1 w-max">
+        <ul class="flex gap-5 px-1 w-max list-none">
             <li>
                 <c-a url="{% url 'recipe-list' %}"
                      class="btn {% if request.resolver_match.url_name == 'recipe-list' %}btn-primary dark:btn-accent{% endif %}">
@@ -55,7 +55,7 @@
                         {% endif %}
                     </p>
                 </div>
-                <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max dark:bg-neutral bg-base-200">
+                <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max dark:bg-neutral bg-base-200 list-none">
                     {% if user.is_authenticated %}
                         <li class="w-full">
                             <c-a url="{% url 'users-profile' %}"
@@ -82,7 +82,7 @@
                 </ul>
             </div>
         {% else %}
-            <ul class="p-2 w-fit rounded-lg">
+            <ul class="p-2 w-fit rounded-lg list-none">
                 <li>
                     <c-a url="{% url 'account_login' %}">{% translate 'Log In' %}</c-a>
                 </li>
@@ -95,7 +95,7 @@
             </div>
 
             <ul tabindex="0" id="menuDropdown"
-                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200 dark:bg-neutral">
+                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200 dark:bg-neutral list-none">
                 <li>
                     <c-a url="{% url 'recipe-list' %}">
                         {% translate 'All Recipes' %}

@@ -198,6 +198,14 @@ input[type='number'] {
         /* Probably no change needed for print here */
     }
 
+    ul {
+        @apply list-disc ps-4;
+    }
+
+    li {
+        @apply text-sm;
+    }
+
 
     /*input, textarea {*/
     /*    @apply text-base-content;*/

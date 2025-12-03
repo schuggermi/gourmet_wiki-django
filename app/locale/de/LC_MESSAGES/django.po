@@ -691,7 +691,7 @@ msgstr "Nachname"
 
 #: templates/pages/privacy.html:42
 msgid "Email address"
-msgstr "E-Mail-Adresse bestätigen"
+msgstr "E-Mail-Adresse"
 
 #: templates/pages/privacy.html:43
 msgid "Password (stored in encrypted form)"
