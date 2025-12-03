@@ -36,6 +36,6 @@
         </div>
     {% endfor %}
 {% endif %}
-{% if field.help_text %}
+{% if field.help_text and not no_help %}
     <p class="text-sm!">{{ field.help_text|safe }}</p>
 {% endif %}

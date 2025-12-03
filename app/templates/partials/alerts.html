@@ -1,5 +1,5 @@
 {% if messages %}
-    <ul class="w-full flex flex-col gap-10">
+    <ul class="w-full flex flex-col gap-10 list-none ps-0">
         {% for message in messages %}
             <li class="w-full flex flex-row-reverse gap-2 items-center justify-between alert
                 {% if 'success' in message.tags %}
@@ -14,7 +14,7 @@
                     bg-base-300
                 {% endif %}
             ">
-                <button onclick="this.parentElement.remove()">
+                <button onclick="this.parentElement.remove()" class="cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="grow-0 h-4 w-4" fill="none"
                          viewBox="0 0 24 24"
                          stroke="currentColor">
