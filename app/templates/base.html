@@ -1,7 +1,7 @@
 {% load django_vite static %}
 
 <!doctype html>
-<html lang="en" data-theme="gourmet">
+<html lang="{{ request.LANGUAGE_CODE|default:'de' }}" data-theme="gourmet">
 <head>
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="%CB_ID%" type="text/javascript" async></script>
 

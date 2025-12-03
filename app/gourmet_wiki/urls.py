@@ -24,6 +24,8 @@ urlpatterns = [
                   path('test/404/', lambda request: render(request, "errors/404.html", status=404)),
                   path('test/500/', lambda request: render(request, "errors/500.html", status=404)),
                   path('test/403/', lambda request: render(request, "errors/403.html", status=404)),
+                  # i18n: enable Django's built-in language switch endpoint at /i18n/setlang/
+                  path('i18n/', include('django.conf.urls.i18n')),
                   path('admin/', admin.site.urls),
                   path('', include('pages.urls'), name='pages'),
                   path('', include('core.urls'), name='core'),
