@@ -17,6 +17,7 @@ from django.urls import reverse
 from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 from django.utils.translation import gettext_lazy as _
+from django.http import JsonResponse
 
 from ingredients.models import Ingredient
 from menus.models import Menu
@@ -349,15 +350,40 @@ def delete_recipe(request, recipe_id):
 
     if request.method == "POST":
         # Verify the confirmation code
-        confirmation_code = request.POST.get('confirmation_code')
-        expected_code = request.session.get('recipe_delete_code')
+        confirmation_code = (request.POST.get('confirmation_code') or '').strip()
+        expected_code = (request.session.get('recipe_delete_code') or '').strip()
 
-        if confirmation_code == expected_code:
+        if confirmation_code == expected_code and expected_code:
             # Delete the recipe
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                recipe.delete()
+                # Clear the code from session
+                request.session.pop('recipe_delete_code', None)
+                return JsonResponse({
+                    "redirect_url": reverse('recipe-list')
+                })
+
             recipe.delete()
             messages.success(request, _('Recipe successfully deleted.'))
+            # Clear the code from session
+            request.session.pop('recipe_delete_code', None)
             return redirect('recipe-list')
         else:
+            # Invalid code
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                context = {
+                    "recipe": recipe,
+                    # Keep showing the expected code so the user can retry
+                    "confirmation_code": expected_code,
+                    "form_errors": {
+                        "confirmation_code": _('Invalid confirmation code.')
+                    },
+                    "values": {
+                        "confirmation_code": confirmation_code,
+                    }
+                }
+                return render(request, "recipes/partials/delete_confirmation_modal.html", context=context, status=400)
+
             messages.error(request, _('Invalid confirmation code.'))
             return redirect('recipe-detail', pk=recipe_id)
 

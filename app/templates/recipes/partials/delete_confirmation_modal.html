@@ -6,16 +6,25 @@
     <p class="py-4">{% translate 'Are you sure you want to delete this recipe?' %} <strong>{{ recipe.name }}</strong></p>
     <p class="py-2">{% translate 'This action cannot be undone. To confirm, please enter the following code:' %}</p>
     <div class="bg-base-200 p-2 my-2 text-center font-mono text-lg">{{ confirmation_code }}</div>
-    
-    <form action="{% url 'recipe-delete' recipe_id=recipe.id %}" method="post" class="mt-4">
+
+    <form id="recipe-delete-form" action="{% url 'recipe-delete' recipe_id=recipe.id %}" method="post" class="mt-4 flex flex-col gap-4">
       {% csrf_token %}
       <div class="form-control">
         <label class="label">
           <span class="label-text">{% translate 'Confirmation Code' %}</span>
         </label>
-        <c-input type="text" name="confirmation_code" placeholder="{% translate 'Enter the code above' %}" class="input input-bordered" required />
+        <c-input
+            type="text"
+            name="confirmation_code"
+            placeholder="{% translate 'Enter the code above' %}"
+            value="{{ values.confirmation_code|default:'' }}"
+            class="input input-bordered"
+            required></c-input>
+        {% if form_errors.confirmation_code %}
+          <small class="text-error">{{ form_errors.confirmation_code }}</small>
+        {% endif %}
       </div>
-      
+
       <div class="modal-action">
         <a href="{% url 'recipe-detail' pk=recipe.id %}" class="btn">{% translate 'Cancel' %}</a>
         <button type="submit" class="btn btn-error">{% translate 'Delete Recipe' %}</button>
