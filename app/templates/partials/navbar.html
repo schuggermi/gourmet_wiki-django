@@ -29,12 +29,12 @@
                     {% translate 'Culinary Wiki' %}
                 </c-a>
             </li>
-            <li>
+            <!--<li>
                 <c-a url="{% url 'ingredients:ingredient_list' %}"
                      class="btn {% if request.resolver_match.url_name == 'ingredient_list' %}btn-primary dark:btn-accent{% endif %}">
                     {% translate 'Food Index' %}
                 </c-a>
-            </li>
+            </li>-->
         </ul>
     </div>
     <div class="navbar-end gap-2 md:gap-5">
@@ -111,11 +111,11 @@
                         {% translate 'Wiki' %}
                     </c-a>
                 </li>
-                <li>
+                <!--<li>
                     <c-a url="{% url 'ingredients:ingredient_list' %}">
                         {% translate 'Food Index' %}
                     </c-a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
