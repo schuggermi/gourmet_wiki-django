@@ -41,11 +41,7 @@
     <meta name="twitter:title" content="{% block twitter_title %}Gourmet Wiki{% endblock %}">
     <meta name="twitter:description"
           content="{% block twitter_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
-    <meta name="twitter:image" content="
-
-
-
-            {% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
 
     <!-- Canonical URL to prevent duplicate content issues -->
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
