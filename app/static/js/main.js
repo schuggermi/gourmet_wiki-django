@@ -13,7 +13,7 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 }
 
 // Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-    document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light');
-});
+//window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+//    document.documentElement.setAttribute('data-theme', event.matches ? 'dark' : 'light');
+//});
 
