@@ -3,8 +3,7 @@
 <!doctype html>
 <html lang="en" data-theme="gourmet">
 <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="%CB_ID%"
-            type="text/javascript" async></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="%CB_ID%" type="text/javascript" async></script>
 
     <!-- Character encoding for Unicode -->
     <meta charset="UTF-8">
@@ -18,19 +17,15 @@
     <!-- Control the behavior of search engine crawling and indexing -->
     <meta name="robots" content="index, follow">
     <!-- Define the website's theme color for browser UI elements -->
-    {#    <meta name="theme-color" content="#bfa000">#}
-    {#    <meta name="background-color" content="#111111">#}
+    <meta name="theme-color" content="#7bcf3c">
+    <meta name="background-color" content="#effcf3">
 
     <!-- Open Graph meta tags for better social media sharing -->
     <meta property="og:title" content="{% block og_title %}Gourmet Wiki{% endblock %}">
-    <meta property="og:description"
-          content="{% block og_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:image" content="
-
-
-            {% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
     <meta property="og:locale" content="en_US">
@@ -39,8 +34,7 @@
     <!-- Twitter Card meta tags for Twitter sharing -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{% block twitter_title %}Gourmet Wiki{% endblock %}">
-    <meta name="twitter:description"
-          content="{% block twitter_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
 
     <!-- Canonical URL to prevent duplicate content issues -->
