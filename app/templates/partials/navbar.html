@@ -61,6 +61,36 @@
                 </form>
             </div>
         </div>
+        <div class="dropdown dropdown-end w-max lg:hidden">
+            <div tabindex="0" role="button" id="menuToggle" class="p-2 swap" aria-expanded="false">
+                <c-menu-icon size="size-6" classes="swap-off fill-current"></c-menu-icon>
+                <c-menu-icon-open size="size-6" classes="swap-on fill-current"></c-menu-icon-open>
+            </div>
+
+            <ul tabindex="0" id="menuDropdown"
+                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200 dark:bg-neutral list-none">
+                <li>
+                    <c-a url="{% url 'recipe-list' %}">
+                        {% translate 'All Recipes' %}
+                    </c-a>
+                </li>
+                <li>
+                    <c-a url="{% url 'menu_list' %}">
+                        {% translate 'All Menus' %}
+                    </c-a>
+                </li>
+                <li>
+                    <c-a url="{% url 'wiki:article_list' %}">
+                        {% translate 'Wiki' %}
+                    </c-a>
+                </li>
+                <!--<li>
+                    <c-a url="{% url 'ingredients:ingredient_list' %}">
+                        {% translate 'Food Index' %}
+                    </c-a>
+                </li>-->
+            </ul>
+        </div>
         {% if user.is_authenticated %}
             <div class="hidden lg:flex gap-2 h-full items-center">
                 <c-quick-actions></c-quick-actions>
@@ -107,40 +137,12 @@
         {% else %}
             <ul class="p-2 w-fit rounded-lg list-none">
                 <li>
-                    <c-a url="{% url 'account_login' %}">{% translate 'Log In' %}</c-a>
+                    <c-a url="{% url 'account_login' %}" title="{% translate 'Log In' %}">
+                        <c-login-icon></c-login-icon>
+                    </c-a>
                 </li>
             </ul>
         {% endif %}
-        <div class="dropdown dropdown-end w-max lg:hidden">
-            <div tabindex="0" role="button" id="menuToggle" class="p-2 swap" aria-expanded="false">
-                <c-menu-icon size="size-6" classes="swap-off fill-current"></c-menu-icon>
-                <c-menu-icon-open size="size-6" classes="swap-on fill-current"></c-menu-icon-open>
-            </div>
-
-            <ul tabindex="0" id="menuDropdown"
-                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200 dark:bg-neutral list-none">
-                <li>
-                    <c-a url="{% url 'recipe-list' %}">
-                        {% translate 'All Recipes' %}
-                    </c-a>
-                </li>
-                <li>
-                    <c-a url="{% url 'menu_list' %}">
-                        {% translate 'All Menus' %}
-                    </c-a>
-                </li>
-                <li>
-                    <c-a url="{% url 'wiki:article_list' %}">
-                        {% translate 'Wiki' %}
-                    </c-a>
-                </li>
-                <!--<li>
-                    <c-a url="{% url 'ingredients:ingredient_list' %}">
-                        {% translate 'Food Index' %}
-                    </c-a>
-                </li>-->
-            </ul>
-        </div>
     </div>
 </div>
 
