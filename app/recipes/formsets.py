@@ -1,6 +1,7 @@
 from django import forms
 from django.forms.formsets import DELETION_FIELD_NAME
 from django.forms.models import modelformset_factory, BaseModelFormSet
+from django.utils.translation import gettext_lazy as _
 
 from recipes.forms import RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
 from recipes.models import RecipeIngredient, RecipeImage, RecipePreparationStep
@@ -14,7 +15,7 @@ class BaseRecipePreparationStepFormSet(BaseModelFormSet):
             return
 
         valid_forms = 0
-        prep_steps = set()
+        # First pass: count valid non-deleted rows to preserve existing validation
         for form in self.forms:
             if not form.cleaned_data:
                 continue
@@ -32,10 +33,41 @@ class BaseRecipePreparationStepFormSet(BaseModelFormSet):
             else:
                 if step_text:
                     valid_forms += 1
-                    prep_steps.add(step_text)
 
         if valid_forms == 0 and self.forms:
-            self.non_form_errors().append("Preparation Steps must not be empty.")
+            self.non_form_errors().append(_("Preparation Steps must not be empty."))
+
+        # Second pass: ensure every section has at least one non-section step beneath it
+        # Build ordered list of active (non-deleted) forms by ORDER
+        active_forms = [
+            f for f in self.forms
+            if f.cleaned_data and not f.cleaned_data.get('DELETE')
+        ]
+        try:
+            active_forms.sort(key=lambda f: f.cleaned_data.get('ORDER', 0))
+        except Exception:
+            # If ORDER is missing for some reason, keep current order
+            pass
+
+        n = len(active_forms)
+        for idx, form in enumerate(active_forms):
+            if not form.cleaned_data.get('is_section'):
+                continue
+
+            # Look ahead until next section or end to find at least one step
+            has_step = False
+            j = idx + 1
+            while j < n:
+                next_form = active_forms[j]
+                if next_form.cleaned_data.get('is_section'):
+                    break  # reached the next section without steps
+                # non-section row counts as a step (it's already non-deleted)
+                has_step = True
+                break
+                j += 1
+
+            if not has_step:
+                form.add_error('is_section', _("This section must contain at least one preparation step."))
 
 
 RecipePreparationStepFormSet = modelformset_factory(
