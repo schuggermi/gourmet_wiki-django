@@ -72,6 +72,8 @@
         const checkbox = container.querySelector('input[type="checkbox"][name="{{ form.is_section.html_name }}"]');
         const sectionField = container.querySelector('.section-title-field');
         const stepField = container.querySelector('.step-text-field');
+        const sectionInput = container.querySelector('[name="{{ form.section_title.html_name }}"]');
+        const stepInput = container.querySelector('[name="{{ form.step_text.html_name }}"]');
         if (!checkbox || !sectionField || !stepField) return;
         const toggle = () => {
             if (checkbox.checked) {
@@ -82,7 +84,21 @@
                 stepField.classList.remove('hidden');
             }
         };
-        checkbox.addEventListener('change', toggle);
+        checkbox.addEventListener('change', () => {
+            // When switching types, keep the user's current text by moving it to the visible field if needed.
+            if (checkbox.checked) {
+                // switching to section: move step text into section title if section title is empty
+                if (sectionInput && stepInput && (!sectionInput.value || sectionInput.value.trim() === '')) {
+                    sectionInput.value = stepInput.value;
+                }
+            } else {
+                // switching to normal step: move section title into step text if step text is empty
+                if (sectionInput && stepInput && (!stepInput.value || stepInput.value.trim() === '')) {
+                    stepInput.value = sectionInput.value;
+                }
+            }
+            toggle();
+        });
         toggle();
     })();
     </script>
