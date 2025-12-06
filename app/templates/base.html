@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="{{ request.LANGUAGE_CODE|default:'de' }}" data-theme="gourmet">
 <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="%CB_ID%" type="text/javascript" async></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="{{ CB_ID }}" type="text/javascript" async></script>
 
     <!-- Character encoding for Unicode -->
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
     {% endblock %}
 </head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=%GA_ID%"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 

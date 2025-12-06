@@ -121,6 +121,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'core.context_processors.debug',
+                'gourmet_wiki.context_processors.cb_id',
+                'gourmet_wiki.context_processors.ga_id',
             ],
             'builtins': [
                 'django_cotton.templatetags.cotton'
@@ -317,3 +319,6 @@ USDA_FDC_API_KEY = os.getenv('USDA_FDC_API_KEY')
 USDA_FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1"
 
 OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL')
+
+GA_ID=os.getenv('GA_ID')
+CB_ID=os.getenv('CB_ID')
