@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-30 22:23+0000\n"
+"POT-Creation-Date: 2025-12-06 23:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,11 @@ msgid "Give your menu a name (e.g. Weekend Dinner Special)"
 msgstr "Geben Sie Ihrem Menü einen Namen (z. B. Wochenend-Dinner-Spezial)"
 
 #: menus/forms.py:23
-msgid "e.g. A curated selection of comforting dishes for a cozy weekend dinner."
-msgstr "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches Wochenendessen."
+msgid ""
+"e.g. A curated selection of comforting dishes for a cozy weekend dinner."
+msgstr ""
+"z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
+"Wochenendessen."
 
 #: recipes/forms.py:27
 msgid "Name your creation (e.g. Spicy Thai Basil Chicken)"
@@ -139,9 +142,27 @@ msgstr ""
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:171
+#: recipes/forms.py:84
+msgid "e.g. Sauce, Meat, Salad"
+msgstr "z. B. Soße, Fleisch, Salat"
+
+#: recipes/forms.py:102
+msgid "Please provide a section title."
+msgstr "Bitte gib einen Abschnittstitel an."
+
+#: recipes/forms.py:108 recipes/forms.py:186
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
+
+#: recipes/formsets.py:38
+#, fuzzy
+#| msgid "Preparation Steps"
+msgid "Preparation Steps must not be empty."
+msgstr "Zubereitungsschritte"
+
+#: recipes/formsets.py:70
+msgid "This section must contain at least one preparation step."
+msgstr "Dieser Abschnitt muss mindestens einen Zubereitungsschritt enthalten."
 
 #: recipes/models.py:60
 msgid "Hours"
@@ -155,11 +176,11 @@ msgstr "Minuten"
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/views.py:358
+#: recipes/views.py:367
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:361
+#: recipes/views.py:379 recipes/views.py:387
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -212,7 +233,7 @@ msgstr "Support"
 msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
-#: templates/account/login.html:59
+#: templates/account/login.html:59 templates/account/password_change.html:44
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
@@ -239,6 +260,16 @@ msgstr "Mit Passkey anmelden"
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
+#: templates/account/password_change.html:6
+#: templates/account/password_change.html:10
+#: templates/account/password_change.html:40
+#: templates/account/password_reset_from_key.html:13
+#: templates/account/password_reset_from_key_done.html:6
+#: templates/account/password_reset_from_key_done.html:14
+#: templates/users/profile.html:109
+msgid "Change Password"
+msgstr "Passwort ändern"
+
 #: templates/account/password_reset.html:6
 #: templates/account/password_reset.html:10
 #: templates/account/password_reset_done.html:6
@@ -252,9 +283,15 @@ msgstr ""
 "Gib deine E-Mail-Adresse ein, um einen Link zum Zurücksetzen des Passworts "
 "zu erhalten."
 
-#: templates/account/password_reset.html:36
+#: templates/account/password_reset.html:38
 msgid "Reset My Password"
 msgstr "Passwort zurücksetzen"
+
+#: templates/account/password_reset.html:43
+#, fuzzy
+#| msgid "Forgot your password?"
+msgid "Having trouble resetting your password?"
+msgstr "Passwort vergessen?"
 
 #: templates/account/password_reset_done.html:15
 #: templates/account/verification_sent.html:16
@@ -268,17 +305,18 @@ msgstr ""
 msgid "Bad Token"
 msgstr "Ungültiges Token"
 
-#: templates/account/password_reset_from_key.html:13
-#: templates/account/password_reset_from_key_done.html:6
-#: templates/account/password_reset_from_key_done.html:14
-#: templates/users/profile.html:109
-msgid "Change Password"
-msgstr "Passwort ändern"
-
 #: templates/account/password_reset_from_key.html:19
 #: templates/account/password_reset_from_key_done.html:24
 msgid "Your password is now changed."
 msgstr "Dein Passwort wurde erfolgreich geändert."
+
+#: templates/account/password_set.html:6 templates/account/password_set.html:10
+#: templates/account/password_set.html:40
+#: templates/account/password_set.html:54
+#, fuzzy
+#| msgid "Reset My Password"
+msgid "Set Password"
+msgstr "Passwort zurücksetzen"
 
 #: templates/account/signup.html:54
 msgid "Sign Up"
@@ -289,7 +327,7 @@ msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
 #: templates/account/signup.html:66 templates/errors/403.html:28
-#: templates/partials/navbar.html:87
+#: templates/partials/navbar.html:140
 msgid "Log In"
 msgstr "Anmelden"
 
@@ -391,7 +429,7 @@ msgid "Return to Homepage"
 msgstr "Zur Startseite"
 
 #: templates/ingredients/ingredient_list.html:8
-#: templates/partials/navbar.html:35 templates/partials/navbar.html:116
+#: templates/partials/navbar.html:35 templates/partials/navbar.html:89
 msgid "Food Index"
 msgstr "Lebensmittel-Index"
 
@@ -476,12 +514,12 @@ msgid "We don’t have any Menus listed yet."
 msgstr "Es sind noch keine Menüs vorhanden."
 
 #: templates/menus/partials/recipe_detail.html:43
-#: templates/recipes/partials/recipe_detail.html:43
+#: templates/recipes/partials/recipe_detail.html:40
 msgid "No description for this recipe."
 msgstr "Keine Beschreibung für dieses Rezept."
 
 #: templates/menus/partials/recipe_detail.html:82
-#: templates/recipes/partials/recipe_detail.html:83
+#: templates/recipes/partials/recipe_detail.html:80
 msgid "Total"
 msgstr "Gesamt"
 
@@ -499,17 +537,17 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:152
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:104
+#: templates/recipes/partials/recipe_detail.html:101
 msgid "Ingredients"
 msgstr "Zutaten"
 
 #: templates/menus/partials/recipe_detail.html:162
 #: templates/recipes/create_recipe_wizard.html:46
-#: templates/recipes/partials/recipe_detail.html:112
+#: templates/recipes/partials/recipe_detail.html:109
 msgid "Preparation Steps"
 msgstr "Zubereitungsschritte"
 
-#: templates/menus/partials/recipe_detail.html:167
+#: templates/menus/partials/recipe_detail.html:172
 msgid "Preparation Step"
 msgstr "Zubereitungsschritt"
 
@@ -1090,11 +1128,11 @@ msgstr "12. Kontakt"
 msgid "Effective Date:"
 msgstr "Stand:"
 
-#: templates/partials/navbar.html:17 templates/partials/navbar.html:101
+#: templates/partials/navbar.html:17 templates/partials/navbar.html:74
 msgid "All Recipes"
 msgstr "Alle Rezepte"
 
-#: templates/partials/navbar.html:23 templates/partials/navbar.html:106
+#: templates/partials/navbar.html:23 templates/partials/navbar.html:79
 msgid "All Menus"
 msgstr "Alle Menüs"
 
@@ -1102,26 +1140,26 @@ msgstr "Alle Menüs"
 msgid "Culinary Wiki"
 msgstr "Kulinarisches Wiki"
 
-#: templates/partials/navbar.html:64 templates/users/profile.html:6
+#: templates/partials/navbar.html:84 templates/wiki/article_list.html:8
+msgid "Wiki"
+msgstr "Wiki"
+
+#: templates/partials/navbar.html:117 templates/users/profile.html:6
 #: templates/users/profile.html:12
 msgid "Your Profile"
 msgstr "Dein Profil"
 
-#: templates/partials/navbar.html:71
+#: templates/partials/navbar.html:124
 msgid "Logout"
 msgstr "Abmelden"
 
-#: templates/partials/navbar.html:76
+#: templates/partials/navbar.html:129
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/partials/navbar.html:79
+#: templates/partials/navbar.html:132
 msgid "Sign up"
 msgstr "Registrieren"
-
-#: templates/partials/navbar.html:111 templates/wiki/article_list.html:8
-msgid "Wiki"
-msgstr "Wiki"
 
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
@@ -1138,7 +1176,7 @@ msgid "Create Recipe"
 msgstr "Rezept erstellen"
 
 #: templates/recipes/partials/delete_confirmation_modal.html:5
-#: templates/recipes/partials/delete_confirmation_modal.html:21
+#: templates/recipes/partials/delete_confirmation_modal.html:30
 #: templates/recipes/recipe_detail.html:35
 msgid "Delete Recipe"
 msgstr "Rezept löschen"
@@ -1158,11 +1196,12 @@ msgstr ""
 msgid "Confirmation Code"
 msgstr "Bestätigungscode"
 
-#: templates/recipes/partials/delete_confirmation_modal.html:16
+#: templates/recipes/partials/delete_confirmation_modal.html:19
 msgid "Enter the code above"
 msgstr "Gib den obigen Code ein"
 
-#: templates/recipes/partials/delete_confirmation_modal.html:20
+#: templates/recipes/partials/delete_confirmation_modal.html:29
+#: templates/users/partials/delete_confirmation_modal.html:44
 #: templates/users/user_confirm_delete.html:31
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -1195,9 +1234,17 @@ msgstr "Einheit"
 msgid "Remove this Ingredient"
 msgstr "Diese Zutat entfernen"
 
-#: templates/recipes/partials/preparation_step_form_row.html:20
+#: templates/recipes/partials/preparation_step_form_row.html:17
+msgid "This is a section/category header"
+msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
+
+#: templates/recipes/partials/preparation_step_form_row.html:31
 msgid "Remove this Preparation Step"
 msgstr "Diesen Zubereitungsschritt entfernen"
+
+#: templates/recipes/partials/recipe_detail.html:115
+msgid "Section"
+msgstr "Abschnitt"
 
 #: templates/recipes/partials/recipe_details_form.html:26
 msgid "Skill Level"
@@ -1261,12 +1308,36 @@ msgid "Continue"
 msgstr "Weiter"
 
 #: templates/socialaccount/snippets/login.html:7
-msgid "Or use a Third-Party"
-msgstr "Oder Drittanbieter verwenden"
+msgid "or"
+msgstr "oder"
 
 #: templates/users/favorite_recipe_list.html:24
 msgid "You don't have any Favorites added yet."
 msgstr "Du hast noch keine Favoriten hinzugefügt."
+
+#: templates/users/partials/delete_confirmation_modal.html:5
+#: templates/users/partials/delete_confirmation_modal.html:45
+#: templates/users/user_confirm_delete.html:6
+#: templates/users/user_confirm_delete.html:11
+#: templates/users/user_confirm_delete.html:55
+msgid "Delete Your Account"
+msgstr "Dein Konto löschen"
+
+#: templates/users/partials/delete_confirmation_modal.html:6
+#: templates/users/user_confirm_delete.html:29
+msgid ""
+"Are you sure you want to delete your account? This action cannot be undone."
+msgstr ""
+"Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig "
+"gemacht werden."
+
+#: templates/users/partials/delete_confirmation_modal.html:13
+msgid "Please type your full name to confirm:"
+msgstr "Bitte gib zur Bestätigung deinen vollständigen Namen ein:"
+
+#: templates/users/partials/delete_confirmation_modal.html:29
+msgid "Please enter your email to confirm:"
+msgstr "Bitte gib zur Bestätigung deine Email-Addresse ein:"
 
 #: templates/users/profile.html:34
 #, python-format
@@ -1308,22 +1379,9 @@ msgstr "Konto löschen"
 msgid "You don't have any Recipes added yet."
 msgstr "Du hast noch keine Rezepte hinzugefügt."
 
-#: templates/users/user_confirm_delete.html:6
-#: templates/users/user_confirm_delete.html:11
-#: templates/users/user_confirm_delete.html:55
-msgid "Delete Your Account"
-msgstr "Dein Konto löschen"
-
 #: templates/users/user_confirm_delete.html:21
 msgid "Try Again"
 msgstr "Erneut versuchen"
-
-#: templates/users/user_confirm_delete.html:29
-msgid ""
-"Are you sure you want to delete your account? This action cannot be undone."
-msgstr ""
-"Möchtest du dein Konto wirklich löschen? Diese Aktion kann nicht rückgängig "
-"gemacht werden."
 
 #: users/management/commands/initgroups.py:11 users/models.py:50
 msgid "Guest"
@@ -1421,6 +1479,21 @@ msgstr "Admin"
 #: users/models.py:198
 msgid "Joined as a Community Member"
 msgstr "Als Community-Mitglied beigetreten"
+
+#: users/views.py:43
+msgid "The entered name does not match your full name."
+msgstr "Der eingegebene Name stimmt nicht mit Deinem vollständigen Namen überein."
+
+#: users/views.py:45
+msgid "The entered email does not match your email address."
+msgstr "Die eingegebene E-Mail-Adresse stimmt nicht mit Deiner E-Mail-Adresse überein."
+
+#: users/views.py:66
+msgid "Your account has been deleted."
+msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Or use a Third-Party"
+#~ msgstr "Oder Drittanbieter verwenden"
 
 #~ msgid ""
 #~ "<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "

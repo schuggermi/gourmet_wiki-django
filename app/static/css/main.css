@@ -177,7 +177,7 @@ input[type='number'] {
     }
 
     a, p {
-        @apply text-base sm:text-lg font-normal leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-base sm:text-lg font-normal leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }
 

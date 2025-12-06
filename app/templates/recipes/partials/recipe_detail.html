@@ -26,10 +26,7 @@
     <!-- Recipe Details -->
     <div class="flex flex-col gap-5 justify-between print:col-span-2 w-full">
         <div class="flex flex-row print:flex-row-reverse w-full gap-5">
-            <img src="
-
-
-                    {% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
+            <img src="{% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{{ recipe.get_thumbnail_image }}{% endif %}"
                  alt="{{ recipe.images.first.caption }}"
                  class="hidden print:block w-2/4 aspect-video rounded-md shadow-md object-cover"/>
 
@@ -69,7 +66,7 @@
         </div>
 
         <!-- Times -->
-        <div class="flex gap-5">
+        <div class="flex gap-5 w-fit">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="size-6 text-secondary">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,14 +108,14 @@
     <div class="flex flex-col gap-5 justify-start">
         <h3>{% translate 'Preparation Steps' %}</h3>
 
-        <ul class="flex flex-col">
+        <ul class="flex flex-col list-none ps-0">
             {% for step in recipe.ordered_preparation_steps %}
                 {% if step.is_section %}
-                    <li class="pt-4 pb-2">
-                        <h4 class="text-secondary font-semibold">{{ step.section_title }}</h4>
+                    <li class="{% if forloop.counter0 > 0 %}pt-2{% endif %}">
+                        <h4 class="font-semibold">{% translate 'Section' %}: <span class="text-secondary">{{ step.section_title }}</span></h4>
                     </li>
                 {% else %}
-                    <li class="flex flex-row gap-1 pb-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
+                    <li class="flex flex-row gap-1 pt-1 print:py-0">
                         <p class="w-fit relative"><span class="font-extrabold">{{ step.display_index }}.</span></p>
                         <p class="ps-5">{{ step.step_text }}</p>
                     </li>
