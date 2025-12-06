@@ -215,13 +215,13 @@ class RecipePreparationStep(models.Model):
     order = models.PositiveIntegerField()
     is_section = models.BooleanField(
         default=False,
-        help_text="Marks this row as a section/category break instead of a regular step.",
+        help_text=_("Marks this row as a section/category break instead of a regular step."),
     )
     section_title = models.CharField(
         max_length=200,
         blank=True,
         default="",
-        help_text="Title of the section/category (e.g., Sauce, Meat)",
+        help_text=_("Title of the section/category (e.g., Sauce, Meat)"),
     )
 
     def __str__(self):

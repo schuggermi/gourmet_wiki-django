@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 23:35+0000\n"
+"POT-Creation-Date: 2025-12-06 23:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,6 +175,15 @@ msgstr "Minuten"
 #: recipes/models.py:101
 msgid "Published"
 msgstr "Veröffentlicht"
+
+#: recipes/models.py:218
+msgid "Marks this row as a section/category break instead of a regular step."
+msgstr "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen Schritt."
+
+#: recipes/models.py:224
+#| msgid "This is a section/category header"
+msgid "Title of the section/category (e.g., Sauce, Meat)"
+msgstr "Titel des Abschnitts/der Kategorie (z. B. Sauce, Fleisch)"
 
 #: recipes/views.py:367
 msgid "Recipe successfully deleted."
@@ -1482,11 +1491,14 @@ msgstr "Als Community-Mitglied beigetreten"
 
 #: users/views.py:43
 msgid "The entered name does not match your full name."
-msgstr "Der eingegebene Name stimmt nicht mit Deinem vollständigen Namen überein."
+msgstr ""
+"Der eingegebene Name stimmt nicht mit Deinem vollständigen Namen überein."
 
 #: users/views.py:45
 msgid "The entered email does not match your email address."
-msgstr "Die eingegebene E-Mail-Adresse stimmt nicht mit Deiner E-Mail-Adresse überein."
+msgstr ""
+"Die eingegebene E-Mail-Adresse stimmt nicht mit Deiner E-Mail-Adresse "
+"überein."
 
 #: users/views.py:66
 msgid "Your account has been deleted."
