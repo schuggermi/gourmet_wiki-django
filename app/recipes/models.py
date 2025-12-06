@@ -126,7 +126,15 @@ class Recipe(models.Model):
 
     @property
     def ordered_preparation_steps(self):
-        return self.preparation_steps.all().order_by('order')
+        steps = list(self.preparation_steps.all().order_by('order'))
+        display_index = 0
+        for s in steps:
+            if s.is_section:
+                setattr(s, 'display_index', None)
+            else:
+                display_index += 1
+                setattr(s, 'display_index', display_index)
+        return steps
 
     @property
     def average_rating(self):
@@ -201,10 +209,24 @@ class RecipePreparationStep(models.Model):
     )
     step_text = models.CharField(
         max_length=500,
+        blank=True,
+        default="",
     )
     order = models.PositiveIntegerField()
+    is_section = models.BooleanField(
+        default=False,
+        help_text="Marks this row as a section/category break instead of a regular step.",
+    )
+    section_title = models.CharField(
+        max_length=200,
+        blank=True,
+        default="",
+        help_text="Title of the section/category (e.g., Sauce, Meat)",
+    )
 
     def __str__(self):
+        if self.is_section:
+            return f"[Section] {self.section_title}"
         return f"{self.order + 1}. {self.step_text}"
 
 

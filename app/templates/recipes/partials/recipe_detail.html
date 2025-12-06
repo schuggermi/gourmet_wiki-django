@@ -113,11 +113,16 @@
 
         <ul class="flex flex-col">
             {% for step in recipe.ordered_preparation_steps %}
-                <li class="flex flex-row gap-1 pb-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
-                    <p class="w-fit relative"><span class="font-extrabold">{{ step.order|add:"1" }}.</span></p>
-                    {#                    {% translate 'Preparation Step' %}#}
-                    <p class="ps-5">{{ step.step_text }}</p>
-                </li>
+                {% if step.is_section %}
+                    <li class="pt-4 pb-2">
+                        <h4 class="text-secondary font-semibold">{{ step.section_title }}</h4>
+                    </li>
+                {% else %}
+                    <li class="flex flex-row gap-1 pb-2 print:py-0 {% if forloop.counter < recipe.ordered_preparation_steps|length %}border-accent/20 border-b-[1px]{% endif %}">
+                        <p class="w-fit relative"><span class="font-extrabold">{{ step.display_index }}.</span></p>
+                        <p class="ps-5">{{ step.step_text }}</p>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>

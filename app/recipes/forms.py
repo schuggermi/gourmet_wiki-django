@@ -75,11 +75,15 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     class Meta:
         model = RecipePreparationStep
-        fields = ['step_text']
+        fields = ['is_section', 'section_title', 'step_text']
         widgets = {
             'step_text': forms.TextInput(attrs={
                 'placeholder': _("e.g. Heat 2 tbsp of oil in a wok over medium-high heat.")
             }),
+            'section_title': forms.TextInput(attrs={
+                'placeholder': _("e.g. Sauce, Meat, Salad")
+            }),
+            'is_section': forms.CheckboxInput(),
         }
 
     def clean(self):
@@ -88,10 +92,21 @@ class RecipePreparationStepForm(forms.ModelForm):
         if self.errors:
             return cleaned_data
 
+        is_section = cleaned_data.get('is_section')
+        section_title = cleaned_data.get('section_title')
         step_text = cleaned_data.get('step_text')
 
-        if not step_text:
-            self.add_error('step_text', 'This field is required.')
+        if is_section:
+            # Section headers must have a title; step_text is optional/ignored
+            if not section_title or not section_title.strip():
+                self.add_error('section_title', _('Please provide a section title.'))
+            # Normalize: no step text for section rows
+            cleaned_data['step_text'] = ''
+        else:
+            # Regular steps must have step text; section title is optional and cleared
+            if not step_text or not step_text.strip():
+                self.add_error('step_text', _('This field is required.'))
+            cleaned_data['section_title'] = cleaned_data.get('section_title', '').strip()
 
         return cleaned_data
 

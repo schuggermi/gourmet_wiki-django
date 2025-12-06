@@ -10,9 +10,20 @@
 
         <!-- Step Text -->
         <div class="w-full">
-            <div class="flex items-center gap-1 justify-start w-full">
-                <div class="grow">
-                    <c-input :field="form.step_text" no_errors></c-input>
+            <div class="flex items-start gap-2 justify-start w-full">
+                <div class="flex flex-col gap-2 grow">
+                    <label class="flex items-center gap-2 text-sm">
+                        {{ form.is_section }}
+                        <span class="opacity-80">{% translate 'This is a section/category header' %}</span>
+                    </label>
+
+                    <div class="section-title-field {% if not form.initial.is_section %}hidden{% endif %}">
+                        <c-input :field="form.section_title" no_errors></c-input>
+                    </div>
+
+                    <div class="step-text-field {% if form.initial.is_section %}hidden{% endif %}">
+                        <c-input :field="form.step_text" no_errors></c-input>
+                    </div>
                 </div>
 
                 <div class="flex items-center gap-1 shrink-0">
@@ -36,6 +47,16 @@
                 </div>
             </div>
 
+            {% for error in form.is_section.errors %}
+                <div class="text-red-400">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            {% for error in form.section_title.errors %}
+                <div class="text-red-400">
+                    {{ error }}
+                </div>
+            {% endfor %}
             {% for error in form.step_text.errors %}
                 <div class="text-red-400">
                     {{ error }}
@@ -44,3 +65,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function() {
+        const container = document.getElementById('recipe_preparation_step-{{ form_index }}');
+        const checkbox = container.querySelector('input[type="checkbox"][name="{{ form.is_section.html_name }}"]');
+        const sectionField = container.querySelector('.section-title-field');
+        const stepField = container.querySelector('.step-text-field');
+        if (!checkbox || !sectionField || !stepField) return;
+        const toggle = () => {
+            if (checkbox.checked) {
+                sectionField.classList.remove('hidden');
+                stepField.classList.add('hidden');
+            } else {
+                sectionField.classList.add('hidden');
+                stepField.classList.remove('hidden');
+            }
+        };
+        checkbox.addEventListener('change', toggle);
+        toggle();
+    })();
+    </script>

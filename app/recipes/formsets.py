@@ -22,17 +22,17 @@ class BaseRecipePreparationStepFormSet(BaseModelFormSet):
             if form.cleaned_data.get('DELETE'):
                 continue
 
-            required_fields = [field_name for field_name, field in form.fields.items()
-                               if field.required and field_name not in ('DELETE', 'id', 'order')]
+            is_section = form.cleaned_data.get('is_section')
+            section_title = form.cleaned_data.get('section_title')
+            step_text = form.cleaned_data.get('step_text')
 
-            all_required_filled = all(form.cleaned_data.get(fname) for fname in required_fields)
-
-            if all_required_filled:
-                valid_forms += 1
-
-            prep_step = form.cleaned_data.get('step_text')
-            if prep_step:
-                prep_steps.add(prep_step)
+            if is_section:
+                if section_title:
+                    valid_forms += 1
+            else:
+                if step_text:
+                    valid_forms += 1
+                    prep_steps.add(step_text)
 
         if valid_forms == 0 and self.forms:
             self.non_form_errors().append("Preparation Steps must not be empty.")
