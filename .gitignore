@@ -10,3 +10,4 @@ media/
 assets/
 .env
 ollama/**
+nginx/logs/
