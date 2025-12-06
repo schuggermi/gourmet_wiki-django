@@ -1,6 +1,7 @@
 import {defineConfig} from 'vite';
 import {resolve} from 'path';
 import tailwindcss from "@tailwindcss/vite";
+import typography from '@tailwindcss/typography';
 
 export default defineConfig({
     base: "/static/",
@@ -32,5 +33,6 @@ export default defineConfig({
     },
     plugins: [
         tailwindcss(),
+        typography,
     ]
 })

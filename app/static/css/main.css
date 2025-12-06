@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&wght@700&display=swap');
 
 @import "tailwindcss";
-
 @tailwind utilities;
+@plugin '@tailwindcss/typography';
 
 @plugin "daisyui" {
     themes: gourmet --default, gourmet --prefersdark, gourmet;
@@ -146,27 +146,27 @@ input[type='number'] {
     }
 
     h2 {
-        @apply text-xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-snug break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-base print:leading-snug;
     }
 
     h3 {
-        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-snug break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
     h4 {
-        @apply text-base sm:text-xl md:text-2xl font-semibold leading-snug break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-base sm:text-xl md:text-2xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
     h5 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal leading-tight text-balance hyphens-auto;
         @apply print:text-xs;
     }
 
     h6 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance leading-tight hyphens-auto;
         @apply print:text-[10px];
         /* 10px for extra small print */
     }
@@ -189,8 +189,8 @@ input[type='number'] {
         @apply my-10;
     }
 
-    .article > a, p, li {
-        @apply text-lg lg:text-xl;
+    .article, article > a, p, li {
+        @apply text-lg lg:text-xl leading-tight break-words whitespace-normal text-balance hyphens-auto;
     }
 
     a.missing-link {
