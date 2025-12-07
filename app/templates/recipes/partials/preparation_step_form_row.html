@@ -1,33 +1,29 @@
 {% load i18n %}
 
-<div id="recipe_preparation_step-{{ form_index }}" class="formset-form flex items-start gap-1 w-full">
+<div id="recipe_preparation_step-{{ form_index }}" class="formset-form flex items-start gap-10 w-full">
     {{ form.id }}
     {{ form.order.as_hidden }}
     {{ form.DELETE.as_hidden }}
 
-    <div class="formset-form-content flex gap-5 items-start w-full">
+    <div class="formset-form-content flex gap-2 items-start w-full">
         <p class="step-label text-secondary font-bold">{{ form_index|add:"1" }}.</p>
 
         <!-- Step Text -->
-        <div class="w-full">
+        <div class="w-full border-t-2 border-ghost pt-2">
             <div class="flex items-start gap-2 justify-start w-full">
                 <div class="flex flex-col gap-2 grow">
-                    <label class="flex items-center gap-2 text-sm">
-                        {{ form.is_section }}
-                        <span class="opacity-80">{% translate 'This is a section/category header' %}</span>
-                    </label>
-
-                    <div class="section-title-field {% if not form.initial.is_section %}hidden{% endif %}">
+                    <div class="section-title-field {% if not form.is_section %}hidden{% else %}border-b-3 border-secondary rounded-md{% endif %}">
                         <c-input :field="form.section_title" no_errors></c-input>
                     </div>
 
-                    <div class="step-text-field {% if form.initial.is_section %}hidden{% endif %}">
+                    <div class="step-text-field {% if form.is_section %}hidden{% endif %}">
                         <c-input :field="form.step_text" no_errors></c-input>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-1 shrink-0">
-                    <p class="cursor-pointer self-center w-fit ps-5"
+                    <div>{{ form.is_section }}</div>
+                    <p class="cursor-pointer self-center w-fit"
                        title="{% translate 'Remove this Preparation Step' %}"
                        onclick="this.closest('.formset-form').classList.add('hidden'); this.closest('.formset-form-content').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
                     >
@@ -47,21 +43,17 @@
                 </div>
             </div>
 
-            {% for error in form.is_section.errors %}
-                <div class="text-red-400">
-                    {{ error }}
-                </div>
-            {% endfor %}
-            {% for error in form.section_title.errors %}
-                <div class="text-red-400">
-                    {{ error }}
-                </div>
-            {% endfor %}
-            {% for error in form.step_text.errors %}
-                <div class="text-red-400">
-                    {{ error }}
-                </div>
-            {% endfor %}
+            <ul class="text-red-400 w-full">
+                {% for error in form.is_section.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+                {% for error in form.section_title.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+                {% for error in form.step_text.errors %}
+                    <li><small>{{ error }}</small></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

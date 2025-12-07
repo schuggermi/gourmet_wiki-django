@@ -141,7 +141,7 @@ input[type='number'] {
     }
 
     h1 {
-        @apply text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-lg print:md:text-2xl print:leading-snug;
     }
 

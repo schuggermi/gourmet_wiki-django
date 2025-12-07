@@ -1,17 +1,16 @@
 {% load forms %}
 
 <c-vars type="text"
-        input_class="input bg-base-200"
+        input_class="input bg-base-100"
         default_class="w-full rounded-sm focus:outline-none focus:ring-0"
-        checkbox_class="checkbox bg-base-200 rounded-sm"
-        error_class="border-3 border-red-400"
+        checkbox_class="checkbox bg-base-100 rounded-sm"
+        error_class="border-1 border-red-400!"
 ></c-vars>
 
 {% if slot %}
     {{ slot }}
 {% else %}
-    <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-           class="{% if not labeled %}hidden{% endif %}">
+    <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
         {% if field and not label %}
             {{ field.label }}
         {% elif label %}
@@ -31,11 +30,11 @@
 >
 {% if not no_errors %}
     {% for error in field.errors %}
-        <div class="text-red-400 pt-1">
-            - {{ error }}
-        </div>
+        <ul class="text-red-400 pt-1">
+            <li><small>{{ error }}</small></li>
+        </ul>
     {% endfor %}
 {% endif %}
 {% if field.help_text and not no_help %}
-    <p class="text-sm!">{{ field.help_text|safe }}</p>
+    <small class="block w-full">{{ field.help_text|safe }}</small>
 {% endif %}

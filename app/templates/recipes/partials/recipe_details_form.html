@@ -25,7 +25,7 @@
 
             {% translate 'Skill Level' %}
         </small>
-        <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
+        <div class="flex gap-3 border-t-1 border-ghost pt-1 w-full">
             <c-select :field="form.skill_level" :instance_value="form.instance.skill_level.id" class="w-fit! px-1!"
                       no_errors></c-select>
         </div>
@@ -66,7 +66,7 @@
             </svg>
             {% translate 'Portions' %}
         </small>
-        <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
+        <div class="flex gap-3 border-t-1 border-ghost pt-1 w-full">
             <div class="flex items-center justify-center gap-5 w-full">
                 <c-number-action-input :field="form.portions" no_errors label="{% translate 'Persons' %}">
                 </c-number-action-input>
@@ -84,7 +84,7 @@
             </svg>
             {% translate 'Cooking Time' %}
         </small>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-secondary pt-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 border-t-1 border-ghost pt-1">
             <div class="flex items-center justify-center gap-5 w-full">
                 <c-number-action-input :field="form.cooking_time_hours" no_errors
                                        label="{{ form.cooking_time_hours.label }}"></c-number-action-input>

@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div>
-    <div id="recipe_ingredient-{{ form_index }}" class="formset-form grid grid-cols-1 md:grid-cols-2 items-start gap-5 p-2 rounded-lg border-[1px] border-base-300">
+    <div id="recipe_ingredient-{{ form_index }}" class="formset-form grid grid-cols-1 md:grid-cols-2 items-start gap-2 p-2 rounded-lg border-[1px] border-base-300">
         {{ form.id }}
         {{ form.DELETE.as_hidden }}
         {{ form.order.as_hidden }}
@@ -21,13 +21,13 @@
             </small>
             <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
                 <div class="flex items-center justify-center gap-5 w-full">
-                    <c-input :field="form.ingredient_name" placeholder="{% trans 'Beef...' %}"></c-input>
+                    <c-input :field="form.ingredient_name" placeholder="{% trans 'Beef...' %}" no_errors></c-input>
                     {{ form.ingredient }}
                 </div>
             </div>
         </div>
 
-        <div class="w-full grid grid-cols-2 gap-5">
+        <div class="w-full grid grid-cols-2 gap-2">
             <!-- Ingredient Quantity -->
             <div class="flex flex-col gap-1 w-full">
                 <small class="flex items-center gap-3">
@@ -39,8 +39,8 @@
                     {% translate 'Amount' %}
                 </small>
                 <div class="flex gap-3 border-t-1 border-secondary pt-1 w-full">
-                    <div class="flex items-center justify-center gap-5 w-full">
-                        <c-number-action-input :field="form.quantity">
+                    <div class="flex items-center justify-center gap-1">
+                        <c-number-action-input :field="form.quantity" no_errors>
                         </c-number-action-input>
                     </div>
                 </div>
@@ -78,21 +78,4 @@
             </div>
         </div>
     </div>
-    {% if form.errors %}
-        {% for error in form.ingredient_name.errors %}
-            <div class="text-red-400">
-                - {{ error }}
-            </div>
-        {% endfor %}
-        {% for error in form.quantity.errors %}
-            <div class="text-red-400">
-                - {{ error }}
-            </div>
-        {% endfor %}
-        {% for error in form.unit.errors %}
-            <div class="text-red-400">
-                - {{ error }}
-            </div>
-        {% endfor %}
-    {% endif %}
 </div>

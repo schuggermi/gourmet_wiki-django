@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="container pt-10 px-4 lg:pt-20 flex flex-col gap-20 pb-10">
+    <div class="container flex flex-col gap-10 pb-10 px-5">
         <div class="flex flex-col gap-1 w-full">
             <h1 class="self-start flex gap-5 items-center w-full">
                 {% if wizard.form.instance.pk %}
@@ -29,31 +29,23 @@
             <c-go-back></c-go-back>
         </div>
 
-        <div class="self-center flex flex-col gap-10 w-full max-w-screen md:w-3xl md:max-w-3xl">
-            <ul class="steps steps-vertical step-primary lg:steps-horizontal w-full">
-                <li class="step {% if wizard.steps.current|add:"0" >= 0 %}step-primary{% endif %}">
-                    <p>
-                        {% translate 'Details' %}
-                    </p>
+        <div class="self-center flex flex-col gap-5 w-full max-w-screen md:max-w-xl">
+            <ul class="ps-0 list-none steps steps-vertical step-neutral md:steps-horizontal w-full">
+                <li class="step {% if wizard.steps.current|add:'0' >= 0 %}step-neutral{% endif %}">
+                    {% translate 'Details' %}
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 1 %}step-primary{% endif %}">
-                    <p>
-                        {% translate 'Ingredients' %}
-                    </p>
+                <li class="step {% if wizard.steps.current|add:'0' >= 1 %}step-neutral{% endif %}">
+                    {% translate 'Ingredients' %}
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 2 %}step-primary{% endif %}">
-                    <p>
-                        {% translate 'Preparation Steps' %}
-                    </p>
+                <li class="step {% if wizard.steps.current|add:'0' >= 2 %}step-neutral{% endif %}">
+                    {% translate 'Preparation' %}
                 </li>
-                <li class="step {% if wizard.steps.current|add:"0" >= 3 %}step-primary{% endif %}">
-                    <p>
-                        {% translate 'Images' %}
-                    </p>
+                <li class="step {% if wizard.steps.current|add:'0' >= 3 %}step-neutral{% endif %}">
+                    {% translate 'Images' %}
                 </li>
             </ul>
             <form method="post" id="wizard-form" enctype="multipart/form-data"
-                  class="w-full flex flex-col gap-5 bg-base-200 p-4 xl:p-10 rounded-lg">
+                  class="w-full flex flex-col gap-10 bg-base-200 p-4 xl:p-10 rounded-lg">
                 {% csrf_token %}
                 {{ wizard.management_form }}
 
@@ -79,22 +71,20 @@
                     {% include 'recipes/partials/recipe_images_form.html' with forms=wizard.form.forms form_index=forloop.counter0 %}
                 {% endif %}
 
-                <div class="flex gap-2 justify-end">
-                    {% if wizard.steps.prev %}
-                        <button
-                                name="wizard_goto_step"
-                                type="submit"
-                                value="{{ wizard.steps.prev }}"
-                                class="btn btn-ghost btn-outline"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                 stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    <button type="submit" class="btn btn-primary">
+                <div class="flex gap-2 justify-between">
+                    <button
+                        name="wizard_goto_step"
+                        type="submit"
+                        value="{{ wizard.steps.prev }}"
+                        class="btn btn-ghost btn-lg btn-outline {% if not wizard.steps.prev %}invisible{% endif %}"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+                        </svg>
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-lg">
                         {% if wizard.steps.current == wizard.steps.last %}
                             {% translate 'Create Recipe' %}
                         {% else %}

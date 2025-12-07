@@ -221,7 +221,6 @@ class RecipePreparationStep(models.Model):
         max_length=200,
         blank=True,
         default="",
-        help_text=_("Title of the section/category (e.g., Sauce, Meat)"),
     )
 
     def __str__(self):

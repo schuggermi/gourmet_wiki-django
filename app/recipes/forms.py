@@ -81,9 +81,11 @@ class RecipePreparationStepForm(forms.ModelForm):
                 'placeholder': _("e.g. Heat 2 tbsp of oil in a wok over medium-high heat.")
             }),
             'section_title': forms.TextInput(attrs={
-                'placeholder': _("e.g. Sauce, Meat, Salad")
+                'placeholder': _("e.g. Sauce, Meat, Salad"),
             }),
-            'is_section': forms.CheckboxInput(),
+            'is_section': forms.CheckboxInput(attrs={
+                'class': 'checkbox'
+            }),
         }
 
     def clean(self):

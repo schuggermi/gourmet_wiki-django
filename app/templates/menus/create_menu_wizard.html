@@ -45,7 +45,7 @@
             </ul>
 
             <form method="post" id="wizard-form" enctype="multipart/form-data"
-                  class="w-full flex flex-col gap-5 bg-base-200 p-4 xl:p-10 rounded-lg">
+                  class="w-full flex flex-col gap-5 bg-base-200 p-2 xl:p-5 rounded-lg">
                 {% csrf_token %}
                 {{ wizard.management_form }}
                 {{ wizard.form.management_form }}

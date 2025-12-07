@@ -5,14 +5,14 @@
     {{ wizard.form.management_form }}
     <input type="hidden" id="form-index-counter" value="{{ wizard.form.total_form_count }}">
 
-    <div id="preparation-step-formset" class="flex flex-col gap-2 w-full">
+    <div id="preparation-step-formset" class="flex flex-col gap-5 w-full">
         {% for form in forms %}
             {% include 'recipes/partials/preparation_step_form_row.html' with form=form form_index=forloop.counter0 %}
         {% endfor %}
     </div>
 
     <button type="button"
-            class="btn btn-primary dark:btn-accent w-fit"
+            class="btn btn-primary btn-sm dark:btn-accent w-fit"
             hx-get="{% url 'add_preparation_step_form' %}"
             hx-target="#preparation-step-formset"
             hx-swap="beforeend"
