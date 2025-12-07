@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="flex items-center gap-1 shrink-0">
-                    <div>{{ form.is_section }}</div>
+                    <div title="{% translate 'This is a section/category header' %}">{{ form.is_section }}</div>
                     <p class="cursor-pointer self-center w-fit"
                        title="{% translate 'Remove this Preparation Step' %}"
                        onclick="this.closest('.formset-form').classList.add('hidden'); this.closest('.formset-form-content').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
