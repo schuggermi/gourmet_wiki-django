@@ -30,18 +30,18 @@
         </div>
 
         <div class="self-center flex flex-col gap-5 w-full max-w-screen md:max-w-xl">
-            <ul class="ps-0 list-none steps steps-vertical step-neutral md:steps-horizontal w-full">
+            <ul class="ps-0 list-none steps steps-horizontal w-full">
                 <li class="step {% if wizard.steps.current|add:'0' >= 0 %}step-neutral{% endif %}">
-                    {% translate 'Details' %}
+                    <small>{% translate 'Details' %}</small>
                 </li>
                 <li class="step {% if wizard.steps.current|add:'0' >= 1 %}step-neutral{% endif %}">
-                    {% translate 'Ingredients' %}
+                    <small>{% translate 'Ingredients' %}</small>
                 </li>
                 <li class="step {% if wizard.steps.current|add:'0' >= 2 %}step-neutral{% endif %}">
-                    {% translate 'Preparation' %}
+                    <small>{% translate 'Preparation' %}</small>
                 </li>
                 <li class="step {% if wizard.steps.current|add:'0' >= 3 %}step-neutral{% endif %}">
-                    {% translate 'Images' %}
+                    <small>{% translate 'Images' %}</small>
                 </li>
             </ul>
             <form method="post" id="wizard-form" enctype="multipart/form-data"

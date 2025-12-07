@@ -1,7 +1,7 @@
 {% load forms %}
 
 <c-vars type="text"
-        default_class="w-full! select bg-base-100 rounded-sm focus:outline-none focus:ring-0"
+        default_class="w-full! select text-center bg-base-100 rounded-sm focus:outline-none focus:ring-0"
         error_class="border-3 border-red-400"
 ></c-vars>
 
@@ -20,15 +20,14 @@
 >
     {% for value, label in field.field.choices %}
         {% if forloop.counter0 >= 0 %}
-            <option value="{{ value }}"
-                    {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
+            <option value="{{ value }}" {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
         {% endif %}
     {% endfor %}
 </select>
 {% if not no_errors %}
     {% for error in field.errors %}
-        <div class="text-red-400">
-            - {{ error }}
-        </div>
+        <ul class="text-red-400">
+            <li>{{ error }}</li>
+        </ul>
     {% endfor %}
 {% endif %}

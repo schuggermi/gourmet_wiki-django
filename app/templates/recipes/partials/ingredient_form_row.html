@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div>
-    <div id="recipe_ingredient-{{ form_index }}" class="formset-form grid grid-cols-1 md:grid-cols-2 items-start gap-2 p-2 rounded-lg border-[1px] border-base-300">
+    <div id="recipe_ingredient-{{ form_index }}" class="formset-form grid grid-cols-1 md:grid-cols-2 items-start gap-2 p-2 rounded-lg border-1 border-secondary">
         {{ form.id }}
         {{ form.DELETE.as_hidden }}
         {{ form.order.as_hidden }}
@@ -9,7 +9,7 @@
         <!-- Ingredient -->
         <div class="flex flex-col gap-1 w-full">
             <small class="flex items-center gap-3">
-                <svg class="size-6 text-secondary!" aria-hidden="true"
+                <svg class="size-4 text-secondary!" aria-hidden="true"
                      xmlns="http://www.w3.org/2000/svg"
                      width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -32,7 +32,7 @@
             <div class="flex flex-col gap-1 w-full">
                 <small class="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" class="size-6 text-secondary!">
+                         stroke="currentColor" class="size-4 text-secondary!">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                     </svg>
@@ -50,7 +50,7 @@
             <div class="flex flex-col gap-1 w-full">
                 <small class="flex items-center gap-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" class="size-6 text-secondary!">
+                         stroke="currentColor" class="size-4 text-secondary!">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z"></path>
                     </svg>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="flex items-center justify-center">
                         <!-- Delete -->
-                        <p class="cursor-pointer self-center w-fit ps-5"
+                        <p class="cursor-pointer self-center w-fit"
                            title="{% translate 'Remove this Ingredient' %}"
                            onclick="this.closest('.formset-form').hidden = true; document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#ingredient-formset', '#id_recipe_ingredient-TOTAL_FORMS');"
                         >
