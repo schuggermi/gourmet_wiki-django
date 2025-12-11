@@ -11,40 +11,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Page description for search engines -->
     <meta name="description"
-          content="{% block meta_description %}Gourmet Wiki - Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
+          content="{% block meta_description %}{{ page_description|default:DEFAULT_DESCRIPTION|default:'Gourmet Wiki - Your ultimate resource for gourmet recipes and culinary knowledge' }}{% endblock %}">
+    <!-- Keywords for search engines -->
+    <meta name="keywords" content="{% block meta_keywords %}{{ page_keywords|default:DEFAULT_KEYWORDS|default:'gourmet recipes, recipe wiki, cooking techniques, ingredient guides' }}{% endblock %}">
     <!-- Author information -->
     <meta name="author" content="Gourmet Wiki Team">
     <!-- Control the behavior of search engine crawling and indexing -->
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="{% block meta_robots %}index,follow{% endblock %}">
     <!-- Define the website's theme color for browser UI elements -->
     <meta name="theme-color" content="#7bcf3c">
     <meta name="background-color" content="#effcf3">
 
     <!-- Open Graph meta tags for better social media sharing -->
-    <meta property="og:title" content="{% block og_title %}Gourmet Wiki{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
+    {% block meta_og %}
     <meta property="og:type" content="website">
+    <meta property="og:title" content="{% firstof og_title page_title SITE_NAME 'Gourmet Wiki' %}">
+    <meta property="og:description" content="{% firstof og_description page_description DEFAULT_DESCRIPTION 'Your ultimate resource for gourmet recipes and culinary knowledge' %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
+    {# Prefer configured default; otherwise fall back to a local favicon #}
+    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="Gourmet Wiki">
+    <meta property="og:site_name" content="{{ SITE_NAME|default:'Gourmet Wiki' }}">
+    {% endblock %}
 
     <!-- Twitter Card meta tags for Twitter sharing -->
+    {% block meta_twitter %}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% block twitter_title %}Gourmet Wiki{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}Your ultimate resource for gourmet recipes and culinary knowledge{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endblock %}">
+    <meta name="twitter:site" content="@TODO_TWITTER">
+    <meta name="twitter:title" content="{% firstof twitter_title og_title page_title SITE_NAME 'Gourmet Wiki' %}">
+    <meta name="twitter:description" content="{% firstof twitter_description og_description DEFAULT_DESCRIPTION 'Your ultimate resource for gourmet recipes and culinary knowledge' %}">
+    <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
+    {% endblock %}
 
     <!-- Canonical URL to prevent duplicate content issues -->
-    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% block meta_canonical %}
+    <link rel="canonical" href="{{ canonical|default:request.build_absolute_uri }}">
+    {% endblock %}
 
-    <title>
-        {% block title %}
-            Gourmet Wiki
-        {% endblock %}
-    </title>
+    {% block meta_alternate %}{% endblock %}
+    {% block meta_extra %}{% endblock %}
+
+    <title>{% block title %}{{ page_title|default:SITE_NAME|default:'Gourmet Wiki' }}{% endblock %}</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
@@ -56,8 +65,8 @@
     {% endif %}
     {% vite_asset 'static/js/main.js' %}
 
-    {% block head %}
-    {% endblock %}
+    {% block jsonld %}{% endblock %}
+    {% block head %}{% endblock %}
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>

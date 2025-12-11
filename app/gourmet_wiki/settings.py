@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'pages.apps.PagesConfig',
     'recipes.apps.RecipesConfig',
     'ingredients.apps.IngredientsConfig',
@@ -121,6 +122,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
                 'core.context_processors.debug',
+                'core.context_processors.seo_defaults',
                 'gourmet_wiki.context_processors.cb_id',
                 'gourmet_wiki.context_processors.ga_id',
             ],
@@ -310,6 +312,13 @@ else:
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
 CRISPY_TEMPLATE_PACK = 'daisyui'
+
+# --- SEO defaults ---
+SITE_NAME = os.getenv('SITE_NAME', 'TODO_SITE_NAME')
+SITE_URL = os.getenv('SITE_URL', 'https://example.com')
+DEFAULT_DESCRIPTION = os.getenv('DEFAULT_DESCRIPTION', 'Discover, cook, and master gourmet recipes.')
+DEFAULT_KEYWORDS = os.getenv('DEFAULT_KEYWORDS', 'gourmet recipes, recipe wiki, cooking techniques, ingredient guides')
+DEFAULT_OG_IMAGE = os.getenv('DEFAULT_OG_IMAGE', STATIC_URL + 'favicons/android-chrome-512x512.png')
 
 LISTMONK_API_USERNAME = os.getenv('LISTMONK_API_USERNAME')
 LISTMONK_API_URL = os.getenv('LISTMONK_API_URL')

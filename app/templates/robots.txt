@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: {{ SITE_URL|default:'https://example.com' }}/sitemap.xml

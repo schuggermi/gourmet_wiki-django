@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block title %}
+{# Per-page SEO: title and meta #}
+{% block title %}{{ object.name }} – Gourmet Recipe | {{ SITE_NAME }}{% endblock %}
+{% block meta_description %}{{ object.description|default:DEFAULT_DESCRIPTION|striptags|truncatechars:155 }}{% endblock %}
+{% block meta_keywords %}gourmet recipes, recipe wiki, step-by-step recipes{% if object.course_type %}, {{ object.get_course_type_display }}{% endif %}{% endblock %}
+{% block meta_og %}
     {{ block.super }}
-    - {{ object.name }}
+    <meta property="og:type" content="article">
 {% endblock %}
+
 
 
 {% block main_content %}
@@ -97,6 +102,35 @@
                 });
         }
     </script>
+
+    {# JSON-LD structured data for Recipe #}
+    {% block jsonld %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Recipe",
+      "name": "{{ object.name|escape }}",
+      "description": "{{ object.description|default:DEFAULT_DESCRIPTION|striptags|truncatechars:280|escape }}",
+      "image": [{% with imgs=object.images.all %}{% for img in imgs %}"{{ img.image.url }}"{% if not forloop.last %}, {% endif %}{% empty %}"{{ DEFAULT_OG_IMAGE }}"{% endfor %}{% endwith %}],
+      "author": {
+        "@type": "Person",
+        "name": "{{ object.created_by.get_full_name|default:object.created_by.username|default:'Contributor' }}"
+      },
+      "datePublished": "{{ object.created_at|date:'c' }}",
+      "prepTime": "PT0M",
+      "cookTime": "PT{{ object.cooking_time_hours|default:0 }}H{{ object.cooking_time_minutes|default:0 }}M",
+      "totalTime": "PT{{ object.total_time_hours|default:0 }}H{{ object.total_time_minutes|default:0 }}M",
+      "recipeYield": "{{ object.portions }} servings",
+      "recipeCategory": "{{ object.get_course_type_display }}",
+      "recipeCuisine": "",
+      "recipeIngredient": [{% for ing in object.ingredients.all %}"{{ ing }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      "recipeInstructions": [{% for step in object.ordered_preparation_steps %}{% if not step.is_section %}{
+        "@type": "HowToStep",
+        "text": "{{ step.step_text|striptags|escape }}"
+      }{% if not forloop.last %}, {% endif %}{% endif %}{% endfor %}]
+    }
+    </script>
+    {% endblock %}
 
     {% if recipe.created_by == user %}
     <!-- Delete confirmation modal will be loaded here dynamically -->
