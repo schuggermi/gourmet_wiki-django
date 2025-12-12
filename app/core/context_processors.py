@@ -11,8 +11,8 @@ def debug(request):
 def seo_defaults(request):
     """Inject default SEO values into every template context."""
     return {
-        'SITE_NAME': getattr(settings, 'SITE_NAME', 'TODO_SITE_NAME'),
-        'SITE_URL': getattr(settings, 'SITE_URL', 'https://example.com'),
+        'SITE_NAME': getattr(settings, 'SITE_NAME', 'Gourmet Wiki'),
+        'SITE_URL': getattr(settings, 'SITE_URL', 'https://gourmet-wiki.app'),
         'DEFAULT_DESCRIPTION': getattr(
             settings,
             'DEFAULT_DESCRIPTION',

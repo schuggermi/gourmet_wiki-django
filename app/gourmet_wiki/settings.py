@@ -314,8 +314,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'daisyui'
 CRISPY_TEMPLATE_PACK = 'daisyui'
 
 # --- SEO defaults ---
-SITE_NAME = os.getenv('SITE_NAME', 'TODO_SITE_NAME')
-SITE_URL = os.getenv('SITE_URL', 'https://example.com')
+SITE_NAME = os.getenv('SITE_NAME', 'Gourmet Wiki')
+SITE_URL = os.getenv('SITE_URL', 'https://gourmet-wiki.app')
 DEFAULT_DESCRIPTION = os.getenv('DEFAULT_DESCRIPTION', 'Discover, cook, and master gourmet recipes.')
 DEFAULT_KEYWORDS = os.getenv('DEFAULT_KEYWORDS', 'gourmet recipes, recipe wiki, cooking techniques, ingredient guides')
 DEFAULT_OG_IMAGE = os.getenv('DEFAULT_OG_IMAGE', STATIC_URL + 'favicons/android-chrome-512x512.png')

@@ -128,7 +128,7 @@
   Keep component look unified across pages without repeating long utility strings
 */
 .gw-card {
-    @apply px-10 py-8 bg-base-200 rounded-xl flex flex-col items-center gap-5 shadow-md;
+    @apply px-10 py-8 bg-base-200 shadow-sm shadow-neutral rounded-xl flex flex-col items-center gap-5;
 }
 
 /* Chrome, Safari, Edge, Opera */
