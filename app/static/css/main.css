@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap');
 
 @import "tailwindcss";
 @tailwind utilities;
@@ -9,7 +10,8 @@
 }
 
 :root {
-    --font-sans: "Montserrat", ui-sans-serif, system-ui;
+    --font-sans: "Montserrat", ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-serif: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /*@plugin "daisyui/theme" {
@@ -81,8 +83,9 @@
     --border: 0.5px;
     --depth: 0;
     --noise: 0;
-    --font-sans: "Montserrat", ui-sans-serif, system-ui;
-    --default-font-family: "Montserrat", ui-sans-serif, system-ui;
+    --font-sans: "Montserrat", ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-serif: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --default-font-family: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 
@@ -119,8 +122,9 @@
     --border: 1px;
     --depth: 0;
     --noise: 0;
-    --font-sans: "Montserrat", ui-sans-serif, system-ui;
-    --default-font-family: "Montserrat", ui-sans-serif, system-ui;
+    --font-sans: "Montserrat", ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-serif: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --default-font-family: "Merriweather", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /*
@@ -145,48 +149,63 @@ input[type='number'] {
 
 @layer base {
     body {
-        @apply font-sans;
+        @apply font-serif text-base-content text-body sm:text-body-lg antialiased;
     }
 
     h1 {
-        @apply text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply font-sans font-extrabold tracking-tight break-words whitespace-normal text-balance hyphens-auto text-base-content;
+        @apply text-h1 md:text-h1-md lg:text-h1-lg;
         @apply print:text-lg print:md:text-2xl print:leading-snug;
     }
 
     h2 {
-        @apply text-xl sm:text-3xl md:text-4xl font-medium tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply font-sans font-bold tracking-tight break-words whitespace-normal text-balance hyphens-auto text-base-content;
+        @apply text-h2 md:text-h2-md lg:text-h2-lg;
         @apply print:text-base print:leading-snug;
     }
 
     h3 {
-        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply font-sans font-semibold break-words whitespace-normal text-balance hyphens-auto text-base-content;
+        @apply text-h3 md:text-h3-md lg:text-h3-lg;
         @apply print:text-sm print:leading-snug;
     }
 
     h4 {
-        @apply text-base sm:text-xl md:text-2xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply font-sans font-semibold break-words whitespace-normal text-balance hyphens-auto text-base-content;
+        @apply text-h4 md:text-h4-md lg:text-h4-lg;
         @apply print:text-sm print:leading-snug;
     }
 
     h5 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal leading-tight text-balance hyphens-auto;
+        @apply font-sans font-semibold break-words whitespace-normal text-balance hyphens-auto text-base-content;
+        @apply text-h5 md:text-h5-md lg:text-h5-lg;
         @apply print:text-xs;
     }
 
     h6 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance leading-tight hyphens-auto;
+        @apply font-sans text-small font-semibold break-words whitespace-normal text-balance leading-tight hyphens-auto text-base-content;
         @apply print:text-[10px];
         /* 10px for extra small print */
     }
 
     small {
-        @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply font-serif text-small leading-tight break-words whitespace-normal text-balance hyphens-auto text-secondary;
         @apply print:sm:text-xs print:leading-tight;
     }
 
-    a, p {
-        @apply text-base sm:text-lg font-normal leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    p {
+        @apply font-serif text-body sm:text-body-lg leading-relaxed break-words whitespace-normal text-balance hyphens-auto text-base-content;
         @apply print:text-sm print:leading-relaxed;
+    }
+
+    a:not(.btn) {
+        @apply font-serif text-primary no-underline decoration-2 underline-offset-2 break-words whitespace-normal text-balance;
+    }
+    a:not(.btn):hover {
+        @apply underline;
+    }
+    a:not(.btn):focus-visible {
+        @apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-base-100;
     }
 
     .article > ul {
@@ -197,8 +216,14 @@ input[type='number'] {
         @apply my-10;
     }
 
-    .article, article > a, p, li {
-        @apply text-lg lg:text-xl leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    /* Limit larger reading sizes to content areas only */
+    .article p,
+    .article a,
+    .article li,
+    article p,
+    article a,
+    article li {
+        @apply text-body sm:text-body-lg leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
     }
 
     a.missing-link {
@@ -211,7 +236,7 @@ input[type='number'] {
     }
 
     li {
-        @apply text-sm;
+        @apply font-serif text-body leading-relaxed;
     }
 
 
@@ -290,4 +315,82 @@ input[type='number'] {
             @apply text-base font-normal mb-2;
             color: var(--color-secondary);
         }*/
+}
+
+/* Centralisierte Typo-Tokens für Tailwind v4 */
+@theme {
+    /* Body text */
+    --text-body: 1rem; /* 16px */
+    --text-body-lg: 1.125rem; /* 18px */
+    --text-small: 0.875rem; /* 14px */
+    --text-muted: 0.875rem; /* 14px */
+
+    /* Heading scale */
+    --text-h1: 2rem; /* 32px */
+    --text-h1-md: 2.5rem; /* 40px */
+    --text-h1-lg: 3rem; /* 48px */
+
+    --text-h2: 1.75rem; /* 28px */
+    --text-h2-md: 2.125rem; /* 34px */
+    --text-h2-lg: 2.5rem; /* 40px */
+
+    --text-h3: 1.5rem; /* 24px */
+    --text-h3-md: 1.75rem; /* 28px */
+    --text-h3-lg: 2rem; /* 32px */
+
+    --text-h4: 1.25rem; /* 20px */
+    --text-h4-md: 1.5rem; /* 24px */
+    --text-h4-lg: 1.75rem; /* 28px */
+
+    --text-h5: 1rem; /* 16px */
+    --text-h5-md: 1.125rem; /* 18px */
+    --text-h5-lg: 1.25rem; /* 20px */
+}
+
+@layer components {
+    /* DaisyUI titles use heading font and sizes */
+    .card-title,
+    .modal-title,
+    .dialog-title,
+    .drawer-title {
+        @apply font-sans text-base-content text-h4 md:text-h3 lg:text-h2;
+    }
+
+    .menu-title,
+    .dropdown-title {
+        @apply font-sans text-base-content text-h5 md:text-h4;
+    }
+
+    .label, .label-text {
+        @apply font-serif text-small font-medium text-base-content;
+    }
+
+    .tab, .badge {
+        @apply font-serif text-small;
+    }
+
+    .btn {
+        @apply font-serif;
+    }
+}
+
+/* Tailwind Typography (.prose) Anpassungen */
+@layer utilities {
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose h5,
+    .prose h6 {
+        @apply font-sans text-base-content;
+    }
+    .prose p,
+    .prose li,
+    .prose a,
+    .prose small {
+        @apply font-serif text-base-content;
+    }
+    .prose a:not(.btn) {
+        @apply text-primary no-underline hover:underline decoration-2 underline-offset-2;
+    }
 }
