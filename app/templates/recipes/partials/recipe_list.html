@@ -1,6 +1,6 @@
 {% load static i18n %}
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 gap-5 w-full mx-auto pb-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 gap-5 w-full mx-auto">
     {% if not object_list %}
         <p class="col-span-full text-center">{% translate "We don't have any Recipes listed yet." %}</p>
     {% endif %}
@@ -21,9 +21,9 @@
                         style="background-image: url('{% static 'images/logo_icon.svg' %}');">
                 </figure>
             </figure>
-            <div class="flex flex-col justify-between gap-5 px-4 py-2 h-full w-full overflow-hidden bg-base-200">
+            <div class="flex flex-col justify-between gap-5 px-4 py-2 h-full w-full overflow-hidden bg-base-300 group-hover:bg-base-100">
                 <div class="flex flex-col gap-5">
-                    <h3 class="group-hover:text-primary break-words whitespace-normal">
+                    <h3 class="group-hover:text-secondary break-words whitespace-normal">
                         {{ recipe.name }}
                     </h3>
                     <p class="break-words whitespace-normal line-clamp-3">{{ recipe.description }}</p>
