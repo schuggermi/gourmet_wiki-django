@@ -1,11 +1,6 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.db.models import Q
-from django.utils import translation
 from django.utils.translation import gettext_lazy as _
-
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
-
 from ingredients.models import Ingredient
 
 INPUT_CLASSES = ''
@@ -21,38 +16,28 @@ class RecipeForm(forms.ModelForm):
         fields = [
             'name', 'is_published', 'description', 'skill_level', 'portions', 'cooking_time_hours',
             'cooking_time_minutes',
-        ]  # 'thumbnail_image', 'rest_time_hours', 'rest_time_minutes', 'working_time_hours', 'working_time_minutes'
+        ]
         widgets = {
-            'name': forms.TextInput(attrs={
-                'placeholder': _("Name your creation (e.g. Spicy Thai Basil Chicken)"),
-                'maxlength': Recipe._meta.get_field('name').max_length,
-            }),
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': _("Spicy Thai Basil Chicken"),
+                    'maxlength': Recipe._meta.get_field('name').max_length,
+                }
+            ),
             'is_published': forms.CheckboxInput(attrs={}),
             'description': forms.Textarea(attrs={
                 'rows': 3,
                 'cols': 20,
                 'wrap': 'soft',
                 'resize': False,
-                'placeholder': _("e.g. A spicy Thai stir-fry with chicken, basil, and fresh chili."),
+                'placeholder': _("A spicy Thai stir-fry with chicken, basil, and fresh chili."),
                 'maxlength': Recipe._meta.get_field('description').max_length,
             }),
-            # 'thumbnail_image': forms.FileInput(attrs={
-            #     'class': FILE_INPUT_CLASSES,
-            #     'accept': 'image/*'
-            # }),
             'skill_level': forms.Select(),
             'portions': forms.NumberInput(attrs={
                 'min': 1,
                 'max': 500,
             }),
-            # 'working_time_hours': forms.NumberInput(attrs={
-            #     'min': 0,
-            #     'max': 24,
-            # }),
-            # 'working_time_minutes': forms.NumberInput(attrs={
-            #     'min': 0,
-            #     'max': 60,
-            # }),
             'cooking_time_hours': forms.NumberInput(attrs={
                 'min': 0,
                 'max': 24,
@@ -61,14 +46,6 @@ class RecipeForm(forms.ModelForm):
                 'min': 0,
                 'max': 60,
             }),
-            # 'rest_time_hours': forms.NumberInput(attrs={
-            #     'min': 0,
-            #     'max': 24,
-            # }),
-            # 'rest_time_minutes': forms.NumberInput(attrs={
-            #     'min': 0,
-            #     'max': 60,
-            # }),
         }
 
 
@@ -187,17 +164,3 @@ class RecipeImageForm(forms.ModelForm):
         if not image and not self.instance.image:
             raise forms.ValidationError(_("This field is required."))
         return image
-
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     image = cleaned_data.get('image')
-    #
-    #     # If no new image is uploaded, but the instance has one, reuse it
-    #     if not image and self.instance and self.instance.pk and self.instance.image:
-    #         cleaned_data['image'] = self.instance.image
-    #
-    #     # If still no image, raise error
-    #     if not image:
-    #         self.add_error('image', "This field is requiredd.")
-    #
-    #     return cleaned_data

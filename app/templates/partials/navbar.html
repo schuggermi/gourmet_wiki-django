@@ -1,40 +1,34 @@
 {% load static i18n %}
 
 <div id="navbar"
-     class="h-16 navbar bg-base-100 shadow-accent shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
+     class="h-16 navbar bg-base-100 shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
     <div class="navbar-start flex items-center gap-3">
-        <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="flex items-center gap-2">
-            <img class="h-8 md:h-10 w-auto max-h-10 object-contain" src="{% static 'images/logo.png' %}"
+        <c-a url="{% url 'home' %}" title="Gourmet Wiki" class="flex items-end font-bold text-md md:text-xl">
+            <img class="h-8 md:h-10 w-auto max-h-10 object-contain" src="{% static 'images/logo_icon_rotated.png' %}"
                  alt="Gourmet Wiki">
-            <span class="text-lg font-semibold text-primary hidden">Gourmet Wiki</span>
+            <span class="text-base-content">Gourmet</span><span class="text-secondary">Wiki</span>
         </c-a>
     </div>
     <div class="w-max navbar-center hidden lg:flex flex-1 justify-center">
         <ul class="flex gap-5 px-1 w-max list-none">
             <li>
                 <c-a url="{% url 'recipe-list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'recipe-list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'recipe-list' %}btn-primary dark:btn-accent{% endif %}">
                     {% translate 'All Recipes' %}
                 </c-a>
             </li>
             <li>
                 <c-a url="{% url 'menu_list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'menu_list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'menu_list' %}btn-primary dark:btn-accent{% endif %}">
                     {% translate 'All Menus' %}
                 </c-a>
             </li>
             <li>
                 <c-a url="{% url 'wiki:article_list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'article_list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'article_list' %}btn-primary dark:btn-accent{% endif %}">
                     {% translate 'Culinary Wiki' %}
                 </c-a>
             </li>
-            <!--<li>
-                <c-a url="{% url 'ingredients:ingredient_list' %}"
-                     class="btn {% if request.resolver_match.url_name == 'ingredient_list' %}btn-primary dark:btn-accent{% endif %}">
-                    {% translate 'Food Index' %}
-                </c-a>
-            </li>-->
         </ul>
     </div>
     <div class="navbar-end gap-2 md:gap-5">
@@ -46,18 +40,19 @@
                 </svg>
                 <span class="font-medium">{{ request.LANGUAGE_CODE|default:'de'|upper }}</span>
             </div>
+
             <div tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 dark:bg-neutral rounded-box w-44">
                 <form action="{% url 'set_language' %}" method="post" class="flex flex-col gap-2">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                    <button type="submit" name="language" value="de"
+                    <c-a type="submit" name="language" value="de"
                             class="btn btn-sm justify-start {% if request.LANGUAGE_CODE == 'de' %}btn-primary dark:btn-accent{% endif %}">
                         🇩🇪 Deutsch
-                    </button>
-                    <button type="submit" name="language" value="en"
+                    </c-a>
+                    <c-a type="submit" name="language" value="en"
                             class="btn btn-sm justify-start {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}btn-primary dark:btn-accent{% endif %}">
                         🇬🇧 English
-                    </button>
+                    </c-a>
                 </form>
             </div>
         </div>
@@ -84,11 +79,6 @@
                         {% translate 'Wiki' %}
                     </c-a>
                 </li>
-                <!--<li>
-                    <c-a url="{% url 'ingredients:ingredient_list' %}">
-                        {% translate 'Food Index' %}
-                    </c-a>
-                </li>-->
             </ul>
         </div>
         {% if user.is_authenticated %}

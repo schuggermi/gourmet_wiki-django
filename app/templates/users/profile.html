@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="container py-10 px-2">
+    <div class="w-full container py-10 px-2">
         <div class="self-start flex flex-col gap-1">
             <h1>{% translate 'Your Profile' %}</h1>
             <c-go-back></c-go-back>
@@ -33,23 +33,17 @@
                                   value="{{ object.points }}" max="{{ object.max_points_to_next_level }}"></progress>
                         <small>{% blocktrans with points=object.missing_points_to_next_level level=object.get_next_level_display_name %}{{ points }} points missing till next level <span class="text-secondary">{{ level }}</span>{% endblocktrans %}</small>
                     </div>
-
-
-                    {% comment %}<div class="flex flex-col">
-                    <p class="break-all wrap-break-word">{{ object.user.email }}</p>
-                    <c-a url="{% url 'account_email' %}" class="text-accent font-light hover:underline" animated>
-                            {% translate 'Change Your Email' %}
-                        </c-a>
-                </div>{% endcomment %}
                 </div>
             </div>
 
-            <ul class="flex gap-5 flex-wrap items-center">
-                <p class="font-bold">{% translate 'Badges:' %}</p>
-                {% for badge in object.badges.all %}
-                    <li class="badge badge-sm badge-accent font-bold break-all wrap-break-word">{{ badge }}</li>
-                {% endfor %}
-            </ul>
+            <div class="w-full flex gap-5">
+                <p class="font-bold shrink-0">{% translate 'Badges:' %}</p>
+                <ul class="ps-0 w-full flex flex-1 gap-2 flex-wrap items-center">
+                    {% for badge in object.badges.all %}
+                        <li class="badge badge-md badge-accent rounded-md font-bold break-all wrap-break-word">{{ badge }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
             <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5 w-full">
                 <a href="{% url 'users-profile-recipes' %}" class="h-20 w-full btn btn-base-200 dark:btn-neutral">
@@ -103,11 +97,13 @@
                 </a>
             </div>
 
-            <div class="col-span-2 grid grid-cols-2 md:flex gap-2">
-                <c-a url="{% url 'account_change_password' %}"
-                     class="btn btn-accent btn-outline">{% translate 'Change Password' %}</c-a>
-                <c-a url="#delete_confirmation_modal" onclick="showUserDeleteModal()"
-                     class="btn btn-error btn-outline">{% translate 'Delete Account' %}</c-a>
+            <div class="flex flex-col gap-5">
+                <div class="col-span-2 grid grid-cols-2 md:flex gap-2">
+                    <c-a url="{% url 'account_change_password' %}"
+                         class="btn btn-accent btn-outline">{% translate 'Change Password' %}</c-a>
+                    <c-a url="#delete_confirmation_modal" onclick="showUserDeleteModal()"
+                         class="btn btn-error btn-outline">{% translate 'Delete Account' %}</c-a>
+                </div>
             </div>
         </div>
     </div>

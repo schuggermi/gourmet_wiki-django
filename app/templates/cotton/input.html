@@ -12,7 +12,7 @@
 {% else %}
     <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
         {% if field and not label %}
-            {{ field.label }}
+            {{ field.label }}{% if field.field.required %}*{% endif %}
         {% elif label %}
             {{ label }}
         {% endif %}

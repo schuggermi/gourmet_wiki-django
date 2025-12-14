@@ -16,8 +16,15 @@ User = get_user_model()
 
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, max_length=250)
+    name = models.CharField(
+        max_length=100,
+        verbose_name=_("Name"),
+    )
+    description = models.TextField(
+        blank=True,
+        max_length=250,
+        verbose_name=_("Description"),
+    )
     created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -40,22 +47,6 @@ class Recipe(models.Model):
             MaxValueValidator(500),
         ]
     )
-    # working_time_hours = models.PositiveIntegerField(
-    #     verbose_name=_('Hours'),
-    #     default=0,
-    #     validators=[
-    #         MinValueValidator(0),
-    #         MaxValueValidator(24),
-    #     ]
-    # )
-    # working_time_minutes = models.PositiveIntegerField(
-    #     verbose_name=_('Minutes'),
-    #     default=0,
-    #     validators=[
-    #         MinValueValidator(0),
-    #         MaxValueValidator(60),
-    #     ]
-    # )
     cooking_time_hours = models.PositiveIntegerField(
         verbose_name=_('Hours'),
         default=0,
@@ -65,33 +56,17 @@ class Recipe(models.Model):
         ]
     )
     cooking_time_minutes = models.PositiveIntegerField(
-        verbose_name=_('Minutes'),
+        verbose_name=_('Cooking Time (Minutes)'),
         default=0,
         validators=[
-            MinValueValidator(0),
-            MaxValueValidator(60),
+            MinValueValidator(1),
         ]
     )
-    # rest_time_hours = models.PositiveIntegerField(
-    #     verbose_name=_('Hours'),
-    #     default=0,
-    #     validators=[
-    #         MinValueValidator(0),
-    #         MaxValueValidator(24),
-    #     ]
-    # )
-    # rest_time_minutes = models.PositiveIntegerField(
-    #     verbose_name=_('Minutes'),
-    #     default=0,
-    #     validators=[
-    #         MinValueValidator(0),
-    #         MaxValueValidator(60),
-    #     ]
-    # )
     skill_level = models.CharField(
         max_length=50,
         choices=SkillLevelChoice.choices,
         default=SkillLevelChoice.BEGINNER,
+        verbose_name=_("Skill Level"),
     )
     favorite_by = models.ManyToManyField(
         User,
