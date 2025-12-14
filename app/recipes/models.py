@@ -47,17 +47,9 @@ class Recipe(models.Model):
             MaxValueValidator(500),
         ]
     )
-    cooking_time_hours = models.PositiveIntegerField(
-        verbose_name=_('Hours'),
-        default=0,
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(24),
-        ]
-    )
     cooking_time_minutes = models.PositiveIntegerField(
         verbose_name=_('Cooking Time (Minutes)'),
-        default=0,
+        default=30,
         validators=[
             MinValueValidator(1),
         ]
@@ -78,10 +70,6 @@ class Recipe(models.Model):
     @property
     def total_cost(self):
         return calculate_recipe_cost(self)
-
-    @property
-    def total_time_hours(self):
-        return self.cooking_time_hours  # self.working_time_hours + self.cooking_time_hours + self.rest_time_hours
 
     @property
     def total_time_minutes(self):

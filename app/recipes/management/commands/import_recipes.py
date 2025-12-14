@@ -65,7 +65,6 @@ class Command(BaseCommand):
                     portions=recipe_data.get('portions', 4),
                     working_time_hours=recipe_data.get('working_time_hours', 0),
                     working_time_minutes=recipe_data.get('working_time_minutes', 0),
-                    cooking_time_hours=recipe_data.get('cooking_time_hours', 0),
                     cooking_time_minutes=recipe_data.get('cooking_time_minutes', 0),
                     rest_time_hours=recipe_data.get('rest_time_hours', 0),
                     rest_time_minutes=recipe_data.get('rest_time_minutes', 0),

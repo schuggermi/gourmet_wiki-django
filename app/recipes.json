@@ -5,12 +5,7 @@
     "course_type": "", /* Any of these choosen by you [amuse_bouche cold_starter soup fish hot_starter main sorbet roast vegetable salad cheese dessert digestive_drink] */
     "skill_level": "", /* Defined by you */
     "portions": 0,
-    "working_time_hours": 0,
-    "working_time_minutes": 0,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 0,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 0,
     "ingredients": [
       {
         "ingredient": "",

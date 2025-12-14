@@ -231,7 +231,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance = form.save(commit=False)
                 instance.recipe = recipe
 
-                pprint(instance, indent=4)
+                # pprint(instance, indent=4)
 
                 if not instance.pk:
                     instance.save()

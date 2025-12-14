@@ -45,14 +45,14 @@
                 <form action="{% url 'set_language' %}" method="post" class="flex flex-col gap-2">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                    <c-a type="submit" name="language" value="de"
+                    <button type="submit" name="language" value="de"
                             class="btn btn-sm justify-start {% if request.LANGUAGE_CODE == 'de' %}btn-primary dark:btn-accent{% endif %}">
                         🇩🇪 Deutsch
-                    </c-a>
-                    <c-a type="submit" name="language" value="en"
+                    </button>
+                    <button type="submit" name="language" value="en"
                             class="btn btn-sm justify-start {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}btn-primary dark:btn-accent{% endif %}">
                         🇬🇧 English
-                    </c-a>
+                    </button>
                 </form>
             </div>
         </div>

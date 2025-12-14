@@ -26,7 +26,7 @@ class RecipeAdmin(admin.ModelAdmin):
     fields = [
         'name', 'description', 'course_type', 'skill_level', 'thumbnail_image', 'created_by', 'created_at', 'get_total_cost',
         'portions',
-        'working_time_hours', 'working_time_minutes', 'cooking_time_hours', 'cooking_time_minutes',
+        'working_time_hours', 'working_time_minutes', 'cooking_time_minutes',
         'rest_time_hours', 'rest_time_minutes',
     ]
     search_fields = ('name', 'course_type')

@@ -14,8 +14,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = [
-            'name', 'is_published', 'description', 'skill_level', 'portions', 'cooking_time_hours',
-            'cooking_time_minutes',
+            'name', 'is_published', 'description', 'skill_level', 'portions', 'cooking_time_minutes',
         ]
         widgets = {
             'name': forms.TextInput(
@@ -37,10 +36,6 @@ class RecipeForm(forms.ModelForm):
             'portions': forms.NumberInput(attrs={
                 'min': 1,
                 'max': 500,
-            }),
-            'cooking_time_hours': forms.NumberInput(attrs={
-                'min': 0,
-                'max': 24,
             }),
             'cooking_time_minutes': forms.NumberInput(attrs={
                 'min': 0,

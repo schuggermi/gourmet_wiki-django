@@ -563,7 +563,7 @@ msgstr "Zubereitungsschritt"
 
 #: templates/pages/home.html:19
 msgid "Your #1 knowledge kitchen"
-msgstr ""
+msgstr "Deine #1 Wissensküche"
 
 #: templates/pages/home.html:23
 msgid "Share Your Culinary Expertise"
@@ -581,7 +581,7 @@ msgstr "Jetzt mitmachen"
 
 #: templates/pages/home.html:40
 msgid "A Better Way to Find Recipes"
-msgstr ""
+msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
 
 #: templates/pages/home.html:45
 msgid "Pure culinary experience.<br>Zero ads."

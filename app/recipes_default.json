@@ -5,12 +5,7 @@
     "course_type": "hot_starter",
     "skill_level": "Beginner",
     "portions": 4,
-    "working_time_hours": 0,
-    "working_time_minutes": 25,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 4,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 0,
     "ingredients": [
       {
         "ingredient": "Rote Bete, gekocht",
@@ -144,12 +139,7 @@
     "course_type": "hot_starter",
     "skill_level": "Intermediate",
     "portions": 2,
-    "working_time_hours": 0,
-    "working_time_minutes": 30,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 5,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 2,
     "ingredients": [
       {
         "ingredient": "Honig",
@@ -293,12 +283,7 @@
     "course_type": "vegetable",
     "skill_level": "Beginner",
     "portions": 2,
-    "working_time_hours": 0,
-    "working_time_minutes": 25,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 20,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 0,
     "ingredients": [
       {
         "ingredient": "Bulgur",
@@ -436,12 +421,7 @@
     "course_type": "salad",
     "skill_level": "Beginner",
     "portions": 4,
-    "working_time_hours": 0,
-    "working_time_minutes": 20,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 15,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 0,
     "ingredients": [
       {
         "ingredient": "Hähnchenbrust",
