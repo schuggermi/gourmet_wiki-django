@@ -7,7 +7,10 @@
 {% endblock title %}
 
 {% block heading %}
-    <h1>{% translate 'Sign Up Now' %}</h1>
+    <div class="flex flex-col gap-5">
+        <h1 class="text-center">{% translate 'Sign Up Now' %}</h1>
+        <p class="text-center">{% translate 'Tried-and-tested recipes, proven cooking techniques, and sound culinary knowledge. Completely free of advertising.' %}</p>
+    </div>
 {% endblock heading %}
 
 {% block content %}
@@ -30,23 +33,23 @@
 
                     <div class="flex gap-2">
                         <div class="text-start">
-                            <c-input :field="form.first_name" type="text"></c-input>
+                            <c-input :field="form.first_name" type="text" labeled></c-input>
                         </div>
                         <div class="text-start">
-                            <c-input :field="form.last_name" type="text"></c-input>
+                            <c-input :field="form.last_name" type="text" labeled></c-input>
                         </div>
                     </div>
                     <div class="text-start">
-                        <c-input :field="form.email" type="text"></c-input>
+                        <c-input :field="form.email" type="text" labeled></c-input>
                     </div>
                     <div class="text-start">
-                        <c-input :field="form.username" type="text"></c-input>
+                        <c-input :field="form.username" type="text" labeled></c-input>
                     </div>
                     <div class="text-start">
-                        <c-input :field="form.password1" type="password" no_help></c-input>
+                        <c-input :field="form.password1" type="password" no_help labeled></c-input>
                     </div>
                     <div class="text-start">
-                        <c-input :field="form.password2" type="password"></c-input>
+                        <c-input :field="form.password2" type="password" labeled></c-input>
                     </div>
                 </div>
 
