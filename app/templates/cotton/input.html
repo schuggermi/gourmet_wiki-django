@@ -7,27 +7,28 @@
         error_class="border-1 border-red-400!"
 ></c-vars>
 
-{% if slot %}
-    {{ slot }}
-{% else %}
-    <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
-        {% if field and not label %}
-            {{ field.label }}{% if field.field.required %}*{% endif %}
-        {% elif label %}
-            {{ label }}
-        {% endif %}
-    </label>
-{% endif %}
-<input {{ field.field.widget.attrs|render_attrs }}
-        type="{{ type }}"
-        {% if value|stringformat:"s" == check_value|stringformat:"s" %}checked{% endif %}
-        {% if disabled %}disabled{% endif %}
-        id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-        name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
-        value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
-        placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-        class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% endif %}"
->
+<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
+    {% if field and not label %}
+        {{ field.label }}{% if field.field.required %}*{% endif %}
+    {% elif label %}
+        {{ label }}
+    {% endif %}
+</label>
+<div class="relative w-full">
+    <input {{ field.field.widget.attrs|render_attrs }}
+            type="{{ type }}"
+            {% if value|stringformat:"s" == check_value|stringformat:"s" %}checked{% endif %}
+            {% if disabled %}disabled{% endif %}
+            id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+            name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
+            value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
+            placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
+            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% endif %}"
+    >
+    {% if slot %}
+        {{ slot }}
+    {% endif %}
+</div>
 {% if not no_errors %}
     {% for error in field.errors %}
         <ul class="text-red-400 pt-1">
@@ -36,5 +37,5 @@
     {% endfor %}
 {% endif %}
 {% if field.help_text and not no_help %}
-    <small class="block w-full">{{ field.help_text|safe }}</small>
+    <small class="block w-fit mt-2">{{ field.help_text|safe }}</small>
 {% endif %}

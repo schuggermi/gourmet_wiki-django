@@ -143,12 +143,12 @@ input[type='number'] {
         /* 10px for extra small print */
     }
 
-    small {
+    small, small a {
         @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:sm:text-xs print:leading-tight;
     }
 
-    a, p {
+    a, p, label {
         @apply text-base sm:text-lg font-normal leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }

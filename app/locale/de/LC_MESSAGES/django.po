@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-14 02:48+0000\n"
+"POT-Creation-Date: 2025-12-15 12:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,29 +129,27 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:23
-#| msgid "Spicy Thai Basil Chicken"
+#: recipes/forms.py:22
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:33
-#| msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
+#: recipes/forms.py:32
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:58
+#: recipes/forms.py:53
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:61
+#: recipes/forms.py:56
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:81
+#: recipes/forms.py:76
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:87 recipes/forms.py:165
+#: recipes/forms.py:82 recipes/forms.py:160
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -172,22 +170,18 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: recipes/models.py:51
-msgid "Hours"
-msgstr "Stunden"
-
-#: recipes/models.py:59
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:69 templates/recipes/partials/recipe_details_form.html:26
+#: recipes/models.py:61 templates/recipes/partials/recipe_details_form.html:26
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:76
+#: recipes/models.py:68
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:193
+#: recipes/models.py:181
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
@@ -246,34 +240,39 @@ msgstr "Neue E-Mail-Bestätigungsanfrage senden"
 msgid "Support"
 msgstr "Support"
 
-#: templates/account/login.html:6 templates/account/login.html:10
+#: templates/account/login.html:6 templates/account/login.html:11
 msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
-#: templates/account/login.html:59 templates/account/password_change.html:44
+#: templates/account/login.html:12
+msgid ""
+"Tried-and-tested recipes, proven cooking techniques, and sound culinary knowledge. Completely free of advertising."
+msgstr "Erprobte Rezepte, bewährte Kochtechniken und fundiertes Küchenwissen. Ganz ohne Werbung."
+
+#: templates/account/login.html:62 templates/account/password_change.html:44
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: templates/account/login.html:65
+#: templates/account/login.html:68
 #: templates/account/password_reset_from_key.html:6
 #: templates/socialaccount/login.html:6
 msgid "Sign In"
 msgstr "Anmelden"
 
-#: templates/account/login.html:75
+#: templates/account/login.html:78
 msgid "You don't have an account at Gourmet Wiki yet?"
 msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 
-#: templates/account/login.html:77 templates/account/signup.html:6
+#: templates/account/login.html:80 templates/account/signup.html:6
 #: templates/account/signup.html:10
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:86 templates/account/signup.html:75
+#: templates/account/login.html:89 templates/account/signup.html:75
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:91 templates/account/signup.html:80
+#: templates/account/login.html:94 templates/account/signup.html:80
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -395,7 +394,7 @@ msgstr "Zurück"
 
 #: templates/cotton/portions_calculator.html:24
 #: templates/menus/partials/menu_form.html:24
-#: templates/recipes/partials/recipe_details_form.html:67
+#: templates/recipes/partials/recipe_details_form.html:42
 msgid "Portions"
 msgstr "Portionen"
 
@@ -537,27 +536,27 @@ msgstr "Gesamt"
 msgid "Cooking"
 msgstr "Kochzeit"
 
-#: templates/menus/partials/recipe_detail.html:114
+#: templates/menus/partials/recipe_detail.html:111
 msgid "Working"
 msgstr "Arbeitszeit"
 
-#: templates/menus/partials/recipe_detail.html:130
+#: templates/menus/partials/recipe_detail.html:127
 msgid "Resting"
 msgstr "Ruhezeit"
 
-#: templates/menus/partials/recipe_detail.html:152
+#: templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
 #: templates/recipes/partials/recipe_detail.html:92
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: templates/menus/partials/recipe_detail.html:162
+#: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
 #: templates/recipes/partials/recipe_detail.html:100
 msgid "Preparation"
 msgstr "Zubereitung"
 
-#: templates/menus/partials/recipe_detail.html:172
+#: templates/menus/partials/recipe_detail.html:169
 msgid "Preparation Step"
 msgstr "Zubereitungsschritt"
 
@@ -1264,13 +1263,9 @@ msgstr "Diesen Zubereitungsschritt entfernen"
 msgid "Section"
 msgstr "Abschnitt"
 
-#: templates/recipes/partials/recipe_details_form.html:71
+#: templates/recipes/partials/recipe_details_form.html:46
 msgid "Persons"
 msgstr "Personen"
-
-#: templates/recipes/partials/recipe_details_form.html:85
-msgid "Cooking Time"
-msgstr "Kochzeit"
 
 #: templates/recipes/partials/recipe_images_form.html:30
 msgid "No Images uploaded yet."
@@ -1508,6 +1503,12 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Hours"
+#~ msgstr "Stunden"
+
+#~ msgid "Cooking Time"
+#~ msgstr "Kochzeit"
 
 #~ msgid "Minutes"
 #~ msgstr "Minuten"

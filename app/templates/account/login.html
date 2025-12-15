@@ -7,7 +7,10 @@
 {% endblock title %}
 
 {% block heading %}
-    <h1 class="text-center">{% translate 'Log In Now' %}</h1>
+    <div class="flex flex-col gap-5">
+        <h1 class="text-center">{% translate 'Log In Now' %}</h1>
+        <p class="text-center">{% translate 'Tried-and-tested recipes, proven cooking techniques, and sound culinary knowledge. Completely free of advertising.' %}</p>
+    </div>
     {% comment %}<p class="text-center">{% blocktranslate %}<span class="text-secondary">🚧 Access Limited</span><br>We’re cooking something up!{% endblocktranslate %}</p>{% endcomment %}
 {% endblock %}
 
@@ -23,18 +26,18 @@
                     {% if form.non_field_errors %}
                         <ul>
                             {% for error in form.non_field_errors %}
-                                <li><p class="text-red-400 text-center">{{ error }}</p></li>
+                                <li><p class="text-red-400 text-start">{{ error }}</p></li>
                             {% endfor %}
                         </ul>
                     {% endif %}
 
                     <div>
-                        <c-input :field="form.login" type="text"></c-input>
+                        <c-input :field="form.login" type="text" labeled></c-input>
                     </div>
 
                     <div>
                         <div class="relative w-full">
-                            <c-input :field="form.password" type="password" no_help class="w-full pr-10">
+                            <c-input :field="form.password" type="password" labeled class="w-full pr-10">
                                 <button tabindex="0" role="button" type="button" id="togglePassword"
                                         aria-expanded="false"
                                         class="swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer">
@@ -54,9 +57,6 @@
                                 </button>
                             </c-input>
                         </div>
-                        <a href="{% url 'account_reset_password' %}">
-                            <small>{% translate 'Forgot your password?' %}</small>
-                        </a>
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
             {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
         {% endif %}
 
-        <div class="text-center flex flex-col gap-1 items-center">
+        <div class="text-center flex flex-col gap-2 items-center">
             <p>{% translate "You don't have an account at Gourmet Wiki yet?" %}</p>
             <c-a animated url="{% url 'account_signup' %}"
                  class="underline">{% translate 'Sign Up Now' %}</c-a>
