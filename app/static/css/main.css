@@ -144,7 +144,7 @@ input[type='number'] {
     }
 
     small, small a {
-        @apply text-xs sm:text-sm leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-xs sm:text-sm font-medium leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:sm:text-xs print:leading-tight;
     }
 
@@ -176,6 +176,10 @@ input[type='number'] {
 
     li {
         @apply text-sm;
+    }
+
+    input {
+        @apply font-medium;
     }
 
     /*input, textarea {*/
