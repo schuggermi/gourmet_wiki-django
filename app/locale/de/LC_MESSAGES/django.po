@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 12:23+0000\n"
+"POT-Creation-Date: 2025-12-15 13:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,33 +246,32 @@ msgstr "Jetzt anmelden"
 
 #: templates/account/login.html:12
 msgid ""
-"Tried-and-tested recipes, proven cooking techniques, and sound culinary knowledge. Completely free of advertising."
-msgstr "Erprobte Rezepte, bewährte Kochtechniken und fundiertes Küchenwissen. Ganz ohne Werbung."
+"Tried-and-tested recipes, proven cooking techniques, and sound culinary "
+"knowledge. Completely free of advertising."
+msgstr ""
+"Erprobte Rezepte, bewährte Kochtechniken und fundiertes Küchenwissen. Ganz "
+"ohne Werbung."
 
-#: templates/account/login.html:62 templates/account/password_change.html:44
-msgid "Forgot your password?"
-msgstr "Passwort vergessen?"
-
-#: templates/account/login.html:68
+#: templates/account/login.html:65
 #: templates/account/password_reset_from_key.html:6
 #: templates/socialaccount/login.html:6
 msgid "Sign In"
 msgstr "Anmelden"
 
-#: templates/account/login.html:78
+#: templates/account/login.html:75
 msgid "You don't have an account at Gourmet Wiki yet?"
 msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 
-#: templates/account/login.html:80 templates/account/signup.html:6
+#: templates/account/login.html:77 templates/account/signup.html:6
 #: templates/account/signup.html:10
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:89 templates/account/signup.html:75
+#: templates/account/login.html:86 templates/account/signup.html:75
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:94 templates/account/signup.html:80
+#: templates/account/login.html:91 templates/account/signup.html:80
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -285,6 +284,10 @@ msgstr "Sende mir einen Anmeldecode"
 #: templates/users/profile.html:103
 msgid "Change Password"
 msgstr "Passwort ändern"
+
+#: templates/account/password_change.html:44
+msgid "Forgot your password?"
+msgstr "Passwort vergessen?"
 
 #: templates/account/password_reset.html:6
 #: templates/account/password_reset.html:10
@@ -565,36 +568,82 @@ msgid "Your #1 knowledge kitchen"
 msgstr "Deine #1 Wissensküche"
 
 #: templates/pages/home.html:23
-msgid "Share Your Culinary Expertise"
-msgstr "Teile dein Küchenwissen"
+msgid "No ads. No guesswork. Just cooking."
+msgstr "Keine Werbung. Kein Rätselraten. Einfach kochen."
 
 #: templates/pages/home.html:24
-msgid ""
-"Join chefs and culinary experts in creating a reliable source for core "
-"recipes and techniques"
-msgstr "Werde Teil einer Plattform für erprobte Rezepte und Techniken."
+msgid "Built by chefs and serious home cooks sharing recipes they trust."
+msgstr "Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie vertrauen."
 
 #: templates/pages/home.html:34
-msgid "Get Started"
-msgstr "Jetzt mitmachen"
+msgid "Join the Community"
+msgstr "Der Community beitreten"
 
-#: templates/pages/home.html:40
+#: templates/pages/home.html:43
 msgid "A Better Way to Find Recipes"
 msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
 
-#: templates/pages/home.html:45
-msgid "Pure culinary experience.<br>Zero ads."
-msgstr "Pure Kulinarik.<br>Null Werbung."
+#: templates/pages/home.html:56
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                %(recipe_count)s Recipe\n"
+#| "                            "
+#| msgid_plural ""
+#| "\n"
+#| "                                %(recipe_count)s Recipes\n"
+#| "                            "
+msgid ""
+"\n"
+"                            Pure culinary experience.<br>\n"
+"                            Zero ads.\n"
+"                            "
+msgstr ""
+"\n"
+"                                %(recipe_count)s Rezept\n"
+"                            "
 
-#: templates/pages/home.html:51
-msgid "Proven chef-level recipes<br>that work anywhere."
-msgstr "Profi-Rezepte,<br>die überall funktionieren."
+#: templates/pages/home.html:71
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                %(recipe_count)s Recipe\n"
+#| "                            "
+#| msgid_plural ""
+#| "\n"
+#| "                                %(recipe_count)s Recipes\n"
+#| "                            "
+msgid ""
+"\n"
+"                            Proven chef-level recipes<br>\n"
+"                            that work anywhere.\n"
+"                            "
+msgstr ""
+"\n"
+"                                %(recipe_count)s Rezept\n"
+"                            "
 
-#: templates/pages/home.html:57
-msgid "Where chefs, home cooks,<br>and food lovers connect."
-msgstr "Wo Köche & Genießer<br>zusammenkommen."
+#: templates/pages/home.html:86
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                %(recipe_count)s Recipe\n"
+#| "                            "
+#| msgid_plural ""
+#| "\n"
+#| "                                %(recipe_count)s Recipes\n"
+#| "                            "
+msgid ""
+"\n"
+"                            Where chefs, home cooks,<br>\n"
+"                            and food lovers connect.\n"
+"                            "
+msgstr ""
+"\n"
+"                                %(recipe_count)s Rezept\n"
+"                            "
 
-#: templates/pages/home.html:67
+#: templates/pages/home.html:102
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -1503,6 +1552,26 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Share Your Culinary Expertise"
+#~ msgstr "Teile dein Küchenwissen"
+
+#~ msgid ""
+#~ "Join chefs and culinary experts in creating a reliable source for core "
+#~ "recipes and techniques"
+#~ msgstr "Werde Teil einer Plattform für erprobte Rezepte und Techniken."
+
+#~ msgid "Get Started"
+#~ msgstr "Jetzt mitmachen"
+
+#~ msgid "Pure culinary experience.<br>Zero ads."
+#~ msgstr "Pure Kulinarik.<br>Null Werbung."
+
+#~ msgid "Proven chef-level recipes<br>that work anywhere."
+#~ msgstr "Profi-Rezepte,<br>die überall funktionieren."
+
+#~ msgid "Where chefs, home cooks,<br>and food lovers connect."
+#~ msgstr "Wo Köche & Genießer<br>zusammenkommen."
 
 #~ msgid "Hours"
 #~ msgstr "Stunden"

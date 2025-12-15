@@ -13,25 +13,19 @@
             <div class="absolute inset-0 bg-accent/70 z-0"></div>
 
             <!-- Content in front -->
-            <div class="max-w-3xl relative z-10 flex flex-col gap-10 justify-start items-center p-5 text-white">
+            <div class="max-w-7xl relative z-10 flex flex-col gap-10 justify-start items-center p-5 text-white">
                 <div class="w-fit inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm shadow-white border-1 border-white bg-white/10 text-white text-xs sm:text-sm font-medium animate-bounce">
                     <c-favorites-icon></c-favorites-icon>
                     <span class="whitespace-nowrap">{% translate "Your #1 knowledge kitchen" %}</span>
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <h1 class="text-secondary text-shadow text-center">{% translate 'Share Your Culinary Expertise' %}</h1>
-                    <h2 class="text-shadow text-center">{% translate 'Join chefs and culinary experts in creating a reliable source for core recipes and techniques' %}</h2>
+                    <h1 class="text-secondary text-shadow text-center">{% translate 'No ads. No guesswork. Just cooking.' %}</h1>
+                    <h2 class="text-shadow text-center">{% translate 'Built by chefs and serious home cooks sharing recipes they trust.' %}</h2>
                 </div>
 
-                <c-a url="{% url 'account_signup' %}"
-                     class="btn btn-lg md:btn-xl btn-primary flex gap-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                         stroke-width="1.5" stroke="currentColor" class="size-6 md:size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"></path>
-                    </svg>
-                    {% translate 'Get Started' %}
+                <c-a url="{% url 'account_signup' %}" class="btn btn-lg md:btn-xl btn-primary">
+                    {% translate 'Join the Community' %}
                 </c-a>
             </div>
         </div>

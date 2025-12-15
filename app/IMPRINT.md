@@ -4,8 +4,8 @@ Impressum
 Information in accordance with Section 5 TMG (German Telemedia Act):
 Angaben gemäß § 5 TMG:
 
+Schugge Solutions
 Michael Schuchowski
-Gourmet Wiki
 Trützschlerstr. 5
 12487 Berlin
 Deutschland

@@ -148,7 +148,7 @@ input[type='number'] {
         @apply print:sm:text-xs print:leading-tight;
     }
 
-    a, p, label {
+    a, p, label, li {
         @apply text-base sm:text-lg font-normal leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }
@@ -172,10 +172,6 @@ input[type='number'] {
 
     ul {
         @apply list-disc ps-4;
-    }
-
-    li {
-        @apply text-sm;
     }
 
     input {
