@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 13:07+0000\n"
+"POT-Creation-Date: 2025-12-15 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,19 +137,19 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:53
+#: recipes/forms.py:54
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:56
+#: recipes/forms.py:57
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:76
+#: recipes/forms.py:77
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:82 recipes/forms.py:160
+#: recipes/forms.py:83 recipes/forms.py:161
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -169,19 +169,28 @@ msgstr ""
 msgid "Description"
 msgstr "Beschreibung"
 
-#: recipes/models.py:51
+#: recipes/models.py:39
+msgid "Course"
+msgstr "Gang"
+
+#: recipes/models.py:50 templates/cotton/portions_calculator.html:24
+#: templates/menus/partials/menu_form.html:24
+msgid "Portions"
+msgstr "Portionen"
+
+#: recipes/models.py:53
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:61 templates/recipes/partials/recipe_details_form.html:26
+#: recipes/models.py:63
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:68
+#: recipes/models.py:70
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:181
+#: recipes/models.py:183
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
@@ -341,7 +350,7 @@ msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
 #: templates/account/signup.html:66 templates/errors/403.html:28
-#: templates/partials/navbar.html:130
+#: templates/partials/navbar.html:129
 msgid "Log In"
 msgstr "Anmelden"
 
@@ -394,12 +403,6 @@ msgstr "Impressum"
 #: templates/cotton/go_back.html:3 templates/partials/go_back.html:10
 msgid "Go back"
 msgstr "Zurück"
-
-#: templates/cotton/portions_calculator.html:24
-#: templates/menus/partials/menu_form.html:24
-#: templates/recipes/partials/recipe_details_form.html:42
-msgid "Portions"
-msgstr "Portionen"
 
 #: templates/cotton/portions_calculator_menu.html:24
 msgid "Pers."
@@ -573,77 +576,31 @@ msgstr "Keine Werbung. Kein Rätselraten. Einfach kochen."
 
 #: templates/pages/home.html:24
 msgid "Built by chefs and serious home cooks sharing recipes they trust."
-msgstr "Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie vertrauen."
+msgstr ""
+"Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie "
+"vertrauen."
 
-#: templates/pages/home.html:34
+#: templates/pages/home.html:28
 msgid "Join the Community"
 msgstr "Der Community beitreten"
 
-#: templates/pages/home.html:43
+#: templates/pages/home.html:37
 msgid "A Better Way to Find Recipes"
 msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
 
-#: templates/pages/home.html:56
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                                %(recipe_count)s Recipe\n"
-#| "                            "
-#| msgid_plural ""
-#| "\n"
-#| "                                %(recipe_count)s Recipes\n"
-#| "                            "
-msgid ""
-"\n"
-"                            Pure culinary experience.<br>\n"
-"                            Zero ads.\n"
-"                            "
-msgstr ""
-"\n"
-"                                %(recipe_count)s Rezept\n"
-"                            "
+#: templates/pages/home.html:50
+msgid "Pure culinary experience.<br>Zero ads."
+msgstr "Pure Kulinarik. Null Werbung."
 
-#: templates/pages/home.html:71
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                                %(recipe_count)s Recipe\n"
-#| "                            "
-#| msgid_plural ""
-#| "\n"
-#| "                                %(recipe_count)s Recipes\n"
-#| "                            "
-msgid ""
-"\n"
-"                            Proven chef-level recipes<br>\n"
-"                            that work anywhere.\n"
-"                            "
-msgstr ""
-"\n"
-"                                %(recipe_count)s Rezept\n"
-"                            "
+#: templates/pages/home.html:65
+msgid "Proven chef-level recipes<br>that work anywhere."
+msgstr "Profi-Rezepte, die überall funktionieren."
 
-#: templates/pages/home.html:86
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                                %(recipe_count)s Recipe\n"
-#| "                            "
-#| msgid_plural ""
-#| "\n"
-#| "                                %(recipe_count)s Recipes\n"
-#| "                            "
-msgid ""
-"\n"
-"                            Where chefs, home cooks,<br>\n"
-"                            and food lovers connect.\n"
-"                            "
-msgstr ""
-"\n"
-"                                %(recipe_count)s Rezept\n"
-"                            "
+#: templates/pages/home.html:80
+msgid "Where chefs, home cooks,<br>and food lovers connect."
+msgstr "Wo Köche & Genießer zusammenkommen."
 
-#: templates/pages/home.html:102
+#: templates/pages/home.html:96
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -659,15 +616,15 @@ msgstr "Kontakt:"
 msgid "Responsible for content according to § 55 Abs. 2 RStV:"
 msgstr "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:"
 
-#: templates/pages/imprint.html:45
+#: templates/pages/imprint.html:46
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
-#: templates/pages/imprint.html:48
+#: templates/pages/imprint.html:49
 msgid "Liability for content"
 msgstr "Haftung für Inhalte"
 
-#: templates/pages/imprint.html:50
+#: templates/pages/imprint.html:51
 msgid ""
 "As a service provider, we are responsible for our own content on these "
 "pages\n"
@@ -687,11 +644,11 @@ msgstr ""
 "zur Entfernung oder Sperrung der Nutzung von Informationen nach den "
 "allgemeinen Gesetzen bleiben hiervon unberührt."
 
-#: templates/pages/imprint.html:59
+#: templates/pages/imprint.html:60
 msgid "Liability for links"
 msgstr "Haftung für Links"
 
-#: templates/pages/imprint.html:61
+#: templates/pages/imprint.html:62
 msgid ""
 "Our website contains links to external websites of third parties over which\n"
 "                            we have no control. Therefore, we cannot accept "
@@ -705,11 +662,11 @@ msgstr ""
 "Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten "
 "ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
 
-#: templates/pages/imprint.html:69
+#: templates/pages/imprint.html:70
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: templates/pages/imprint.html:71
+#: templates/pages/imprint.html:72
 msgid ""
 "The content and works created by the website operator on these pages are\n"
 "                            subject to German copyright law. Third-party "
@@ -725,11 +682,11 @@ msgstr ""
 "der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der "
 "schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
 
-#: templates/pages/imprint.html:79
+#: templates/pages/imprint.html:80
 msgid "EU Dispute Resolution"
 msgstr "Plattform der EU-Kommission zur Online-Streitbeilegung:"
 
-#: templates/pages/imprint.html:81
+#: templates/pages/imprint.html:82
 msgid ""
 "The European Commission provides a platform for online dispute resolution\n"
 "                            (ODR): https://ec.europa.eu/consumers/odr/. We "
@@ -742,15 +699,15 @@ msgstr ""
 "Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle "
 "teilzunehmen. https://ec.europa.eu/consumers/odr/"
 
-#: templates/pages/imprint.html:89
+#: templates/pages/imprint.html:90
 msgid "Hosting & Payment Provider"
 msgstr "Diensteanbieter & Hosting"
 
-#: templates/pages/imprint.html:92
+#: templates/pages/imprint.html:93
 msgid "This website is hosted by:"
 msgstr "Diese Website wird betrieben auf Servern von:"
 
-#: templates/pages/imprint.html:105
+#: templates/pages/imprint.html:106
 msgid "Payments are processed by:"
 msgstr "Zahlungsabwicklung erfolgt über:"
 
@@ -1312,7 +1269,7 @@ msgstr "Diesen Zubereitungsschritt entfernen"
 msgid "Section"
 msgstr "Abschnitt"
 
-#: templates/recipes/partials/recipe_details_form.html:46
+#: templates/recipes/partials/recipe_details_form.html:45
 msgid "Persons"
 msgstr "Personen"
 
@@ -1552,133 +1509,3 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
-
-#~ msgid "Share Your Culinary Expertise"
-#~ msgstr "Teile dein Küchenwissen"
-
-#~ msgid ""
-#~ "Join chefs and culinary experts in creating a reliable source for core "
-#~ "recipes and techniques"
-#~ msgstr "Werde Teil einer Plattform für erprobte Rezepte und Techniken."
-
-#~ msgid "Get Started"
-#~ msgstr "Jetzt mitmachen"
-
-#~ msgid "Pure culinary experience.<br>Zero ads."
-#~ msgstr "Pure Kulinarik.<br>Null Werbung."
-
-#~ msgid "Proven chef-level recipes<br>that work anywhere."
-#~ msgstr "Profi-Rezepte,<br>die überall funktionieren."
-
-#~ msgid "Where chefs, home cooks,<br>and food lovers connect."
-#~ msgstr "Wo Köche & Genießer<br>zusammenkommen."
-
-#~ msgid "Hours"
-#~ msgstr "Stunden"
-
-#~ msgid "Cooking Time"
-#~ msgstr "Kochzeit"
-
-#~ msgid "Minutes"
-#~ msgstr "Minuten"
-
-#~ msgid "Title of the section/category (e.g., Sauce, Meat)"
-#~ msgstr "Titel des Abschnitts/der Kategorie (z. B. Sauce, Fleisch)"
-
-#~ msgid "Preparation Steps"
-#~ msgstr "Zubereitungsschritte"
-
-#~ msgid "Or use a Third-Party"
-#~ msgstr "Oder Drittanbieter verwenden"
-
-#~ msgid ""
-#~ "<span class=\"text-secondary\">🚧 Access Limited</span><br>We’re cooking "
-#~ "something up!"
-#~ msgstr ""
-#~ "<span class=\"text-secondary\">🚧 Zugang eingeschränkt</span><br>Wir sind "
-#~ "noch am Kochen!"
-
-#~ msgid "Nutrition Details"
-#~ msgstr "Nährwertangaben"
-
-#~ msgid "Nutrient"
-#~ msgstr "Nährstoff"
-
-#~ msgid "Choose a Skill Level"
-#~ msgstr "Schwierigkeitsgrad"
-
-#~ msgid "Working Time"
-#~ msgstr "Arbeitszeit"
-
-#~ msgid "Resting Time"
-#~ msgstr "Ruhezeit"
-
-#~ msgid "since"
-#~ msgstr "seit"
-
-#~ msgid "Be part of the Gourmet Wiki launch."
-#~ msgstr "Sei von Anfang an Teil von Gourmet Wiki."
-
-#~ msgid ""
-#~ "Gourmet Wiki invites professional chefs, food bloggers, and culinary "
-#~ "experts to help build a global knowledge platform for basic recipes and "
-#~ "kitchen know-how."
-#~ msgstr ""
-#~ "Gourmet Wiki lädt Profiköche, Food-Blogger und kulinarische Expert:innen "
-#~ "ein, eine globale Wissensplattform für Grundrezepte und Küchen-Know-how "
-#~ "mitzugestalten."
-
-#~ msgid "Ready to contribute?"
-#~ msgstr "Bereit mitzumachen?"
-
-#~ msgid "Our Mission"
-#~ msgstr "Unsere Mission"
-
-#~ msgid ""
-#~ "To create a free, reliable source for essential recipes and kitchen "
-#~ "techniques — open to everyone, everywhere."
-#~ msgstr ""
-#~ "Eine kostenlose, verlässliche Quelle für grundlegende Rezepte und "
-#~ "Küchentechniken schaffen — offen für alle, überall."
-
-#~ msgid "We're looking for"
-#~ msgstr "Wir suchen"
-
-#~ msgid "Target Audiences:"
-#~ msgstr "Zielgruppen:"
-
-#~ msgid "Food bloggers & chefs"
-#~ msgstr "Foodblogger:innen & Köch:innen"
-
-#~ msgid "Culinary educators & authors"
-#~ msgstr "Kulinarische Ausbilder:innen und Fachautor:innen"
-
-#~ msgid "Content:"
-#~ msgstr "Inhalt:"
-
-#~ msgid "Authentic, tested recipes"
-#~ msgstr "Authentische, erprobte Rezepte"
-
-#~ msgid "Practical tips & techniques"
-#~ msgstr "Praktische Tipps & Küchenwissen"
-
-#~ msgid "Your benefits"
-#~ msgstr "Deine Vorteile"
-
-#~ msgid "Visibility at launch"
-#~ msgstr "Sichtbarkeit beim Start"
-
-#~ msgid "Author profile & backlinks"
-#~ msgstr "Autorenprofil & Backlinks"
-
-#~ msgid "Early contributor status in a pioneering food project"
-#~ msgstr "Früher Mitgestalter eines wegweisenden Food-Projekts"
-
-#~ msgid "What's in it for you?"
-#~ msgstr "Deine Vorteile:"
-
-#~ msgid "Submit your first recipe"
-#~ msgstr "Jetzt Rezept einreichen"
-
-#~ msgid "Recipes"
-#~ msgstr "Rezepte"

@@ -36,6 +36,7 @@ class Recipe(models.Model):
         blank=True,
     )
     course_type = models.CharField(
+        verbose_name=_('Course'),
         max_length=50,
         choices=CourseTypeChoice.choices,
         default=CourseTypeChoice.MAIN,
@@ -45,7 +46,8 @@ class Recipe(models.Model):
         validators=[
             MinValueValidator(1),
             MaxValueValidator(500),
-        ]
+        ],
+        verbose_name=_('Portions'),
     )
     cooking_time_minutes = models.PositiveIntegerField(
         verbose_name=_('Cooking Time (Minutes)'),
