@@ -117,10 +117,7 @@
         "name": "{{ object.created_by.get_full_name|default:object.created_by.username|default:'Contributor' }}"
       },
       "datePublished": "{{ object.created_at|date:'c' }}",
-      "prepTime": "PT0M",
-      "cookTime": "PT{{ object.cooking_time_hours|default:0 }}H{{ object.cooking_time_minutes|default:0 }}M",
-      "totalTime": "PT{{ object.total_time_hours|default:0 }}H{{ object.total_time_minutes|default:0 }}M",
-      "recipeYield": "{{ object.portions }} servings",
+      "cookTime": "PT{{ object.cooking_time_minutes|default:0 }}M",      "recipeYield": "{{ object.portions }} servings",
       "recipeCategory": "{{ object.get_course_type_display }}",
       "recipeCuisine": "",
       "recipeIngredient": [{% for ing in object.ingredients.all %}"{{ ing }}"{% if not forloop.last %}, {% endif %}{% endfor %}],

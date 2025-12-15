@@ -5,12 +5,7 @@
     "course_type": "main",
     "skill_level": "Beginner",
     "portions": 4,
-    "working_time_hours": 0,
-    "working_time_minutes": 30,
-    "cooking_time_hours": 0,
     "cooking_time_minutes": 15,
-    "rest_time_hours": 0,
-    "rest_time_minutes": 0,
     "ingredients": [
       {
         "ingredient": "Test Ingredient 1",
