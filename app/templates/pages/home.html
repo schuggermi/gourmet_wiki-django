@@ -82,7 +82,7 @@
 
 
         <div class="container mx-auto px-5 md:px-0">
-            <div class="flex flex-col gap-10 text-center">
+            <section class="flex flex-col gap-10 text-center">
                 <h2 class="text-base-content">
                     {% translate 'Why Gourmet Wiki Makes Cooking Effortless' %}
                 </h2>
@@ -112,17 +112,15 @@
                         subheading="{% translate 'Connect with chefs and food lovers alike. Share ideas, discover new recipes, and become part of a culinary family.' %}"
                     ></c-why-card>
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- Top 4 Recipes Of The Day -->
         {% if daily_random_recipes %}
-            <div class="bg-base-200 py-20">
-                <div class="container mx-auto flex flex-col gap-10 px-5 md:px-0">
-                    <h3>{% translate 'Daily Highlights' %}</h3>
-                    {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}
-                </div>
-            </div>
+            <section class="container mx-auto flex flex-col gap-10 px-5 md:px-0">
+                <h3>{% translate 'Daily Highlights' %}</h3>
+                {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}
+            </section>
         {% endif %}
     </div>
 {% endblock %}
