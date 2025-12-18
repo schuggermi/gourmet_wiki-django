@@ -9,58 +9,21 @@ def debug(request):
 
 
 def seo_defaults(request):
-    """Inject default SEO values into every template context."""
+    """Globale SEO-Defaults für alle Templates"""
     return {
-        'SITE_NAME': getattr(settings, 'SITE_NAME', 'Gourmet Wiki'),
-        'SITE_URL': getattr(settings, 'SITE_URL', 'https://gourmet-wiki.app'),
-        'DEFAULT_DESCRIPTION': getattr(
-            settings,
-            'DEFAULT_DESCRIPTION',
-            'Discover, cook, and master gourmet recipes.'
+        'SITE_NAME': 'GourmetWiki',
+        'SITE_TAGLINE': 'Deine #1 Wissensküche',
+        'DEFAULT_DESCRIPTION': (
+            'GourmetWiki - Keine Werbung. Kein Rätselraten. Einfach kochen. '
+            'Rezepte von Köchen und leidenschaftlichen Hobbyköchen - '
+            'gekocht, getestet und von der Community empfohlen.'
         ),
-        'DEFAULT_KEYWORDS': getattr(
-            settings,
-            'DEFAULT_KEYWORDS',
-            'gourmet recipes, recipe wiki, cooking techniques, ingredient guides'
+        'DEFAULT_KEYWORDS': (
+            'Rezepte ohne Werbung, Koch-Community, Profi-Rezepte, GourmetWiki, '
+            'Kochrezepte Deutsch, Rezepte von Köchen, kulinarische Community'
         ),
-        'DEFAULT_OG_IMAGE': getattr(
-            settings,
-            'DEFAULT_OG_IMAGE',
-            settings.STATIC_URL + 'favicons/android-chrome-512x512.png'
-        ),
-        # Safe page-level defaults to prevent VariableDoesNotExist in templates
-        'page_title': getattr(settings, 'SITE_NAME', 'Gourmet Wiki'),
-        'page_description': getattr(
-            settings,
-            'DEFAULT_DESCRIPTION',
-            'Discover, cook, and master gourmet recipes.'
-        ),
-        'page_keywords': getattr(
-            settings,
-            'DEFAULT_KEYWORDS',
-            'gourmet recipes, recipe wiki, cooking techniques, ingredient guides'
-        ),
-        # Also provide OG/Twitter fallbacks so templates never fail resolution
-        'og_title': getattr(settings, 'SITE_NAME', 'Gourmet Wiki'),
-        'og_description': getattr(
-            settings,
-            'DEFAULT_DESCRIPTION',
-            'Discover, cook, and master gourmet recipes.'
-        ),
-        'og_image': getattr(
-            settings,
-            'DEFAULT_OG_IMAGE',
-            settings.STATIC_URL + 'favicons/android-chrome-512x512.png'
-        ),
-        'twitter_title': getattr(settings, 'SITE_NAME', 'Gourmet Wiki'),
-        'twitter_description': getattr(
-            settings,
-            'DEFAULT_DESCRIPTION',
-            'Discover, cook, and master gourmet recipes.'
-        ),
-        'twitter_image': getattr(
-            settings,
-            'DEFAULT_OG_IMAGE',
-            settings.STATIC_URL + 'favicons/android-chrome-512x512.png'
-        ),
+        'DEFAULT_OG_IMAGE': f"{request.scheme}://{request.get_host()}/static/images/og-default.jpg",
+        'GA_ID': getattr(settings, 'GOOGLE_ANALYTICS_ID', 'G-BYM0XLT51B'),
+        'CB_ID': getattr(settings, 'COOKIEBOT_ID', ''),
+        'TWITTER_HANDLE': '@GourmetWiki',
     }
