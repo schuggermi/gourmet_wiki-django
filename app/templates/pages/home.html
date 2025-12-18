@@ -4,85 +4,120 @@
 {% block main_content %}
     <div class="w-full flex flex-col gap-20">
         <!-- Hero Section -->
-        <div class="h-[400px] md:h-[600px] flex flex-col items-center justify-center relative py-10 md:p-10 xl:p-20 overflow-hidden">
-            <!-- Background image -->
-            <img src="{% static 'images/hero_background.webp' %}"
-                 alt=""
-                 class="absolute inset-0 w-full h-full object-cover object-center z-0" />
-            <!-- Dark overlay -->
-            <div class="absolute inset-0 bg-accent/70 z-0"></div>
+        <section
+            class="relative flex flex-col overflow-hidden px-5 pt-20 py-30"
+            aria-labelledby="hero-title"
+        >
+            <!-- Background image (decorative) -->
+            <figure class="absolute inset-0 z-0" aria-hidden="true">
+                <img
+                    src="{% static 'images/hero_background.webp' %}"
+                    alt=""
+                    class="h-full w-full object-cover object-center"
+                />
+            </figure>
 
-            <!-- Content in front -->
-            <div class="max-w-7xl relative z-10 flex flex-col gap-10 justify-start items-center p-5 text-white">
-                <div class="w-fit inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm shadow-white border-1 border-white bg-white/10 text-white text-xs sm:text-sm font-medium animate-bounce">
-                    <c-favorites-icon></c-favorites-icon>
-                    <span class="whitespace-nowrap">{% translate "Your #1 knowledge kitchen" %}</span>
+            <!-- Dark overlay (purely decorative) -->
+            <div
+                class="absolute inset-0 z-0 bg-accent/80"
+                aria-hidden="true"
+            ></div>
+
+            <!-- Hero content -->
+            <header
+                class="relative z-10 flex flex-col items-center text-white"
+            >
+                <!-- Badge -->
+                <div
+                    class="inline-flex w-fit items-center gap-2 rounded-full border border-white bg-white/10 px-3 py-1.5 text-white opacity-70 shadow-sm shadow-white sm:px-4 sm:py-2"
+                >
+                    <c-favorites-icon
+                        class="size-5!"
+                        aria-hidden="true"
+                    ></c-favorites-icon>
+
+                    <small class="whitespace-nowrap">
+                        {% translate "Your #1 knowledge kitchen" %}
+                    </small>
                 </div>
 
-                <div class="flex flex-col gap-2">
-                    <h1 class="text-secondary text-shadow text-center hyphens-none">{% translate 'No ads. No guesswork. Just cooking.' %}</h1>
-                    <h2 class="text-shadow text-center">{% translate 'Built by chefs and serious home cooks sharing recipes they trust.' %}</h2>
-                </div>
+                <!-- Headline + description -->
+                <div class="flex flex-col items-center gap-10 text-center mt-10">
+                    <h1
+                        id="hero-title"
+                        class="max-w-lg hyphens-none text-secondary drop-shadow-secondary/70 drop-shadow-xs lg:max-w-3xl"
+                    >
+                        {% translate 'No ads. No guesswork. Just cooking.' %}
+                    </h1>
 
-                <c-a url="{% url 'account_signup' %}" class="btn btn-lg md:btn-xl btn-primary">
-                    {% translate 'Join the Community' %}
-                </c-a>
-            </div>
-        </div>
+                    <div class="mx-auto flex max-w-md flex-col gap-10 lg:max-w-2xl">
+                        <p
+                            class="h3 font-medium leading-none opacity-80"
+                        >
+                            {% blocktrans trimmed %}
+                            By chefs and passionate home cooks.
+                            Recipes that are cooked, tested, and recommended by the community.
+                            {% endblocktrans %}
+                        </p>
 
-        <div class="container mx-auto px-5 md:px-0 py-20">
-    <div class="flex flex-col gap-14 text-center">
-
-        <h3 class="text-3xl md:text-4xl font-semibold text-base-content">
-            {% translate "A Better Way to Find Recipes" %}
-        </h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-
-                    <!-- Card 1 -->
-                    <div class="group rounded-2xl bg-base-100 p-8 shadow-sm hover:shadow-md transition">
-                        <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-xl bg-base-200 group-hover:scale-105 transition">
-                            <img class="h-10 w-10 md:h-12 md:w-12"
-                                 src="{% static 'images/ad-blocker_icon.png' %}"
-                                 alt="No Ads">
-                        </div>
-                        <h4 class="text-lg font-medium leading-snug">
-                            {% blocktrans %}Pure culinary experience.<br>Zero ads.{% endblocktrans %}
-                        </h4>
+                        <p
+                            class="mx-auto max-w-xs font-medium leading-none opacity-70 text-base-200 hyphens-none"
+                        >
+                            {% translate 'No distractions. No shortcuts. No experiments.' %}
+                        </p>
                     </div>
+                </div>
+
+                <!-- Primary CTA -->
+                <p class="mt-20">
+                    <c-a
+                        url="{% url 'account_signup' %}"
+                        class="btn btn-lg md:btn-xl btn-primary drop-shadow-primary/50 drop-shadow-sm"
+                    >
+                        {% translate 'Join the Community' %}
+                    </c-a>
+                </p>
+            </header>
+        </section>
+
+
+        <div class="container mx-auto px-5 md:px-0">
+            <div class="flex flex-col gap-10 text-center">
+                <h2 class="text-base-content">
+                    {% translate 'Why Gourmet Wiki Makes Cooking Effortless' %}
+                </h2>
+
+                <div class="grid grid-cols-auto lg:grid-cols-3 gap-10">
+                    <!-- Card 1 -->
+                    <c-why-card
+                        icon="{% static 'images/ad-blocker_icon.png' %}"
+                        aria-hidden="true"
+                        heading="{% translate 'Pure Focus on Cooking' %}"
+                        subheading="{% translate 'Focus on what truly matters: cooking. No distractions, no ads – just recipes that spark your passion.' %}"
+                    ></c-why-card>
 
                     <!-- Card 2 -->
-                    <div class="group rounded-2xl bg-base-100 p-8 shadow-sm hover:shadow-md transition">
-                        <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-xl bg-base-200 group-hover:scale-105 transition">
-                            <img class="h-10 w-10 md:h-12 md:w-12"
-                                 src="{% static 'images/chefhat_icon.png' %}"
-                                 alt="Pro Recipes">
-                        </div>
-                        <h4 class="text-lg font-medium leading-snug">
-                            {% blocktrans %}Proven chef-level recipes<br>that work anywhere.{% endblocktrans %}
-                        </h4>
-                    </div>
+                    <c-why-card
+                        icon="{% static 'images/chefhat_icon.png' %}"
+                        aria-hidden="true"
+                        heading="{% translate 'Recipes You Can Trust' %}"
+                        subheading="{% translate 'Created by professional chefs, designed for everyday kitchens. Every step clear, every dish succeeds.' %}"
+                    ></c-why-card>
 
                     <!-- Card 3 -->
-                    <div class="group rounded-2xl bg-base-100 p-8 shadow-sm hover:shadow-md transition">
-                        <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-xl bg-base-200 group-hover:scale-105 transition">
-                            <img class="h-10 w-10 md:h-12 md:w-12"
-                                 src="{% static 'images/community_icon.png' %}"
-                                 alt="Community">
-                        </div>
-                        <h4 class="text-lg font-medium leading-snug">
-                            {% blocktrans %}Where chefs, home cooks,<br>and food lovers connect.{% endblocktrans %}
-                        </h4>
-                    </div>
-
+                    <c-why-card
+                        icon="{% static 'images/community_icon.png' %}"
+                        aria-hidden="true"
+                        heading="{% translate 'Join a Vibrant Community' %}"
+                        subheading="{% translate 'Connect with chefs and food lovers alike. Share ideas, discover new recipes, and become part of a culinary family.' %}"
+                    ></c-why-card>
                 </div>
             </div>
         </div>
-
 
         <!-- Top 4 Recipes Of The Day -->
         {% if daily_random_recipes %}
-            <div class="bg-base-200 py-10">
+            <div class="bg-base-200 py-20">
                 <div class="container mx-auto flex flex-col gap-10 px-5 md:px-0">
                     <h3>{% translate 'Daily Highlights' %}</h3>
                     {% include "recipes/partials/recipe_list.html" with object_list=daily_random_recipes %}

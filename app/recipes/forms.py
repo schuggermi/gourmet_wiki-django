@@ -10,6 +10,16 @@ TEXTAREA_CLASSES = 'textarea bg-base-content rounded-sm w-full border-box focus:
 FILE_INPUT_CLASSES = 'file-input bg-base-content rounded-sm w-full'
 
 
+""" NEW """
+
+class RecipeCreateForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ["name"]
+
+""" NEW """
+
+
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
@@ -48,7 +58,7 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     class Meta:
         model = RecipePreparationStep
-        fields = ['is_section', 'section_title', 'step_text']
+        fields = ['is_section', 'section_title', 'step_text', 'order']
         widgets = {
             'step_text': forms.TextInput(attrs={
                 'placeholder': _("e.g. Heat 2 tbsp of oil in a wok over medium-high heat.")
@@ -87,13 +97,11 @@ class RecipePreparationStepForm(forms.ModelForm):
 
 
 class RecipeIngredientForm(forms.ModelForm):
-    ingredient_name = forms.CharField(required=True, max_length=255)
-
     class Meta:
         model = RecipeIngredient
-        fields = ['ingredient', 'quantity', 'unit']
+        fields = ['name', 'quantity', 'unit']
         widgets = {
-            'ingredient': forms.HiddenInput(),  # hide actual ingredient field
+            'name': forms.TextInput(),
             'quantity': forms.NumberInput(attrs={
                 'placeholder': '0',
                 'min': '0.1',  # Add min attribute to match model validator
@@ -104,25 +112,13 @@ class RecipeIngredientForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Ingredient is no longer required from the HTML form
-        self.fields['ingredient'].required = False
 
         # Set a default value for quantity to ensure it's always valid
         if not self.initial.get('quantity'):
             self.initial['quantity'] = 1.0
 
-        # If we have an instance with an ingredient, populate the ingredient_name field
-        if self.instance and self.instance.pk and self.instance.ingredient:
-            self.fields['ingredient_name'].initial = self.instance.ingredient.name
-
     def clean(self):
         cleaned_data = super().clean()
-
-        # We're using ingredient_name now, so we don't need to validate ingredient
-        # This prevents the "Please make a valid selection" error
-        if 'ingredient' in cleaned_data:
-            del cleaned_data['ingredient']
-
         return cleaned_data
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 13:56+0000\n"
+"POT-Creation-Date: 2025-12-18 17:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,27 +129,27 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:22
+#: recipes/forms.py:32
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:32
+#: recipes/forms.py:42
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:54
+#: recipes/forms.py:64
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:57
+#: recipes/forms.py:67
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:77
+#: recipes/forms.py:87
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:83 recipes/forms.py:161
+#: recipes/forms.py:93 recipes/forms.py:157
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -161,46 +161,46 @@ msgstr "Zubereitungsschritte müssen vorhanden sein."
 msgid "This section must contain at least one preparation step."
 msgstr "Dieser Abschnitt muss mindestens einen Zubereitungsschritt enthalten."
 
-#: recipes/models.py:21
+#: recipes/models.py:22
 msgid "Name"
 msgstr ""
 
-#: recipes/models.py:26
+#: recipes/models.py:27
 msgid "Description"
 msgstr "Beschreibung"
 
-#: recipes/models.py:39
+#: recipes/models.py:40
 msgid "Course"
 msgstr "Gang"
 
-#: recipes/models.py:50 templates/cotton/portions_calculator.html:24
+#: recipes/models.py:51 templates/cotton/portions_calculator.html:24
 #: templates/menus/partials/menu_form.html:24
 msgid "Portions"
 msgstr "Portionen"
 
-#: recipes/models.py:53
+#: recipes/models.py:54
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:63
+#: recipes/models.py:64
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:70
+#: recipes/models.py:71
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:183
+#: recipes/models.py:184
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/views.py:367
+#: recipes/views.py:428
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:379 recipes/views.py:387
+#: recipes/views.py:440 recipes/views.py:448
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -253,7 +253,7 @@ msgstr "Support"
 msgid "Log In Now"
 msgstr "Jetzt anmelden"
 
-#: templates/account/login.html:12
+#: templates/account/login.html:12 templates/account/signup.html:12
 msgid ""
 "Tried-and-tested recipes, proven cooking techniques, and sound culinary "
 "knowledge. Completely free of advertising."
@@ -272,15 +272,15 @@ msgid "You don't have an account at Gourmet Wiki yet?"
 msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 
 #: templates/account/login.html:77 templates/account/signup.html:6
-#: templates/account/signup.html:10
+#: templates/account/signup.html:11
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:86 templates/account/signup.html:75
+#: templates/account/login.html:86 templates/account/signup.html:78
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:91 templates/account/signup.html:80
+#: templates/account/login.html:91 templates/account/signup.html:83
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -341,15 +341,15 @@ msgstr "Dein Passwort wurde erfolgreich geändert."
 msgid "Set Password"
 msgstr "Passwort setzen"
 
-#: templates/account/signup.html:54
+#: templates/account/signup.html:57
 msgid "Sign Up"
 msgstr "Registrieren"
 
-#: templates/account/signup.html:64
+#: templates/account/signup.html:67
 msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
-#: templates/account/signup.html:66 templates/errors/403.html:28
+#: templates/account/signup.html:69 templates/errors/403.html:28
 #: templates/partials/navbar.html:129
 msgid "Log In"
 msgstr "Anmelden"
@@ -566,41 +566,67 @@ msgstr "Zubereitung"
 msgid "Preparation Step"
 msgstr "Zubereitungsschritt"
 
-#: templates/pages/home.html:19
+#: templates/pages/home.html:40
 msgid "Your #1 knowledge kitchen"
 msgstr "Deine #1 Wissensküche"
 
-#: templates/pages/home.html:23
+#: templates/pages/home.html:50
 msgid "No ads. No guesswork. Just cooking."
 msgstr "Keine Werbung. Kein Rätselraten. Einfach kochen."
 
-#: templates/pages/home.html:24
-msgid "Built by chefs and serious home cooks sharing recipes they trust."
+#: templates/pages/home.html:57
+msgid ""
+"By chefs and passionate home cooks. Recipes that are cooked, tested, and "
+"recommended by the community."
 msgstr ""
-"Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie "
-"vertrauen."
+"Von Köchen und leidenschaftlichen Hobbyköchen. Rezepte, die gekocht, "
+"getestet und von der Community empfohlen werden."
 
-#: templates/pages/home.html:28
+#: templates/pages/home.html:66
+msgid "No distractions. No shortcuts. No experiments."
+msgstr "Ohne Ablenkung. Ohne Umwege. Ohne Experimente."
+
+#: templates/pages/home.html:77
 msgid "Join the Community"
 msgstr "Der Community beitreten"
 
-#: templates/pages/home.html:37
-msgid "A Better Way to Find Recipes"
-msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
+#: templates/pages/home.html:87
+msgid "Why Gourmet Wiki Makes Cooking Effortless"
+msgstr "Warum Gourmet Wiki das Kochen so einfach macht"
 
-#: templates/pages/home.html:50
-msgid "Pure culinary experience.<br>Zero ads."
-msgstr "Pure Kulinarik. Null Werbung."
-
-#: templates/pages/home.html:65
-msgid "Proven chef-level recipes<br>that work anywhere."
-msgstr "Profi-Rezepte, die überall funktionieren."
-
-#: templates/pages/home.html:80
-msgid "Where chefs, home cooks,<br>and food lovers connect."
-msgstr "Wo Köche & Genießer zusammenkommen."
+#: templates/pages/home.html:95
+msgid "Pure Focus on Cooking"
+msgstr "Volle Konzentration aufs Kochen"
 
 #: templates/pages/home.html:96
+msgid ""
+"Focus on what truly matters: cooking. No distractions, no ads – just recipes "
+"that spark your passion."
+msgstr ""
+"Fokussiere dich auf das, was wirklich zählt: das Kochen. Keine Ablenkung, "
+"keine Werbung – nur Rezepte, die deine Leidenschaft entfachen."
+
+#: templates/pages/home.html:103
+msgid "Recipes You Can Trust"
+msgstr "Rezepte, auf die du dich verlassen kannst"
+
+#: templates/pages/home.html:104
+msgid ""
+"Created by professional chefs, designed for everyday kitchens. Every step "
+"clear, every dish succeeds."
+msgstr "Von Profi-Köchen entwickelt und für den Alltag geeignet. Jeder Schritt verständlich, jedes Gericht gelingt."
+
+#: templates/pages/home.html:111
+msgid "Join a Vibrant Community"
+msgstr "Werde Teil einer lebendigen Community"
+
+#: templates/pages/home.html:112
+msgid ""
+"Connect with chefs and food lovers alike. Share ideas, discover new recipes, "
+"and become part of a culinary family."
+msgstr "Verbinde dich mit Köchen und Feinschmeckern. Tausche Ideen aus, entdecke neue Rezepte und werde Teil einer kulinarischen Familie."
+
+#: templates/pages/home.html:122
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -1509,3 +1535,20 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Proven chef-level recipes<br>that work anywhere."
+#~ msgstr "Profi-Rezepte, die überall funktionieren."
+
+#~ msgid "Where chefs, home cooks,<br>and food lovers connect."
+#~ msgstr "Wo Köche & Genießer zusammenkommen."
+
+#~ msgid "A Better Way to Find Recipes"
+#~ msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
+
+#~ msgid "Pure culinary experience.<br>Zero ads."
+#~ msgstr "Pure Kulinarik. Null Werbung."
+
+#~ msgid "Built by chefs and serious home cooks sharing recipes they trust."
+#~ msgstr ""
+#~ "Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie "
+#~ "vertrauen."

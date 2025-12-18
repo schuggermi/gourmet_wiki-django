@@ -40,7 +40,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
 @admin.register(RecipeIngredient)
 class RecipeIngredientAdmin(admin.ModelAdmin):
-    fields = ['ingredient', 'quantity']
+    fields = ['name', 'quantity', 'unit']
 
 
 @admin.register(RecipeImage)

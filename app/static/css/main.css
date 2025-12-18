@@ -112,44 +112,43 @@ input[type='number'] {
         @apply font-sans;
     }
 
-    h1 {
-        @apply text-2xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    h1, .h1 {
+        @apply text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-lg print:md:text-2xl print:leading-snug;
     }
 
-    h2 {
-        @apply text-xl sm:text-3xl md:text-4xl font-medium tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    h2, .h2 {
+        @apply text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-base print:leading-snug;
     }
 
-    h3 {
-        @apply text-lg sm:text-2xl md:text-3xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    h3, .h3 {
+        @apply text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
-    h4 {
-        @apply text-base sm:text-xl md:text-2xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
+    h4, .h4 {
+        @apply text-base md:text-lg lg:text-xl xl:text-2xl font-semibold leading-tight break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-snug;
     }
 
-    h5 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal leading-tight text-balance hyphens-auto;
+    h5, .h5 {
+        @apply text-sm md:text-base lg:text-lg font-semibold break-words whitespace-normal leading-tight text-balance hyphens-auto;
         @apply print:text-xs;
     }
 
-    h6 {
-        @apply text-sm sm:text-base font-semibold break-words whitespace-normal text-balance leading-tight hyphens-auto;
+    h6, .h6 {
+        @apply text-sm md:text-base lg:text-base font-semibold break-words whitespace-normal text-balance leading-tight hyphens-auto;
         @apply print:text-[10px];
-        /* 10px for extra small print */
     }
 
     small, small a {
-        @apply text-xs sm:text-sm font-medium leading-tight break-words whitespace-normal text-balance hyphens-auto;
-        @apply print:sm:text-xs print:leading-tight;
+        @apply text-xs md:text-sm font-medium leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply print:text-xs print:leading-tight;
     }
 
     a, p, label, li {
-        @apply text-base sm:text-lg font-normal leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-sm md:text-base lg:text-lg font-normal leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }
 
@@ -162,12 +161,11 @@ input[type='number'] {
     }
 
     .article, article > a, p, li {
-        @apply text-lg lg:text-xl leading-tight break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-base md:text-lg lg:text-xl leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
     }
 
     a.missing-link {
         @apply text-error decoration-dotted underline;
-        /* Probably no change needed for print here */
     }
 
     ul {

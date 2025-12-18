@@ -19,14 +19,75 @@ from formtools.wizard.views import SessionWizardView
 from django.utils.translation import gettext_lazy as _
 from django.http import JsonResponse
 
-from ingredients.models import Ingredient
 from menus.models import Menu
-from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm
+from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm, RecipeCreateForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 from recipes.utils import calculate_scaled_ingredients_menu
 
 User = get_user_model()
+
+
+""" NEW """
+
+def recipe_create(request):
+    if request.method == "POST":
+        if not request.user or not request.user.is_authenticated:
+            raise PermissionDenied
+
+        form = RecipeCreateForm(request.POST)
+        if form.is_valid():
+            recipe = form.save(commit=False)
+            recipe.created_by = request.user
+            recipe.save()
+            return redirect("recipe-edit", recipe_id=recipe.id)
+    else:
+        form = RecipeCreateForm()
+
+    return render(request, "recipes/recipe_create.html", {"form": form})
+
+
+def recipe_edit(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    ingredient_form = RecipeIngredientForm()
+    step_form = RecipePreparationStepForm()
+
+    return render(
+        request,
+        "recipes/recipe_edit.html",
+        {
+            "recipe": recipe,
+            "ingredient_form": ingredient_form,
+            "step_form": step_form,
+        },
+    )
+
+def ingredient_add(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == "POST":
+        form = RecipeIngredientForm(request.POST)
+        if form.is_valid():
+            ingredient = form.save(commit=False)
+            ingredient.recipe = recipe
+            ingredient.save()
+
+    return redirect("recipe-edit", recipe_id=recipe.id)
+
+def step_add(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    if request.method == "POST":
+        form = RecipePreparationStepForm(request.POST)
+        if form.is_valid():
+            step = form.save(commit=False)
+            step.recipe = recipe
+            step.save()
+
+    return redirect("recipe-edit", recipe_id=recipe.id)
+
+""" NEW """
 
 
 class RecipeListView(ListView):
@@ -69,33 +130,33 @@ def recipe_list_partial(request):
     return render(request, 'recipes/partials/recipe_list.html', context)
 
 
-def add_preparation_step_form(request):
-    form_index = int(request.GET.get("form_count", 0))
-    new_form = RecipePreparationStepForm(prefix=f'recipe_preparation_step-{form_index}')
-
-    new_form.fields['DELETE'] = forms.BooleanField(required=False)
-    new_form.fields['ORDER'] = forms.IntegerField(required=True)
-
-    context = {
-        'form': new_form,
-        'form_index': form_index,
-    }
-
-    html = render_to_string('recipes/partials/preparation_step_form_row.html', context)
-    return HttpResponse(html)
-
-
-def add_ingredient_form(request):
-    form_index = int(request.GET.get("form_count", 0))
-    new_form = RecipeIngredientForm(prefix=f'recipe_ingredient-{form_index}')
-
-    context = {
-        'form': new_form,
-        'form_index': form_index,
-    }
-
-    html = render_to_string('recipes/partials/ingredient_form_row.html', context)
-    return HttpResponse(html)
+# def add_preparation_step_form(request):
+#     form_index = int(request.GET.get("form_count", 0))
+#     new_form = RecipePreparationStepForm(prefix=f'recipe_preparation_step-{form_index}')
+#
+#     new_form.fields['DELETE'] = forms.BooleanField(required=False)
+#     new_form.fields['ORDER'] = forms.IntegerField(required=True)
+#
+#     context = {
+#         'form': new_form,
+#         'form_index': form_index,
+#     }
+#
+#     html = render_to_string('recipes/partials/preparation_step_form_row.html', context)
+#     return HttpResponse(html)
+#
+#
+# def add_ingredient_form(request):
+#     form_index = int(request.GET.get("form_count", 0))
+#     new_form = RecipeIngredientForm(prefix=f'recipe_ingredient-{form_index}')
+#
+#     context = {
+#         'form': new_form,
+#         'form_index': form_index,
+#     }
+#
+#     html = render_to_string('recipes/partials/ingredient_form_row.html', context)
+#     return HttpResponse(html)
 
 
 def add_image_form(request):
@@ -213,28 +274,28 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
         if not ingredient_formset.is_valid():
             return self.render_revalidation_failure(step='1', form=ingredient_formset)
 
-        for form in ingredient_formset:
-            if form.data.get(f"{form.prefix}-DELETE") == 'on':
-                if form.instance.pk:
-                    form.instance.delete()
-            else:
-                # Get the ingredient name from the form
-                ingredient_name = form.cleaned_data.get('ingredient_name')
-
-                if ingredient_name:
-                    # Try to find an existing ingredient with this name
-                    ingredient, created = Ingredient.objects.get_or_create(name=ingredient_name)
-
-                    # Set the ingredient on the instance
-                    form.instance.ingredient = ingredient
-
-                instance = form.save(commit=False)
-                instance.recipe = recipe
-
-                # pprint(instance, indent=4)
-
-                if not instance.pk:
-                    instance.save()
+        # for form in ingredient_formset:
+        #     if form.data.get(f"{form.prefix}-DELETE") == 'on':
+        #         if form.instance.pk:
+        #             form.instance.delete()
+        #     else:
+        #         # Get the ingredient name from the form
+        #         ingredient_name = form.cleaned_data.get('ingredient_name')
+        #
+        #         if ingredient_name:
+        #             # Try to find an existing ingredient with this name
+        #             ingredient, created = Ingredient.objects.get_or_create(name=ingredient_name)
+        #
+        #             # Set the ingredient on the instance
+        #             form.instance.ingredient = ingredient
+        #
+        #         instance = form.save(commit=False)
+        #         instance.recipe = recipe
+        #
+        #         # pprint(instance, indent=4)
+        #
+        #         if not instance.pk:
+        #             instance.save()
 
         # Step 2 – Preparation Steps
         step_formset = self.get_form(step='2', data=self.storage.get_step_data('2'))

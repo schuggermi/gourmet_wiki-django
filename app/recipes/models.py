@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Avg
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from ingredients.models import Ingredient
 from recipes.services.cost_calculator import calculate_recipe_cost
@@ -200,11 +201,8 @@ class RecipeIngredient(models.Model):
         related_name="ingredients",
         on_delete=models.CASCADE
     )
-    ingredient = models.ForeignKey(
-        'ingredients.Ingredient',
-        on_delete=models.CASCADE,
-        related_name='recipe_ingredients'
-    )
+    name = models.CharField(unique=True, max_length=100)
+    slug = models.SlugField(blank=True, max_length=150)
     quantity = models.DecimalField(
         max_digits=6,
         decimal_places=2,
@@ -217,18 +215,17 @@ class RecipeIngredient(models.Model):
         choices=UnitChoice.choices,
         default=UnitChoice.GRAM,
     )
-    price_per_unit = models.DecimalField(
-        max_digits=10,
-        decimal_places=4,
-        help_text="Price per unit in EUR",
-        default=float(0),
-    )
 
     class Meta:
-        unique_together = ('recipe', 'ingredient')
+        unique_together = ('recipe', 'name')
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{round(self.quantity, 0)}{self.unit} {self.ingredient.name}"
+        return f"{round(self.quantity, 0)}{self.unit} {self.name}"
 
     def scale_quantity(self, scale_factor: Decimal):
         quantity = self.quantity * scale_factor

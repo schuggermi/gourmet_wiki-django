@@ -44,6 +44,18 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/deployer/gourmet_wiki-django
-            git pull origin master
+            
+            # Backup current state (optional but recommended)
+            git stash save "Auto-stash before deploy $(date +%Y%m%d_%H%M%S)" || true
+            
+            # Fetch latest changes
+            git fetch origin master
+            
+            # Hard reset to match remote exactly
+            git reset --hard origin/master
+            
+            # Clean untracked files and directories
+            git clean -fd
+            
             chmod +x ./db/init.sh
             docker compose up -d --build

@@ -1,0 +1,42 @@
+<h1>{{ recipe.title }}</h1>
+
+<hr>
+
+<h2>Zutaten</h2>
+<ul>
+  {% for ingredient in recipe.ingredients.all %}
+    <li>{{ ingredient.amount }} {{ ingredient.name }}</li>
+  {% empty %}
+    <li>Noch keine Zutaten</li>
+  {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'ingredient_add' recipe.id %}">
+  {% csrf_token %}
+  {{ ingredient_form.as_p }}
+  <button type="submit">Zutat hinzufügen</button>
+</form>
+
+<hr>
+
+<h2>Schritte</h2>
+<ol>
+  {% for step in recipe.steps.all %}
+    <li>{{ step.text }}</li>
+  {% empty %}
+    <li>Noch keine Schritte</li>
+  {% endfor %}
+</ol>
+
+<form method="post" action="{% url 'step_add' recipe.id %}">
+  {% csrf_token %}
+  {{ step_form.as_p }}
+  <button type="submit">Schritt hinzufügen</button>
+</form>
+
+<hr>
+
+{#<form method="post" action="{% url 'recipe_publish' recipe.id %}">#}
+{#  {% csrf_token %}#}
+{#  <button type="submit">Rezept veröffentlichen</button>#}
+{#</form>#}

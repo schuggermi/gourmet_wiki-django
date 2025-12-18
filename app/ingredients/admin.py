@@ -24,15 +24,6 @@ class CategoryAdmin(admin.ModelAdmin):
 #     ordering = ('description',)
 
 
-@admin.register(Ingredient)
-class IngredientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug') # 'fdc_id', 'category'
-    search_fields = ('name', ) # 'fdc_id'
-    list_filter = () # 'category',
-    prepopulated_fields = {'slug': ('name',)}
-    autocomplete_fields = () # 'category',
-
-
 # @admin.register(IngredientNutrient)
 # class IngredientNutrientAdmin(admin.ModelAdmin):
 #     list_display = ('ingredient', 'nutrient', 'amount')
