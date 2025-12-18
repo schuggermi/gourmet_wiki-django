@@ -11,96 +11,136 @@
     <meta charset="UTF-8">
     <!-- Responsive viewport settings -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page title - Should be set in child templates -->
+    <title>{% block title %}{{ page_title|default:'GourmetWiki' }}{% if page_title %} | GourmetWiki - Deine #1 Wissensküche{% else %} - Keine Werbung. Kein Rätselraten. Einfach kochen.{% endif %}{% endblock %}</title>
+
     <!-- Page description for search engines -->
     <meta name="description"
-          content="{% block meta_description %}{{ page_description|default:DEFAULT_DESCRIPTION|default:'Built by chefs and serious home cooks sharing recipes they trust.' }}{% endblock %}">
+          content="{% block meta_description %}{{ page_description|default:'GourmetWiki - Rezepte von Köchen und leidenschaftlichen Hobbyköchen. Keine Werbung, keine Ablenkung. Von Profis entwickelt, für den Alltag geeignet. Jeder Schritt verständlich, jedes Gericht gelingt.' }}{% endblock %}">
+
     <!-- Keywords for search engines -->
-    <meta name="keywords" content="{% block meta_keywords %}{{ page_keywords|default:DEFAULT_KEYWORDS|default:'gourmet recipes, recipe wiki, cooking techniques, ingredient guides' }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ page_keywords|default:'Rezepte ohne Werbung, Koch-Community, Profi-Rezepte, GourmetWiki, Kochrezepte Deutsch, Rezepte von Köchen, kulinarische Community, Koch-Wissensplattform' }}{% endblock %}">
+
     <!-- Author information -->
-    <meta name="author" content="Schugge Solutions">
+    <meta name="author" content="GourmetWiki - Schugge Solutions">
+
     <!-- Control the behavior of search engine crawling and indexing -->
     <meta name="robots" content="{% block meta_robots %}index,follow{% endblock %}">
+
     <!-- Define the website's theme color for browser UI elements -->
     <meta name="theme-color" content="#7bcf3c">
-    <meta name="background-color" content="#effcf3">
+    <meta name="msapplication-TileColor" content="#7bcf3c">
 
     <!-- Open Graph meta tags for better social media sharing -->
     {% block meta_og %}
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{% firstof og_title page_title SITE_NAME 'Gourmet Wiki - No ads. No guesswork. Just cooking.' %}">
-    <meta property="og:description" content="{% firstof og_description page_description DEFAULT_DESCRIPTION 'Built by chefs and serious home cooks sharing recipes they trust.' %}">
+    <meta property="og:site_name" content="GourmetWiki">
+    <meta property="og:title" content="{% firstof og_title page_title 'GourmetWiki - Deine #1 Wissensküche' %}">
+    <meta property="og:description" content="{% firstof og_description page_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Köchen und leidenschaftlichen Hobbyköchen - gekocht, getestet und von der Community empfohlen.' %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    {# Prefer configured default; otherwise fall back to a local favicon #}
     <meta property="og:image" content="{% if og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="{{ SITE_NAME|default:'Gourmet Wiki' }}">
+    <meta property="og:image:alt" content="GourmetWiki - Deine Wissensküche">
+    <meta property="og:locale" content="de_DE">
     {% endblock %}
 
     <!-- Twitter Card meta tags for Twitter sharing -->
     {% block meta_twitter %}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@TODO_TWITTER">
-    <meta name="twitter:title" content="{% firstof twitter_title og_title page_title SITE_NAME 'Gourmet Wiki - No ads. No guesswork. Just cooking.' %}">
-    <meta name="twitter:description" content="{% firstof twitter_description og_description DEFAULT_DESCRIPTION 'Built by chefs and serious home cooks sharing recipes they trust.' %}">
+    <meta name="twitter:site" content="@GourmetWiki">
+    <meta name="twitter:title" content="{% firstof twitter_title og_title page_title 'GourmetWiki - Deine #1 Wissensküche' %}">
+    <meta name="twitter:description" content="{% firstof twitter_description og_description page_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Profis für den Alltag.' %}">
     <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
+    <meta name="twitter:image:alt" content="GourmetWiki Logo">
     {% endblock %}
 
     <!-- Canonical URL to prevent duplicate content issues -->
     {% block meta_canonical %}
-    <link rel="canonical" href="{{ canonical|default:request.build_absolute_uri }}">
+    <link rel="canonical" href="{{ canonical_url|default:request.build_absolute_uri }}">
     {% endblock %}
 
-    {% block meta_alternate %}{% endblock %}
+    {% block meta_alternate %}
+    <!-- Language alternates if you have multiple language versions -->
+    {% endblock %}
+
     {% block meta_extra %}{% endblock %}
 
-    <title>{% block title %}{{ page_title|default:SITE_NAME|default:'Gourmet Wiki' }} - No ads. No guesswork. Just cooking.{% endblock %}</title>
-
+    <!-- Favicon and app icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'favicons/site.webmanifest.json' %}">
 
+    <!-- Vite assets -->
     {% if debug %}
         {% vite_hmr_client %}
     {% endif %}
     {% vite_asset 'static/js/main.js' %}
 
-    {% block jsonld %}{% endblock %}
+    {% block jsonld %}
+    <!-- Structured data for search engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "GourmetWiki",
+        "description": "Deine #1 Wissensküche - Rezepte von Köchen und Hobbyköchen ohne Werbung",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ request.scheme }}://{{ request.get_host }}/suche?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    {% endblock %}
+
     {% block head %}{% endblock %}
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-BYM0XLT51B');
-</script>
 <body class="flex flex-col max-w-screen min-h-screen bg-base-100 {% if user.is_authenticated %}pb-14{% endif %} lg:pb-0">
 
+<!-- Skip to main content for accessibility -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary focus:text-white">
+    Zum Hauptinhalt springen
+</a>
+
 {% include "partials/navbar.html" %}
+
 {% include "partials/alerts.html" %}
-<div class="min-h-screen flex-grow w-full max-w-full flex flex-col gap-5 items-center justify-start pb-20 overflow-visible">
+
+<!-- Main content area with semantic HTML5 -->
+<main id="main-content" class="min-h-screen flex-grow w-full max-w-full flex flex-col gap-5 items-center justify-start pb-20 overflow-visible">
     {% block main_content %}
     {% endblock %}
-</div>
+</main>
 
+<!-- Footer component -->
 <c-footer></c-footer>
 
+<!-- Dock for authenticated users -->
 {% if user.is_authenticated %}
     <c-dock></c-dock>
 {% endif %}
 
-{% comment %}fixed right-2 md:right-5 w-fit max-w-xs{% endcomment %}
+<!-- HTMX for dynamic interactions -->
+<script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
 
-<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+<!-- Google Analytics -->
+{% if GA_ID %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ GA_ID }}', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+    });
+</script>
+{% endif %}
 
 </body>
 </html>
