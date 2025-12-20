@@ -85,6 +85,7 @@ MIDDLEWARE = [
     # 'gourmet_wiki.middleware.ForceGermanMiddleware',  # disabled to allow language switching
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'gourmet_wiki.middleware.RequireLoginMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
@@ -104,8 +105,7 @@ ROOT_URLCONF = 'gourmet_wiki.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': False,
         'OPTIONS': {
             'loaders': [(
