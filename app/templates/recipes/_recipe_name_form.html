@@ -1,0 +1,12 @@
+{% load cotton %}
+<form
+    id="recipe-name-form"
+    hx-post="{% url 'recipe-name-update' recipe.id %}"
+    hx-trigger="change delay:500ms"
+    hx-swap="outerHTML"
+    hx-target="this"
+    class="w-full"
+>
+    {% csrf_token %}
+    <c-input :field="name_form.name" labeled></c-input>
+</form>

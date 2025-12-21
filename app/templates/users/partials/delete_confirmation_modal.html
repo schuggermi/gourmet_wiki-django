@@ -41,7 +41,7 @@
       </div>
 
       <div class="modal-action">
-        <a href="{% url 'users-profile' %}" class="btn">{% translate 'Cancel' %}</a>
+        <a href="{% url 'user-profile' user.username %}" class="btn">{% translate 'Cancel' %}</a>
         <button type="submit" id="submit-button" class="btn btn-error">{% translate 'Delete Your Account' %}</button>
       </div>
     </form>

@@ -1,13 +1,20 @@
 {% load forms %}
 
 <c-vars type="text"
-        default_class="w-full textarea bg-base-100 rounded-sm focus:outline-none focus:ring-0"
+        default_class="w-full textarea bg-base-200 rounded-sm focus:outline-none focus:ring-0"
         error_class="border-3 border-red-400"
+        success_class="border-1 border-green-400!"
 ></c-vars>
 
-<label for="{{ field.id_for_label }}" class="{% if not labeled %}hidden{% endif %}">{{ field.label }}</label>
+<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
+    {% if field and not label %}
+        {{ field.label }}{% if field.field.required %}*{% endif %}
+    {% elif label %}
+        {{ label }}
+    {% endif %}
+</label>
 <textarea {{ field.field.widget.attrs|render_attrs }}
           id="{{ field.id_for_label }}"
           name="{{ field.html_name }}"
-          class="{{ default_class }} {% if not field.field.widget.attrs.resize %}resize-none{% endif %} {{ class }} {% if field.errors %}{{ error_class }}{% endif %}"
+          class="{{ default_class }} {% if not field.field.widget.attrs.resize %}resize-none{% endif %} {{ class }} {% if field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
 >{{ field.value|default_if_none:'' }}</textarea>

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, ListView, DeleteView
 from django.http import JsonResponse
@@ -66,13 +66,20 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(request, _('Your account has been deleted.'))
         return response
 
+
 class ProfileView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = "users/profile.html"
 
-    def get_object(self, queryset=...):
-        user = User.objects.get(pk=self.request.user.pk)
-        return user.profile if user else None
+    def get_object(self, queryset=None):
+        username = self.kwargs.get("username")
+
+        if username:
+            user: User = get_object_or_404(User, username=username)
+        else:
+            user: User = self.request.user
+
+        return user.profile
 
 
 class UserRecipeListView(LoginRequiredMixin, ListView):

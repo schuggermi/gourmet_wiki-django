@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
 from django.db import models
 from django.db.models import Avg
 from django.utils.text import slugify
@@ -18,8 +18,8 @@ User = get_user_model()
 
 class Recipe(models.Model):
     name = models.CharField(
-        max_length=100,
-        verbose_name=_("Name"),
+        validators=[MinLengthValidator(3), MaxLengthValidator(50)],
+        verbose_name=_("Recipe Name"),
     )
     description = models.TextField(
         blank=True,
@@ -40,7 +40,7 @@ class Recipe(models.Model):
         verbose_name=_('Course'),
         max_length=50,
         choices=CourseTypeChoice.choices,
-        default=CourseTypeChoice.MAIN,
+        blank=True,
     )
     portions = models.PositiveIntegerField(
         default=4,
@@ -60,8 +60,8 @@ class Recipe(models.Model):
     skill_level = models.CharField(
         max_length=50,
         choices=SkillLevelChoice.choices,
-        default=SkillLevelChoice.BEGINNER,
         verbose_name=_("Skill Level"),
+        blank=False,
     )
     favorite_by = models.ManyToManyField(
         User,
@@ -69,10 +69,6 @@ class Recipe(models.Model):
         blank=True,
     )
     is_published = models.BooleanField(verbose_name=_('Published'), default=False)
-
-    @property
-    def total_cost(self):
-        return calculate_recipe_cost(self)
 
     @property
     def total_time_minutes(self):
@@ -106,10 +102,6 @@ class Recipe(models.Model):
     def average_rating(self):
         avg = self.ratings.aggregate(avg=Avg('score'))['avg']
         return round(max(0, avg if avg is not None else 0), 1)
-
-    @property
-    def nutrients(self):
-        return self.get_nutrients()
 
     def __str__(self):
         return self.name
@@ -208,12 +200,14 @@ class RecipeIngredient(models.Model):
         decimal_places=2,
         validators=[
             MinValueValidator(Decimal('0.1')),
-        ]
+        ],
+        verbose_name=_("Quantity"),
     )
     unit = models.CharField(
         max_length=10,
         choices=UnitChoice.choices,
         default=UnitChoice.GRAM,
+        verbose_name=_("Unit"),
     )
 
     class Meta:

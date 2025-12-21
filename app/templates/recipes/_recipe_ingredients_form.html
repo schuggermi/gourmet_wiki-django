@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<ul class="mb-10">
+  {% for ingredient in recipe.ingredients.all %}
+    <li>{{ ingredient.name }} / {{ ingredient.quantity }} {{ ingredient.unit }}</li>
+  {% empty %}
+    <li>{% translate 'No ingredients yet.' %}</li>
+  {% endfor %}
+</ul>
+
+<form method="post"
+      action="{% url 'ingredient_add' recipe.id %}"<form
+      class="grid grid-cols-1 gap-2 w-full"
+>
+    {% csrf_token %}
+
+    <div class="grid grid-cols-3 gap-2">
+        <div class="col-span-3 md:col-span-1"><c-input :field="ingredient_form.name" labeled></c-input></div>
+        <div class="col-span-2 md:col-span-1"><c-input :field="ingredient_form.quantity" type="number" labeled></c-input></div>
+        <div><c-select :field="ingredient_form.unit" labeled></c-select></div>
+    </div>
+
+    <button class="self-end btn btn-primary" type="submit">
+        {% translate '+ Add Ingredient' %}
+    </button>
+</form>

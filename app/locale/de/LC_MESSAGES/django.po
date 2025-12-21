@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 17:25+0000\n"
+"POT-Creation-Date: 2025-12-21 05:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,27 +129,27 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:32
+#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:111
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:42
+#: recipes/forms.py:47 recipes/forms.py:121
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:64
+#: recipes/forms.py:143
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:67
+#: recipes/forms.py:146
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:87
+#: recipes/forms.py:166
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:93 recipes/forms.py:157
+#: recipes/forms.py:172 recipes/forms.py:236
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -162,8 +162,8 @@ msgid "This section must contain at least one preparation step."
 msgstr "Dieser Abschnitt muss mindestens einen Zubereitungsschritt enthalten."
 
 #: recipes/models.py:22
-msgid "Name"
-msgstr ""
+msgid "Recipe Name"
+msgstr "Rezeptname"
 
 #: recipes/models.py:27
 msgid "Description"
@@ -182,7 +182,7 @@ msgstr "Portionen"
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:64
+#: recipes/models.py:63
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
@@ -190,17 +190,25 @@ msgstr "Schwierigkeitsgrad"
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:184
+#: recipes/models.py:176
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/views.py:428
+#: recipes/models.py:204
+msgid "Quantity"
+msgstr "Menge"
+
+#: recipes/models.py:210 templates/recipes/partials/ingredient_form_row.html:57
+msgid "Unit"
+msgstr "Einheit"
+
+#: recipes/views.py:501
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:440 recipes/views.py:448
+#: recipes/views.py:513 recipes/views.py:521
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -370,7 +378,7 @@ msgstr "Kochbuch"
 msgid "Favorites"
 msgstr "Favoriten"
 
-#: templates/cotton/dock.html:19 templates/cotton/quick_actions.html:13
+#: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:13
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
 #: templates/users/profile.html:88 templates/users/recipe_list.html:27
@@ -378,7 +386,7 @@ msgstr "Favoriten"
 msgid "Add Recipe"
 msgstr "Neues Rezept"
 
-#: templates/cotton/dock.html:25 templates/cotton/quick_actions.html:18
+#: templates/cotton/dock.html:28 templates/cotton/quick_actions.html:18
 #: templates/menus/create_menu_wizard.html:9
 #: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:95
 msgid "Add Menu"
@@ -472,6 +480,7 @@ msgstr "Menü bearbeiten"
 
 #: templates/menus/create_menu_wizard.html:37
 #: templates/recipes/create_recipe_wizard.html:35
+#: templates/recipes/recipe_edit.html:16
 msgid "Details"
 msgstr "Details"
 
@@ -530,7 +539,7 @@ msgid "We don’t have any Menus listed yet."
 msgstr "Es sind noch keine Menüs vorhanden."
 
 #: templates/menus/partials/recipe_detail.html:43
-#: templates/recipes/partials/recipe_detail.html:41
+#: templates/recipes/partials/recipe_detail.html:51
 msgid "No description for this recipe."
 msgstr "Keine Beschreibung für dieses Rezept."
 
@@ -552,13 +561,14 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:92
+#: templates/recipes/partials/recipe_detail.html:102
+#: templates/recipes/recipe_edit.html:25
 msgid "Ingredients"
 msgstr "Zutaten"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:100
+#: templates/recipes/partials/recipe_detail.html:110
 msgid "Preparation"
 msgstr "Zubereitung"
 
@@ -614,7 +624,9 @@ msgstr "Rezepte, auf die du dich verlassen kannst"
 msgid ""
 "Created by professional chefs, designed for everyday kitchens. Every step "
 "clear, every dish succeeds."
-msgstr "Von Profi-Köchen entwickelt und für den Alltag geeignet. Jeder Schritt verständlich, jedes Gericht gelingt."
+msgstr ""
+"Von Profi-Köchen entwickelt und für den Alltag geeignet. Jeder Schritt "
+"verständlich, jedes Gericht gelingt."
 
 #: templates/pages/home.html:111
 msgid "Join a Vibrant Community"
@@ -624,9 +636,11 @@ msgstr "Werde Teil einer lebendigen Community"
 msgid ""
 "Connect with chefs and food lovers alike. Share ideas, discover new recipes, "
 "and become part of a culinary family."
-msgstr "Verbinde dich mit Köchen und Feinschmeckern. Tausche Ideen aus, entdecke neue Rezepte und werde Teil einer kulinarischen Familie."
+msgstr ""
+"Verbinde dich mit Köchen und Feinschmeckern. Tausche Ideen aus, entdecke "
+"neue Rezepte und werde Teil einer kulinarischen Familie."
 
-#: templates/pages/home.html:122
+#: templates/pages/home.html:121
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -1210,9 +1224,18 @@ msgstr "Anmelden"
 msgid "Sign up"
 msgstr "Registrieren"
 
+#: templates/recipes/_recipe_ingredients_form.html:7
+msgid "No ingredients yet."
+msgstr "Noch keine Zutaten."
+
+#: templates/recipes/_recipe_ingredients_form.html:24
+#: templates/recipes/partials/recipe_ingredients_form.html:21
+msgid "+ Add Ingredient"
+msgstr "+ Zutat hinzufügen"
+
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
-#: templates/recipes/recipe_detail.html:38
+#: templates/recipes/recipe_detail.html:38 templates/recipes/recipe_edit.html:7
 msgid "Edit Recipe"
 msgstr "Rezept bearbeiten"
 
@@ -1250,6 +1273,7 @@ msgid "Enter the code above"
 msgstr "Gib den obigen Code ein"
 
 #: templates/recipes/partials/delete_confirmation_modal.html:29
+#: templates/recipes/recipe_create.html:38
 #: templates/users/partials/delete_confirmation_modal.html:44
 #: templates/users/user_confirm_delete.html:31
 msgid "Cancel"
@@ -1275,10 +1299,6 @@ msgstr "Rindfleisch..."
 msgid "Amount"
 msgstr "Menge"
 
-#: templates/recipes/partials/ingredient_form_row.html:57
-msgid "Unit"
-msgstr "Einheit"
-
 #: templates/recipes/partials/ingredient_form_row.html:66
 msgid "Remove this Ingredient"
 msgstr "Diese Zutat entfernen"
@@ -1291,7 +1311,7 @@ msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
 msgid "Remove this Preparation Step"
 msgstr "Diesen Zubereitungsschritt entfernen"
 
-#: templates/recipes/partials/recipe_detail.html:106
+#: templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
@@ -1307,10 +1327,6 @@ msgstr "Noch keine Bilder hochgeladen."
 msgid "Upload Image (max. 10 files)"
 msgstr "Bild hochladen (max. 10 Dateien)"
 
-#: templates/recipes/partials/recipe_ingredients_form.html:21
-msgid "+ Add Ingredient"
-msgstr "+ Zutat hinzufügen"
-
 #: templates/recipes/partials/recipe_list.html:5
 msgid "We don't have any Recipes listed yet."
 msgstr "Es sind noch keine Rezepte vorhanden."
@@ -1318,6 +1334,22 @@ msgstr "Es sind noch keine Rezepte vorhanden."
 #: templates/recipes/partials/recipe_preparation_step_form.html:21
 msgid "+ Add Preparation Step"
 msgstr "+ Zubereitungsschritt hinzufügen"
+
+#: templates/recipes/recipe_create.html:18
+msgid "Create a new Recipe"
+msgstr "Neues Rezept erstellen"
+
+#: templates/recipes/recipe_create.html:29
+msgid "What should the recipe be called?"
+msgstr "Wie soll das rezept heißen?"
+
+#: templates/recipes/recipe_create.html:43
+msgid "Create"
+msgstr "Erstellen"
+
+#: templates/recipes/recipe_edit.html:8
+msgid "Add Ingredients, Steps and other Details"
+msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
 
 #: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
 #: templates/users/favorite_recipe_list.html:25

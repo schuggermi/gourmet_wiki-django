@@ -13,7 +13,10 @@
         <span class="dock-label">{% translate 'Favorites' %}</span>
     </c-a>
 
-    <c-a url="{% url 'recipe-create' %}"
+    <c-a url="{% url 'recipe-new' %}"
+         hx-get="{% url 'recipe-new' %}"
+         hx-target="#modal-container"
+         hx-swap="innerHTML"
          class="hover:scale-105 text-center tooltip tooltip-bottom tooltip-primary">
         <c-add-recipe-icon></c-add-recipe-icon>
         <span class="dock-label">{% translate 'Add Recipe' %}</span>

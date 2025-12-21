@@ -28,7 +28,6 @@ urlpatterns = [
                   path('test/403/', lambda request: render(request, "errors/403.html", status=404)),
                   # i18n: enable Django's built-in language switch endpoint at /i18n/setlang/
                   path('i18n/', include('django.conf.urls.i18n')),
-                  path('admin/', admin.site.urls),
                   path('', include('pages.urls'), name='pages'),
                   path('', include('core.urls'), name='core'),
                   path('wiki/', include('wiki.urls'), name='wiki'),
@@ -36,7 +35,7 @@ urlpatterns = [
                   path('ingredients/', include('ingredients.urls'), name='ingredients'),
                   path('menus/', include('menus.urls'), name='menus'),
                   path('accounts/', include('allauth.urls')),
-                  path('users/', include('users.urls')),
+                  path('', include('users.urls')),
                   path('api-auth/', include('rest_framework.urls')),
                   path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
                   path('sitemap.xml', sitemap, {'sitemaps': {

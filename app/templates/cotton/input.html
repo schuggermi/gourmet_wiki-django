@@ -1,10 +1,11 @@
 {% load forms %}
 
 <c-vars type="text"
-        input_class="input bg-base-100"
-        default_class="w-full rounded-sm focus:outline-none focus:ring-0"
+        input_class="input bg-base-200"
+        default_class="w-full rounded-sm outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none appearance-none!"
         checkbox_class="checkbox bg-base-100 rounded-sm"
         error_class="border-1 border-red-400!"
+        success_class="border-1 border-green-400!"
 ></c-vars>
 
 <label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
@@ -23,7 +24,7 @@
             name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
             value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
             placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% endif %}"
+            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
     >
     {% if slot %}
         {{ slot }}
@@ -31,11 +32,11 @@
 </div>
 {% if not no_errors %}
     {% for error in field.errors %}
-        <ul class="text-red-400 pt-1">
+        <ul class="text-red-400">
             <li><small>{{ error }}</small></li>
         </ul>
     {% endfor %}
 {% endif %}
 {% if field.help_text and not no_help %}
-    <small class="block w-fit mt-2">{{ field.help_text|safe }}</small>
+    <small class="block w-fit mt-1">{{ field.help_text|safe }}</small>
 {% endif %}

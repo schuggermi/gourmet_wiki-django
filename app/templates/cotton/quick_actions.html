@@ -8,7 +8,10 @@
      class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent" data-tip="{% translate 'Favorites' %}">
     <c-favorites-icon></c-favorites-icon>
 </c-a>
-<c-a url="{% url 'recipe-create' %}"
+<c-a url="{% url 'recipe-new' %}"
+     hx-get="{% url 'recipe-new' %}"
+     hx-target="#modal-container"
+     hx-swap="innerHTML"
      class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent"
      data-tip="{% translate 'Add Recipe' %}">
     <c-add-recipe-icon></c-add-recipe-icon>

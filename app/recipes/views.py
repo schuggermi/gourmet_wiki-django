@@ -7,20 +7,21 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic import ListView, DetailView
 from formtools.wizard.views import SessionWizardView
 from django.utils.translation import gettext_lazy as _
 from django.http import JsonResponse
 
 from menus.models import Menu
-from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm, RecipeCreateForm
+from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm, RecipeCreateForm, RecipeNameForm, RecipeDetailsForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 from recipes.utils import calculate_scaled_ingredients_menu
@@ -40,7 +41,10 @@ def recipe_create(request):
             recipe = form.save(commit=False)
             recipe.created_by = request.user
             recipe.save()
-            return redirect("recipe-edit", recipe_id=recipe.id)
+            response = HttpResponse()
+            response['HX-Redirect'] = reverse('recipe-edit', kwargs={'recipe_id': recipe.pk})
+            return response
+            # return redirect("recipe-edit", recipe_id=recipe.id)
     else:
         form = RecipeCreateForm()
 
@@ -50,6 +54,8 @@ def recipe_create(request):
 def recipe_edit(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
+    name_form = RecipeNameForm(instance=recipe)
+    details_form = RecipeDetailsForm(instance=recipe)
     ingredient_form = RecipeIngredientForm()
     step_form = RecipePreparationStepForm()
 
@@ -58,10 +64,77 @@ def recipe_edit(request, recipe_id):
         "recipes/recipe_edit.html",
         {
             "recipe": recipe,
+            "name_form": name_form,
+            "details_form": details_form,
             "ingredient_form": ingredient_form,
             "step_form": step_form,
         },
     )
+
+
+@require_POST
+def recipe_name_update(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    form = RecipeNameForm(
+        data=request.POST,
+        instance=recipe,
+    )
+
+    if form.is_valid():
+        form.save()
+        # Create a fresh form with saved data
+        form = RecipeNameForm(instance=recipe)
+
+    # Re-render the entire form
+    html = render_to_string('recipes/_recipe_name_form.html', {
+        'name_form': form,
+        'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+
+@require_POST
+def recipe_details_update(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    form = RecipeDetailsForm(
+        data=request.POST,
+        instance=recipe,
+    )
+
+    if form.is_valid():
+        form.save()
+        print("SAVED FORM")
+        # Create a fresh form with saved data
+        form = RecipeDetailsForm(instance=recipe)
+
+    print("FORM IS NOT VALID")
+    print(form.errors)
+
+    # Re-render the entire form
+    html = render_to_string('recipes/_recipe_details_form.html', {
+        'details_form': form,
+        'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+    # # Validierung
+    # errors = []
+    # for validator in recipe._meta.get_field('name').validators:
+    #     try:
+    #         validator(new_title)
+    #     except ValidationError as e:
+    #         errors.extend(e.messages)
+    #
+    # # Ergebnis zurückgeben
+    # if errors:
+    #     return JsonResponse({"success": False, "errors": errors})
+    # else:
+    #     recipe.name = new_title
+    #     recipe.save()
+    #     return JsonResponse({"success": True, "title": new_title})
+
 
 def ingredient_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)

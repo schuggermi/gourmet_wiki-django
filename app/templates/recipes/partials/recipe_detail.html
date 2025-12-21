@@ -32,7 +32,17 @@
                  class="hidden print:block w-2/4 aspect-video rounded-md shadow-md object-cover"/>
 
             <div class="flex flex-col gap-5 w-full">
-                <h1 class="break-words hyphens-auto">{{ recipe.name }}</h1>
+                <div class="inline-flex items-center gap-5">
+                    <h1 class="break-words hyphens-auto">{{ recipe.name }}</h1>
+                    <div class="inline-flex">
+                        <span>@</span>
+                        <c-a url="{% url 'user-profile' recipe.created_by.username %}"
+                             class="hover:underline"
+                        >
+                            {{ recipe.created_by.username }}
+                        </c-a>
+                    </div>
+                </div>
 
                 <p class="break-words hyphens-auto">
                     {% if recipe.description != "" %}

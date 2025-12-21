@@ -1,7 +1,8 @@
 import logging
 import re
-
 from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.conf import settings
 from django.utils import translation
 from django_ratelimit.core import get_usage
 
@@ -24,7 +25,6 @@ class GlobalRateLimitMiddleware:
 
     @staticmethod
     def get_client_ip(request):
-        """Return the real IP address of the client."""
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip = x_forwarded_for.split(',')[0].strip()
@@ -82,15 +82,12 @@ class SuspiciousRequestMiddleware:
         return self.get_response(request)
 
 
-from django.shortcuts import redirect
-from django.conf import settings
-
 EXEMPT_URLS = [
     '/accounts/login/',
     '/accounts/logout/',
-    re.compile(r'^accounts/confirm-email/?$'),
-    re.compile(r'^accounts/confirm-email/.+/?$'),  # <-- key part!
-    '/admin/',
+    '/accounts/confirm-email/',
+    re.compile(r'^/accounts/confirm-email/?$'),
+    re.compile(r'^/accounts/confirm-email/.+/?$'),
     '/imprint/',
     '/privacy/',
     '/terms_of_use/',
@@ -104,10 +101,26 @@ class RequireLoginMiddleware:
     def __call__(self, request):
         path = request.path_info
 
-        if path in EXEMPT_URLS or path.startswith('/static/'):
+        if self.is_exempt(path):
+            return self.get_response(request)
+
+        if path.startswith('/admin-') or path.startswith('/admin/'):
             return self.get_response(request)
 
         if not request.user.is_authenticated:
             return redirect(settings.LOGIN_URL)
 
         return self.get_response(request)
+
+    def is_exempt(self, path):
+        if path.startswith('/static/') or path.startswith('/media/'):
+            return True
+
+        for exempt_url in EXEMPT_URLS:
+            if isinstance(exempt_url, re.Pattern):
+                if exempt_url.match(path):
+                    return True
+            elif path == exempt_url:
+                return True
+
+        return False

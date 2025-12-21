@@ -27,7 +27,7 @@
                         {% csrf_token %}
 
                         <p class="text-center">{% translate 'Are you sure you want to delete your account? This action cannot be undone.' %}</p>
-                        <c-a url="{% url 'users-profile' %}" class="btn btn-primary">
+                        <c-a url="{% url 'user-profile' user.username %}" class="btn btn-primary">
                             {% trans "Cancel" %}
                         </c-a>
 

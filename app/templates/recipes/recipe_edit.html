@@ -1,21 +1,38 @@
-<h1>{{ recipe.title }}</h1>
+{% extends "base.html" %}
+{% load i18n %}
 
-<hr>
+{% block main_content %}
+	<div class="w-full container flex flex-col gap-10 px-5 md:px-0 my-10 lg:max-w-3xl">
+        <header class="w-full">
+            <h1>{% translate 'Edit Recipe' %}</h1>
+            <p>{% translate 'Add Ingredients, Steps and other Details' %}</p>
+        </header>
+    
+        <div class="w-full flex flex-col gap-10">
+            {% include 'recipes/_recipe_name_form.html' %}
 
-<h2>Zutaten</h2>
-<ul>
-  {% for ingredient in recipe.ingredients.all %}
-    <li>{{ ingredient.amount }} {{ ingredient.name }}</li>
-  {% empty %}
-    <li>Noch keine Zutaten</li>
-  {% endfor %}
-</ul>
+            <!-- RECIPE DETAILS -->
+            <div class="w-full">
+                <h2>{% translate 'Details' %}</h2>
 
-<form method="post" action="{% url 'ingredient_add' recipe.id %}">
-  {% csrf_token %}
-  {{ ingredient_form.as_p }}
-  <button type="submit">Zutat hinzufügen</button>
-</form>
+                <div class="w-full border-1 border-neutral p-5 rounded-lg">
+                    {% include 'recipes/_recipe_details_form.html' %}
+                </div>
+            </div>
+
+            <!-- RECIPE INGREDIENTS -->
+            <div class="w-full">
+                <h2>{% translate 'Ingredients' %}</h2>
+
+                <div class="w-full border-1 border-neutral p-5 rounded-lg">
+                    {% include 'recipes/_recipe_ingredients_form.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
 
 <hr>
 

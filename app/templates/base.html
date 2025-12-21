@@ -125,8 +125,12 @@
     <c-dock></c-dock>
 {% endif %}
 
+<!-- Modal Container -->
+<div id="modal-container"></div>
+
 <!-- HTMX for dynamic interactions -->
 <script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
+<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 
 <!-- Google Analytics -->
 {% if GA_ID %}
@@ -139,6 +143,39 @@
         'anonymize_ip': true,
         'cookie_flags': 'SameSite=None;Secure'
     });
+</script>
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // HTMX global konfigurieren
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = getCookie('csrftoken');
+    });
+</script>
+<script>
+    // Hyperscript-compatible closeModal function
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        if (modal) {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                document.getElementById('modal-container').innerHTML = '';
+            }, 200);
+        }
+    }
 </script>
 {% endif %}
 

@@ -1,0 +1,22 @@
+{% load cotton %}
+<form
+    id="recipe-details-form"
+    hx-post="{% url 'recipe-details-update' recipe.id %}"
+    hx-trigger="change delay:500ms"
+    hx-swap="outerHTML"
+    hx-target="this"
+    class="grid grid-cols-1 gap-2 w-full"
+>
+    {% csrf_token %}
+    <div><c-textarea :field="details_form.description" labeled class="w-full"></c-textarea></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div><c-input :field="details_form.cooking_time_minutes" type="number" labeled></c-input></div>
+        <div><c-input :field="details_form.portions" type="number" labeled></c-input></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div><c-select :field="details_form.course_type" type="number" labeled></c-select></div>
+        <div><c-select :field="details_form.skill_level" labeled></c-select></div>
+    </div>
+</form>

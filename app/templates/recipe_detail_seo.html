@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ recipe.title }} - Rezept | GourmetWiki{% endblock %}
+
+{% block meta_description %}{{ recipe.description|truncatewords:30|default:'Entdecke das Rezept für '|add:recipe.title|add:' auf GourmetWiki. Von Profis entwickelt, Schritt für Schritt erklärt. Ohne Werbung, ohne Ablenkung - einfach nachkochen.' }}{% endblock %}
+
+{% block meta_keywords %}{{ recipe.title }}, Rezept {{ recipe.title }}, {{ recipe.category.name }}, {% for tag in recipe.tags.all %}{{ tag.name }}, {% endfor %}GourmetWiki Rezept{% endblock %}
+
+{% block meta_robots %}index,follow{% endblock %}
+
+{% block meta_og %}
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GourmetWiki">
+<meta property="og:title" content="{{ recipe.title }} - Rezept auf GourmetWiki">
+<meta property="og:description" content="{{ recipe.description|truncatewords:40|default:'Entdecke das Rezept für '|add:recipe.title|add:' - von Profis entwickelt und getestet.' }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% if recipe.image %}{{ recipe.image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/default-recipe.jpg' %}{% endif %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ recipe.title }} - GourmetWiki Rezept">
+<meta property="og:locale" content="de_DE">
+<meta property="article:published_time" content="{{ recipe.created_at|date:'c' }}">
+<meta property="article:modified_time" content="{{ recipe.updated_at|date:'c' }}">
+<meta property="article:author" content="{{ recipe.author.get_full_name|default:recipe.author.username }}">
+<meta property="article:section" content="{{ recipe.category.name }}">
+{% for tag in recipe.tags.all %}
+<meta property="article:tag" content="{{ tag.name }}">
+{% endfor %}
+{% endblock %}
+
+{% block meta_twitter %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GourmetWiki">
+<meta name="twitter:title" content="{{ recipe.title }} - Rezept">
+<meta name="twitter:description" content="{{ recipe.description|truncatewords:30 }}">
+<meta name="twitter:image" content="{% if recipe.image %}{{ recipe.image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/default-recipe.jpg' %}{% endif %}">
+<meta name="twitter:image:alt" content="{{ recipe.title }}">
+<meta name="twitter:creator" content="@{{ recipe.author.twitter_handle|default:'GourmetWiki' }}">
+{% endblock %}
+
+{% block meta_canonical %}
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{% url 'recipe_detail' recipe.slug %}">
+{% endblock %}
+
+{% block jsonld %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "{{ recipe.title }}",
+    "description": "{{ recipe.description|striptags }}",
+    "image": [
+        "{% if recipe.image %}{{ request.scheme }}://{{ request.get_host }}{{ recipe.image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/default-recipe.jpg' %}{% endif %}"
+    ],
+    "author": {
+        "@type": "Person",
+        "name": "{{ recipe.author.get_full_name|default:recipe.author.username }}"
+    },
+    "datePublished": "{{ recipe.created_at|date:'c' }}",
+    "dateModified": "{{ recipe.updated_at|date:'c' }}",
+    "prepTime": "PT{{ recipe.prep_time }}M",
+    "cookTime": "PT{{ recipe.cook_time }}M",
+    "totalTime": "PT{{ recipe.total_time }}M",
+    "recipeYield": "{{ recipe.servings }} Portionen",
+    "recipeCategory": "{{ recipe.category.name }}",
+    "recipeCuisine": "{{ recipe.cuisine|default:'International' }}",
+    "keywords": "{{ recipe.title }}, {{ recipe.category.name }}, {% for tag in recipe.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}",
+    "recipeIngredient": [
+        {% for ingredient in recipe.ingredients.all %}
+        "{{ ingredient.amount }} {{ ingredient.unit }} {{ ingredient.name }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    "recipeInstructions": [
+        {% for step in recipe.steps.all %}
+        {
+            "@type": "HowToStep",
+            "name": "Schritt {{ forloop.counter }}",
+            "text": "{{ step.instruction|striptags }}",
+            "position": {{ forloop.counter }}{% if step.image %},
+            "image": "{{ request.scheme }}://{{ request.get_host }}{{ step.image.url }}"{% endif %}
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ],
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ recipe.average_rating }}",
+        "reviewCount": "{{ recipe.review_count }}",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "nutrition": {
+        "@type": "NutritionInformation",
+        "calories": "{{ recipe.calories }} Kalorien"{% if recipe.protein %},
+        "proteinContent": "{{ recipe.protein }}g"{% endif %}{% if recipe.carbohydrates %},
+        "carbohydrateContent": "{{ recipe.carbohydrates }}g"{% endif %}{% if recipe.fat %},
+        "fatContent": "{{ recipe.fat }}g"{% endif %}
+    },
+    "suitableForDiet": [
+        {% if recipe.is_vegetarian %}"https://schema.org/VegetarianDiet"{% endif %}{% if recipe.is_vegan %}{% if recipe.is_vegetarian %},{% endif %}"https://schema.org/VeganDiet"{% endif %}{% if recipe.is_gluten_free %}{% if recipe.is_vegetarian or recipe.is_vegan %},{% endif %}"https://schema.org/GlutenFreeDiet"{% endif %}
+    ],
+    "video": {% if recipe.video_url %}{
+        "@type": "VideoObject",
+        "name": "{{ recipe.title }} - Video-Anleitung",
+        "description": "{{ recipe.description|striptags|truncatewords:20 }}",
+        "thumbnailUrl": "{% if recipe.video_thumbnail %}{{ request.scheme }}://{{ request.get_host }}{{ recipe.video_thumbnail.url }}{% endif %}",
+        "contentUrl": "{{ recipe.video_url }}",
+        "uploadDate": "{{ recipe.created_at|date:'c' }}"
+    }{% else %}null{% endif %}
+}
+</script>
+
+<!-- BreadcrumbList für bessere Navigation -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ request.scheme }}://{{ request.get_host }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Rezepte",
+            "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'recipe_list' %}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ recipe.category.name }}",
+            "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'category_detail' recipe.category.slug %}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "{{ recipe.title }}",
+            "item": "{{ request.build_absolute_uri }}"
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block main_content %}
+<article class="w-full max-w-4xl mx-auto px-4" itemscope itemtype="https://schema.org/Recipe">
+    <!-- Recipe content here -->
+    <h1 itemprop="name">{{ recipe.title }}</h1>
+
+    <!-- Rest of your recipe template -->
+</article>
+{% endblock %}

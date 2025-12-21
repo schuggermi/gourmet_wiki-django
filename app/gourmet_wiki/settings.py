@@ -82,16 +82,16 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'gourmet_wiki.middleware.ForceGermanMiddleware',  # disabled to allow language switching
+    'core.middleware.ForceGermanMiddleware',  # disabled to allow language switching
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'gourmet_wiki.middleware.RequireLoginMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.RequireLoginMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'users.middleware.HTMXLoginRedirectMiddleware',
-    'gourmet_wiki.middleware.SuspiciousRequestMiddleware',
+    'core.middleware.SuspiciousRequestMiddleware',
     # 'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
 ]
 
@@ -221,8 +221,8 @@ DJANGO_VITE = {
     }
 }
 
-ACCOUNT_SIGNUP_REDIRECT_URL = 'users-profile'
-LOGIN_REDIRECT_URL = 'users-profile'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'profile'
+LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = False
@@ -230,7 +230,12 @@ ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+if DEBUG:
+    ACCOUNT_EMAIL_VERIFICATION = 'none'
+else:
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
 ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
@@ -331,3 +336,5 @@ OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL')
 
 GA_ID=os.getenv('GA_ID')
 CB_ID=os.getenv('CB_ID')
+
+APPEND_SLASH = True

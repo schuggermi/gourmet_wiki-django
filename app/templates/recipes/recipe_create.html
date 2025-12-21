@@ -1,11 +1,49 @@
-{% extends "base.html" %}
+{% load i18n %}
 
 {% block main_content %}
-	<h1>Neues Rezept</h1>
+    <!-- Modal mit Backdrop -->
+    <div class="fixed inset-0 bg-base-300/50 flex items-center justify-center z-50 p-4"
+         id="modal"
+         tabindex="-1"
+         _="on click if event.target == me then call closeModal() end
+            on keydown[key=='Escape'] call closeModal()
+            on load call me.focus()">
 
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Rezept anlegen</button>
-    </form>
+        <!-- Modal Content -->
+        <div class="bg-base-100 rounded-2xl shadow-2xl max-w-md w-full transform transition-all duration-200"
+             _="init add .scale-100 .opacity-100">
+
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-5 border-b border-neutral">
+                <p class="font-bold">{% translate 'Create a new Recipe' %}</p>
+                <c-close-modal></c-close-modal>
+            </div>
+
+            <!-- Modal Body -->
+            <form hx-post="{% url 'recipe-new' %}"
+                  hx-target="#modal-container"
+                  hx-swap="innerHTML"
+                  class="px-5 pb-5 pt-10">
+                {% csrf_token %}
+
+                <p>{% translate 'What should the recipe be called?' %}</p>
+                <c-input :field="form.name" ></c-input>
+
+                <!-- Modal Footer -->
+                <div class="flex justify-end gap-3 mt-10">
+                    <button
+                        type="button"
+                        _="on click call closeModal()"
+                        class="btn btn-md btn-neutral btn-outline">
+                        {% translate 'Cancel' %}
+                    </button>
+                    <button
+                        type="submit"
+                        class="btn btn-md btn-primary">
+                        {% translate 'Create' %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
