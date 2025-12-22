@@ -141,7 +141,6 @@ def ingredient_add(request, recipe_id):
 @require_POST
 def step_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-
     form = RecipePreparationStepForm(data=request.POST)
 
     if form.is_valid():

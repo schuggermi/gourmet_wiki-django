@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 04:59+0000\n"
+"POT-Creation-Date: 2025-12-22 05:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,7 +204,8 @@ msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:184 templates/recipes/partials/recipe_detail.html:116
+#: recipes/models.py:184 templates/recipes/_recipe_steps_form.html:8
+#: templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
@@ -1250,22 +1251,22 @@ msgstr "+ Zutat hinzufügen"
 msgid "Remove this Preparation Step"
 msgstr "Diesen Zubereitungsschritt entfernen"
 
-#: templates/recipes/_recipe_steps_form.html:34
-#, fuzzy
-#| msgid "No ingredients yet."
+#: templates/recipes/_recipe_steps_form.html:36
 msgid "No steps yet."
-msgstr "Noch keine Zutaten."
+msgstr "Noch keine Schritte."
 
-#: templates/recipes/_recipe_steps_form.html:64
+#: templates/recipes/_recipe_steps_form.html:66
 #: templates/recipes/partials/preparation_step_form_row.html:25
 msgid "This is a section/category header"
 msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
 
-#: templates/recipes/_recipe_steps_form.html:75
-#, fuzzy
-#| msgid "+ Add Menu Item"
+#: templates/recipes/_recipe_steps_form.html:78
 msgid "+ Add Step"
-msgstr "+ Menüpunkt hinzufügen"
+msgstr "+ Schritt hinzufügen"
+
+#: templates/recipes/_recipe_steps_form.html:80
+msgid "+ Add Section"
+msgstr "+ Abschnitt hinzufügen"
 
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23

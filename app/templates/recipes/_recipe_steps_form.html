@@ -7,7 +7,8 @@
             {% if step.is_section %}
             	<small class="w-full font-semibold">{% translate 'Section' %}: {{ step.section_title }}</small>
             {% else %}
-                <small><span class="w-full font-semibold">{{ step.order }}.</span> {{ step.step_text }}</small>
+                {% comment %}<small><span class="w-full font-semibold">{{ step.order }}.</span> {{ step.step_text }}</small>{% endcomment %}
+                <small>{{ step.step_text }}</small>
             {% endif %}
         </div>
         <div class="flex items-center">
@@ -42,23 +43,39 @@
       hx-swap="innerHTML"
       hx-target="#recipe-steps-container"
       class="grid grid-cols-1 gap-2 w-full"
->
-    {% csrf_token %}
-
-    <div class="flex gap-2"
-         _="on change from #{{ step_form.is_section.id_for_label }}
+      _="on change from #{{ step_form.is_section.id_for_label }}
         if #{{ step_form.is_section.id_for_label }}.checked
             remove .hidden from .section-title-field in me
             add .hidden to .step-text-field in me
+            remove .hidden from .section-title-btn in me
+            add .hidden to .step-text-btn in me
         else
             add .hidden to .section-title-field in me
             remove .hidden from .step-text-field in me
-        end">
-        <div class="section-title-field grow-1 {% if form.is_section %}hidden{% endif %}">
+            add .hidden to .section-title-btn in me
+            remove .hidden from .step-text-btn in me
+        end
+        on load
+        if #{{ step_form.is_section.id_for_label }}.checked
+            remove .hidden from .section-title-field in me
+            add .hidden to .step-text-field in me
+            remove .hidden from .section-title-btn in me
+            add .hidden to .step-text-btn in me
+        else
+            add .hidden to .section-title-field in me
+            remove .hidden from .step-text-field in me
+            add .hidden to .section-title-btn in me
+            remove .hidden from .step-text-btn in me
+        end"
+>
+    {% csrf_token %}
+
+    <div class="flex flex-col md:flex-row gap-2">
+        <div class="section-title-field grow-1">
             <c-input :field="step_form.section_title" labeled></c-input>
         </div>
 
-        <div class="step-text-field grow-1 {% if not form.is_section %}hidden{% endif %}">
+        <div class="step-text-field grow-1">
             <c-input :field="step_form.step_text" labeled></c-input>
         </div>
 
@@ -73,8 +90,11 @@
         </div>
     </div>
 
-    <button class="self-end btn btn-primary" type="submit">
+    <button class="step-text-btn self-end btn btn-primary" type="submit">
         {% translate '+ Add Step' %}
+    </button>
+    <button class="section-title-btn self-end btn btn-primary" type="submit">
+        {% translate '+ Add Section' %}
     </button>
 </form>
 
