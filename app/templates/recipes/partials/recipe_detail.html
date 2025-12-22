@@ -32,7 +32,7 @@
                  class="hidden print:block w-2/4 aspect-video rounded-md shadow-md object-cover"/>
 
             <div class="flex flex-col gap-5 w-full">
-                <div class="inline-flex items-center gap-5">
+                <div class="flex flex-col items-start">
                     <h1 class="break-words hyphens-auto">{{ recipe.name }}</h1>
                     <div class="inline-flex">
                         <span>@</span>
@@ -117,8 +117,7 @@
                     </li>
                 {% else %}
                     <li class="flex flex-row gap-1 pt-1 print:py-0">
-                        <p class="w-fit relative"><span class="font-extrabold">{{ step.display_index }}.</span></p>
-                        <p class="ps-5">{{ step.step_text }}</p>
+                        <p>{{ step.step_text }}</p>
                     </li>
                 {% endif %}
             {% endfor %}

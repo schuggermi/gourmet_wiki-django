@@ -110,15 +110,25 @@ class Recipe(models.Model):
         return self.favorite_by.filter(pk=user.pk).exists()
 
     def calculate_scaled_ingredients(self, target_portions: int):
-        scale_factor = Decimal(target_portions / self.portions)
+        """
+        Calculate ingredient quantities scaled to target portions.
+
+        Args:
+            target_portions: The number of portions to scale the recipe to
+
+        Returns:
+            List of dicts containing scaled ingredient information
+        """
+        scale_factor = Decimal(target_portions) / Decimal(self.portions)
 
         scaled_ingredients = []
         for ri in self.ingredients.all():
             scaled_quantity = ri.scale_quantity(scale_factor)
             scaled_ingredients.append({
-                'ingredient': ri.ingredient,
+                'name': ri.name,
                 'quantity': scaled_quantity,
                 'unit': ri.unit,
+                'unit_display': ri.get_unit_display(),
             })
 
         return scaled_ingredients

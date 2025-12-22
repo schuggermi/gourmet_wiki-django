@@ -8,7 +8,7 @@
         success_class="border-1 border-green-400!"
 ></c-vars>
 
-<label for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
+<label class="w-full" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}" class="{% if not labeled %}hidden{% endif %}">
     {% if field and not label %}
         {{ field.label }}{% if field.field.required %}*{% endif %}
     {% elif label %}

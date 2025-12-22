@@ -1,7 +1,7 @@
 from django.urls import path
 
 from recipes.views import RecipeListView, CreateRecipeWizardView, add_image_form, RecipeDetailView, get_calculate_scaled_ingredients, toggle_favorite, rate_recipe, \
-    recipe_list_partial, delete_recipe, recipe_create, recipe_edit, step_add, ingredient_add, recipe_name_update, recipe_details_update
+    recipe_list_partial, delete_recipe, recipe_create, recipe_edit, step_add, ingredient_add, recipe_name_update, recipe_details_update, steps_reorder, step_delete
 
 
 urlpatterns = [
@@ -9,7 +9,11 @@ urlpatterns = [
     path('edit/<int:recipe_id>/', recipe_edit, name='recipe-edit'),
     path('edit/<int:recipe_id>/name-update/', recipe_name_update, name='recipe-name-update'),
     path('edit/<int:recipe_id>/details-update/', recipe_details_update, name='recipe-details-update'),
+
     path('edit/<int:recipe_id>/add_step/', step_add, name='step_add'),
+    path('recipes/<int:recipe_id>/steps/reorder/', steps_reorder, name='steps_reorder'),
+    path('recipes/<int:recipe_id>/steps/<int:step_id>/delete/', step_delete, name='step_delete'),
+
     path('edit/<int:recipe_id>/add_ingredient/', ingredient_add, name='ingredient_add'),
 
     path('', RecipeListView.as_view(), name='recipe-list'),

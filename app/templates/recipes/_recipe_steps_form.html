@@ -1,8 +1,14 @@
 {% load i18n %}
 
-<ul id="steps" class="mb-10 flex flex-col gap-2 ps-0">
+<ul id="steps"
+    class="mb-10 flex flex-col gap-2 ps-0"
+    hx-post="{% url 'steps_reorder' recipe.id %}"
+    hx-trigger="end from:body"
+    hx-include="#steps"
+    hx-swap="none"
+>
   {% for step in recipe.steps.all %}
-    <li class="flex gap-2">
+    <li class="flex gap-2" data-step-id="{{ step.id }}">
         <div class="w-full grow-1 py-1 px-2 rounded-lg {% if step.is_section %}bg-neutral text-neutral-content{% else %}bg-neutral/10{% endif %}">
             {% if step.is_section %}
             	<small class="w-full font-semibold">{% translate 'Section' %}: {{ step.section_title }}</small>
@@ -14,7 +20,10 @@
         <div class="flex items-center">
             <p class="cursor-pointer w-fit"
                title="{% translate 'Remove this Preparation Step' %}"
-               onclick="this.closest('.formset-form').classList.add('hidden'); this.closest('.formset-form-content').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
+               hx-delete="{% url 'step_delete' recipe.id step.id %}"
+               hx-target="#recipe-steps-container"
+               hx-swap="innerHTML"
+               hx-confirm="{% translate 'Are you sure you want to delete this step?' %}"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"
@@ -99,19 +108,79 @@
 </form>
 
 <script>
-    window.addEventListener('load', () => {
-        (function () {
-            const sortable = document.querySelector("#steps");
+    function initializeSortable() {
+        const sortable = document.querySelector("#steps");
 
-            console.log("SORTABLE")
-            console.log(sortable)
+        if (sortable && !sortable.sortableInstance) {
+            console.log("Initializing Sortable");
 
-            new Sortable(sortable, {
+            sortable.sortableInstance = new Sortable(sortable, {
                 animation: 150,
                 dragClass: 'text-secondary!',
                 handle: '.drag-handle',
-                onEnd: () => null,
+                onEnd: function(evt) {
+                    console.log("Sort ended");
+
+                    // Get all items and their new order
+                    const items = sortable.querySelectorAll('li[data-step-id]');
+                    console.log("Found items:", items.length);
+
+                    const orderData = Array.from(items).map((item, index) => {
+                        console.log("Item:", item.dataset.stepId, "Order:", index + 1);
+                        return {
+                            id: item.dataset.stepId,
+                            order: index + 1
+                        };
+                    });
+
+                    console.log("Order data:", orderData);
+
+                    if (orderData.length === 0) {
+                        console.warn("No items to reorder!");
+                        return;
+                    }
+
+                    // Get CSRF token
+                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+                    // Send to server
+                    fetch(sortable.getAttribute('hx-post'), {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: new URLSearchParams({
+                            'order': JSON.stringify(orderData)
+                        })
+                    })
+                    .then(response => {
+                        console.log("Response status:", response.status);
+                        if (response.ok) {
+                            console.log("Reorder successful");
+                        } else {
+                            console.error("Reorder failed");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+                }
             });
-        })();
+        }
+    }
+
+    // Initial load
+    window.addEventListener('load', initializeSortable);
+
+    // Re-initialize after HTMX swaps
+    document.body.addEventListener('htmx:afterSwap', function(evt) {
+        console.log("HTMX swap detected");
+        // Remove old instance flag
+        const sortable = document.querySelector("#steps");
+        if (sortable) {
+            delete sortable.sortableInstance;
+        }
+        initializeSortable();
     });
 </script>

@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 from pprint import pprint
 
@@ -160,6 +161,65 @@ def step_add(request, recipe_id):
     html = render_to_string('recipes/_recipe_steps_form.html', {
         'step_form': form,
         'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+
+@require_POST
+def steps_reorder(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    print("POST DATA:", request.POST)
+    print("BODY:", request.body)
+
+    try:
+        order_data = json.loads(request.POST.get('order', '[]'))
+
+        print("ORDER DATA:", order_data)
+
+        # Update order for each step
+        for item in order_data:
+            step_id = item['id']
+            new_order = item['order']
+
+            print(f"Updating step {step_id} to order {new_order}")
+
+            RecipePreparationStep.objects.filter(
+                id=step_id,
+                recipe=recipe
+            ).update(order=new_order)
+
+        print("Reordering successful")
+        return HttpResponse(status=204)
+
+    except json.JSONDecodeError as e:
+        print(f"JSON Error: {e}")
+        return HttpResponse('Invalid data', status=400)
+    except Exception as e:
+        print(f"Error reordering steps: {e}")
+        import traceback
+        traceback.print_exc()
+        return HttpResponse('Error', status=500)
+
+
+@require_http_methods(["DELETE", "POST"])  # Erlaube beide
+def step_delete(request, recipe_id, step_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    step = get_object_or_404(RecipePreparationStep, id=step_id, recipe=recipe)
+
+    step.delete()
+
+    # Reorder remaining steps
+    steps = RecipePreparationStep.objects.filter(recipe=recipe).order_by('order')
+    for index, s in enumerate(steps, start=1):
+        s.order = index
+        s.save()
+
+    # Return updated template
+    form = RecipePreparationStepForm()
+    html = render_to_string('recipes/_recipe_steps_form.html', {
+        'step_form': form,
+        'recipe': recipe,
     })
     return HttpResponse(html)
 
