@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<form id="recipe-ingredients-form"
+      hx-post="{% url 'ingredient_edit' recipe.id editing_ingredient_id %}"
+      hx-swap="innerHTML"
+      hx-target="#recipe-ingredients-container"
+      class="grid grid-cols-1 gap-2 w-full border-2 border-secondary rounded-lg p-4"
+>
+    {% csrf_token %}
+
+    <p class="h4 mb-2">{% translate 'Editing Ingredient' %}</p>
+
+    <div class="grid grid-cols-3 gap-2">
+        <div class="col-span-3 md:col-span-1"><c-input :field="ingredient_form.name" labeled></c-input></div>
+        <div class="col-span-2 md:col-span-1"><c-input :field="ingredient_form.quantity" type="number" labeled></c-input></div>
+        <div><c-select :field="ingredient_form.unit" labeled></c-select></div>
+    </div>
+
+    <div class="flex gap-2 justify-end">
+        <button type="button"
+                class="btn btn-ghost"
+                hx-get="{% url 'ingredient_cancel_edit' recipe.id %}"
+                hx-target="#recipe-ingredients-form"
+                hx-swap="outerHTML">
+            {% translate 'Cancel' %}
+        </button>
+        <button class="btn btn-primary" type="submit">
+            {% translate 'Update Ingredient' %}
+        </button>
+    </div>
+</form>

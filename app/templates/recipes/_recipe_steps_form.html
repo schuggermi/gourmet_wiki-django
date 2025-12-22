@@ -11,7 +11,7 @@
     <li class="flex gap-2" data-step-id="{{ step.id }}">
         <div class="w-full grow-1 py-1 px-2 rounded-lg {% if step.is_section %}bg-neutral text-neutral-content{% else %}bg-neutral/10{% endif %}">
             {% if step.is_section %}
-            	<small class="w-full font-semibold">{% translate 'Section' %}: {{ step.section_title }}</small>
+            	<small class="w-full font-semibold text-neutral-content">{% translate 'Section' %}: {{ step.section_title }}</small>
             {% else %}
                 {% comment %}<small><span class="w-full font-semibold">{{ step.order }}.</span> {{ step.step_text }}</small>{% endcomment %}
                 <small>{{ step.step_text }}</small>
@@ -23,7 +23,7 @@
                hx-delete="{% url 'step_delete' recipe.id step.id %}"
                hx-target="#recipe-steps-container"
                hx-swap="innerHTML"
-               hx-confirm="{% translate 'Are you sure you want to delete this step?' %}"
+               hx-confirm="{% translate 'Are you sure you want to remove this step?' %}"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor"

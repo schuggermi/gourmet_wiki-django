@@ -13,7 +13,7 @@
 
             <!-- RECIPE DETAILS -->
             <div class="w-full">
-                <h2>{% translate 'Details' %}</h2>
+                <p class="h4 mb-1">{% translate 'Details' %}</p>
 
                 <div class="w-full border-1 border-neutral p-5 rounded-lg">
                     {% include 'recipes/_recipe_details_form.html' %}
@@ -22,16 +22,16 @@
 
             <!-- RECIPE INGREDIENTS -->
             <div class="w-full">
-                <h2>{% translate 'Ingredients' %}</h2>
+                <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
 
-                <div class="w-full border-1 border-neutral p-5 rounded-lg">
+                <div id="recipe-ingredients-container" class="w-full border-1 border-neutral p-5 rounded-lg">
                     {% include 'recipes/_recipe_ingredients_form.html' %}
                 </div>
             </div>
 
             <!-- RECIPE STEPS -->
             <div class="w-full">
-                <h2>{% translate 'Steps' %}</h2>
+                <p class="h4 mb-1">{% translate 'Steps' %}</p>
 
                 <div id="recipe-steps-container" class="w-full border-1 border-neutral p-5 rounded-lg">
                     {% include 'recipes/_recipe_steps_form.html' %}

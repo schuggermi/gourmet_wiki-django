@@ -147,7 +147,7 @@ input[type='number'] {
         @apply print:text-xs print:leading-tight;
     }
 
-    a, p, label {
+    a, p, label, th, td {
         @apply text-sm md:text-base lg:text-lg font-normal leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
         @apply print:text-sm print:leading-relaxed;
     }

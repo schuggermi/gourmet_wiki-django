@@ -224,6 +224,8 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
+        verbose_name = _("Ingredient")
+        verbose_name_plural = _("Ingredients")
         unique_together = ('recipe', 'name')
 
     def save(self, *args, **kwargs):

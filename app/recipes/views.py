@@ -121,20 +121,78 @@ def recipe_details_update(request, recipe_id):
 def ingredient_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    form = RecipeIngredientForm(
-        data=request.POST,
-        instance=recipe,
-    )
+    form = RecipeIngredientForm(data=request.POST)
 
     if form.is_valid():
         ingredient = form.save(commit=False)
         ingredient.recipe = recipe
         ingredient.save()
-        form = RecipeIngredientForm(instance=recipe)
+        form = RecipeIngredientForm()
+    else:
+        print("NOT VALID", form.errors)
 
     html = render_to_string('recipes/_recipe_ingredients_form.html', {
         'ingredient_form': form,
         'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+
+def ingredient_edit(request, recipe_id, ingredient_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    ingredient = get_object_or_404(RecipeIngredient, id=ingredient_id)
+
+    if request.method == "POST":
+        form = RecipeIngredientForm(data=request.POST, instance=ingredient)
+
+        if form.is_valid():
+            form.save()
+            form = RecipeIngredientForm()
+            html = render_to_string('recipes/_recipe_ingredients_form.html', {
+                'ingredient_form': form,
+                'recipe': recipe,
+            })
+            return HttpResponse(html)
+        else:
+            print("NOT VALID", form.errors)
+            html = render_to_string('recipes/_recipe_ingredients_edit_form.html', {
+                'ingredient_form': form,
+                'recipe': recipe,
+                'editing_ingredient_id': ingredient_id,
+            })
+            return HttpResponse(html)
+    else:
+        form = RecipeIngredientForm(instance=ingredient)
+        html = render_to_string('recipes/_recipe_ingredients_edit_form.html', {
+            'ingredient_form': form,
+            'recipe': recipe,
+            'editing_ingredient_id': ingredient_id,
+        })
+        return HttpResponse(html)
+
+
+def ingredient_cancel_edit(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    form = RecipeIngredientForm()
+
+    html = render_to_string('recipes/_recipe_ingredients_form.html', {
+        'ingredient_form': form,
+        'recipe': recipe,
+    })
+    return HttpResponse(html)
+
+
+@require_http_methods(["DELETE", "POST"])  # Erlaube beide
+def ingredient_delete(request, recipe_id, ingredient_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    ingredient = get_object_or_404(RecipeIngredient, id=ingredient_id, recipe=recipe)
+    ingredient.delete()
+
+    # Return updated template
+    form = RecipeIngredientForm()
+    html = render_to_string('recipes/_recipe_ingredients_form.html', {
+        'ingredient_form': form,
+        'recipe': recipe,
     })
     return HttpResponse(html)
 

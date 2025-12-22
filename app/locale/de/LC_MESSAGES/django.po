@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 05:18+0000\n"
+"POT-Creation-Date: 2025-12-22 23:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,7 +137,7 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:139 recipes/models.py:177
+#: recipes/forms.py:139 recipes/models.py:187
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
@@ -194,34 +194,47 @@ msgstr "Schwierigkeitsgrad"
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:172
+#: recipes/models.py:182
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:178
+#: recipes/models.py:188
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:184 templates/recipes/_recipe_steps_form.html:8
+#: recipes/models.py:194 templates/recipes/_recipe_steps_form.html:14
 #: templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:207
+#: recipes/models.py:217 templates/recipes/_recipe_ingredients_form.html:19
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:213 templates/recipes/partials/ingredient_form_row.html:57
+#: recipes/models.py:223 templates/recipes/_recipe_ingredients_form.html:20
+#: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/views.py:505
+#: recipes/models.py:227 templates/recipes/_recipe_ingredients_form.html:18
+#: templates/recipes/partials/ingredient_form_row.html:20
+msgid "Ingredient"
+msgstr "Zutat"
+
+#: recipes/models.py:228 templates/menus/partials/recipe_detail.html:149
+#: templates/recipes/create_recipe_wizard.html:38
+#: templates/recipes/partials/recipe_detail.html:102
+#: templates/recipes/recipe_edit.html:25
+msgid "Ingredients"
+msgstr "Zutaten"
+
+#: recipes/views.py:622
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:517 recipes/views.py:525
+#: recipes/views.py:634 recipes/views.py:642
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -571,13 +584,6 @@ msgstr "Arbeitszeit"
 #: templates/menus/partials/recipe_detail.html:127
 msgid "Resting"
 msgstr "Ruhezeit"
-
-#: templates/menus/partials/recipe_detail.html:149
-#: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:102
-#: templates/recipes/recipe_edit.html:25
-msgid "Ingredients"
-msgstr "Zutaten"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
@@ -1237,34 +1243,71 @@ msgstr "Anmelden"
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: templates/recipes/_recipe_ingredients_form.html:7
+#: templates/recipes/_recipe_ingredients_edit_form.html:11
+msgid "Editing Ingredient"
+msgstr "Zutat Bearbeiten"
+
+#: templates/recipes/_recipe_ingredients_edit_form.html:25
+#: templates/recipes/partials/delete_confirmation_modal.html:29
+#: templates/recipes/recipe_create.html:38
+#: templates/users/partials/delete_confirmation_modal.html:44
+#: templates/users/user_confirm_delete.html:31
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/recipes/_recipe_ingredients_edit_form.html:28
+msgid "Update Ingredient"
+msgstr "Zutat aktualisieren"
+
+#: templates/recipes/_recipe_ingredients_form.html:21
+msgid "Actions"
+msgstr "Aktionen"
+
+#: templates/recipes/_recipe_ingredients_form.html:32
+msgid "Edit this Ingredient"
+msgstr "Zutat bearbeiten"
+
+#: templates/recipes/_recipe_ingredients_form.html:40
+#: templates/recipes/partials/ingredient_form_row.html:66
+msgid "Remove this Ingredient"
+msgstr "Diese Zutat entfernen"
+
+#: templates/recipes/_recipe_ingredients_form.html:44
+msgid "Are you sure you want to remove this ingredient?"
+msgstr "Bist du sicher, dass du diese Zutat entfernen möchtest?"
+
+#: templates/recipes/_recipe_ingredients_form.html:61
 msgid "No ingredients yet."
 msgstr "Noch keine Zutaten."
 
-#: templates/recipes/_recipe_ingredients_form.html:27
+#: templates/recipes/_recipe_ingredients_form.html:81
 #: templates/recipes/partials/recipe_ingredients_form.html:21
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
-#: templates/recipes/_recipe_steps_form.html:15
+#: templates/recipes/_recipe_steps_form.html:23
 #: templates/recipes/partials/preparation_step_form_row.html:27
 msgid "Remove this Preparation Step"
 msgstr "Diesen Zubereitungsschritt entfernen"
 
-#: templates/recipes/_recipe_steps_form.html:36
+#: templates/recipes/_recipe_steps_form.html:27
+msgid "Are you sure you want to remove this step?"
+msgstr "Bist du sicher, dass du diesen Schritt entfernen möchtest?"
+
+#: templates/recipes/_recipe_steps_form.html:47
 msgid "No steps yet."
 msgstr "Noch keine Schritte."
 
-#: templates/recipes/_recipe_steps_form.html:66
+#: templates/recipes/_recipe_steps_form.html:93
 #: templates/recipes/partials/preparation_step_form_row.html:25
 msgid "This is a section/category header"
 msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
 
-#: templates/recipes/_recipe_steps_form.html:78
+#: templates/recipes/_recipe_steps_form.html:104
 msgid "+ Add Step"
 msgstr "+ Schritt hinzufügen"
 
-#: templates/recipes/_recipe_steps_form.html:80
+#: templates/recipes/_recipe_steps_form.html:107
 msgid "+ Add Section"
 msgstr "+ Abschnitt hinzufügen"
 
@@ -1307,13 +1350,6 @@ msgstr "Bestätigungscode"
 msgid "Enter the code above"
 msgstr "Gib den obigen Code ein"
 
-#: templates/recipes/partials/delete_confirmation_modal.html:29
-#: templates/recipes/recipe_create.html:38
-#: templates/users/partials/delete_confirmation_modal.html:44
-#: templates/users/user_confirm_delete.html:31
-msgid "Cancel"
-msgstr "Abbrechen"
-
 #: templates/recipes/partials/favorite_button.html:12
 msgid "Add to favorites"
 msgstr "Zu Favoriten hinzufügen"
@@ -1322,10 +1358,6 @@ msgstr "Zu Favoriten hinzufügen"
 msgid "Remove this Image"
 msgstr "Dieses Bild entfernen"
 
-#: templates/recipes/partials/ingredient_form_row.html:20
-msgid "Ingredient"
-msgstr "Zutat"
-
 #: templates/recipes/partials/ingredient_form_row.html:24
 msgid "Beef..."
 msgstr "Rindfleisch..."
@@ -1333,10 +1365,6 @@ msgstr "Rindfleisch..."
 #: templates/recipes/partials/ingredient_form_row.html:39
 msgid "Amount"
 msgstr "Menge"
-
-#: templates/recipes/partials/ingredient_form_row.html:66
-msgid "Remove this Ingredient"
-msgstr "Diese Zutat entfernen"
 
 #: templates/recipes/partials/recipe_details_form.html:45
 msgid "Persons"
