@@ -135,6 +135,13 @@ class RecipeForm(forms.ModelForm):
 
 
 class RecipePreparationStepForm(forms.ModelForm):
+    is_section = forms.BooleanField(
+        label=_("Is Section"),
+        initial=True,
+        required=False,
+        widget=forms.CheckboxInput()
+    )
+
     class Meta:
         model = RecipePreparationStep
         fields = ['is_section', 'section_title', 'step_text']
@@ -145,7 +152,6 @@ class RecipePreparationStepForm(forms.ModelForm):
             'section_title': forms.TextInput(attrs={
                 'placeholder': _("e.g. Sauce, Meat, Salad"),
             }),
-            'is_section': forms.CheckboxInput(),
         }
 
     def clean(self):
@@ -155,6 +161,7 @@ class RecipePreparationStepForm(forms.ModelForm):
             return cleaned_data
 
         is_section = cleaned_data.get('is_section')
+        print("IS: ", is_section)
         section_title = cleaned_data.get('section_title')
         step_text = cleaned_data.get('step_text')
 

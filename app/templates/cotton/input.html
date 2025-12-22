@@ -18,11 +18,19 @@
 <div class="relative w-full">
     <input {{ field.field.widget.attrs|render_attrs }}
             type="{{ type }}"
-            {% if value|stringformat:"s" == check_value|stringformat:"s" %}checked{% endif %}
+            {% if type == 'checkbox' %}
+                {% if field %}
+                    {% if field.value %}checked{% endif %}
+                {% elif value|stringformat:"s" == check_value|stringformat:"s" %}
+                    checked
+                {% endif %}
+            {% endif %}
             {% if disabled %}disabled{% endif %}
             id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
             name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
-            value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
+            {% if type != 'checkbox' %}
+                value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
+            {% endif %}
             placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
             class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
     >

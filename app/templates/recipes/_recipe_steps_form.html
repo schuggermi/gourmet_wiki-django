@@ -1,26 +1,36 @@
 {% load i18n %}
 
-<ul id="steps" class="mb-10">
+<ul id="steps" class="mb-10 flex flex-col gap-2 ps-0">
   {% for step in recipe.steps.all %}
-    <li>
-        <div>{{ step.order }}. {{ step.step_text }}</div>
-        <p class="cursor-pointer self-center w-fit"
+    <li class="flex gap-2">
+        <div class="w-full grow-1 py-1 px-2 rounded-lg {% if step.is_section %}bg-neutral text-neutral-content{% else %}bg-neutral/10{% endif %}">
+            {% if step.is_section %}
+            	<small class="w-full font-semibold">{% translate 'Section' %}: {{ step.section_title }}</small>
+            {% else %}
+                <small><span class="w-full font-semibold">{{ step.order }}.</span> {{ step.step_text }}</small>
+            {% endif %}
+        </div>
+        <div class="flex items-center">
+            <p class="cursor-pointer w-fit"
                title="{% translate 'Remove this Preparation Step' %}"
                onclick="this.closest('.formset-form').classList.add('hidden'); this.closest('.formset-form-content').remove(); document.getElementById('{{ form.DELETE.id_for_label }}').checked = true; document.getElementById('{{ form.DELETE.id_for_label }}').value = 'on'; reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS');"
             >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor"
-                 class="size-6 text-error">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
-            </svg>
-        </p>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-             stroke="currentColor"
-             class="size-6 drag-handle cursor-grab">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-        </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor"
+                     class="size-6 text-error">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
+                </svg>
+            </p>
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor"
+                     class="size-6 drag-handle cursor-grab">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                </svg>
+            </span>
+        </div>
     </li>
   {% empty %}
     <li>{% translate 'No steps yet.' %}</li>
@@ -29,24 +39,37 @@
 
 <form id="recipe-steps-form"
       hx-post="{% url 'step_add' recipe.id %}"
-      hx-trigger="change delay:500ms"
-      hx-swap="outerHTML"
-      hx-target="this"
+      hx-swap="innerHTML"
+      hx-target="#recipe-steps-container"
       class="grid grid-cols-1 gap-2 w-full"
 >
     {% csrf_token %}
 
-    <div class="grid grid-cols-2 gap-2">
-        <div class="section-title-field {% if not form.is_section %}hidden{% else %}border-b-3 border-secondary rounded-md{% endif %}">
+    <div class="flex gap-2"
+         _="on change from #{{ step_form.is_section.id_for_label }}
+        if #{{ step_form.is_section.id_for_label }}.checked
+            remove .hidden from .section-title-field in me
+            add .hidden to .step-text-field in me
+        else
+            add .hidden to .section-title-field in me
+            remove .hidden from .step-text-field in me
+        end">
+        <div class="section-title-field grow-1 {% if form.is_section %}hidden{% endif %}">
             <c-input :field="step_form.section_title" labeled></c-input>
         </div>
 
-        <div class="step-text-field {% if form.is_section %}hidden{% endif %}">
+        <div class="step-text-field grow-1 {% if not form.is_section %}hidden{% endif %}">
             <c-input :field="step_form.step_text" labeled></c-input>
         </div>
 
-        <div class="flex items-center gap-1 shrink-0">
-            <div title="{% translate 'This is a section/category header' %}">{{ step_form.is_section }}</div>
+        <div class="col-span-1 flex items-start gap-1 shrink-0">
+            <div title="{% translate 'This is a section/category header' %}">
+                <c-input :field="step_form.is_section"
+                         type="checkbox"
+                         labeled
+                         no_help
+                ></c-input>
+            </div>
         </div>
     </div>
 
@@ -67,7 +90,7 @@
                 animation: 150,
                 dragClass: 'text-secondary!',
                 handle: '.drag-handle',
-                onEnd: () => reindexFormset('#preparation-step-formset', '#id_recipe_preparation_step-TOTAL_FORMS'),
+                onEnd: () => null,
             });
         })();
     });

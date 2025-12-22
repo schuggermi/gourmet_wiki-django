@@ -88,7 +88,7 @@ class Recipe(models.Model):
 
     @property
     def ordered_preparation_steps(self):
-        steps = list(self.preparation_steps.all().order_by('order'))
+        steps = list(self.steps.all().order_by('order'))
         display_index = 0
         for s in steps:
             if s.is_section:
@@ -174,6 +174,7 @@ class RecipePreparationStep(models.Model):
     order = models.PositiveIntegerField()
     is_section = models.BooleanField(
         default=False,
+        verbose_name=_('Is Section'),
         help_text=_("Marks this row as a section/category break instead of a regular step."),
     )
     section_title = models.CharField(

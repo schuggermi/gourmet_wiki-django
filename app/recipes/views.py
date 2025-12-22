@@ -142,18 +142,21 @@ def ingredient_add(request, recipe_id):
 def step_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    form = RecipePreparationStepForm(
-        data=request.POST,
-        instance=recipe,
-    )
+    form = RecipePreparationStepForm(data=request.POST)
 
     if form.is_valid():
         print("IS VALID")
         step = form.save(commit=False)
         step.recipe = recipe
-        step.order = RecipePreparationStep.objects.filter(recipe=recipe).count()
+        step.order = RecipePreparationStep.objects.filter(recipe=recipe).count() + 1
+        print("SAVING STEP:", step.step_text, step.order)
         step.save()
-        form = RecipePreparationStepForm(instance=recipe)
+        print("STEP SAVED:", step.id)
+        print("IS SECTION: ", step.is_section)
+        print("NAME: ", step.section_title)
+        form = RecipePreparationStepForm()
+    else:
+        print("NOT VALID", form.errors)
 
     html = render_to_string('recipes/_recipe_steps_form.html', {
         'step_form': form,
@@ -306,7 +309,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             return formset
         elif step == '2':
             if self.recipe_instance:
-                queryset = self.recipe_instance.preparation_steps.all().order_by('order')
+                queryset = self.recipe_instance.steps.all().order_by('order')
             else:
                 queryset = RecipePreparationStep.objects.none()
             kwargs.update({

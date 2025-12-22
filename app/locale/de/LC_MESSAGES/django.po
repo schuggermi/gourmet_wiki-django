@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 02:35+0000\n"
+"POT-Creation-Date: 2025-12-22 04:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,19 +137,23 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:143
+#: recipes/forms.py:139 recipes/models.py:177
+msgid "Is Section"
+msgstr "Ist Abschnitt"
+
+#: recipes/forms.py:150
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:146
+#: recipes/forms.py:153
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:166
+#: recipes/forms.py:171
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:172 recipes/forms.py:236
+#: recipes/forms.py:177 recipes/forms.py:241
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -194,29 +198,29 @@ msgstr "Veröffentlicht"
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:177
+#: recipes/models.py:178
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:183 templates/recipes/partials/recipe_detail.html:116
+#: recipes/models.py:184 templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:206
+#: recipes/models.py:207
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:212 templates/recipes/partials/ingredient_form_row.html:57
+#: recipes/models.py:213 templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/views.py:501
+#: recipes/views.py:505
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:513 recipes/views.py:521
+#: recipes/views.py:517 recipes/views.py:525
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1236,28 +1240,28 @@ msgstr "Registrieren"
 msgid "No ingredients yet."
 msgstr "Noch keine Zutaten."
 
-#: templates/recipes/_recipe_ingredients_form.html:24
+#: templates/recipes/_recipe_ingredients_form.html:27
 #: templates/recipes/partials/recipe_ingredients_form.html:21
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
-#: templates/recipes/_recipe_steps_form.html:7
+#: templates/recipes/_recipe_steps_form.html:15
+#: templates/recipes/partials/preparation_step_form_row.html:27
+msgid "Remove this Preparation Step"
+msgstr "Diesen Zubereitungsschritt entfernen"
+
+#: templates/recipes/_recipe_steps_form.html:34
 #, fuzzy
 #| msgid "No ingredients yet."
 msgid "No steps yet."
 msgstr "Noch keine Zutaten."
 
-#: templates/recipes/_recipe_steps_form.html:27
+#: templates/recipes/_recipe_steps_form.html:64
 #: templates/recipes/partials/preparation_step_form_row.html:25
 msgid "This is a section/category header"
 msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
 
-#: templates/recipes/_recipe_steps_form.html:29
-#: templates/recipes/partials/preparation_step_form_row.html:27
-msgid "Remove this Preparation Step"
-msgstr "Diesen Zubereitungsschritt entfernen"
-
-#: templates/recipes/_recipe_steps_form.html:51
+#: templates/recipes/_recipe_steps_form.html:75
 #, fuzzy
 #| msgid "+ Add Menu Item"
 msgid "+ Add Step"
