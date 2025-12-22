@@ -162,13 +162,14 @@ class RecipeRating(models.Model):
 class RecipePreparationStep(models.Model):
     recipe = models.ForeignKey(
         Recipe,
-        related_name="preparation_steps",
+        related_name="steps",
         on_delete=models.CASCADE
     )
     step_text = models.CharField(
         max_length=500,
         blank=True,
         default="",
+        verbose_name=_("Step"),
     )
     order = models.PositiveIntegerField()
     is_section = models.BooleanField(
@@ -179,6 +180,7 @@ class RecipePreparationStep(models.Model):
         max_length=200,
         blank=True,
         default="",
+        verbose_name=_("Section"),
     )
 
     def __str__(self):

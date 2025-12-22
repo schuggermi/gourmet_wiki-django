@@ -8,8 +8,11 @@
   {% endfor %}
 </ul>
 
-<form method="post"
-      action="{% url 'ingredient_add' recipe.id %}"<form
+<form id="recipe-ingredients-form"
+      hx-post="{% url 'ingredient_add' recipe.id %}"
+      hx-trigger="change delay:500ms"
+      hx-swap="outerHTML"
+      hx-target="this"
       class="grid grid-cols-1 gap-2 w-full"
 >
     {% csrf_token %}

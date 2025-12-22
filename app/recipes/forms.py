@@ -137,7 +137,7 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     class Meta:
         model = RecipePreparationStep
-        fields = ['is_section', 'section_title', 'step_text', 'order']
+        fields = ['is_section', 'section_title', 'step_text']
         widgets = {
             'step_text': forms.TextInput(attrs={
                 'placeholder': _("e.g. Heat 2 tbsp of oil in a wok over medium-high heat.")
@@ -145,9 +145,7 @@ class RecipePreparationStepForm(forms.ModelForm):
             'section_title': forms.TextInput(attrs={
                 'placeholder': _("e.g. Sauce, Meat, Salad"),
             }),
-            'is_section': forms.CheckboxInput(attrs={
-                'class': 'checkbox'
-            }),
+            'is_section': forms.CheckboxInput(),
         }
 
     def clean(self):

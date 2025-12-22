@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-21 05:31+0000\n"
+"POT-Creation-Date: 2025-12-22 02:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,17 +190,25 @@ msgstr "Schwierigkeitsgrad"
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:176
+#: recipes/models.py:172
+msgid "Step"
+msgstr "Schritt"
+
+#: recipes/models.py:177
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:204
+#: recipes/models.py:183 templates/recipes/partials/recipe_detail.html:116
+msgid "Section"
+msgstr "Abschnitt"
+
+#: recipes/models.py:206
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:210 templates/recipes/partials/ingredient_form_row.html:57
+#: recipes/models.py:212 templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
@@ -378,7 +386,7 @@ msgstr "Kochbuch"
 msgid "Favorites"
 msgstr "Favoriten"
 
-#: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:13
+#: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:16
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
 #: templates/users/profile.html:88 templates/users/recipe_list.html:27
@@ -386,7 +394,7 @@ msgstr "Favoriten"
 msgid "Add Recipe"
 msgstr "Neues Rezept"
 
-#: templates/cotton/dock.html:28 templates/cotton/quick_actions.html:18
+#: templates/cotton/dock.html:28 templates/cotton/quick_actions.html:21
 #: templates/menus/create_menu_wizard.html:9
 #: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:95
 msgid "Add Menu"
@@ -1233,6 +1241,28 @@ msgstr "Noch keine Zutaten."
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
+#: templates/recipes/_recipe_steps_form.html:7
+#, fuzzy
+#| msgid "No ingredients yet."
+msgid "No steps yet."
+msgstr "Noch keine Zutaten."
+
+#: templates/recipes/_recipe_steps_form.html:27
+#: templates/recipes/partials/preparation_step_form_row.html:25
+msgid "This is a section/category header"
+msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
+
+#: templates/recipes/_recipe_steps_form.html:29
+#: templates/recipes/partials/preparation_step_form_row.html:27
+msgid "Remove this Preparation Step"
+msgstr "Diesen Zubereitungsschritt entfernen"
+
+#: templates/recipes/_recipe_steps_form.html:51
+#, fuzzy
+#| msgid "+ Add Menu Item"
+msgid "+ Add Step"
+msgstr "+ Menüpunkt hinzufügen"
+
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
 #: templates/recipes/recipe_detail.html:38 templates/recipes/recipe_edit.html:7
@@ -1303,18 +1333,6 @@ msgstr "Menge"
 msgid "Remove this Ingredient"
 msgstr "Diese Zutat entfernen"
 
-#: templates/recipes/partials/preparation_step_form_row.html:25
-msgid "This is a section/category header"
-msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
-
-#: templates/recipes/partials/preparation_step_form_row.html:27
-msgid "Remove this Preparation Step"
-msgstr "Diesen Zubereitungsschritt entfernen"
-
-#: templates/recipes/partials/recipe_detail.html:116
-msgid "Section"
-msgstr "Abschnitt"
-
 #: templates/recipes/partials/recipe_details_form.html:45
 msgid "Persons"
 msgstr "Personen"
@@ -1350,6 +1368,10 @@ msgstr "Erstellen"
 #: templates/recipes/recipe_edit.html:8
 msgid "Add Ingredients, Steps and other Details"
 msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
+
+#: templates/recipes/recipe_edit.html:34
+msgid "Steps"
+msgstr "Schritte"
 
 #: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
 #: templates/users/favorite_recipe_list.html:25

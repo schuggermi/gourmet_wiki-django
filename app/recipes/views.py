@@ -109,56 +109,57 @@ def recipe_details_update(request, recipe_id):
         # Create a fresh form with saved data
         form = RecipeDetailsForm(instance=recipe)
 
-    print("FORM IS NOT VALID")
-    print(form.errors)
-
-    # Re-render the entire form
     html = render_to_string('recipes/_recipe_details_form.html', {
         'details_form': form,
         'recipe': recipe,  # Pass recipe for the URL
     })
     return HttpResponse(html)
 
-    # # Validierung
-    # errors = []
-    # for validator in recipe._meta.get_field('name').validators:
-    #     try:
-    #         validator(new_title)
-    #     except ValidationError as e:
-    #         errors.extend(e.messages)
-    #
-    # # Ergebnis zurückgeben
-    # if errors:
-    #     return JsonResponse({"success": False, "errors": errors})
-    # else:
-    #     recipe.name = new_title
-    #     recipe.save()
-    #     return JsonResponse({"success": True, "title": new_title})
 
-
+@require_POST
 def ingredient_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    if request.method == "POST":
-        form = RecipeIngredientForm(request.POST)
-        if form.is_valid():
-            ingredient = form.save(commit=False)
-            ingredient.recipe = recipe
-            ingredient.save()
+    form = RecipeIngredientForm(
+        data=request.POST,
+        instance=recipe,
+    )
 
-    return redirect("recipe-edit", recipe_id=recipe.id)
+    if form.is_valid():
+        ingredient = form.save(commit=False)
+        ingredient.recipe = recipe
+        ingredient.save()
+        form = RecipeIngredientForm(instance=recipe)
 
+    html = render_to_string('recipes/_recipe_ingredients_form.html', {
+        'ingredient_form': form,
+        'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+
+@require_POST
 def step_add(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    if request.method == "POST":
-        form = RecipePreparationStepForm(request.POST)
-        if form.is_valid():
-            step = form.save(commit=False)
-            step.recipe = recipe
-            step.save()
+    form = RecipePreparationStepForm(
+        data=request.POST,
+        instance=recipe,
+    )
 
-    return redirect("recipe-edit", recipe_id=recipe.id)
+    if form.is_valid():
+        print("IS VALID")
+        step = form.save(commit=False)
+        step.recipe = recipe
+        step.order = RecipePreparationStep.objects.filter(recipe=recipe).count()
+        step.save()
+        form = RecipePreparationStepForm(instance=recipe)
+
+    html = render_to_string('recipes/_recipe_steps_form.html', {
+        'step_form': form,
+        'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
 
 """ NEW """
 
