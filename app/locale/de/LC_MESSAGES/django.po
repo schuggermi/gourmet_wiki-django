@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 23:07+0000\n"
+"POT-Creation-Date: 2025-12-23 14:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,31 +129,36 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:111
+#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:124
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:47 recipes/forms.py:121
+#: recipes/forms.py:45 recipes/models.py:72
+#: templates/recipes/recipe_edit.html:43
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: recipes/forms.py:60 recipes/forms.py:134
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:139 recipes/models.py:187
+#: recipes/forms.py:152 recipes/models.py:190
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
-#: recipes/forms.py:150
+#: recipes/forms.py:163
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:153
+#: recipes/forms.py:166
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:171
+#: recipes/forms.py:184
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:177 recipes/forms.py:241
+#: recipes/forms.py:190 recipes/forms.py:254
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
@@ -190,51 +195,47 @@ msgstr "Kochzeit (Minuten)"
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:71
-msgid "Published"
-msgstr "Veröffentlicht"
-
-#: recipes/models.py:182
+#: recipes/models.py:185
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:188
+#: recipes/models.py:191
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:194 templates/recipes/_recipe_steps_form.html:14
+#: recipes/models.py:197 templates/recipes/_recipe_steps_form.html:14
 #: templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:217 templates/recipes/_recipe_ingredients_form.html:19
+#: recipes/models.py:220 templates/recipes/_recipe_ingredients_form.html:19
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:223 templates/recipes/_recipe_ingredients_form.html:20
+#: recipes/models.py:226 templates/recipes/_recipe_ingredients_form.html:20
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:227 templates/recipes/_recipe_ingredients_form.html:18
+#: recipes/models.py:230 templates/recipes/_recipe_ingredients_form.html:18
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:228 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:231 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
 #: templates/recipes/partials/recipe_detail.html:102
 #: templates/recipes/recipe_edit.html:25
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/views.py:622
+#: recipes/views.py:642
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:634 recipes/views.py:642
+#: recipes/views.py:654 recipes/views.py:662
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1622,6 +1623,9 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Publishing"
+#~ msgstr "Veröffentlichung"
 
 #~ msgid "Proven chef-level recipes<br>that work anywhere."
 #~ msgstr "Profi-Rezepte, die überall funktionieren."

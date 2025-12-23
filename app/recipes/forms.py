@@ -37,6 +37,19 @@ class RecipeNameForm(forms.ModelForm):
             )
         }
 
+
+class RecipePublishForm(forms.ModelForm):
+    is_published = forms.BooleanField(
+        label=_("Published"),
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput()
+    )
+    class Meta:
+        model = Recipe
+        fields = ["is_published"]
+
+
 class RecipeDetailsForm(forms.ModelForm):
     class Meta:
         model = Recipe

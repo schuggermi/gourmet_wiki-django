@@ -68,7 +68,10 @@ class Recipe(models.Model):
         related_name='favorite_recipes',
         blank=True,
     )
-    is_published = models.BooleanField(verbose_name=_('Published'), default=False)
+    is_published = models.BooleanField(
+        verbose_name=_('Published'),
+        default=False
+    )
 
     @property
     def total_time_minutes(self):

@@ -1,0 +1,14 @@
+{% load cotton %}
+<form
+    id="recipe-publish-form"
+    hx-post="{% url 'recipe-public-update' recipe.id %}"
+    hx-trigger="change delay:500ms"
+    hx-swap="innerHTML"
+    hx-target="#recipe-publish-container"
+    class="w-full"
+>
+    {% csrf_token %}
+    <div>
+        <c-input :field="publish_form.is_published" type="checkbox"></c-input>
+    </div>
+</form>

@@ -1,8 +1,5 @@
 import json
 from pathlib import Path
-from pprint import pprint
-
-from django import forms
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -22,10 +19,11 @@ from django.utils.translation import gettext_lazy as _
 from django.http import JsonResponse
 
 from menus.models import Menu
-from recipes.forms import RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm, RecipeCreateForm, RecipeNameForm, RecipeDetailsForm
+from recipes.forms import RecipePublishForm, RecipeForm, RecipeIngredientForm, RecipeImageForm, RecipePreparationStepForm, RecipeCreateForm, RecipeNameForm, RecipeDetailsForm
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 from recipes.utils import calculate_scaled_ingredients_menu
+
 
 User = get_user_model()
 
@@ -90,6 +88,28 @@ def recipe_name_update(request, recipe_id):
     # Re-render the entire form
     html = render_to_string('recipes/_recipe_name_form.html', {
         'name_form': form,
+        'recipe': recipe,  # Pass recipe for the URL
+    })
+    return HttpResponse(html)
+
+
+@require_POST
+def recipe_public_update(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    form = RecipePublishForm(
+        data=request.POST,
+        instance=recipe,
+    )
+
+    if form.is_valid():
+        form.save()
+        # Create a fresh form with saved data
+        form = RecipePublishForm(instance=recipe)
+
+    # Re-render the entire form
+    html = render_to_string('recipes/_recipe_publish_form.html', {
+        'publish_form': form,
         'recipe': recipe,  # Pass recipe for the URL
     })
     return HttpResponse(html)

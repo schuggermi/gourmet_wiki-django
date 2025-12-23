@@ -37,6 +37,15 @@
                     {% include 'recipes/_recipe_steps_form.html' %}
                 </div>
             </div>
+
+            <!-- RECIPE PUBLISHING -->
+            <div class="w-full">
+                <p class="h4 mb-1">{% translate 'Published' %}</p>
+
+                <div id="recipe-publish-container" class="w-full border-1 border-neutral p-5 rounded-lg">
+                    {% include 'recipes/_recipe_publish_form.html' %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
