@@ -8,14 +8,17 @@
     class="grid grid-cols-1 gap-2 w-full"
 >
     {% csrf_token %}
-    <div><c-textarea :field="details_form.description" labeled class="w-full"></c-textarea></div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div><c-input :field="details_form.cooking_time_minutes" type="number" labeled></c-input></div>
-        <div><c-input :field="details_form.portions" type="number" labeled></c-input></div>
+    <div><c-input :field="details_form.name" labeled w_full></c-input></div>
+
+    <div><c-textarea :field="details_form.description" labeled w_full></c-textarea></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div><c-input :field="details_form.cooking_time_minutes" type="number" labeled w_full></c-input></div>
+        <div><c-input :field="details_form.portions" type="number" labeled w_full></c-input></div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div><c-select :field="details_form.course_type" type="number" labeled></c-select></div>
         <div><c-select :field="details_form.skill_level" labeled></c-select></div>
     </div>

@@ -9,7 +9,7 @@
 >
   {% for step in recipe.steps.all %}
     <li class="flex gap-2" data-step-id="{{ step.id }}">
-        <div class="w-full grow-1 py-1 px-2 rounded-lg {% if step.is_section %}bg-neutral text-neutral-content{% else %}bg-neutral/10{% endif %}">
+        <div class="w-full grow-1 py-1 px-2 rounded-lg shadow-md {% if step.is_section %}bg-neutral text-neutral-content{% else %}bg-base-100{% endif %}">
             {% if step.is_section %}
             	<small class="w-full font-semibold text-neutral-content">{% translate 'Section' %}: {{ step.section_title }}</small>
             {% else %}
@@ -43,7 +43,9 @@
         </div>
     </li>
   {% empty %}
-    <li>{% translate 'No steps yet.' %}</li>
+      <li class="alert bg-neutral/10 border border-neutral rounded-lg">
+          <small>{% translate 'No steps yet.' %}</small>
+      </li>
   {% endfor %}
 </ul>
 
@@ -81,11 +83,11 @@
 
     <div class="flex flex-col md:flex-row gap-2">
         <div class="section-title-field grow-1">
-            <c-input :field="step_form.section_title" labeled></c-input>
+            <c-input :field="step_form.section_title" labeled w_full></c-input>
         </div>
 
         <div class="step-text-field grow-1">
-            <c-input :field="step_form.step_text" labeled></c-input>
+            <c-input :field="step_form.step_text" labeled w_full></c-input>
         </div>
 
         <div class="col-span-1 flex items-start gap-1 shrink-0">

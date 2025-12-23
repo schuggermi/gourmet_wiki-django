@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-23 14:30+0000\n"
+"POT-Creation-Date: 2025-12-23 19:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,38 +129,37 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:124
+#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:82
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:45 recipes/models.py:72
-#: templates/recipes/recipe_edit.html:43
-msgid "Published"
-msgstr "Veröffentlicht"
-
-#: recipes/forms.py:60 recipes/forms.py:134
+#: recipes/forms.py:59 recipes/forms.py:92
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:152 recipes/models.py:190
+#: recipes/forms.py:110 recipes/models.py:197
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
-#: recipes/forms.py:163
+#: recipes/forms.py:121
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:166
+#: recipes/forms.py:124
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:184
+#: recipes/forms.py:142
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:190 recipes/forms.py:254
+#: recipes/forms.py:148 recipes/forms.py:214
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
+
+#: recipes/forms.py:160
+msgid "Chicken breast"
+msgstr "Hähnchenbrust"
 
 #: recipes/formsets.py:38
 msgid "Preparation Steps must not be empty."
@@ -195,47 +194,55 @@ msgstr "Kochzeit (Minuten)"
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:185
+#: recipes/models.py:72
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: recipes/models.py:80 templates/recipes/_recipe_publish_form.html:17
+msgid "Published at"
+msgstr "Veröffentlicht am"
+
+#: recipes/models.py:192
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:191
+#: recipes/models.py:198
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:197 templates/recipes/_recipe_steps_form.html:14
+#: recipes/models.py:204 templates/recipes/_recipe_steps_form.html:14
 #: templates/recipes/partials/recipe_detail.html:116
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:220 templates/recipes/_recipe_ingredients_form.html:19
+#: recipes/models.py:227 templates/recipes/_recipe_ingredients_form.html:10
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:226 templates/recipes/_recipe_ingredients_form.html:20
+#: recipes/models.py:233 templates/recipes/_recipe_ingredients_form.html:11
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:230 templates/recipes/_recipe_ingredients_form.html:18
+#: recipes/models.py:237 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:231 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:238 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
 #: templates/recipes/partials/recipe_detail.html:102
 #: templates/recipes/recipe_edit.html:25
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/views.py:642
+#: recipes/views.py:643
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:654 recipes/views.py:662
+#: recipes/views.py:655 recipes/views.py:663
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1260,31 +1267,35 @@ msgstr "Abbrechen"
 msgid "Update Ingredient"
 msgstr "Zutat aktualisieren"
 
-#: templates/recipes/_recipe_ingredients_form.html:21
+#: templates/recipes/_recipe_ingredients_form.html:12
 msgid "Actions"
 msgstr "Aktionen"
 
-#: templates/recipes/_recipe_ingredients_form.html:32
+#: templates/recipes/_recipe_ingredients_form.html:23
 msgid "Edit this Ingredient"
 msgstr "Zutat bearbeiten"
 
-#: templates/recipes/_recipe_ingredients_form.html:40
+#: templates/recipes/_recipe_ingredients_form.html:31
 #: templates/recipes/partials/ingredient_form_row.html:66
 msgid "Remove this Ingredient"
 msgstr "Diese Zutat entfernen"
 
-#: templates/recipes/_recipe_ingredients_form.html:44
+#: templates/recipes/_recipe_ingredients_form.html:35
 msgid "Are you sure you want to remove this ingredient?"
 msgstr "Bist du sicher, dass du diese Zutat entfernen möchtest?"
 
-#: templates/recipes/_recipe_ingredients_form.html:61
+#: templates/recipes/_recipe_ingredients_form.html:52
 msgid "No ingredients yet."
 msgstr "Noch keine Zutaten."
 
-#: templates/recipes/_recipe_ingredients_form.html:81
+#: templates/recipes/_recipe_ingredients_form.html:72
 #: templates/recipes/partials/recipe_ingredients_form.html:21
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
+
+#: templates/recipes/_recipe_publish_form.html:19
+msgid "Unpublished"
+msgstr "Nicht Veröffentlicht"
 
 #: templates/recipes/_recipe_steps_form.html:23
 #: templates/recipes/partials/preparation_step_form_row.html:27
@@ -1407,6 +1418,10 @@ msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
 msgid "Steps"
 msgstr "Schritte"
 
+#: templates/recipes/recipe_edit.html:44
+msgid "Publish"
+msgstr "Veröffentlichen"
+
 #: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
 #: templates/users/favorite_recipe_list.html:25
 #: templates/users/favorite_recipe_list.html:28
@@ -1517,7 +1532,7 @@ msgid "Guest"
 msgstr "Gast"
 
 #: users/management/commands/initgroups.py:12 users/models.py:51
-#: users/models.py:194
+#: users/models.py:198
 msgid "Member"
 msgstr "Mitglied"
 
@@ -1605,7 +1620,7 @@ msgstr "Repräsentiert die Plattform"
 msgid "Admin"
 msgstr "Admin"
 
-#: users/models.py:198
+#: users/models.py:202
 msgid "Joined as a Community Member"
 msgstr "Als Community-Mitglied beigetreten"
 

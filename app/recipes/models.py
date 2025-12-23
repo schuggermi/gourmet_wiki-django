@@ -70,7 +70,14 @@ class Recipe(models.Model):
     )
     is_published = models.BooleanField(
         verbose_name=_('Published'),
-        default=False
+        default=False,
+        blank=True,
+        null=False,
+    )
+    published_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        verbose_name=_("Published at"),
     )
 
     @property

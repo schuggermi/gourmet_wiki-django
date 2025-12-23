@@ -27,24 +27,12 @@ class RecipeCreateForm(forms.ModelForm):
         }
 
 
-class RecipeNameForm(forms.ModelForm):
-    class Meta:
-        model = Recipe
-        fields = ["name"]
-        widgets = {
-            'name': forms.TextInput(
-                attrs={'placeholder': _("Spicy Thai Basil Chicken"), }
-            )
-        }
-
-
 class RecipePublishForm(forms.ModelForm):
     is_published = forms.BooleanField(
-        label=_("Published"),
         required=False,
-        initial=False,
         widget=forms.CheckboxInput()
     )
+
     class Meta:
         model = Recipe
         fields = ["is_published"]
@@ -53,8 +41,11 @@ class RecipePublishForm(forms.ModelForm):
 class RecipeDetailsForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ["description", "course_type", "portions", "cooking_time_minutes", "skill_level"]
+        fields = ["name", "description", "course_type", "portions", "cooking_time_minutes", "skill_level"]
         widgets = {
+            'name': forms.TextInput(
+                attrs={'placeholder': _("Spicy Thai Basil Chicken"), }
+            ),
             'description': forms.Textarea(
                 attrs={
                     'placeholder': _("A spicy Thai stir-fry with chicken, basil, and fresh chili."),
@@ -67,47 +58,6 @@ class RecipeDetailsForm(forms.ModelForm):
             'cooking_time_minutes': forms.NumberInput(),
             'skill_level': forms.Select(),
         }
-
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #
-    #     # Get the model field
-    #     model_field = self._meta.model._meta.get_field("name")
-    #     form_field = self.fields["name"]
-    #     attrs = form_field.widget.attrs
-    #
-    #     # # Check for MinLengthValidator in existing validators
-    #     # min_length = getattr(model_field, 'min_length', None)
-    #     # if not min_length:
-    #     #     # Check if it's in validators
-    #     #     min_length = next(
-    #     #         (v.limit_value for v in model_field.validators if isinstance(v, MinLengthValidator)),
-    #     #         None,
-    #     #     )
-    #     #
-    #     # if min_length:
-    #     #     attrs["minlength"] = min_length
-    #     #     # Ensure the form field also validates this
-    #     #     if not any(isinstance(v, MinLengthValidator) for v in form_field.validators):
-    #     #         form_field.validators.append(MinLengthValidator(min_length))
-    #
-    #     # Check for MaxLengthValidator
-    #     max_length = getattr(model_field, 'max_length', None)
-    #     if not max_length:
-    #         # Check if it's in validators
-    #         max_length = next(
-    #             (v.limit_value for v in model_field.validators if isinstance(v, MaxLengthValidator)),
-    #             None,
-    #         )
-    #
-    #     if max_length:
-    #         attrs["maxlength"] = max_length
-    #         # MaxLengthValidator should already be added by Django if max_length is set
-
-    def clean_name(self):
-        name = self.cleaned_data["name"].strip()
-        return name
 
 """ NEW """
 
@@ -198,7 +148,9 @@ class RecipeIngredientForm(forms.ModelForm):
         model = RecipeIngredient
         fields = ['name', 'quantity', 'unit']
         widgets = {
-            'name': forms.TextInput(),
+            'name': forms.TextInput(attrs={
+                'placeholder': _('Chicken breast'),
+            }),
             'quantity': forms.NumberInput(attrs={
                 'placeholder': '0',
                 'min': '0.1',  # Add min attribute to match model validator

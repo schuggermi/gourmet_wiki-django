@@ -1,14 +1,22 @@
-{% load cotton %}
-<form
-    id="recipe-publish-form"
-    hx-post="{% url 'recipe-public-update' recipe.id %}"
-    hx-trigger="change delay:500ms"
-    hx-swap="innerHTML"
-    hx-target="#recipe-publish-container"
-    class="w-full"
->
-    {% csrf_token %}
-    <div>
-        <c-input :field="publish_form.is_published" type="checkbox"></c-input>
-    </div>
-</form>
+{% load i18n %}
+
+<div class="w-full flex gap-5 justify-start items-center">
+    <c-input
+        type="checkbox"
+        name="is_published"
+        value="{{ recipe.is_published }}"
+        hx_post="{% url 'recipe-public-update' recipe.id %}"
+        hx_trigger="click"
+        hx_target="#recipe-publish-container"
+        hx_swap="innerHTML"
+        hx_include="this"
+    ></c-input>
+
+    <p class="w-full">
+        {% if recipe.is_published %}
+            {% translate 'Published at' %} <span class="font-medium">{{ recipe.published_at }}</span>
+        {% else %}
+            {% translate 'Unpublished' %}
+        {% endif %}
+    </p>
+</div>

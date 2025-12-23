@@ -125,6 +125,10 @@ class Profile(models.Model):
         return self.user.username
 
     @property
+    def is_author(self):
+        return self.role == UserRole.AUTHOR or self.user.is_superuser
+
+    @property
     def max_points_to_next_level(self):
         if self.points < 50:
             return 50

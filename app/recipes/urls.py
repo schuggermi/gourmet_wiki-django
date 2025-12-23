@@ -6,7 +6,6 @@ from recipes import views
 urlpatterns = [
     path('new/', views.recipe_create, name='recipe-new'),
     path('edit/<int:recipe_id>/', views.recipe_edit, name='recipe-edit'),
-    path('edit/<int:recipe_id>/name-update/', views.recipe_name_update, name='recipe-name-update'),
     path('edit/<int:recipe_id>/public-update/', views.recipe_public_update, name='recipe-public-update'),
     path('edit/<int:recipe_id>/details-update/', views.recipe_details_update, name='recipe-details-update'),
 
