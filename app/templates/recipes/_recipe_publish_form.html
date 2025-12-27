@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="w-full flex gap-5 justify-start items-center">
+<div class="w-full flex gap-5 justify-start items-start">
     <c-input
         type="checkbox"
         name="is_published"
@@ -14,7 +14,7 @@
 
     <p class="w-full">
         {% if recipe.is_published %}
-            {% translate 'Published at' %} <span class="font-medium">{{ recipe.published_at }}</span>
+            <span class="font-medium">{{ recipe.published_at }}</span>
         {% else %}
             {% translate 'Unpublished' %}
         {% endif %}

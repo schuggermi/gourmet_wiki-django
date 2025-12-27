@@ -100,7 +100,7 @@ class RecipeForm(forms.ModelForm):
 class RecipePreparationStepForm(forms.ModelForm):
     is_section = forms.BooleanField(
         label=_("Is Section"),
-        initial=True,
+        initial=False,
         required=False,
         widget=forms.CheckboxInput()
     )
