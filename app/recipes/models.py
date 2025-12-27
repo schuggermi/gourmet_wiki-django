@@ -55,7 +55,8 @@ class Recipe(models.Model):
         default=30,
         validators=[
             MinValueValidator(1),
-        ]
+        ],
+        blank=True,
     )
     skill_level = models.CharField(
         max_length=50,

@@ -15,7 +15,7 @@
         {{ label }}
     {% endif %}
 </label>
-<div class="relative {% if w_full %}w-full{% else %}w-fit{% endif %}">
+<div class="relative w-full {% if w_full %}w-full{% else %}w-fit{% endif %}">
     <input {{ field.field.widget.attrs|render_attrs }} type="{{ type }}"
             {% if type == 'checkbox' %}
                 {% if field and field.value|stringformat:"s" == "True" or value|stringformat:"s" == "True" %}
