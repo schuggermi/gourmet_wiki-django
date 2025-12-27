@@ -8,12 +8,12 @@
             <p>{% translate 'Add Ingredients, Steps and other Details' %}</p>
         </header>
     
-        <div class="w-full flex flex-col gap-10">
+        <div class="w-full flex flex-col gap-20">
             <!-- RECIPE DETAILS -->
             <div class="w-full">
                 <p class="h4 mb-1">{% translate 'Details' %}</p>
 
-                <div class="w-full border-1 border-neutral p-2 rounded-lg bg-base-200">
+                <div class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
                     {% include 'recipes/_recipe_details_form.html' %}
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="w-full">
                 <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
 
-                <div id="recipe-ingredients-container" class="w-full border-1 border-neutral p-2 rounded-lg bg-base-200">
+                <div id="recipe-ingredients-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
                     {% include 'recipes/_recipe_ingredients_form.html' %}
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="w-full">
                 <p class="h4 mb-1">{% translate 'Steps' %}</p>
 
-                <div id="recipe-steps-container" class="w-full border-1 border-neutral p-2 rounded-lg bg-base-200">
+                <div id="recipe-steps-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
                     {% include 'recipes/_recipe_steps_form.html' %}
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="w-full">
                     <p class="h4 mb-1">{% translate 'Publish' %}</p>
 
-                    <div id="recipe-publish-container" class="w-full border-1 border-neutral p-2 rounded-lg">
+                    <div id="recipe-publish-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
                         {% include 'recipes/_recipe_publish_form.html' %}
                     </div>
                 </div>
