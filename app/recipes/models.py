@@ -82,8 +82,14 @@ class Recipe(models.Model):
     )
 
     @property
-    def total_time_minutes(self):
-        return self.cooking_time_minutes  # self.working_time_minutes + self.cooking_time_minutes + self.rest_time_minutes
+    def total_time_str(self):
+        minutes = self.cooking_time_minutes % 60
+        total_hours = round(self.cooking_time_minutes / 60)
+        if total_hours >= 1 and minutes >= 1:
+            return f"{total_hours} h {minutes} min"
+        elif total_hours >= 1 and minutes == 0:
+            return f"{total_hours} h"
+        return f"{minutes} min"
 
     @property
     def get_thumbnail_image(self):

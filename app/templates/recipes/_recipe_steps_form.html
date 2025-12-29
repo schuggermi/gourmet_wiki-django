@@ -53,7 +53,7 @@
       hx-post="{% url 'step_add' recipe.id %}"
       hx-swap="innerHTML"
       hx-target="#recipe-steps-container"
-      class="grid grid-cols-1 gap-2 w-full"
+      class="grid grid-cols-1 gap-5 w-full"
       _="on change from #{{ step_form.is_section.id_for_label }}
         if #{{ step_form.is_section.id_for_label }}.checked
             remove .hidden from .section-title-field in me
@@ -81,7 +81,7 @@
 >
     {% csrf_token %}
 
-    <div class="flex flex-col md:flex-row gap-5">
+    <div class="flex flex-col md:flex-row gap-2">
         <div class="section-title-field grow-1">
             <c-input :field="step_form.section_title" labeled w_full></c-input>
         </div>
@@ -90,12 +90,13 @@
             <c-input :field="step_form.step_text" labeled w_full></c-input>
         </div>
 
-        <div class="col-span-1 flex items-start gap-1 shrink-0">
+        <div class="col-span-1 flex items-start gap-2 shrink-0">
             <div title="{% translate 'This is a section/category header' %}">
                 <c-input :field="step_form.is_section"
                          type="checkbox"
                          labeled
                          no_help
+                         class="w-6! h-6!"
                 ></c-input>
             </div>
         </div>
@@ -108,81 +109,3 @@
         {% translate '+ Add Section' %}
     </button>
 </form>
-
-<script>
-    function initializeSortable() {
-        const sortable = document.querySelector("#steps");
-
-        if (sortable && !sortable.sortableInstance) {
-            console.log("Initializing Sortable");
-
-            sortable.sortableInstance = new Sortable(sortable, {
-                animation: 150,
-                dragClass: 'text-secondary!',
-                handle: '.drag-handle',
-                onEnd: function(evt) {
-                    console.log("Sort ended");
-
-                    // Get all items and their new order
-                    const items = sortable.querySelectorAll('li[data-step-id]');
-                    console.log("Found items:", items.length);
-
-                    const orderData = Array.from(items).map((item, index) => {
-                        console.log("Item:", item.dataset.stepId, "Order:", index + 1);
-                        return {
-                            id: item.dataset.stepId,
-                            order: index + 1
-                        };
-                    });
-
-                    console.log("Order data:", orderData);
-
-                    if (orderData.length === 0) {
-                        console.warn("No items to reorder!");
-                        return;
-                    }
-
-                    // Get CSRF token
-                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-                    // Send to server
-                    fetch(sortable.getAttribute('hx-post'), {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-CSRFToken': csrfToken
-                        },
-                        body: new URLSearchParams({
-                            'order': JSON.stringify(orderData)
-                        })
-                    })
-                    .then(response => {
-                        console.log("Response status:", response.status);
-                        if (response.ok) {
-                            console.log("Reorder successful");
-                        } else {
-                            console.error("Reorder failed");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                    });
-                }
-            });
-        }
-    }
-
-    // Initial load
-    window.addEventListener('load', initializeSortable);
-
-    // Re-initialize after HTMX swaps
-    document.body.addEventListener('htmx:afterSwap', function(evt) {
-        console.log("HTMX swap detected");
-        // Remove old instance flag
-        const sortable = document.querySelector("#steps");
-        if (sortable) {
-            delete sortable.sortableInstance;
-        }
-        initializeSortable();
-    });
-</script>

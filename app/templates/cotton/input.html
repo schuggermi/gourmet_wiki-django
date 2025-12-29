@@ -8,14 +8,14 @@
         success_class="border-1 border-green-400!"
 ></c-vars>
 
-<label class="w-full {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
+<label class="whitespace-nowrap {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
     {% if field and not label %}
         {{ field.label }}{% if field.field.required %}*{% endif %}
     {% elif label %}
         {{ label }}
     {% endif %}
 </label>
-<div class="relative w-fit {% if w_full %}w-full{% else %}w-fit{% endif %}">
+<div class="relative {% if w_full %}w-full{% else %}w-fit{% endif %}">
     <input {{ field.field.widget.attrs|render_attrs }} type="{{ type }}"
             {% if type == 'checkbox' %}
                 {% if field and field.value|stringformat:"s" == "True" or value|stringformat:"s" == "True" %}
@@ -29,7 +29,7 @@
                 value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
             {% endif %}
             placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
+            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %} {% if w_full %}w-full{% else %}w-fit{% endif %}"
             {% if hx_post %}
                 hx-post="{{ hx_post }}"
             {% endif %}

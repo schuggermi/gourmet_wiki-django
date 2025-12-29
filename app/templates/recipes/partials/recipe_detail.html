@@ -4,7 +4,7 @@
      alt="Logo Landscape - Gourmet Wiki">
 <div class="grid grid-cols-1 print:grid-cols-2 lg:grid-cols-2 gap-10 w-full mx-auto">
     <!-- Image Carousel -->
-    <div class="carousel carousel-start w-full aspect-video rounded-sm print:hidden">
+    <figure class="border-1 border-neutral/10 rounded-md carousel carousel-start w-full aspect-video rounded-sm print:hidden">
         {% with images=recipe.images.all %}
             {% for image in images %}
                 <div id="{{ image.image.name }}"
@@ -21,7 +21,7 @@
                 </div>
             {% endif %}
         {% endwith %}
-    </div>
+    </figure>
 
     <!-- Recipe Details -->
     <div class="flex flex-col gap-5 justify-between print:col-span-2 w-full">
@@ -52,9 +52,9 @@
                     {% endif %}
                 </p>
 
-                <div class="flex flex-col md:flex-row print:flex-row gap-10">
+                <div class="flex flex-col md:flex-row print:flex-row gap-2">
                     <!-- Skill Level -->
-                    <div class="w-fit flex gap-2">
+                    <div class="inline-flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6 text-secondary">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -64,30 +64,23 @@
                     </div>
 
                     <!-- Portions -->
-                    <div class="w-fit flex gap-2">
+                    <div class="inline-flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6 text-secondary">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></path>
                         </svg>
-                        <p class="flex gap-2"><span class="font-bold">{{ recipe.portions }}</span>Pers.</p>
+                        <p class="flex gap-2">{{ recipe.portions }} Pers.</p>
                     </div>
 
                     <!-- Times -->
-                    <div class="w-fit flex gap-2">
+                    <div class="inline-flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="size-6 text-secondary">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
                         </svg>
-                        <div class="flex gap-2 px-2">
-                            <p>
-                                <span class="font-bold">{{ recipe.total_time_hours }}</span><small>h</small>
-                            </p>
-                            <p>
-                                <span class="font-bold">{{ recipe.total_time_minutes }}</span><small>min</small>
-                            </p>
-                        </div>
+                        <p>{{ recipe.total_time_str }}</p>
                     </div>
                 </div>
             </div>
@@ -95,11 +88,11 @@
     </div>
 
     <!-- Recipe Ingredients -->
-    <div class="flex flex-col gap-5 justify-start w-full">
-        <div class="flex flex-col gap-5 md:flex-row-reverse md:justify-between md:items-center w-full">
+    <div class="inline-flex w-full">
+        <div class="flex flex-col gap-10 md:flex-row-reverse justify-between md:items-center w-full">
             <c-portions-calculator :recipe="recipe" portions_value="{{ recipe.portions }}"
                                    hx_target="#ingredients"></c-portions-calculator>
-            <h3>{% translate 'Ingredients' %}</h3>
+            <h3 class="whitespace-nowrap">{% translate 'Ingredients' %}</h3>
         </div>
 
         {% include 'recipes/partials/recipe_ingredients_list.html' with ingredients=recipe.ingredients.all %}
