@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block main_content %}
-	<div class="w-full container flex flex-col gap-10 px-1 md:px-0 my-10 lg:max-w-3xl">
+	<div class="bg-base-300 w-full container flex flex-col gap-10 py-10 px-2 md:rounded-md md:px-10 md:my-10 lg:max-w-3xl">
         <header class="w-full">
             <h1>{% translate 'Edit Recipe' %}</h1>
             <p>{% translate 'Add Ingredients, Steps and other Details' %}</p>
@@ -10,47 +10,47 @@
     
         <div class="w-full flex flex-col gap-20">
             <!-- RECIPE DETAILS -->
-            <div class="w-full">
+            <div>
                 <p class="h4 mb-1">{% translate 'Details' %}</p>
 
-                <div class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
+                <div class="w-full bg-base-200 p-5 shadow-md rounded-md">
                     {% include 'recipes/_recipe_details_form.html' %}
                 </div>
             </div>
 
             <!-- RECIPE IMAGES -->
-            <div class="w-full">
+            <div>
                 <p class="h4 mb-1">{% translate 'Images' %}</p>
 
-                <div id="recipe-images-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
+                <div id="recipe-images-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
                     {% include 'recipes/_recipe_images_form.html' %}
                 </div>
             </div>
 
             <!-- RECIPE INGREDIENTS -->
-            <div class="w-full">
+            <div>
                 <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
 
-                <div id="recipe-ingredients-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
+                <div id="recipe-ingredients-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
                     {% include 'recipes/_recipe_ingredients_form.html' %}
                 </div>
             </div>
 
             <!-- RECIPE STEPS -->
-            <div class="w-full">
+            <div>
                 <p class="h4 mb-1">{% translate 'Steps' %}</p>
 
-                <div id="recipe-steps-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
+                <div id="recipe-steps-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
                     {% include 'recipes/_recipe_steps_form.html' %}
                 </div>
             </div>
 
             {% if user.profile.is_author %}
             	<!-- RECIPE PUBLISHING -->
-                <div class="w-full">
+                <div>
                     <p class="h4 mb-1">{% translate 'Publish' %}</p>
 
-                    <div id="recipe-publish-container" class="w-full border-1 border-neutral p-5 rounded-lg shadow-md">
+                    <div id="recipe-publish-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
                         {% include 'recipes/_recipe_publish_form.html' %}
                     </div>
                 </div>
