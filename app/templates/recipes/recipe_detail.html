@@ -35,7 +35,7 @@
                     <div class="flex gap-2 items-center">
                         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
                         <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
-                             class="btn btn-primary dark:btn-accent">{% translate 'Edit Recipe' %}</c-a>
+                             class="btn btn-primary ">{% translate 'Edit Recipe' %}</c-a>
                         <c-a url="#delete_confirmation_modal" animated onclick="showDeleteModal()" class="btn btn-error btn-outline">
                             {% translate 'Delete Recipe' %}
                         </c-a>

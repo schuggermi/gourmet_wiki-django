@@ -13,19 +13,19 @@
         <ul class="flex gap-5 px-1 w-max list-none">
             <li>
                 <c-a url="{% url 'recipe-list' %}"
-                     class="btn btn-md {% if request.resolver_match.url_name == 'recipe-list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'recipe-list' %}btn-primary {% endif %}">
                     {% translate 'All Recipes' %}
                 </c-a>
             </li>
             <li>
                 <c-a url="{% url 'menu_list' %}"
-                     class="btn btn-md {% if request.resolver_match.url_name == 'menu_list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'menu_list' %}btn-primary {% endif %}">
                     {% translate 'All Menus' %}
                 </c-a>
             </li>
             <li>
                 <c-a url="{% url 'wiki:article_list' %}"
-                     class="btn btn-md {% if request.resolver_match.url_name == 'article_list' %}btn-primary dark:btn-accent{% endif %}">
+                     class="btn btn-md {% if request.resolver_match.url_name == 'article_list' %}btn-primary {% endif %}">
                     {% translate 'Culinary Wiki' %}
                 </c-a>
             </li>
@@ -46,11 +46,11 @@
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.get_full_path }}">
                     <button type="submit" name="language" value="de"
-                            class="btn btn-sm justify-start {% if request.LANGUAGE_CODE == 'de' %}btn-primary dark:btn-accent{% endif %}">
+                            class="btn btn-sm justify-start {% if request.LANGUAGE_CODE == 'de' %}btn-primary {% endif %}">
                         🇩🇪 Deutsch
                     </button>
                     <button type="submit" name="language" value="en"
-                            class="btn btn-sm justify-start {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}btn-primary dark:btn-accent{% endif %}">
+                            class="btn btn-sm justify-start {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}btn-primary {% endif %}">
                         🇬🇧 English
                     </button>
                 </form>
