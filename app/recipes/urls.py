@@ -10,13 +10,18 @@ urlpatterns = [
     path('edit/<int:recipe_id>/details-update/', views.recipe_details_update, name='recipe-details-update'),
 
     path('edit/<int:recipe_id>/add_step/', views.step_add, name='step_add'),
-    path('recipes/<int:recipe_id>/steps/reorder/', views.steps_reorder, name='steps_reorder'),
-    path('recipes/<int:recipe_id>/steps/<int:step_id>/delete/', views.step_delete, name='step_delete'),
+    path('edit/<int:recipe_id>/steps/reorder/', views.steps_reorder, name='steps_reorder'),
+    path('edit/<int:recipe_id>/steps/<int:step_id>/delete/', views.step_delete, name='step_delete'),
 
     path('edit/<int:recipe_id>/add_ingredient/', views.ingredient_add, name='ingredient_add'),
     path('edit/<int:recipe_id>/ingredients/<int:ingredient_id>/', views.ingredient_edit, name='ingredient_edit'),
-    path('recipes/<int:recipe_id>/ingredients/cancel/', views.ingredient_cancel_edit, name='ingredient_cancel_edit'),
-    path('recipes/<int:recipe_id>/ingredients/<int:ingredient_id>/delete/', views.ingredient_delete, name='ingredient_delete'),
+    path('edit/<int:recipe_id>/ingredients/cancel/', views.ingredient_cancel_edit, name='ingredient_cancel_edit'),
+    path('edit/<int:recipe_id>/ingredients/<int:ingredient_id>/delete/', views.ingredient_delete, name='ingredient_delete'),
+
+    path('edit/<int:recipe_id>/images/add/', views.image_add, name='image_add'),
+    path('edit/<int:recipe_id>/images/<int:image_id>/crop/', views.image_crop, name='image_crop'),
+    path('edit/<int:recipe_id>/images/<int:image_id>/delete/', views.image_delete, name='image_delete'),
+    path('edit/<int:recipe_id>/images/reorder/', views.image_reorder, name='image_reorder'),
 
     path('', views.RecipeListView.as_view(), name='recipe-list'),
     path('partial/', views.recipe_list_partial, name='recipe-list-partial'),

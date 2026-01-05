@@ -178,30 +178,37 @@ class RatingForm(forms.ModelForm):
 
 
 class RecipeImageForm(forms.ModelForm):
+    image = forms.FileField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'accept': 'image/*',
+            'multiple': True,
+        }),
+        label=RecipeImage._meta.get_field('image').verbose_name,
+        help_text=RecipeImage._meta.get_field('image').help_text,
+    )
+
     class Meta:
         model = RecipeImage
         fields = ['image', 'caption']
         widgets = {
-            'image': forms.FileInput(attrs={
-                'accept': 'image/*',
-            }),
             'caption': forms.TextInput(attrs={
                 'placeholder': 'Image caption (optional)'
             }),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        for field_name in self.fields:
-            if self.errors.get(field_name):
-                old_class = self.fields[field_name].widget.attrs.get('class', '')
-                self.fields[field_name].widget.attrs['class'] = (
-                        old_class + ' border-3 border-red-400'
-                )
-
-    def clean_image(self):
-        image = self.cleaned_data.get('image')
-        if not image and not self.instance.image:
-            raise forms.ValidationError(_("This field is required."))
-        return image
+    #
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #
+    #     for field_name in self.fields:
+    #         if self.errors.get(field_name):
+    #             old_class = self.fields[field_name].widget.attrs.get('class', '')
+    #             self.fields[field_name].widget.attrs['class'] = (
+    #                     old_class + ' border-3 border-red-400'
+    #             )
+    #
+    # def clean_image(self):
+    #     image = self.cleaned_data.get('image')
+    #     if not image and not self.instance.image:
+    #         raise forms.ValidationError(_("This field is required."))
+    #     return image

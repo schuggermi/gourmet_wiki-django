@@ -265,13 +265,19 @@ class RecipeImage(models.Model):
         on_delete=models.CASCADE,
     )
     image = models.ImageField(
-        upload_to='recipes/images/'
+        upload_to='recipes/images/',
+        verbose_name=_("Upload Image"),
+        help_text=_('Select multiple images to upload')
     )
     caption = models.CharField(
         max_length=200,
         blank=True
     )
-    order = models.PositiveIntegerField()
+    order = models.PositiveIntegerField(default=0)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
-        return f"Image for {self.recipe.name} - {self.caption}"
+        return f"Image {self.order} for {self.recipe.name} - {self.caption}"

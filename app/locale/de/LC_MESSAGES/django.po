@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-23 19:06+0000\n"
+"POT-Creation-Date: 2026-01-05 08:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,35 +129,35 @@ msgstr ""
 "z. B. Eine kuratierte Auswahl wohltuender Gerichte für ein gemütliches "
 "Wochenendessen."
 
-#: recipes/forms.py:25 recipes/forms.py:36 recipes/forms.py:82
+#: recipes/forms.py:25 recipes/forms.py:47 recipes/forms.py:74
 msgid "Spicy Thai Basil Chicken"
 msgstr "Würziges Thai-Basilikum-Hähnchen"
 
-#: recipes/forms.py:59 recipes/forms.py:92
+#: recipes/forms.py:51 recipes/forms.py:84
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:110 recipes/models.py:197
+#: recipes/forms.py:102 recipes/models.py:204
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
-#: recipes/forms.py:121
+#: recipes/forms.py:113
 msgid "e.g. Heat 2 tbsp of oil in a wok over medium-high heat."
 msgstr "z.B. Erhitze 2 EL Öl in einem Wok bei mittlerer bis hoher Hitze."
 
-#: recipes/forms.py:124
+#: recipes/forms.py:116
 msgid "e.g. Sauce, Meat, Salad"
 msgstr "z. B. Soße, Fleisch, Salat"
 
-#: recipes/forms.py:142
+#: recipes/forms.py:134
 msgid "Please provide a section title."
 msgstr "Bitte gib einen Abschnittstitel an."
 
-#: recipes/forms.py:148 recipes/forms.py:214
+#: recipes/forms.py:140
 msgid "This field is required."
 msgstr "Dieses Feld ist erforderlich."
 
-#: recipes/forms.py:160
+#: recipes/forms.py:152
 msgid "Chicken breast"
 msgstr "Hähnchenbrust"
 
@@ -190,59 +190,67 @@ msgstr "Portionen"
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:63
+#: recipes/models.py:64
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:72
+#: recipes/models.py:73
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:80 templates/recipes/_recipe_publish_form.html:17
+#: recipes/models.py:81
 msgid "Published at"
 msgstr "Veröffentlicht am"
 
-#: recipes/models.py:192
+#: recipes/models.py:199
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:198
+#: recipes/models.py:205
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:204 templates/recipes/_recipe_steps_form.html:14
-#: templates/recipes/partials/recipe_detail.html:116
+#: recipes/models.py:211 templates/recipes/_recipe_steps_form.html:14
+#: templates/recipes/partials/recipe_detail.html:109
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:227 templates/recipes/_recipe_ingredients_form.html:10
+#: recipes/models.py:234 templates/recipes/_recipe_ingredients_form.html:10
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:233 templates/recipes/_recipe_ingredients_form.html:11
+#: recipes/models.py:240 templates/recipes/_recipe_ingredients_form.html:11
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:237 templates/recipes/_recipe_ingredients_form.html:9
+#: recipes/models.py:244 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:238 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:245 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:102
-#: templates/recipes/recipe_edit.html:25
+#: templates/recipes/partials/recipe_detail.html:95
+#: templates/recipes/recipe_edit.html:32
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/views.py:643
+#: recipes/models.py:269
+msgid "Upload Image"
+msgstr "Bild hochladen"
+
+#: recipes/models.py:270
+msgid "Select multiple images to upload"
+msgstr "Wähle mehrere Bilder zum Hochladen aus"
+
+#: recipes/views.py:738
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:655 recipes/views.py:663
+#: recipes/views.py:750 recipes/views.py:758
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -332,7 +340,7 @@ msgstr "Sende mir einen Anmeldecode"
 #: templates/account/password_reset_from_key.html:13
 #: templates/account/password_reset_from_key_done.html:6
 #: templates/account/password_reset_from_key_done.html:14
-#: templates/users/profile.html:103
+#: templates/users/profile.html:107
 msgid "Change Password"
 msgstr "Passwort ändern"
 
@@ -415,14 +423,14 @@ msgstr "Favoriten"
 #: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:16
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
-#: templates/users/profile.html:88 templates/users/recipe_list.html:27
+#: templates/users/profile.html:92 templates/users/recipe_list.html:27
 #: templates/users/recipe_list.html:34
 msgid "Add Recipe"
 msgstr "Neues Rezept"
 
 #: templates/cotton/dock.html:28 templates/cotton/quick_actions.html:21
 #: templates/menus/create_menu_wizard.html:9
-#: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:95
+#: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:99
 msgid "Add Menu"
 msgstr "Neues Menü"
 
@@ -514,7 +522,7 @@ msgstr "Menü bearbeiten"
 
 #: templates/menus/create_menu_wizard.html:37
 #: templates/recipes/create_recipe_wizard.html:35
-#: templates/recipes/recipe_edit.html:16
+#: templates/recipes/recipe_edit.html:14
 msgid "Details"
 msgstr "Details"
 
@@ -595,7 +603,7 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:110
+#: templates/recipes/partials/recipe_detail.html:103
 msgid "Preparation"
 msgstr "Zubereitung"
 
@@ -1251,10 +1259,28 @@ msgstr "Anmelden"
 msgid "Sign up"
 msgstr "Registrieren"
 
-#: templates/recipes/_recipe_ingredients_edit_form.html:11
-msgid "Editing Ingredient"
-msgstr "Zutat Bearbeiten"
+#: templates/recipes/_recipe_images_form.html:28
+#: templates/recipes/_recipe_images_form.html:99
+msgid "Crop Image"
+msgstr "Bild zuschneiden"
 
+#: templates/recipes/_recipe_images_form.html:38
+msgid "Remove Image"
+msgstr "Bild entfernen"
+
+#: templates/recipes/_recipe_images_form.html:42
+msgid "Are you sure you want to remove this image?"
+msgstr "Bist du sicher, dass du dieses Bild entfernen möchtest?"
+
+#: templates/recipes/_recipe_images_form.html:61
+msgid "No images yet."
+msgstr "Noch keine Bilder."
+
+#: templates/recipes/_recipe_images_form.html:92
+msgid "+ Add Images"
+msgstr "+ Bilder Hinzufügen"
+
+#: templates/recipes/_recipe_images_form.html:109
 #: templates/recipes/_recipe_ingredients_edit_form.html:25
 #: templates/recipes/partials/delete_confirmation_modal.html:29
 #: templates/recipes/recipe_create.html:38
@@ -1262,6 +1288,14 @@ msgstr "Zutat Bearbeiten"
 #: templates/users/user_confirm_delete.html:31
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: templates/recipes/_recipe_images_form.html:112
+msgid "Apply Crop"
+msgstr "Zuschneiden anwenden"
+
+#: templates/recipes/_recipe_ingredients_edit_form.html:11
+msgid "Editing Ingredient"
+msgstr "Zutat Bearbeiten"
 
 #: templates/recipes/_recipe_ingredients_edit_form.html:28
 msgid "Update Ingredient"
@@ -1293,7 +1327,7 @@ msgstr "Noch keine Zutaten."
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
-#: templates/recipes/_recipe_publish_form.html:19
+#: templates/recipes/_recipe_publish_form.html:20
 msgid "Unpublished"
 msgstr "Nicht Veröffentlicht"
 
@@ -1306,20 +1340,20 @@ msgstr "Diesen Zubereitungsschritt entfernen"
 msgid "Are you sure you want to remove this step?"
 msgstr "Bist du sicher, dass du diesen Schritt entfernen möchtest?"
 
-#: templates/recipes/_recipe_steps_form.html:47
+#: templates/recipes/_recipe_steps_form.html:48
 msgid "No steps yet."
 msgstr "Noch keine Schritte."
 
-#: templates/recipes/_recipe_steps_form.html:93
+#: templates/recipes/_recipe_steps_form.html:95
 #: templates/recipes/partials/preparation_step_form_row.html:25
 msgid "This is a section/category header"
 msgstr "Dies ist eine Abschnitts- bzw. Kategorieüberschrift"
 
-#: templates/recipes/_recipe_steps_form.html:104
+#: templates/recipes/_recipe_steps_form.html:107
 msgid "+ Add Step"
 msgstr "+ Schritt hinzufügen"
 
-#: templates/recipes/_recipe_steps_form.html:107
+#: templates/recipes/_recipe_steps_form.html:110
 msgid "+ Add Section"
 msgstr "+ Abschnitt hinzufügen"
 
@@ -1330,6 +1364,7 @@ msgid "Edit Recipe"
 msgstr "Rezept bearbeiten"
 
 #: templates/recipes/create_recipe_wizard.html:44
+#: templates/recipes/recipe_edit.html:23
 msgid "Images"
 msgstr "Bilder"
 
@@ -1414,11 +1449,11 @@ msgstr "Erstellen"
 msgid "Add Ingredients, Steps and other Details"
 msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
 
-#: templates/recipes/recipe_edit.html:34
+#: templates/recipes/recipe_edit.html:41
 msgid "Steps"
 msgstr "Schritte"
 
-#: templates/recipes/recipe_edit.html:44
+#: templates/recipes/recipe_edit.html:51
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -1515,7 +1550,7 @@ msgstr[1] ""
 "                                %(recipe_count)s Rezepte\n"
 "                            "
 
-#: templates/users/profile.html:105
+#: templates/users/profile.html:109
 msgid "Delete Account"
 msgstr "Konto löschen"
 

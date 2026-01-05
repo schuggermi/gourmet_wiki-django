@@ -1,0 +1,373 @@
+{% load i18n %}
+{% load static %}
+
+<div class="mb-10">
+  {% if recipe.images.all %}
+    <div id="images-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+      {% for image in recipe.images.all %}
+        <div class="image-item relative group bg-base-100 rounded-lg border border-neutral overflow-hidden hover:shadow-lg transition-all cursor-move"
+             data-image-id="{{ image.id }}"
+             draggable="true">
+
+          <div class="aspect-square relative">
+            <img src="{{ image.image.url }}"
+                 alt="Recipe image"
+                 class="w-full h-full object-cover">
+
+            <!-- Order Badge -->
+            <div class="absolute top-2 left-2 bg-primary text-primary-content rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold shadow-lg">
+              {{ forloop.counter }}
+            </div>
+
+            <!-- Hover Actions -->
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+
+              <!-- Crop Button -->
+              <button type="button"
+                      class="btn btn-sm btn-circle btn-primary"
+                      title="{% translate 'Crop Image' %}"
+                      onclick="openCropModal({{ image.id }}, '{{ image.image.url }}')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+              </button>
+
+              <!-- Delete Button -->
+              <button type="button"
+                      class="btn btn-sm btn-circle btn-error"
+                      title="{% translate 'Remove Image' %}"
+                      hx-delete="{% url 'image_delete' recipe.id image.id %}"
+                      hx-target="#recipe-images-container"
+                      hx-swap="innerHTML"
+                      hx-confirm="{% translate 'Are you sure you want to remove this image?' %}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drag Handle -->
+          <div class="p-2 bg-neutral/5 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-auto text-neutral-content/50">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+            </svg>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert bg-neutral/5 border border-neutral rounded-lg mb-6">
+      <small>{% translate 'No images yet.' %}</small>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Upload Form -->
+<form id="recipe-images-form"
+      hx-post="{% url 'image_add' recipe.id %}"
+      hx-swap="innerHTML"
+      hx-target="#recipe-images-container"
+      hx-encoding="multipart/form-data"
+      class="grid grid-cols-1 gap-5 w-full">
+
+    {% csrf_token %}
+
+    <div class="form-control w-full">
+        <c-input :field="image_form.image" type="file"
+               accept="image/*"
+               multiple
+               id="image-upload-input"
+               onchange="previewImages(event)"
+               labeled>
+        </c-input>
+    </div>
+
+    <!-- Image Preview before upload -->
+    <div id="upload-preview" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 hidden">
+    </div>
+
+    <button class="self-end btn btn-primary" type="submit">
+        {% translate '+ Add Images' %}
+    </button>
+</form>
+
+<!-- Crop Modal -->
+<dialog id="crop-modal" class="modal">
+  <div class="modal-box max-w-4xl">
+    <h3 class="font-bold text-lg mb-4">{% translate 'Crop Image' %}</h3>
+
+    <div class="relative">
+      <div id="crop-container" class="max-h-[60vh] overflow-hidden bg-black rounded-lg">
+        <img id="crop-image" src="" alt="Crop" class="max-w-full">
+      </div>
+    </div>
+
+    <div class="modal-action">
+      <button type="button" class="btn" onclick="closeCropModal()">
+        {% translate 'Cancel' %}
+      </button>
+      <button type="button" class="btn btn-primary" onclick="applyCrop()">
+        {% translate 'Apply Crop' %}
+      </button>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+
+<script>
+// Global variables
+if (typeof window.cropperInstance === 'undefined') {
+    window.cropperInstance = null;
+    window.currentImageId = null;
+    window.draggedElement = null;
+}
+
+// Preview images before upload
+function previewImages(event) {
+    const preview = document.getElementById('upload-preview');
+    preview.innerHTML = '';
+    preview.classList.remove('hidden');
+
+    const files = event.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const div = document.createElement('div');
+            div.className = 'relative group';
+            div.innerHTML = `
+                <div class="aspect-square rounded-lg overflow-hidden border-2 border-dashed border-primary">
+                    <img src="${e.target.result}" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-2 right-2 badge badge-primary">${i + 1}</div>
+            `;
+            preview.appendChild(div);
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+
+// Crop Modal Functions
+function openCropModal(imageId, imageUrl) {
+    window.currentImageId = imageId;
+    const modal = document.getElementById('crop-modal');
+    const img = document.getElementById('crop-image');
+
+    img.src = imageUrl;
+    modal.showModal();
+
+    img.onload = function() {
+        if (window.cropperInstance) {
+            window.cropperInstance.destroy();
+        }
+        window.cropperInstance = new Cropper(img, {
+            aspectRatio: NaN,
+            viewMode: 1,
+            autoCropArea: 1,
+            responsive: true,
+            background: false,
+        });
+    };
+}
+
+function closeCropModal() {
+    const modal = document.getElementById('crop-modal');
+    modal.close();
+    if (window.cropperInstance) {
+        window.cropperInstance.destroy();
+        window.cropperInstance = null;
+    }
+}
+
+function applyCrop() {
+    if (!window.cropperInstance || !window.currentImageId) return;
+
+    const canvas = window.cropperInstance.getCroppedCanvas();
+    const croppedImage = canvas.toDataURL('image/jpeg', 0.9);
+
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const url = `/recipes/edit/{{ recipe.id }}/images/${window.currentImageId}/crop/`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({
+            croppedImage: croppedImage
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            closeCropModal();
+            reloadImagesContainer();
+        } else {
+            alert('Crop failed: ' + (data.error || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error cropping image: ' + error.message);
+    });
+}
+
+// Helper function to reload images container
+function reloadImagesContainer() {
+    fetch('{% url "recipe-edit" recipe.id %}', {
+        headers: {
+            'HX-Request': 'true',
+            'HX-Target': 'recipe-images-container'
+        }
+    })
+    .then(response => response.text())
+    .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newContainer = doc.getElementById('recipe-images-container');
+        if (newContainer) {
+            document.getElementById('recipe-images-container').innerHTML = newContainer.innerHTML;
+            htmx.process(document.getElementById('recipe-images-container'));
+            initializeDragAndDrop();
+        }
+    });
+}
+
+// Drag and Drop helper function
+function getDragAfterElement(container, x, y) {
+    const draggableElements = [...container.querySelectorAll('.image-item:not(.opacity-50)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const centerX = box.left + box.width / 2;
+        const centerY = box.top + box.height / 2;
+
+        // Calculate distance from drag position to center of element
+        const distanceX = x - centerX;
+        const distanceY = y - centerY;
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+        if (closest.distance === null || distance < closest.distance) {
+            return { distance: distance, element: child };
+        } else {
+            return closest;
+        }
+    }, { distance: null, element: null }).element;
+}
+
+// Initialize Drag and Drop functionality
+function initializeDragAndDrop() {
+    const grid = document.getElementById('images-grid');
+    if (!grid) return;
+
+    // Mark as initialized to prevent duplicate listeners
+    if (grid.dataset.dragInitialized === 'true') return;
+    grid.dataset.dragInitialized = 'true';
+
+    grid.addEventListener('dragstart', (e) => {
+        const item = e.target.closest('.image-item');
+        if (item) {
+            window.draggedElement = item;
+            item.classList.add('opacity-50');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+    });
+
+    grid.addEventListener('dragend', (e) => {
+        if (window.draggedElement) {
+            window.draggedElement.classList.remove('opacity-50');
+            window.draggedElement = null;
+        }
+    });
+
+    grid.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        if (!window.draggedElement) return;
+
+        e.dataTransfer.dropEffect = 'move';
+
+        const afterElement = getDragAfterElement(grid, e.clientX, e.clientY);
+
+        if (afterElement && afterElement !== window.draggedElement) {
+            const afterRect = afterElement.getBoundingClientRect();
+            const draggedRect = window.draggedElement.getBoundingClientRect();
+
+            // Check if we should insert before or after
+            const afterMiddleX = afterRect.left + afterRect.width / 2;
+            const afterMiddleY = afterRect.top + afterRect.height / 2;
+
+            // Determine if we're in same row
+            const sameRow = Math.abs(draggedRect.top - afterRect.top) < afterRect.height / 2;
+
+            if (sameRow) {
+                // Horizontal positioning in same row
+                if (e.clientX < afterMiddleX) {
+                    grid.insertBefore(window.draggedElement, afterElement);
+                } else {
+                    grid.insertBefore(window.draggedElement, afterElement.nextSibling);
+                }
+            } else {
+                // Different rows - use vertical positioning
+                if (e.clientY < afterMiddleY) {
+                    grid.insertBefore(window.draggedElement, afterElement);
+                } else {
+                    grid.insertBefore(window.draggedElement, afterElement.nextSibling);
+                }
+            }
+        }
+    });
+
+    grid.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const items = [...grid.querySelectorAll('.image-item')];
+        const order = items.map(item => item.dataset.imageId);
+
+        fetch(`/recipes/edit/{{ recipe.id }}/images/reorder/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({ order: order })
+        })
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('recipe-images-container').innerHTML = html;
+            htmx.process(document.getElementById('recipe-images-container'));
+            initializeDragAndDrop();
+        })
+        .catch(error => console.error('Error:', error));
+    });
+}
+
+// Initialize on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeDragAndDrop);
+} else {
+    initializeDragAndDrop();
+}
+
+// Re-initialize after HTMX swaps
+document.addEventListener('htmx:afterSwap', function(event) {
+    if (event.detail.target.id === 'recipe-images-container') {
+        initializeDragAndDrop();
+    }
+});
+</script>

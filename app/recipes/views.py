@@ -1,12 +1,18 @@
+import base64
 import json
+from io import BytesIO
 from pathlib import Path
+
+from PIL import Image
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied, ValidationError
+from django.core.files.base import ContentFile
 from django.core.files.storage import FileSystemStorage
+from django.db import models
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, get_object_or_404, render
@@ -57,6 +63,7 @@ def recipe_edit(request, recipe_id):
     details_form = RecipeDetailsForm(instance=recipe)
     ingredient_form = RecipeIngredientForm()
     step_form = RecipePreparationStepForm()
+    image_form = RecipeImageForm()
 
     return render(
         request,
@@ -66,6 +73,7 @@ def recipe_edit(request, recipe_id):
             "details_form": details_form,
             "ingredient_form": ingredient_form,
             "step_form": step_form,
+            "image_form": image_form,
         },
     )
 
@@ -273,6 +281,118 @@ def step_delete(request, recipe_id, step_id):
     form = RecipePreparationStepForm()
     html = render_to_string('recipes/_recipe_steps_form.html', {
         'step_form': form,
+        'recipe': recipe,
+    })
+    return HttpResponse(html)
+
+
+@require_POST
+def image_add(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    # Get the highest order value
+    max_order = RecipeImage.objects.filter(recipe=recipe).aggregate(
+        models.Max('order')
+    )['order__max'] or -1
+
+    images = request.FILES.getlist('image')
+
+    for idx, image_file in enumerate(images):
+        RecipeImage.objects.create(
+            recipe=recipe,
+            image=image_file,
+            order=max_order + idx + 1
+        )
+
+    form = RecipeImageForm()
+    html = render_to_string('recipes/_recipe_images_form.html', {
+        'image_form': form,
+        'recipe': recipe,
+    })
+    return HttpResponse(html)
+
+
+@require_POST
+def image_crop(request, recipe_id, image_id):
+    """Handle image cropping with coordinates from frontend"""
+    image_obj = get_object_or_404(RecipeImage, id=image_id, recipe_id=recipe_id)
+
+    try:
+        data = json.loads(request.body)
+        cropped_data = data.get('croppedImage')
+
+        if cropped_data:
+            # Remove the data URL prefix
+            format, imgstr = cropped_data.split(';base64,')
+            ext = format.split('/')[-1]
+
+            # Decode base64 image
+            img_data = base64.b64decode(imgstr)
+            img = Image.open(BytesIO(img_data))
+
+            # Save cropped image
+            buffer = BytesIO()
+            img.save(buffer, format=ext.upper())
+            buffer.seek(0)
+
+            # Update the image file
+            image_obj.image.save(
+                image_obj.image.name,
+                ContentFile(buffer.read()),
+                save=True
+            )
+
+            return JsonResponse({'success': True})
+    except Exception as e:
+        print(f"Crop error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+    return JsonResponse({'success': False}, status=400)
+
+
+@require_POST
+def image_reorder(request, recipe_id):
+    """Update order of images based on drag and drop"""
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    try:
+        data = json.loads(request.body)
+        order_data = data.get('order', [])
+
+        for idx, image_id in enumerate(order_data):
+            RecipeImage.objects.filter(id=image_id, recipe=recipe).update(order=idx)
+
+        # Return updated HTML instead of JSON
+        form = RecipeImageForm()
+        html = render_to_string('recipes/_recipe_images_form.html', {
+            'image_form': form,
+            'recipe': recipe,
+        })
+        return HttpResponse(html)
+
+    except Exception as e:
+        print(f"Reorder error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+
+@require_http_methods(["DELETE", "POST"])
+def image_delete(request, recipe_id, image_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    image = get_object_or_404(RecipeImage, id=image_id, recipe=recipe)
+
+    # Delete the file from storage
+    image.image.delete(save=False)
+    image.delete()
+
+    # Reorder remaining images
+    images = RecipeImage.objects.filter(recipe=recipe).order_by('order')
+    for idx, img in enumerate(images):
+        img.order = idx
+        img.save()
+
+    form = RecipeImageForm()
+    html = render_to_string('recipes/_recipe_images_form.html', {
+        'image_form': form,
         'recipe': recipe,
     })
     return HttpResponse(html)

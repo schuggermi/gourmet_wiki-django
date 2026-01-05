@@ -4,6 +4,7 @@
         input_class="input bg-base-100"
         default_class="w-full rounded-sm outline-none focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none appearance-none!"
         checkbox_class="checkbox bg-base-100 rounded-sm"
+        file_class="rounded-xl file-input file-input-bordered file-input-primary pl-0! pl-0!"
         error_class="border-1 border-red-400!"
         success_class="border-1 border-green-400!"
 ></c-vars>
@@ -29,7 +30,7 @@
                 value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
             {% endif %}
             placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %} {% if w_full %}w-full{% else %}w-fit{% endif %}"
+            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% elif type == 'file' %}{{ file_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %} {% if w_full %}w-full{% else %}w-fit{% endif %}"
             {% if hx_post %}
                 hx-post="{{ hx_post }}"
             {% endif %}
