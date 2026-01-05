@@ -41,7 +41,7 @@
                 <span class="font-medium">{{ request.LANGUAGE_CODE|default:'de'|upper }}</span>
             </div>
 
-            <div tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 dark:bg-neutral rounded-box w-44">
+            <div tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200  rounded-box w-44">
                 <form action="{% url 'set_language' %}" method="post" class="flex flex-col gap-2">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.get_full_path }}">
@@ -63,7 +63,7 @@
             </div>
 
             <ul tabindex="0" id="menuDropdown"
-                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200 dark:bg-neutral list-none">
+                class="mt-10 dropdown-content menu menu-vertical w-max bg-base-200  list-none">
                 <li>
                     <c-a url="{% url 'recipe-list' %}">
                         {% translate 'All Recipes' %}
@@ -98,7 +98,7 @@
                         {% endif %}
                     </p>
                 </div>
-                <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max dark:bg-neutral bg-base-200 list-none">
+                <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max  bg-base-200 list-none">
                     {% if user.is_authenticated %}
                         <li class="w-full">
                             <c-a url="{% url 'user-profile' user.username %}"
