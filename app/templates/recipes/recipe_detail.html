@@ -1,57 +1,61 @@
-{% extends "base.html" %}
-{% load i18n static %}
+{% extends "recipes/recipe_base.html" %}
+{% load i18n %}
 
-{# Per-page SEO: title and meta #}
-{% block title %}{{ object.name }} – Gourmet Recipe | {{ SITE_NAME }}{% endblock %}
-{% block meta_description %}{{ object.description|default:DEFAULT_DESCRIPTION|striptags|truncatechars:155 }}{% endblock %}
-{% block meta_keywords %}gourmet recipes, recipe wiki, step-by-step recipes{% if object.course_type %}, {{ object.get_course_type_display }}{% endif %}{% endblock %}
-{% block meta_og %}
-    {{ block.super }}
-    <meta property="og:type" content="article">
+{% block actions %}
+    {% if recipe.created_by == user %}
+        <c-a url="#delete_confirmation_modal" onclick="showDeleteModal()"
+            class="btn btn-ghost btn-outline hover:btn-neutral btn-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor"
+                 class="size-4">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"></path>
+            </svg>
+            {% translate 'Delete' %}
+        </c-a>
+        <c-a url="{% url 'recipe-edit' recipe_id=object.pk %}"
+             hx-get="{% url 'recipe-edit' recipe_id=object.pk %}"
+             hx-target="#main-body"
+             hx-push-url="true"
+             hx-swap="innerHTML"
+             class="btn btn-secondary btn-sm">
+            <c-edit-recipe-icon size="size-4"></c-edit-recipe-icon>
+            {% translate 'Edit' %}
+        </c-a>
+    {% else %}
+        {{ user_rating }}
+        <c-rating-action data-average-rating="{{ recipe.average_rating }}"></c-rating-action>
+        {% include "recipes/partials/favorite_button.html" %}
+    {% endif %}
 {% endblock %}
 
+{% block sub_actions %}
+    <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
+    <button onclick="printElement('print-area')" class="cursor-pointer print:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+             class="size-6 hover:size-7">
+            <path fill-rule="evenodd"
+                  d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 0 0 3 3h.27l-.155 1.705A1.875 1.875 0 0 0 7.232 22.5h9.536a1.875 1.875 0 0 0 1.867-2.045l-.155-1.705h.27a3 3 0 0 0 3-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0 0 18 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM16.5 6.205v-2.83A.375.375 0 0 0 16.125 3h-8.25a.375.375 0 0 0-.375.375v2.83a49.353 49.353 0 0 1 9 0Zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 0 1-.374.409H7.232a.375.375 0 0 1-.374-.409l.526-5.784a.373.373 0 0 1 .333-.337 41.741 41.741 0 0 1 8.566 0Zm.967-3.97a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H18a.75.75 0 0 1-.75-.75V10.5ZM15 9.75a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-.75-.75H15Z"
+                  clip-rule="evenodd"></path>
+        </svg>
+    </button>
+{% endblock %}
 
+{% block title %}
+	{{ recipe.name }}
+{% endblock %}
 
-{% block main_content %}
-    {{ block.super }}
+{% block subtitle %}
+	{% if recipe.description %}
+		{{ recipe.description }}
+	{% else %}
+        {% translate 'This recipe doesn’t have a description yet.' %}
+	{% endif %} 
+{% endblock %}
 
-    <div class="container pt-10 px-4 lg:pt-20 mx-auto flex flex-col gap-10 items-center justify-start">
-        <div class="w-full flex flex-col md:flex-row justify-between md:items-center gap-2">
-            <div class="flex flex-col gap-1 md:items-center">
-                <c-go-back></c-go-back>
-            </div>
-            <div class="flex flex-col md:flex-row gap-2 items-start md:items-center justify-between">
-                <div class="flex gap-1 items-center">
-                    <button onclick="printElement('print-area')" class="cursor-pointer print:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                             class="size-6 hover:size-7">
-                            <path fill-rule="evenodd"
-                                  d="M7.875 1.5C6.839 1.5 6 2.34 6 3.375v2.99c-.426.053-.851.11-1.274.174-1.454.218-2.476 1.483-2.476 2.917v6.294a3 3 0 0 0 3 3h.27l-.155 1.705A1.875 1.875 0 0 0 7.232 22.5h9.536a1.875 1.875 0 0 0 1.867-2.045l-.155-1.705h.27a3 3 0 0 0 3-3V9.456c0-1.434-1.022-2.7-2.476-2.917A48.716 48.716 0 0 0 18 6.366V3.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM16.5 6.205v-2.83A.375.375 0 0 0 16.125 3h-8.25a.375.375 0 0 0-.375.375v2.83a49.353 49.353 0 0 1 9 0Zm-.217 8.265c.178.018.317.16.333.337l.526 5.784a.375.375 0 0 1-.374.409H7.232a.375.375 0 0 1-.374-.409l.526-5.784a.373.373 0 0 1 .333-.337 41.741 41.741 0 0 1 8.566 0Zm.967-3.97a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H18a.75.75 0 0 1-.75-.75V10.5ZM15 9.75a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-.75-.75H15Z"
-                                  clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                {% if recipe.created_by == user %}
-                    <div class="flex gap-2 items-center">
-                        <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
-                        <c-a animated url="{% url 'recipe-edit' recipe_id=object.pk %}"
-                             class="btn btn-primary ">{% translate 'Edit Recipe' %}</c-a>
-                        <c-a url="#delete_confirmation_modal" animated onclick="showDeleteModal()" class="btn btn-error btn-outline">
-                            {% translate 'Delete Recipe' %}
-                        </c-a>
-                    </div>
-                {% else %}
-{#                    {% user_rating recipe as my_rating %}#}
-                    {{ user_rating }}
-                    <c-rating-action data-average-rating="{{ recipe.average_rating }}"></c-rating-action>
-                    {% include "recipes/partials/favorite_button.html" %}
-                {% endif %}
-            </div>
-        </div>
-
-        <div id="print-area" class="flex flex-col gap-10 w-full bg-base-200 dark:bg-neutral p-5 md:p-10 rounded-sm">
-            {% include "recipes/partials/recipe_detail.html" %}
-        </div>
+{% block recipe_content %}
+    <div id="print-area">
+        {% include "recipes/partials/recipe_detail.html" %}
     </div>
 
     <script>
@@ -128,9 +132,5 @@
       }{% if not forloop.last %}, {% endif %}{% endif %}{% endfor %}]
     }
     </script>
-    {% endblock %}
-
-    {% if recipe.created_by == user %}
-    <!-- Delete confirmation modal will be loaded here dynamically -->
-    {% endif %}
+    {% endblock jsonld %}
 {% endblock %}

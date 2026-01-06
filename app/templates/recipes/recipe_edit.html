@@ -1,62 +1,81 @@
-{% extends "base.html" %}
+{% extends "recipes/recipe_base.html" %}
 {% load i18n %}
 
-{% block main_content %}
-	<div class="bg-base-300 w-full container flex flex-col gap-10 py-10 px-2 md:rounded-md md:px-10 md:my-10 lg:max-w-3xl">
-        <header class="w-full">
-            <h1>{% translate 'Edit Recipe' %}</h1>
-            <p>{% translate 'Add Ingredients, Steps and other Details' %}</p>
-        </header>
-    
-        <div class="w-full flex flex-col gap-20">
-            <!-- RECIPE DETAILS -->
-            <div>
-                <p class="h4 mb-1">{% translate 'Details' %}</p>
+{% block actions %}
+	<c-a url="{% url 'recipe-detail' recipe.id %}"
+         class="btn btn-secondary btn-sm self-end shadow-sm"
+         hx-get="{% url 'recipe-detail' recipe.id %}"
+         hx-target="#main-body"
+         hx-push-url="true"
+         hx-swap="innerHTML"
+         class="btn btn-secondary btn-sm self-end shadow-sm"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+        </svg>
+        {% translate 'View' %}
+    </c-a>
+{% endblock %}
 
-                <div class="w-full bg-base-200 p-5 shadow-md rounded-md">
-                    {% include 'recipes/_recipe_details_form.html' %}
-                </div>
-            </div>
+{% block title %}
+	{% translate 'Edit Recipe' %}
+{% endblock %}
 
-            <!-- RECIPE IMAGES -->
-            <div>
-                <p class="h4 mb-1">{% translate 'Images' %}</p>
+{% block subtitle %}
+	{% translate 'Add Ingredients, Steps and other Details' %}
+{% endblock %}
 
-                <div id="recipe-images-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
-                    {% include 'recipes/_recipe_images_form.html' %}
-                </div>
-            </div>
+{% block recipe_content %}
+    <!-- RECIPE DETAILS -->
+    <div>
+        <p class="h4 mb-1">{% translate 'Details' %}</p>
 
-            <!-- RECIPE INGREDIENTS -->
-            <div>
-                <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
-
-                <div id="recipe-ingredients-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
-                    {% include 'recipes/_recipe_ingredients_form.html' %}
-                </div>
-            </div>
-
-            <!-- RECIPE STEPS -->
-            <div>
-                <p class="h4 mb-1">{% translate 'Steps' %}</p>
-
-                <div id="recipe-steps-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
-                    {% include 'recipes/_recipe_steps_form.html' %}
-                </div>
-            </div>
-
-            {% if user.profile.is_author %}
-            	<!-- RECIPE PUBLISHING -->
-                <div>
-                    <p class="h4 mb-1">{% translate 'Publish' %}</p>
-
-                    <div id="recipe-publish-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
-                        {% include 'recipes/_recipe_publish_form.html' %}
-                    </div>
-                </div>
-            {% endif %}
+        <div class="w-full bg-base-200 p-5 shadow-md rounded-md">
+            {% include 'recipes/_recipe_details_form.html' %}
         </div>
     </div>
+
+    <!-- RECIPE IMAGES -->
+    <div>
+        <p class="h4 mb-1">{% translate 'Images' %}</p>
+
+        <div id="recipe-images-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+            {% include 'recipes/_recipe_images_form.html' %}
+        </div>
+    </div>
+
+    <!-- RECIPE INGREDIENTS -->
+    <div>
+        <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
+
+        <div id="recipe-ingredients-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+            {% include 'recipes/_recipe_ingredients_form.html' %}
+        </div>
+    </div>
+
+    <!-- RECIPE STEPS -->
+    <div>
+        <p class="h4 mb-1">{% translate 'Steps' %}</p>
+
+        <div id="recipe-steps-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+            {% include 'recipes/_recipe_steps_form.html' %}
+        </div>
+    </div>
+
+    {% if user.profile.is_author %}
+        <!-- RECIPE PUBLISHING -->
+        <div>
+            <p class="h4 mb-1">{% translate 'Publish' %}</p>
+
+            <div id="recipe-publish-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+                {% include 'recipes/_recipe_publish_form.html' %}
+            </div>
+        </div>
+    {% endif %}
 
     <script>
         function initializeSortable() {

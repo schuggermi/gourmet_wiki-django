@@ -100,7 +100,7 @@
     {% block head %}{% endblock %}
 </head>
 
-<body class="flex flex-col max-w-screen min-h-screen bg-base-100 {% if user.is_authenticated %}pb-14{% endif %} lg:pb-0">
+<body id="main-body" class="flex flex-col max-w-screen min-h-screen bg-base-100 {% if user.is_authenticated %}pb-14{% endif %} lg:pb-0">
 
 <!-- Skip to main content for accessibility -->
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary focus:text-white">

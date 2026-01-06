@@ -22,7 +22,6 @@ class Recipe(models.Model):
         verbose_name=_("Recipe Name"),
     )
     description = models.TextField(
-        blank=True,
         max_length=250,
         verbose_name=_("Description"),
     )

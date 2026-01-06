@@ -19,7 +19,8 @@
             placeholder="{% translate 'Enter the code above' %}"
             value="{{ values.confirmation_code|default:'' }}"
             class="input input-bordered"
-            required></c-input>
+            required
+            w_full></c-input>
         {% if form_errors.confirmation_code %}
           <small class="text-error">{{ form_errors.confirmation_code }}</small>
         {% endif %}

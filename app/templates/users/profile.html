@@ -36,14 +36,16 @@
                 </div>
             </div>
 
-            <div class="w-full flex gap-5">
-                <p class="font-bold shrink-0">{% translate 'Badges:' %}</p>
-                <ul class="ps-0 w-full flex flex-1 gap-2 flex-wrap items-center">
-                    {% for badge in object.badges.all %}
-                        <li class="badge badge-md badge-accent rounded-md font-bold break-all wrap-break-word">{{ badge }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% if object.badges.exists %}
+            	<div class="w-full flex gap-5">
+                    <p class="font-bold shrink-0">{% translate 'Badges:' %}</p>
+                    <ul class="ps-0 w-full flex flex-1 gap-2 flex-wrap items-center">
+                        {% for badge in object.badges.all %}
+                            <li class="badge badge-md badge-accent rounded-md font-bold break-all wrap-break-word">{{ badge }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
             <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-5 w-full">
                 <a href="{% url 'users-profile-recipes' %}" class="h-20 w-full btn btn-neutral btn-outline shadow-md dark:btn-neutral">
