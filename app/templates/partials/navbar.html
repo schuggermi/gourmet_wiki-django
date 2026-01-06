@@ -33,7 +33,7 @@
     </div>
     <div class="navbar-end gap-2 md:gap-5">
         {# Language switcher: DE/EN dropdown posts to Django's set_language endpoint #}
-        <div class="dropdown dropdown-end">
+        {% comment %}TODO <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm7.938 9h-3.223a15.91 15.91 0 0 0-1.1-4.336A8.03 8.03 0 0 1 19.938 11zM12 4c1.424 0 2.75 1.873 3.487 5H8.513C9.25 5.873 10.576 4 12 4zM7.385 6.664A15.91 15.91 0 0 0 6.285 11H3.062a8.03 8.03 0 0 1 4.323-4.336zM4.062 13h3.223c.226 1.501.62 2.948 1.1 4.336A8.03 8.03 0 0 1 4.062 13zM12 20c-1.424 0-2.75-1.873-3.487-5h6.974C14.75 18.127 13.424 20 12 20zm4.615-2.336A15.91 15.91 0 0 0 17.715 13h3.223a8.03 8.03 0 0 1-4.323 4.336z"/>
@@ -55,7 +55,7 @@
                     </button>
                 </form>
             </div>
-        </div>
+        </div>{% endcomment %}
         <div class="dropdown dropdown-end w-max lg:hidden">
             <div tabindex="0" role="button" id="menuToggle" class="p-2 swap" aria-expanded="false">
                 <c-menu-icon size="size-6" classes="swap-off fill-current"></c-menu-icon>

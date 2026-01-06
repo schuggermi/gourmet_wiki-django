@@ -18,7 +18,8 @@
             name="confirm_name"
             placeholder="{{ request.user.get_full_name }}"
             value="{{ values.confirm_name|default:'' }}"
-            required></c-input>
+            required
+            w_full></c-input>
         {% if form_errors.confirm_name %}
           <small class="text-error">{{ form_errors.confirm_name }}</small>
         {% endif %}
@@ -34,7 +35,8 @@
             name="confirm_email"
             placeholder="{{ request.user.email }}"
             value="{{ values.confirm_email|default:'' }}"
-            required></c-input>
+            required
+            w_full></c-input>
         {% if form_errors.confirm_email %}
           <small class="text-error">{{ form_errors.confirm_email }}</small>
         {% endif %}
