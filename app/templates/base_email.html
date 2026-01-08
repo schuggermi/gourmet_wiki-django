@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{{ current_site.name }}{% endblock %}</title>
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+    </style>
+    <![endif]-->
+    <style>
+        /* Import Montserrat font */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+        /* Reset styles */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Base styles using Gourmet theme colors */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: 100% !important;
+            font-family: 'Montserrat', 'Arial', 'Helvetica', sans-serif;
+            background-color: #f5f8f7; /* base-200 approximation */
+            color: #2d564f; /* base-content approximation */
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .email-wrapper {
+            width: 100%;
+            background-color: #f5f8f7;
+            padding: 40px 0;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fafcfb; /* base-100 approximation */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header */
+        .email-header {
+            background-color: #d4ebe6; /* primary approximation */
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .email-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 800;
+            color: #1f4239; /* primary-content approximation */
+            line-height: 1.2;
+        }
+
+        .email-logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Content */
+        .email-content {
+            padding: 40px 30px;
+            background-color: #fafcfb;
+        }
+
+        .email-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d564f;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+
+        .email-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d564f;
+            margin: 24px 0 16px 0;
+            line-height: 1.4;
+        }
+
+        .email-content p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #2d564f;
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .email-content a {
+            color: #1f4239;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Button */
+        .button-wrapper {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #d4ebe6;
+            color: #1f4239 !important;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #c5e3dc;
+        }
+
+        /* Secondary button */
+        .button-secondary {
+            background-color: #ecd8b8;
+            color: #4a3a1d !important;
+        }
+
+        .button-secondary:hover {
+            background-color: #e5cda5;
+        }
+
+        /* Link display */
+        .link-display {
+            background-color: #f5f8f7;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-size: 14px;
+            color: #5a7972;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Info box */
+        .info-box {
+            background-color: #eef4f2;
+            border-left: 4px solid #d4ebe6;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background-color: #fef5e7;
+            border-left: 4px solid #ecd8b8;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            font-size: 14px;
+            color: #4a3a1d;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .email-footer {
+            padding: 30px;
+            background-color: #f5f8f7;
+            border-top: 1px solid #e8eeec;
+            text-align: center;
+        }
+
+        .email-footer p {
+            margin: 8px 0;
+            font-size: 13px;
+            color: #5a7972;
+            line-height: 1.5;
+        }
+
+        .email-footer a {
+            color: #1f4239;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .email-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background-color: #e8eeec;
+            margin: 30px 0;
+        }
+
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            .email-content {
+                padding: 30px 20px !important;
+            }
+
+            .email-header {
+                padding: 30px 20px !important;
+            }
+
+            .email-header h1 {
+                font-size: 24px !important;
+            }
+
+            .email-content h2 {
+                font-size: 20px !important;
+            }
+
+            .button {
+                display: block !important;
+                width: 100% !important;
+                padding: 14px 24px !important;
+            }
+        }
+
+        /* Dark mode support (optional) */
+        @media (prefers-color-scheme: dark) {
+            .email-wrapper {
+                background-color: #1a1a1a !important;
+            }
+
+            .email-container {
+                background-color: #2d2d2d !important;
+            }
+
+            .email-content {
+                background-color: #2d2d2d !important;
+            }
+
+            .email-content p,
+            .email-content h2,
+            .email-content h3 {
+                color: #e0e0e0 !important;
+            }
+
+            .email-footer {
+                background-color: #1a1a1a !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" class="email-wrapper">
+        <tr>
+            <td align="center">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" class="email-container">
+                    <!-- Header -->
+                    <tr>
+                        <td class="email-header">
+                            {% block header %}
+                            <div class="email-logo">{% block logo %}📧{% endblock %}</div>
+                            <h1>{{ current_site.name }}</h1>
+                            {% endblock %}
+                        </td>
+                    </tr>
+
+                    <!-- Content -->
+                    <tr>
+                        <td class="email-content">
+                            {% block content %}
+                            <p>Default email content goes here.</p>
+                            {% endblock %}
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td class="email-footer">
+                            {% block footer %}
+                            <p><strong>{{ current_site.name }}</strong></p>
+                            <p>This email was sent to {{ user.email }}</p>
+                            <p>If you didn't request this, please ignore this email.</p>
+                            <p style="margin-top: 16px;">
+                                <a href="http://{{ current_site.domain }}">Visit our website</a>
+                            </p>
+                            {% endblock %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
