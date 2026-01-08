@@ -1,5 +1,3 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -7,14 +5,7 @@ from django.views.generic import ListView, DetailView
 from wiki.models import WikiArticle, Category
 
 
-def test(request):
-    context = {
-        'articles': WikiArticle.objects.all(),
-    }
-    return render(request, 'wiki/test.html', context=context)
-
-
-class WikiArticleListView(LoginRequiredMixin, ListView):
+class WikiArticleListView(ListView):
     model = WikiArticle
     template_name = "wiki/article_list.html"
     context_object_name = "articles"
@@ -80,7 +71,7 @@ def article_list_partial(request):
     return render(request, 'wiki/partials/article_list.html', context)
 
 
-class WikiArticleDetailView(LoginRequiredMixin, DetailView):
+class WikiArticleDetailView(DetailView):
     model = WikiArticle
     template_name = "wiki/article_detail.html"
     context_object_name = "article"
