@@ -82,18 +82,29 @@ def recipe_edit(request, recipe_id):
 def recipe_public_update(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    # Checkbox-Logik:
-    # existiert der Key -> True
-    # fehlt er -> False
-    is_published = 'is_published' in request.POST
+    wants_publish = 'is_published' in request.POST
+    publish_error = None
 
-    recipe.is_published = is_published
-    recipe.published_at = timezone.now() if is_published else None
+    if wants_publish:
+        if not recipe.can_publish():
+            publish_error = _("Please complete the full recipe before publishing.")
+            recipe.is_published = False
+            recipe.published_at = None
+        else:
+            recipe.is_published = True
+            recipe.published_at = timezone.now()
+    else:
+        recipe.is_published = False
+        recipe.published_at = None
+
     recipe.save(update_fields=['is_published', 'published_at'])
 
     html = render_to_string(
         'recipes/_recipe_publish_form.html',
-        {'recipe': recipe},
+        {
+            'recipe': recipe,
+            'publish_error': publish_error,
+        },
         request=request,
     )
     return HttpResponse(html)
@@ -696,11 +707,26 @@ def rate_recipe(request, recipe_id, score):
 
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
-    rating, created = RecipeRating.objects.update_or_create(
-        recipe=recipe,
-        user=request.user,
-        defaults={'score': score}
-    )
+    try:
+        rating = RecipeRating.objects.get(
+            recipe=recipe,
+            user=request.user,
+        )
+        # If user clicks the same score again, remove the rating
+        if rating.score == score:
+            rating.delete()
+            score = 0  # optional: indicates "no rating" in template
+        else:
+            rating.score = score
+            rating.save()
+
+    except RecipeRating.DoesNotExist:
+        # No previous rating → create one
+        RecipeRating.objects.create(
+            recipe=recipe,
+            user=request.user,
+            score=score
+        )
 
     average_rating = recipe.average_rating
 
@@ -709,6 +735,7 @@ def rate_recipe(request, recipe_id, score):
         "average_rating": average_rating,
         "score": score,
     })
+
 
 
 @login_required

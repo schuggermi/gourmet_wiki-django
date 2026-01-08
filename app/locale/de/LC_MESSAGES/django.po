@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 08:42+0000\n"
+"POT-Creation-Date: 2026-01-07 19:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,7 +137,7 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:102 recipes/models.py:204
+#: recipes/forms.py:102 recipes/models.py:203
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
@@ -173,76 +173,76 @@ msgstr "Dieser Abschnitt muss mindestens einen Zubereitungsschritt enthalten."
 msgid "Recipe Name"
 msgstr "Rezeptname"
 
-#: recipes/models.py:27
+#: recipes/models.py:26
 msgid "Description"
 msgstr "Beschreibung"
 
-#: recipes/models.py:40
+#: recipes/models.py:39
 msgid "Course"
 msgstr "Gang"
 
-#: recipes/models.py:51 templates/cotton/portions_calculator.html:24
+#: recipes/models.py:50 templates/cotton/portions_calculator.html:24
 #: templates/menus/partials/menu_form.html:24
 msgid "Portions"
 msgstr "Portionen"
 
-#: recipes/models.py:54
+#: recipes/models.py:53
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:64
+#: recipes/models.py:63
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:73
+#: recipes/models.py:72
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:81
+#: recipes/models.py:80
 msgid "Published at"
 msgstr "Veröffentlicht am"
 
-#: recipes/models.py:199
+#: recipes/models.py:198
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:205
+#: recipes/models.py:204
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:211 templates/recipes/_recipe_steps_form.html:14
-#: templates/recipes/partials/recipe_detail.html:109
+#: recipes/models.py:210 templates/recipes/_recipe_steps_form.html:14
+#: templates/recipes/partials/recipe_detail.html:89
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:234 templates/recipes/_recipe_ingredients_form.html:10
+#: recipes/models.py:233 templates/recipes/_recipe_ingredients_form.html:10
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:240 templates/recipes/_recipe_ingredients_form.html:11
+#: recipes/models.py:239 templates/recipes/_recipe_ingredients_form.html:11
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:244 templates/recipes/_recipe_ingredients_form.html:9
+#: recipes/models.py:243 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:245 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:244 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:95
-#: templates/recipes/recipe_edit.html:32
+#: templates/recipes/partials/recipe_detail.html:75
+#: templates/recipes/recipe_edit.html:53
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/models.py:269
+#: recipes/models.py:268
 msgid "Upload Image"
 msgstr "Bild hochladen"
 
-#: recipes/models.py:270
+#: recipes/models.py:269
 msgid "Select multiple images to upload"
 msgstr "Wähle mehrere Bilder zum Hochladen aus"
 
@@ -340,7 +340,7 @@ msgstr "Sende mir einen Anmeldecode"
 #: templates/account/password_reset_from_key.html:13
 #: templates/account/password_reset_from_key_done.html:6
 #: templates/account/password_reset_from_key_done.html:14
-#: templates/users/profile.html:107
+#: templates/users/profile.html:108
 msgid "Change Password"
 msgstr "Passwort ändern"
 
@@ -400,7 +400,7 @@ msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
 #: templates/account/signup.html:69 templates/errors/403.html:28
-#: templates/partials/navbar.html:129
+#: templates/partials/navbar.html:132
 msgid "Log In"
 msgstr "Anmelden"
 
@@ -410,29 +410,23 @@ msgid "Verify Your Email Address"
 msgstr "Bestätige deine E-Mail-Adresse"
 
 #: templates/cotton/dock.html:7 templates/cotton/quick_actions.html:4
-#: templates/users/profile.html:53 templates/users/recipe_list.html:6
+#: templates/users/profile.html:55 templates/users/recipe_list.html:6
 #: templates/users/recipe_list.html:16
 msgid "Cookbook"
 msgstr "Kochbuch"
 
 #: templates/cotton/dock.html:13 templates/cotton/quick_actions.html:8
-#: templates/users/favorite_recipe_list.html:16 templates/users/profile.html:71
+#: templates/users/favorite_recipe_list.html:16 templates/users/profile.html:73
 msgid "Favorites"
 msgstr "Favoriten"
 
 #: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:16
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
-#: templates/users/profile.html:92 templates/users/recipe_list.html:27
-#: templates/users/recipe_list.html:34
+#: templates/users/profile.html:94 templates/users/recipe_list.html:31
+#: templates/users/recipe_list.html:41
 msgid "Add Recipe"
 msgstr "Neues Rezept"
-
-#: templates/cotton/dock.html:28 templates/cotton/quick_actions.html:21
-#: templates/menus/create_menu_wizard.html:9
-#: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:99
-msgid "Add Menu"
-msgstr "Neues Menü"
 
 #: templates/cotton/footer.html:20
 msgid "Legal"
@@ -520,9 +514,14 @@ msgstr "Kategorien"
 msgid "Edit Menu"
 msgstr "Menü bearbeiten"
 
+#: templates/menus/create_menu_wizard.html:9
+#: templates/menus/create_menu_wizard.html:27 templates/users/profile.html:101
+msgid "Add Menu"
+msgstr "Neues Menü"
+
 #: templates/menus/create_menu_wizard.html:37
 #: templates/recipes/create_recipe_wizard.html:35
-#: templates/recipes/recipe_edit.html:14
+#: templates/recipes/recipe_edit.html:35
 msgid "Details"
 msgstr "Details"
 
@@ -581,7 +580,6 @@ msgid "We don’t have any Menus listed yet."
 msgstr "Es sind noch keine Menüs vorhanden."
 
 #: templates/menus/partials/recipe_detail.html:43
-#: templates/recipes/partials/recipe_detail.html:51
 msgid "No description for this recipe."
 msgstr "Keine Beschreibung für dieses Rezept."
 
@@ -603,7 +601,7 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:103
+#: templates/recipes/partials/recipe_detail.html:83
 msgid "Preparation"
 msgstr "Zubereitung"
 
@@ -1226,41 +1224,37 @@ msgstr "12. Kontakt"
 msgid "Effective Date:"
 msgstr "Stand:"
 
-#: templates/partials/navbar.html:17 templates/partials/navbar.html:69
+#: templates/partials/navbar.html:17 templates/partials/navbar.html:71
 msgid "All Recipes"
 msgstr "Alle Rezepte"
 
-#: templates/partials/navbar.html:23 templates/partials/navbar.html:74
-msgid "All Menus"
-msgstr "Alle Menüs"
-
-#: templates/partials/navbar.html:29
+#: templates/partials/navbar.html:30
 msgid "Culinary Wiki"
 msgstr "Kulinarisches Wiki"
 
-#: templates/partials/navbar.html:79 templates/wiki/article_list.html:8
+#: templates/partials/navbar.html:82 templates/wiki/article_list.html:8
 msgid "Wiki"
 msgstr "Wiki"
 
-#: templates/partials/navbar.html:107 templates/users/profile.html:6
+#: templates/partials/navbar.html:110 templates/users/profile.html:6
 #: templates/users/profile.html:12
 msgid "Your Profile"
 msgstr "Dein Profil"
 
-#: templates/partials/navbar.html:114
+#: templates/partials/navbar.html:117
 msgid "Logout"
 msgstr "Abmelden"
 
-#: templates/partials/navbar.html:119
+#: templates/partials/navbar.html:122
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/partials/navbar.html:122
+#: templates/partials/navbar.html:125
 msgid "Sign up"
 msgstr "Registrieren"
 
 #: templates/recipes/_recipe_images_form.html:28
-#: templates/recipes/_recipe_images_form.html:99
+#: templates/recipes/_recipe_images_form.html:98
 msgid "Crop Image"
 msgstr "Bild zuschneiden"
 
@@ -1276,20 +1270,20 @@ msgstr "Bist du sicher, dass du dieses Bild entfernen möchtest?"
 msgid "No images yet."
 msgstr "Noch keine Bilder."
 
-#: templates/recipes/_recipe_images_form.html:92
+#: templates/recipes/_recipe_images_form.html:91
 msgid "+ Add Images"
 msgstr "+ Bilder Hinzufügen"
 
-#: templates/recipes/_recipe_images_form.html:109
+#: templates/recipes/_recipe_images_form.html:108
 #: templates/recipes/_recipe_ingredients_edit_form.html:25
-#: templates/recipes/partials/delete_confirmation_modal.html:29
+#: templates/recipes/partials/delete_confirmation_modal.html:30
 #: templates/recipes/recipe_create.html:38
-#: templates/users/partials/delete_confirmation_modal.html:44
+#: templates/users/partials/delete_confirmation_modal.html:46
 #: templates/users/user_confirm_delete.html:31
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: templates/recipes/_recipe_images_form.html:112
+#: templates/recipes/_recipe_images_form.html:111
 msgid "Apply Crop"
 msgstr "Zuschneiden anwenden"
 
@@ -1327,6 +1321,10 @@ msgstr "Noch keine Zutaten."
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
+#: templates/recipes/_recipe_publish_form.html:18
+msgid "Public since"
+msgstr "Öffentlich seit"
+
 #: templates/recipes/_recipe_publish_form.html:20
 msgid "Unpublished"
 msgstr "Nicht Veröffentlicht"
@@ -1359,12 +1357,12 @@ msgstr "+ Abschnitt hinzufügen"
 
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
-#: templates/recipes/recipe_detail.html:38 templates/recipes/recipe_edit.html:7
+#: templates/recipes/recipe_edit.html:25
 msgid "Edit Recipe"
 msgstr "Rezept bearbeiten"
 
 #: templates/recipes/create_recipe_wizard.html:44
-#: templates/recipes/recipe_edit.html:23
+#: templates/recipes/recipe_edit.html:44
 msgid "Images"
 msgstr "Bilder"
 
@@ -1373,8 +1371,7 @@ msgid "Create Recipe"
 msgstr "Rezept erstellen"
 
 #: templates/recipes/partials/delete_confirmation_modal.html:5
-#: templates/recipes/partials/delete_confirmation_modal.html:30
-#: templates/recipes/recipe_detail.html:40
+#: templates/recipes/partials/delete_confirmation_modal.html:31
 msgid "Delete Recipe"
 msgstr "Rezept löschen"
 
@@ -1445,15 +1442,31 @@ msgstr "Wie soll das rezept heißen?"
 msgid "Create"
 msgstr "Erstellen"
 
-#: templates/recipes/recipe_edit.html:8
+#: templates/recipes/recipe_detail.html:14
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/recipes/recipe_detail.html:23
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/recipes/recipe_detail.html:52
+msgid "This recipe doesn’t have a description yet."
+msgstr "Dieses Rezept hat noch keine Beschreibung."
+
+#: templates/recipes/recipe_edit.html:20
+msgid "View"
+msgstr "Ansehen"
+
+#: templates/recipes/recipe_edit.html:29
 msgid "Add Ingredients, Steps and other Details"
 msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
 
-#: templates/recipes/recipe_edit.html:41
+#: templates/recipes/recipe_edit.html:62
 msgid "Steps"
 msgstr "Schritte"
 
-#: templates/recipes/recipe_edit.html:51
+#: templates/recipes/recipe_edit.html:72
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -1495,7 +1508,7 @@ msgid "You don't have any Favorites added yet."
 msgstr "Du hast noch keine Favoriten hinzugefügt."
 
 #: templates/users/partials/delete_confirmation_modal.html:5
-#: templates/users/partials/delete_confirmation_modal.html:45
+#: templates/users/partials/delete_confirmation_modal.html:47
 #: templates/users/user_confirm_delete.html:6
 #: templates/users/user_confirm_delete.html:11
 #: templates/users/user_confirm_delete.html:55
@@ -1514,7 +1527,7 @@ msgstr ""
 msgid "Please type your full name to confirm:"
 msgstr "Bitte gib zur Bestätigung deinen vollständigen Namen ein:"
 
-#: templates/users/partials/delete_confirmation_modal.html:29
+#: templates/users/partials/delete_confirmation_modal.html:30
 msgid "Please enter your email to confirm:"
 msgstr "Bitte gib zur Bestätigung deine Email-Addresse ein:"
 
@@ -1527,11 +1540,11 @@ msgstr ""
 "%(points)s Punkte fehlen bis zum nächsten Level <span class=\"text-"
 "secondary\">%(level)s</span>"
 
-#: templates/users/profile.html:40
+#: templates/users/profile.html:41
 msgid "Badges:"
 msgstr "Abzeichen:"
 
-#: templates/users/profile.html:56 templates/users/profile.html:74
+#: templates/users/profile.html:58 templates/users/profile.html:76
 #, python-format
 msgid ""
 "\n"
@@ -1550,7 +1563,7 @@ msgstr[1] ""
 "                                %(recipe_count)s Rezepte\n"
 "                            "
 
-#: templates/users/profile.html:109
+#: templates/users/profile.html:110
 msgid "Delete Account"
 msgstr "Konto löschen"
 
@@ -1674,8 +1687,8 @@ msgstr ""
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
 
-#~ msgid "Publishing"
-#~ msgstr "Veröffentlichung"
+#~ msgid "All Menus"
+#~ msgstr "Alle Menüs"
 
 #~ msgid "Proven chef-level recipes<br>that work anywhere."
 #~ msgstr "Profi-Rezepte, die überall funktionieren."

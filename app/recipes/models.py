@@ -24,6 +24,8 @@ class Recipe(models.Model):
     description = models.TextField(
         max_length=250,
         verbose_name=_("Description"),
+        blank=True,
+        null=True,
     )
     created_by = models.ForeignKey(
         User,
@@ -171,6 +173,15 @@ class Recipe(models.Model):
         )
 
         return sorted_nutrients
+
+    def can_publish(self):
+        return (
+                self.ingredients.exists()
+                and self.steps.exists()
+                and self.images.exists()
+                and bool(self.skill_level)
+                and bool(self.course_type)
+        )
 
 
 class RecipeRating(models.Model):

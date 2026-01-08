@@ -3,12 +3,11 @@
 
 {% block actions %}
 	<c-a url="{% url 'recipe-detail' recipe.id %}"
-         class="btn btn-secondary btn-sm self-end shadow-sm"
          hx-get="{% url 'recipe-detail' recipe.id %}"
          hx-target="#main-body"
          hx-push-url="true"
          hx-swap="innerHTML"
-         class="btn btn-secondary btn-sm self-end shadow-sm"
+         class="btn btn-neutral btn-outline btn-sm self-end shadow-sm"
     >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
              stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -34,7 +33,7 @@
     <div>
         <p class="h4 mb-1">{% translate 'Details' %}</p>
 
-        <div class="w-full bg-base-200 p-5 shadow-md rounded-md">
+        <div class="w-full bg-base-300 p-5 shadow-md rounded-md">
             {% include 'recipes/_recipe_details_form.html' %}
         </div>
     </div>
@@ -43,7 +42,7 @@
     <div>
         <p class="h4 mb-1">{% translate 'Images' %}</p>
 
-        <div id="recipe-images-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+        <div id="recipe-images-container" class="w-full bg-base-300 p-5 shadow-md rounded-md">
             {% include 'recipes/_recipe_images_form.html' %}
         </div>
     </div>
@@ -52,7 +51,7 @@
     <div>
         <p class="h4 mb-1">{% translate 'Ingredients' %}</p>
 
-        <div id="recipe-ingredients-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+        <div id="recipe-ingredients-container" class="w-full bg-base-300 p-5 shadow-md rounded-md">
             {% include 'recipes/_recipe_ingredients_form.html' %}
         </div>
     </div>
@@ -61,7 +60,7 @@
     <div>
         <p class="h4 mb-1">{% translate 'Steps' %}</p>
 
-        <div id="recipe-steps-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+        <div id="recipe-steps-container" class="w-full bg-base-300 p-5 shadow-md rounded-md">
             {% include 'recipes/_recipe_steps_form.html' %}
         </div>
     </div>
@@ -71,7 +70,7 @@
         <div>
             <p class="h4 mb-1">{% translate 'Publish' %}</p>
 
-            <div id="recipe-publish-container" class="w-full bg-base-200 p-5 shadow-md rounded-md">
+            <div id="recipe-publish-container" class="w-full bg-base-300 p-5 shadow-md rounded-md">
                 {% include 'recipes/_recipe_publish_form.html' %}
             </div>
         </div>

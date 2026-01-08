@@ -1,23 +1,30 @@
 {% load i18n %}
 
-<div class="w-full flex gap-5 justify-start items-center">
-    <c-input
-        type="checkbox"
-        name="is_published"
-        value="{{ recipe.is_published }}"
-        class="w-6! h-6!"
-        hx_post="{% url 'recipe-public-update' recipe.id %}"
-        hx_trigger="click"
-        hx_target="#recipe-publish-container"
-        hx_swap="innerHTML"
-        hx_include="this"
-    ></c-input>
+<div class="flex flex-col gap-2">
+    {% if publish_error %}
+      <div class="alert alert-warning rounded-md">
+        {{ publish_error }}
+      </div>
+    {% endif %}
+    <div class="w-full flex gap-5 justify-start items-center">
+        <c-input
+            type="checkbox"
+            name="is_published"
+            value="{{ recipe.is_published }}"
+            class="w-6! h-6!"
+            hx_post="{% url 'recipe-public-update' recipe.id %}"
+            hx_trigger="click"
+            hx_target="#recipe-publish-container"
+            hx_swap="innerHTML"
+            hx_include="this"
+        ></c-input>
 
-    <p class="w-full">
-        {% if recipe.is_published %}
-            <span class="font-medium">{{ recipe.published_at }}</span>
-        {% else %}
-            {% translate 'Unpublished' %}
-        {% endif %}
-    </p>
+        <p class="w-full">
+            {% if recipe.is_published %}
+                <span>{% translate 'Public since' %}</span> <span class="font-medium">{{ recipe.published_at }}</span>
+            {% else %}
+                {% translate 'Unpublished' %}
+            {% endif %}
+        </p>
+    </div>
 </div>

@@ -10,7 +10,7 @@ python manage.py makemigrations --settings=gourmet_wiki.settings
 python manage.py migrate --settings=gourmet_wiki.settings
 python manage.py collectstatic --settings=gourmet_wiki.settings --no-input --clear
 python manage.py compilemessages --settings=gourmet_wiki.settings
-# python manage.py load_wiki_seeds
+python manage.py load_wiki_seeds
 python manage.py initgroups
 
 exec "$@"

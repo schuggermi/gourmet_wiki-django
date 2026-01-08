@@ -161,7 +161,7 @@ input[type='number'] {
     }
 
     .article, article > a, p {
-        @apply text-base md:text-lg lg:text-xl leading-relaxed break-words whitespace-normal text-balance hyphens-auto;
+        @apply text-base md:text-lg lg:text-xl leading-tight break-words text-pretty;
     }
 
     a.missing-link {

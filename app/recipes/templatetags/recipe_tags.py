@@ -26,7 +26,6 @@ def user_rating(context, recipe):
     If the user hasn't rated, returns None.
     """
     user = context['request'].user
-    print("THIS IS IT: ", user)
     if user.is_authenticated:
         rating = RecipeRating.objects.filter(recipe=recipe, user=user).first()
         if rating:
