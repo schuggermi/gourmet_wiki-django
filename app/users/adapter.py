@@ -1,6 +1,11 @@
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.sites.shortcuts import get_current_site
 from allauth.account.adapter import DefaultAccountAdapter
+from allauth.core import context as allauth_context
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CustomAccountAdapter(DefaultAccountAdapter):
@@ -10,19 +15,21 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         Render both text and HTML versions of email
         Returns: (subject, text_body, html_body)
         """
+        request = context.get('request')
+
         # Subject
-        subject = render_to_string(f'{template_prefix}_subject.txt', context)
+        subject = render_to_string(f'{template_prefix}_subject.txt', context, request=request)
         subject = ' '.join(subject.splitlines()).strip()
 
         # Text body
-        text_body = render_to_string(f'{template_prefix}_message.txt', context)
+        text_body = render_to_string(f'{template_prefix}_message.txt', context, request=request)
 
         # HTML body (optional)
         html_body = None
         try:
-            html_body = render_to_string(f'{template_prefix}_message.html', context)
-        except Exception:
-            pass
+            html_body = render_to_string(f'{template_prefix}_message.html', context, request=request)
+        except Exception as e:
+            logger.error(f"Error rendering HTML email template {template_prefix}_message.html: {e}")
 
         return subject, text_body, html_body
 
@@ -30,8 +37,17 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         """
         Send multipart email
         """
+        # allauth's DefaultAccountAdapter.send_mail populates these
+        request = getattr(allauth_context, 'request', None)
+        ctx = {
+            "request": request,
+            "email": email,
+            "current_site": get_current_site(request),
+        }
+        ctx.update(context)
+
         subject, text_body, html_body = self.render_mail(
-            template_prefix, email, context
+            template_prefix, email, ctx
         )
 
         msg = EmailMultiAlternatives(
