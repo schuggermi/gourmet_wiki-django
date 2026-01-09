@@ -231,8 +231,11 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
 
+ACCOUNT_ADAPTER = 'users.adapter.CustomAccountAdapter'
+
 if DEBUG:
-    ACCOUNT_EMAIL_VERIFICATION = 'none'
+    #ACCOUNT_EMAIL_VERIFICATION = 'none'
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 else:
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
