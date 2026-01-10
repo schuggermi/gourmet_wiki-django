@@ -1,11 +1,19 @@
 {% extends "base_email.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktranslate with site_name=current_site.name %}Confirm Your Email Address - {{ site_name }}{% endblocktranslate %}{% endblock %}
+{% block title %}
+    {% blocktranslate with site_name=current_site.name %}
+        Confirm Your Email Address - {{ site_name }}
+    {% endblocktranslate %}
+{% endblock %}
 
 {% block logo %}✉️{% endblock %}
 
-{% block header_title %}{% blocktranslate with site_name=current_site.name %}Welcome to {{ site_name }}!{% endblocktranslate %}{% endblock %}
+{% block header_title %}
+    {% blocktranslate with site_name=current_site.name %}
+        Welcome to {{ site_name }}!
+    {% endblocktranslate %}
+{% endblock %}
 
 {% block content %}
 <h2 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 700; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.3;">
