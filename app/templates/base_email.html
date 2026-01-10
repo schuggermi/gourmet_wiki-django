@@ -309,10 +309,14 @@
                         <td class="email-footer">
                             {% block footer %}
                             <p><strong>{{ current_site.name }}</strong></p>
-                            <p>This email was sent to {{ user.email }}</p>
-                            <p>If you didn't request this, please ignore this email.</p>
+                            <p>
+                            {% blocktranslate %}
+                                This email was sent to {{ user.email }}
+                            {% endblocktranslate %}
+                            </p>
+                            <p>{% translate "If you didn't request this, please ignore this email." %}</p>
                             <p style="margin-top: 16px;">
-                                <a href="http://{{ current_site.domain }}">Visit our website</a>
+                                <a href="https://{{ current_site.domain }}">{% translate 'Visit our website' %}</a>
                             </p>
                             {% endblock %}
                         </td>

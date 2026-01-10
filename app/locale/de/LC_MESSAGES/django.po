@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-10 01:50+0000\n"
+"POT-Creation-Date: 2026-01-10 03:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,6 +264,7 @@ msgstr "Konto existiert bereits - %(site_name)s"
 
 #: templates/account/email/account_already_exists_message.html:8
 #: templates/account/email/account_already_exists_subject.txt:3
+#: templates/debug/email_preview_list.html:332
 msgid "Account Already Exists"
 msgstr "Konto existiert bereits"
 
@@ -301,7 +301,9 @@ msgstr "Hallo!"
 msgid ""
 "You are receiving this email because you or someone else tried to sign up "
 "for an account at %(site_name)s using the email address:"
-msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, sich mit dieser E-Mail-Adresse für ein Konto bei %(site_name)s zu registrieren:"
+msgstr ""
+"Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, sich mit "
+"dieser E-Mail-Adresse für ein Konto bei %(site_name)s zu registrieren:"
 
 #: templates/account/email/account_already_exists_message.html:26
 #: templates/account/email/account_already_exists_message.txt:7
@@ -312,7 +314,9 @@ msgstr "Es existiert jedoch bereits ein Konto mit dieser E-Mail-Adresse."
 msgid ""
 "In case you have forgotten about this, you can reset your password using the "
 "button below:"
-msgstr "Falls du das vergessen hast, kannst du dein Passwort über den Button unten zurücksetzen:"
+msgstr ""
+"Falls du das vergessen hast, kannst du dein Passwort über den Button unten "
+"zurücksetzen:"
 
 #: templates/account/email/account_already_exists_message.html:38
 #: templates/account/email/password_reset_key_message.html:28
@@ -385,7 +389,9 @@ msgstr "Das %(site_name)s-Team"
 msgid ""
 "In case you have forgotten about this, you can reset your password using the "
 "link below:"
-msgstr "Falls du das vergessen hast, kannst du dein Passwort über den Link unten zurücksetzen:"
+msgstr ""
+"Falls du das vergessen hast, kannst du dein Passwort über den Link unten "
+"zurücksetzen:"
 
 #: templates/account/email/base_message.txt:1
 #, python-format
@@ -397,13 +403,17 @@ msgstr "Hallo von %(site_name)s!"
 msgid ""
 "Thank you for using %(site_name)s!\n"
 "%(site_domain)s"
-msgstr "Danke, dass du %(site_name)s nutzt!\n%(site_domain)s"
+msgstr ""
+"Danke, dass du %(site_name)s nutzt!\n"
+"%(site_domain)s"
 
 #: templates/account/email/base_notification.txt:5
 msgid ""
 "You are receiving this mail because the following change was made to your "
 "account:"
-msgstr "Du erhältst diese E-Mail, weil die folgende Änderung an deinem Konto vorgenommen wurde:"
+msgstr ""
+"Du erhältst diese E-Mail, weil die folgende Änderung an deinem Konto "
+"vorgenommen wurde:"
 
 #: templates/account/email/base_notification.txt:10
 #, python-format
@@ -414,7 +424,13 @@ msgid ""
 "- IP address: %(ip)s\n"
 "- Browser: %(user_agent)s\n"
 "- Date: %(timestamp)s"
-msgstr "Wenn du diese Änderung nicht erkennst, ergreife bitte umgehend entsprechende Sicherheitsmaßnahmen. Die Änderung an deinem Konto stammt von:\n\n- IP-Adresse: %(ip)s\n- Browser: %(user_agent)s\n- Datum: %(timestamp)s"
+msgstr ""
+"Wenn du diese Änderung nicht erkennst, ergreife bitte umgehend entsprechende "
+"Sicherheitsmaßnahmen. Die Änderung an deinem Konto stammt von:\n"
+"\n"
+"- IP-Adresse: %(ip)s\n"
+"- Browser: %(user_agent)s\n"
+"- Datum: %(timestamp)s"
 
 #: templates/account/email/email_changed_message.html:4
 #, python-format
@@ -451,7 +467,9 @@ msgstr "Hallo %(first_name)s!"
 msgid ""
 "This is a notification that the email address for your account at "
 "%(site_name)s has been changed."
-msgstr "Dies ist eine Benachrichtigung, dass die E-Mail-Adresse für dein Konto bei %(site_name)s geändert wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass die E-Mail-Adresse für dein Konto bei "
+"%(site_name)s geändert wurde."
 
 #: templates/account/email/email_changed_message.html:21
 #: templates/account/email/email_changed_message.txt:5
@@ -468,7 +486,9 @@ msgstr "Neue E-Mail-Adresse:"
 #: templates/account/email/email_deleted_message.html:26
 #: templates/account/email/email_deleted_message.txt:7
 msgid "If you did not authorize this change, please contact us immediately."
-msgstr "Wenn du diese Änderung nicht autorisiert hast, kontaktiere uns bitte umgehend."
+msgstr ""
+"Wenn du diese Änderung nicht autorisiert hast, kontaktiere uns bitte "
+"umgehend."
 
 #: templates/account/email/email_changed_subject.txt:3
 msgid "Email Changed"
@@ -480,6 +500,7 @@ msgid "Email Confirmed - %(site_name)s"
 msgstr "E-Mail-Adresse bestätigt - %(site_name)s"
 
 #: templates/account/email/email_confirm_message.html:8
+#: templates/debug/email_preview_list.html:318
 msgid "Email Confirmed"
 msgstr "E-Mail-Adresse bestätigt"
 
@@ -489,7 +510,9 @@ msgstr "E-Mail-Adresse bestätigt"
 msgid ""
 "This is a notification that your email address has been successfully "
 "confirmed for your account at %(site_name)s."
-msgstr "Dies ist eine Benachrichtigung, dass deine E-Mail-Adresse für dein Konto bei %(site_name)s erfolgreich bestätigt wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass deine E-Mail-Adresse für dein Konto bei "
+"%(site_name)s erfolgreich bestätigt wurde."
 
 #: templates/account/email/email_confirm_message.html:21
 #: templates/account/email/email_confirm_message.txt:5
@@ -497,6 +520,7 @@ msgid "You can now access all features of your account."
 msgstr "Du kannst jetzt auf alle Funktionen deines Kontos zugreifen."
 
 #: templates/account/email/email_confirm_subject.txt:3
+#: templates/debug/email_preview_list.html:262
 msgid "Email Confirmation"
 msgstr "E-Mail-Bestätigung"
 
@@ -516,7 +540,10 @@ msgstr "Willkommen bei %(site_name)s!"
 msgid ""
 "Thank you for signing up at %(site_name)s. To complete your registration and "
 "activate your account, please verify your email address."
-msgstr "Danke für deine Registrierung bei %(site_name)s. Um deine Registrierung abzuschließen und dein Konto zu aktivieren, bestätige bitte deine E-Mail-Adresse."
+msgstr ""
+"Danke für deine Registrierung bei %(site_name)s. Um deine Registrierung "
+"abzuschließen und dein Konto zu aktivieren, bestätige bitte deine E-Mail-"
+"Adresse."
 
 #: templates/account/email/email_confirmation_message.html:20
 msgid "Click the button below to confirm your email address:"
@@ -531,7 +558,10 @@ msgid ""
 "⏱️ <strong>This verification link will expire in 3 days.</strong> If you "
 "don't verify within this time, you'll need to request a new verification "
 "email."
-msgstr "⏱️ <strong>Dieser Bestätigungslink läuft in 3 Tagen ab.</strong> Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-Mail anfordern."
+msgstr ""
+"⏱️ <strong>Dieser Bestätigungslink läuft in 3 Tagen ab.</strong> Wenn du "
+"deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine "
+"neue Bestätigungs-E-Mail anfordern."
 
 #: templates/account/email/email_confirmation_message.html:54
 #: templates/account/email/email_confirmation_message.txt:11
@@ -539,7 +569,9 @@ msgstr "⏱️ <strong>Dieser Bestätigungslink läuft in 3 Tagen ab.</strong> W
 msgid ""
 "If you didn't create an account with %(site_name)s, you can safely ignore "
 "this email. No account will be created without email verification."
-msgstr "Wenn du kein Konto bei %(site_name)s erstellt hast, kannst du diese E-Mail einfach ignorieren. Ohne Bestätigung wird kein Konto erstellt."
+msgstr ""
+"Wenn du kein Konto bei %(site_name)s erstellt hast, kannst du diese E-Mail "
+"einfach ignorieren. Ohne Bestätigung wird kein Konto erstellt."
 
 #: templates/account/email/email_confirmation_message.html:65
 #, python-format
@@ -554,7 +586,14 @@ msgstr "Klicke auf den Link unten, um deine E-Mail-Adresse zu bestätigen:"
 msgid ""
 "This verification link will expire in 3 days. If you don't verify within "
 "this time, you'll need to request a new verification email."
-msgstr "Dieser Bestätigungslink läuft in 3 Tagen ab. Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-Mail anfordern."
+msgstr ""
+"Dieser Bestätigungslink läuft in 3 Tagen ab. Wenn du deine E-Mail-Adresse "
+"nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-"
+"Mail anfordern."
+
+#: templates/account/email/email_confirmation_subject.txt:1
+msgid "Please Confirm Your Email Address"
+msgstr "Bitte bestätige deine E-Mail-Adresse"
 
 #: templates/account/email/email_deleted_message.html:4
 #, python-format
@@ -571,7 +610,9 @@ msgstr "E-Mail-Adresse entfernt"
 msgid ""
 "This is a notification that an email address has been removed from your "
 "account at %(site_name)s."
-msgstr "Dies ist eine Benachrichtigung, dass eine E-Mail-Adresse von deinem Konto bei %(site_name)s entfernt wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass eine E-Mail-Adresse von deinem Konto "
+"bei %(site_name)s entfernt wurde."
 
 #: templates/account/email/email_deleted_message.html:21
 #: templates/account/email/email_deleted_message.txt:5
@@ -596,7 +637,9 @@ msgstr "Dein Anmeldecode"
 msgid ""
 "Your sign-in code is listed below. Please enter it in your open browser "
 "window."
-msgstr "Dein Anmeldecode lautet wie folgt. Bitte gib ihn in deinem geöffneten Browserfenster ein."
+msgstr ""
+"Dein Anmeldecode lautet wie folgt. Bitte gib ihn in deinem geöffneten "
+"Browserfenster ein."
 
 #: templates/account/email/login_code_message.html:26
 #: templates/account/email/login_code_message.txt:7
@@ -605,7 +648,9 @@ msgstr "Dein Anmeldecode lautet wie folgt. Bitte gib ihn in deinem geöffneten B
 #: templates/account/email/unknown_account_message.html:49
 #: templates/account/email/unknown_account_message.txt:9
 msgid "This mail can be safely ignored if you did not initiate this action."
-msgstr "Diese E-Mail kann ignoriert werden, wenn du diese Aktion nicht ausgelöst hast."
+msgstr ""
+"Diese E-Mail kann ignoriert werden, wenn du diese Aktion nicht ausgelöst "
+"hast."
 
 #: templates/account/email/login_code_subject.txt:3
 msgid "Sign-In Code"
@@ -618,6 +663,7 @@ msgstr "Passwort geändert - %(site_name)s"
 
 #: templates/account/email/password_changed_message.html:8
 #: templates/account/email/password_changed_subject.txt:3
+#: templates/debug/email_preview_list.html:304
 msgid "Password Changed"
 msgstr "Passwort geändert"
 
@@ -627,14 +673,18 @@ msgstr "Passwort geändert"
 msgid ""
 "This is a notification that the password for your account at %(site_name)s "
 "has been successfully changed."
-msgstr "Dies ist eine Benachrichtigung, dass das Passwort für dein Konto bei %(site_name)s erfolgreich geändert wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass das Passwort für dein Konto bei "
+"%(site_name)s erfolgreich geändert wurde."
 
 #: templates/account/email/password_changed_message.html:21
 #: templates/account/email/password_changed_message.txt:5
 msgid ""
 "If you did not make this change, please contact us immediately to secure "
 "your account."
-msgstr "Wenn du diese Änderung nicht vorgenommen hast, kontaktiere uns bitte umgehend, um dein Konto zu sichern."
+msgstr ""
+"Wenn du diese Änderung nicht vorgenommen hast, kontaktiere uns bitte "
+"umgehend, um dein Konto zu sichern."
 
 #: templates/account/email/password_reset_code_message.html:4
 #, python-format
@@ -650,9 +700,12 @@ msgstr "Dein Passwort-Wiederherstellungscode"
 msgid ""
 "Your password reset code is listed below. Please enter it in your open "
 "browser window."
-msgstr "Dein Code zum Zurücksetzen des Passworts lautet wie folgt. Bitte gib ihn in deinem geöffneten Browserfenster ein."
+msgstr ""
+"Dein Code zum Zurücksetzen des Passworts lautet wie folgt. Bitte gib ihn in "
+"deinem geöffneten Browserfenster ein."
 
 #: templates/account/email/password_reset_code_subject.txt:3
+#: templates/debug/email_preview_list.html:290
 msgid "Password Reset Code"
 msgstr "Passwort-Wiederherstellungscode"
 
@@ -671,7 +724,10 @@ msgstr "Setze dein Passwort zurück"
 msgid ""
 "You're receiving this email because you or someone else has requested a "
 "password reset for your user account at %(site_name)s."
-msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes eine Passwortzurücksetzung für dein Benutzerkonto bei %(site_name)s angefordert hat."
+msgstr ""
+"Du erhältst diese E-Mail, weil du oder jemand anderes eine "
+"Passwortzurücksetzung für dein Benutzerkonto bei %(site_name)s angefordert "
+"hat."
 
 #: templates/account/email/password_reset_key_message.html:20
 msgid "Click the button below to reset your password:"
@@ -680,14 +736,18 @@ msgstr "Klicke auf den Button unten, um dein Passwort zurückzusetzen:"
 #: templates/account/email/password_reset_key_message.html:47
 #, python-format
 msgid "In case you forgot, your username is <strong>%(username)s</strong>."
-msgstr "Falls du es vergessen hast, dein Benutzername lautet <strong>%(username)s</strong>."
+msgstr ""
+"Falls du es vergessen hast, dein Benutzername lautet <strong>%(username)s</"
+"strong>."
 
 #: templates/account/email/password_reset_key_message.html:55
 #: templates/account/email/password_reset_key_message.txt:11
 msgid ""
 "If you didn't request a password reset, you can safely ignore this email. "
 "Your password will not be changed."
-msgstr "Wenn du keine Passwortzurücksetzung angefordert hast, kannst du diese E-Mail ignorieren. Dein Passwort wird nicht geändert."
+msgstr ""
+"Wenn du keine Passwortzurücksetzung angefordert hast, kannst du diese E-Mail "
+"ignorieren. Dein Passwort wird nicht geändert."
 
 #: templates/account/email/password_reset_key_message.txt:5
 msgid "Click the link below to reset your password:"
@@ -713,6 +773,7 @@ msgstr "Passwort zurückgesetzt - %(site_name)s"
 #: templates/account/password_reset.html:10
 #: templates/account/password_reset_done.html:6
 #: templates/account/password_reset_done.html:10
+#: templates/debug/email_preview_list.html:276
 msgid "Password Reset"
 msgstr "Passwort zurücksetzen"
 
@@ -722,14 +783,17 @@ msgstr "Passwort zurücksetzen"
 msgid ""
 "This is a notification that your password has been successfully reset for "
 "your account at %(site_name)s."
-msgstr "Dies ist eine Benachrichtigung, dass dein Passwort für dein Konto bei %(site_name)s erfolgreich zurückgesetzt wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass dein Passwort für dein Konto bei "
+"%(site_name)s erfolgreich zurückgesetzt wurde."
 
 #: templates/account/email/password_reset_message.html:21
 #: templates/account/email/password_reset_message.txt:5
 #: templates/account/email/password_set_message.html:21
 #: templates/account/email/password_set_message.txt:5
 msgid "If you did not perform this action, please contact us immediately."
-msgstr "Wenn du diese Aktion nicht ausgeführt hast, kontaktiere uns bitte umgehend."
+msgstr ""
+"Wenn du diese Aktion nicht ausgeführt hast, kontaktiere uns bitte umgehend."
 
 #: templates/account/email/password_set_message.html:4
 #, python-format
@@ -738,6 +802,7 @@ msgstr "Passwort festgelegt - %(site_name)s"
 
 #: templates/account/email/password_set_message.html:8
 #: templates/account/email/password_set_subject.txt:3
+#: templates/debug/email_preview_list.html:311
 msgid "Password Set"
 msgstr "Passwort festgelegt"
 
@@ -747,7 +812,9 @@ msgstr "Passwort festgelegt"
 msgid ""
 "This is a notification that a password has been set for your account at "
 "%(site_name)s."
-msgstr "Dies ist eine Benachrichtigung, dass für dein Konto bei %(site_name)s ein Passwort festgelegt wurde."
+msgstr ""
+"Dies ist eine Benachrichtigung, dass für dein Konto bei %(site_name)s ein "
+"Passwort festgelegt wurde."
 
 #: templates/account/email/unknown_account_message.html:4
 #, python-format
@@ -756,6 +823,7 @@ msgstr "Unbekanntes Konto - %(site_name)s"
 
 #: templates/account/email/unknown_account_message.html:8
 #: templates/account/email/unknown_account_subject.txt:3
+#: templates/debug/email_preview_list.html:339
 msgid "Unknown Account"
 msgstr "Unbekanntes Konto"
 
@@ -764,15 +832,19 @@ msgstr "Unbekanntes Konto"
 msgid ""
 "You are receiving this email because you, or someone else, tried to access "
 "an account with the email address <strong>%(email)s</strong>."
-msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein Konto mit der E-Mail-Adresse <strong>%(email)s</strong> zuzugreifen."
+msgstr ""
+"Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein "
+"Konto mit der E-Mail-Adresse <strong>%(email)s</strong> zuzugreifen."
 
 #: templates/account/email/unknown_account_message.html:20
 msgid "However, we do not have any record of such an account in our database."
-msgstr "Wir haben jedoch kein Konto mit dieser E-Mail-Adresse in unserer Datenbank."
+msgstr ""
+"Wir haben jedoch kein Konto mit dieser E-Mail-Adresse in unserer Datenbank."
 
 #: templates/account/email/unknown_account_message.html:24
 msgid "If it was you, you can sign up for an account using the button below:"
-msgstr "Wenn du das warst, kannst du über den Button unten ein Konto erstellen:"
+msgstr ""
+"Wenn du das warst, kannst du über den Button unten ein Konto erstellen:"
 
 #: templates/account/email/unknown_account_message.html:32
 #: templates/account/signup.html:98
@@ -785,7 +857,10 @@ msgid ""
 "You are receiving this email because you, or someone else, tried to access "
 "an account with the email address %(email)s. However, we do not have any "
 "record of such an account in our database."
-msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein Konto mit der E-Mail-Adresse %(email)s zuzugreifen. Wir haben jedoch kein Konto mit dieser E-Mail-Adresse in unserer Datenbank."
+msgstr ""
+"Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein "
+"Konto mit der E-Mail-Adresse %(email)s zuzugreifen. Wir haben jedoch kein "
+"Konto mit dieser E-Mail-Adresse in unserer Datenbank."
 
 #: templates/account/email/unknown_account_message.txt:5
 msgid "If it was you, you can sign up for an account using the link below:"
@@ -802,8 +877,8 @@ msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
 "address for user %(user_display)s."
 msgstr ""
-"Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> die E-"
-"Mail-Adresse von %(user_display)s ist."
+"Bitte bestätige, dass <a href=\"mailto:%(email)s\">%(email)s</a> die E-Mail-"
+"Adresse von %(user_display)s ist."
 
 #: templates/account/email_confirm.html:25
 msgid "Confirm"
@@ -958,7 +1033,7 @@ msgstr "Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:43
 msgid "Having trouble resetting your password?"
-msgstr "Hast Du Probleme beim Zurücksetzen Ihres Passworts?"
+msgstr "Hast du Probleme beim Zurücksetzen deines Passworts?"
 
 #: templates/account/password_reset_done.html:15
 #: templates/account/verification_sent.html:16
@@ -995,6 +1070,26 @@ msgstr "Anmelden"
 #: templates/account/verification_sent.html:10
 msgid "Verify Your Email Address"
 msgstr "Bestätige deine E-Mail-Adresse"
+
+#: templates/base_email.html:313
+#, python-format
+msgid ""
+"\n"
+"                                This email was sent to %(user.email)s\n"
+"                            "
+msgstr ""
+"\n"
+"                                Diese E-Mail wurde an %(user.email)s "
+"gesendet\n"
+"                            "
+
+#: templates/base_email.html:317
+msgid "If you didn't request this, please ignore this email."
+msgstr "Wenn du dies nicht angefordert hast, ignoriere diese E-Mail bitte."
+
+#: templates/base_email.html:319
+msgid "Visit our website"
+msgstr "Besuche unsere Website"
 
 #: templates/cotton/dock.html:7 templates/cotton/quick_actions.html:4
 #: templates/users/profile.html:55 templates/users/recipe_list.html:6
@@ -1038,6 +1133,262 @@ msgstr "Zurück"
 #: templates/cotton/portions_calculator_menu.html:24
 msgid "Pers."
 msgstr "Pers."
+
+#: templates/debug/email_preview.html:7 templates/debug/email_preview.html:299
+msgid "Email Preview:"
+msgstr "E-Mail-Vorschau:"
+
+#: templates/debug/email_preview.html:300
+msgid "Template Prefix:"
+msgstr "Template-Präfix:"
+
+#: templates/debug/email_preview.html:301
+msgid "Back to all templates"
+msgstr "Zurück zu allen Vorlagen"
+
+#: templates/debug/email_preview.html:305
+msgid "SUBJECT LINE"
+msgstr "BETREFF"
+
+#: templates/debug/email_preview.html:311
+msgid "Debug Information"
+msgstr "Debug-Informationen"
+
+#: templates/debug/email_preview.html:315
+msgid "Template Detection:"
+msgstr "Vorlagenerkennung:"
+
+#: templates/debug/email_preview.html:328
+msgid "Errors:"
+msgstr "Fehler:"
+
+#: templates/debug/email_preview.html:344
+msgid "HTML Version"
+msgstr "HTML-Version"
+
+#: templates/debug/email_preview.html:347
+msgid "Plain Text Version"
+msgstr "Textversion"
+
+#: templates/debug/email_preview.html:367
+msgid "No templates found. Create either:"
+msgstr "Keine Vorlagen gefunden. Erstelle entweder:"
+
+#: templates/debug/email_preview.html:369
+msgid "for plain text"
+msgstr "für reinen Text"
+
+#: templates/debug/email_preview.html:370
+msgid "for HTML"
+msgstr "für HTML"
+
+#: templates/debug/email_preview.html:377
+msgid "Template Context (for debugging)"
+msgstr "Vorlagenkontext (zum Debuggen)"
+
+#: templates/debug/email_preview_list.html:7
+msgid "Email Template Previews"
+msgstr "E-Mail-Vorlagen-Vorschau"
+
+#: templates/debug/email_preview_list.html:246
+msgid "Email Template Previewer"
+msgstr "E-Mail-Vorlagen-Vorschau"
+
+#: templates/debug/email_preview_list.html:247
+msgid "Development-only preview of email templates"
+msgstr "Vorschau der E-Mail-Vorlagen nur für die Entwicklung"
+
+#: templates/debug/email_preview_list.html:253
+msgid "Debug Mode Only"
+msgstr "Nur Debug-Modus"
+
+#: templates/debug/email_preview_list.html:254
+msgid ""
+"This page is only accessible when DEBUG=True. It will not be available in "
+"production."
+msgstr ""
+"Diese Seite ist nur zugänglich, wenn DEBUG=True ist. Sie wird in der "
+"Produktion nicht verfügbar sein."
+
+#: templates/debug/email_preview_list.html:263
+msgid ""
+"Verification email sent when a user signs up to confirm their email address."
+msgstr ""
+"Bestätigungs-E-Mail, die gesendet wird, wenn sich ein Benutzer anmeldet, um "
+"seine E-Mail-Adresse zu bestätigen."
+
+#: templates/debug/email_preview_list.html:264
+#: templates/debug/email_preview_list.html:271
+#: templates/debug/email_preview_list.html:278
+#: templates/debug/email_preview_list.html:285
+#: templates/debug/email_preview_list.html:292
+#: templates/debug/email_preview_list.html:299
+#: templates/debug/email_preview_list.html:306
+#: templates/debug/email_preview_list.html:313
+#: templates/debug/email_preview_list.html:320
+#: templates/debug/email_preview_list.html:327
+#: templates/debug/email_preview_list.html:334
+#: templates/debug/email_preview_list.html:341
+#: templates/debug/email_preview_list.html:348
+msgid "Preview Template"
+msgstr "Vorschau der Vorlage"
+
+#: templates/debug/email_preview_list.html:269
+msgid "Email Confirmation (Signup)"
+msgstr "E-Mail-Bestätigung (Registrierung)"
+
+#: templates/debug/email_preview_list.html:270
+msgid "Verification email sent specifically during the signup process."
+msgstr ""
+"Bestätigungs-E-Mail, die speziell während des Anmeldevorgangs gesendet wird."
+
+#: templates/debug/email_preview_list.html:277
+msgid ""
+"Email sent when a user requests to reset their password with a secure link."
+msgstr ""
+"E-Mail, die gesendet wird, wenn ein Benutzer das Zurücksetzen seines "
+"Passworts mit einem sicheren Link anfordert."
+
+#: templates/debug/email_preview_list.html:283
+msgid "Password Reset Key"
+msgstr "Passwort-Rücksetzschlüssel"
+
+#: templates/debug/email_preview_list.html:284
+msgid "Email sent with the password reset key/link."
+msgstr "E-Mail mit dem Passwort-Rücksetzschlüssel/Link."
+
+#: templates/debug/email_preview_list.html:291
+msgid "Email sent with a code to reset the password."
+msgstr "E-Mail mit einem Code zum Zurücksetzen des Passworts."
+
+#: templates/debug/email_preview_list.html:297
+msgid "Email Change Confirmation"
+msgstr "Bestätigung der E-Mail-Änderung"
+
+#: templates/debug/email_preview_list.html:298
+msgid "Sent when a user changes their email to verify the new address."
+msgstr ""
+"Wird gesendet, wenn ein Benutzer seine E-Mail-Adresse ändert, um die neue "
+"Adresse zu bestätigen."
+
+#: templates/debug/email_preview_list.html:305
+msgid "Notification sent after a user successfully changes their password."
+msgstr ""
+"Benachrichtigung, die gesendet wird, nachdem ein Benutzer sein Passwort "
+"erfolgreich geändert hat."
+
+#: templates/debug/email_preview_list.html:312
+msgid "Notification sent after a user sets their password."
+msgstr ""
+"Benachrichtigung, die gesendet wird, nachdem ein Benutzer sein Passwort "
+"festgelegt hat."
+
+#: templates/debug/email_preview_list.html:319
+msgid ""
+"Notification sent after a user successfully confirms their email address."
+msgstr ""
+"Benachrichtigung, die gesendet wird, nachdem ein Benutzer seine E-Mail-"
+"Adresse erfolgreich bestätigt hat."
+
+#: templates/debug/email_preview_list.html:325
+msgid "Email Deleted"
+msgstr "E-Mail gelöscht"
+
+#: templates/debug/email_preview_list.html:326
+msgid "Notification sent when an email address is removed from an account."
+msgstr ""
+"Benachrichtigung, die gesendet wird, wenn eine E-Mail-Adresse aus einem "
+"Konto entfernt wird."
+
+#: templates/debug/email_preview_list.html:333
+msgid ""
+"Sent when a user tries to sign up with an email that is already registered."
+msgstr ""
+"Wird gesendet, wenn ein Benutzer versucht, sich mit einer bereits "
+"registrierten E-Mail-Adresse anzumelden."
+
+#: templates/debug/email_preview_list.html:340
+msgid "Sent when a password reset is requested for an email not in the system."
+msgstr ""
+"Wird gesendet, wenn eine Passwortzurücksetzung für eine E-Mail angefordert "
+"wird, die nicht im System vorhanden ist."
+
+#: templates/debug/email_preview_list.html:346
+msgid "Login Code"
+msgstr "Anmeldecode"
+
+#: templates/debug/email_preview_list.html:347
+msgid "Sent when a user requests a login code."
+msgstr "Wird gesendet, wenn ein Benutzer einen Anmeldecode anfordert."
+
+#: templates/debug/email_preview_list.html:354
+msgid "No Templates Available"
+msgstr "Keine Vorlagen verfügbar"
+
+#: templates/debug/email_preview_list.html:355
+msgid "Add email templates to the template map in your views.py file."
+msgstr ""
+"Füge E-Mail-Vorlagen zur Vorlagenzuordnung in deiner views.py-Datei hinzu."
+
+#: templates/debug/email_preview_list.html:362
+msgid "Quick Reference"
+msgstr "Kurzübersicht"
+
+#: templates/debug/email_preview_list.html:365
+msgid "Template Location:"
+msgstr "Speicherort der Vorlage:"
+
+#: templates/debug/email_preview_list.html:366
+msgid "Override Default:"
+msgstr "Standard überschreiben:"
+
+#: templates/debug/email_preview_list.html:366
+msgid "Create a file with the same name as allauth's default template"
+msgstr ""
+"Erstelle eine Datei mit demselben Namen wie die Standardvorlage von allauth"
+
+#: templates/debug/email_preview_list.html:367
+msgid "HTML Emails:"
+msgstr "HTML-E-Mails:"
+
+#: templates/debug/email_preview_list.html:367
+msgid "Use <code>.html</code> extension for HTML versions"
+msgstr "Verwende die Erweiterung <code>.html</code> für HTML-Versionen"
+
+#: templates/debug/email_preview_list.html:368
+msgid "Text Emails:"
+msgstr "Text-E-Mails:"
+
+#: templates/debug/email_preview_list.html:368
+msgid "Use <code>.txt</code> extension for plain text versions"
+msgstr "Verwende die Erweiterung <code>.txt</code> für reine Textversionen"
+
+#: templates/debug/email_preview_list.html:369
+msgid "Subject Lines:"
+msgstr "Betreffzeilen:"
+
+#: templates/debug/email_preview_list.html:369
+msgid "Files ending in <code>_subject.txt</code> define email subjects"
+msgstr ""
+"Dateien, die auf <code>_subject.txt</code> enden, definieren E-Mail-Betreffs"
+
+#: templates/debug/email_preview_list.html:370
+msgid "Base Template:"
+msgstr "Basisvorlage:"
+
+#: templates/debug/email_preview_list.html:370
+msgid "Create <code>base_email.html</code> for consistent styling"
+msgstr "Erstelle <code>base_email.html</code> für ein einheitliches Styling"
+
+#: templates/debug/email_preview_list.html:371
+msgid "Live Reload:"
+msgstr "Live-Neuladen:"
+
+#: templates/debug/email_preview_list.html:371
+msgid "Edit templates and refresh preview to see changes instantly"
+msgstr ""
+"Bearbeite Vorlagen und aktualisiere die Vorschau, um Änderungen sofort zu "
+"sehen"
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 #: templates/errors/403.html:11
@@ -1621,7 +1972,7 @@ msgid ""
 "(name and email) via OAuth2."
 msgstr ""
 "Bei der Anmeldung über Google erlaubst du uns, grundlegende Profildaten "
-"(Name, E-Mail) über OAuth2 abzurufen."
+"(Name, E-Mail) über OAuth2 abrufen."
 
 #: templates/pages/terms_of_use.html:29
 msgid "2. User Accounts"
@@ -1859,7 +2210,7 @@ msgstr "Noch keine Bilder."
 
 #: templates/recipes/_recipe_images_form.html:91
 msgid "+ Add Images"
-msgstr "+ Bilder Hinzufügen"
+msgstr "+ Bilder hinzufügen"
 
 #: templates/recipes/_recipe_images_form.html:108
 #: templates/recipes/_recipe_ingredients_edit_form.html:25
@@ -1876,7 +2227,7 @@ msgstr "Zuschneiden anwenden"
 
 #: templates/recipes/_recipe_ingredients_edit_form.html:11
 msgid "Editing Ingredient"
-msgstr "Zutat Bearbeiten"
+msgstr "Zutat bearbeiten"
 
 #: templates/recipes/_recipe_ingredients_edit_form.html:28
 msgid "Update Ingredient"
@@ -1914,7 +2265,7 @@ msgstr "Öffentlich seit"
 
 #: templates/recipes/_recipe_publish_form.html:26
 msgid "Unpublished"
-msgstr "Nicht Veröffentlicht"
+msgstr "Unveröffentlicht"
 
 #: templates/recipes/_recipe_steps_form.html:23
 #: templates/recipes/partials/preparation_step_form_row.html:27
@@ -2023,7 +2374,7 @@ msgstr "Neues Rezept erstellen"
 
 #: templates/recipes/recipe_create.html:29
 msgid "What should the recipe be called?"
-msgstr "Wie soll das rezept heißen?"
+msgstr "Wie soll das Rezept heißen?"
 
 #: templates/recipes/recipe_create.html:43
 msgid "Create"
@@ -2116,7 +2467,7 @@ msgstr "Bitte gib zur Bestätigung deinen vollständigen Namen ein:"
 
 #: templates/users/partials/delete_confirmation_modal.html:30
 msgid "Please enter your email to confirm:"
-msgstr "Bitte gib zur Bestätigung deine Email-Addresse ein:"
+msgstr "Bitte gib zur Bestätigung deine E-Mail-Adresse ein:"
 
 #: templates/users/profile.html:34
 #, python-format
@@ -2266,12 +2617,12 @@ msgstr "Als Community-Mitglied beigetreten"
 #: users/views.py:43
 msgid "The entered name does not match your full name."
 msgstr ""
-"Der eingegebene Name stimmt nicht mit Deinem vollständigen Namen überein."
+"Der eingegebene Name stimmt nicht mit deinem vollständigen Namen überein."
 
 #: users/views.py:45
 msgid "The entered email does not match your email address."
 msgstr ""
-"Die eingegebene E-Mail-Adresse stimmt nicht mit Deiner E-Mail-Adresse "
+"Die eingegebene E-Mail-Adresse stimmt nicht mit deiner E-Mail-Adresse "
 "überein."
 
 #: users/views.py:66

@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Preview: {{ template_name }}</title>
+    <title>{% translate 'Email Preview:' %} {{ template_name }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -295,23 +296,23 @@
 </head>
 <body>
     <div class="preview-header">
-        <h1>📧 Email Preview: {{ template_name }}</h1>
-        <p><strong>Template Prefix:</strong> <code>{{ template_prefix }}</code></p>
-        <a href="{% url 'email-preview-list' %}">← Back to all templates</a>
+        <h1>📧 {% translate 'Email Preview:' %} {{ template_name }}</h1>
+        <p><strong>{% translate 'Template Prefix:' %}</strong> <code>{{ template_prefix }}</code></p>
+        <a href="{% url 'email-preview-list' %}">← {% translate 'Back to all templates' %}</a>
     </div>
 
     <div class="subject-line">
-        <strong>SUBJECT LINE</strong>
+        <strong>{% translate 'SUBJECT LINE' %}</strong>
         <div class="subject-text">{{ subject }}</div>
     </div>
 
     {% if errors or template_checks %}
     <div class="debug-info">
-        <h3>🔍 Debug Information</h3>
+        <h3>🔍 {% translate 'Debug Information' %}</h3>
 
         {% if template_checks %}
         <div style="margin-bottom: 15px;">
-            <strong>Template Detection:</strong>
+            <strong>{% translate 'Template Detection:' %}</strong>
             <ul>
                 {% for ext, status in template_checks.items %}
                 <li>
@@ -324,7 +325,7 @@
 
         {% if errors %}
         <div>
-            <strong>Errors:</strong>
+            <strong>{% translate 'Errors:' %}</strong>
             <ul style="list-style: none; padding-left: 0;">
                 {% for error_type, error_msg in errors.items %}
                 <li style="margin-bottom: 10px;">
@@ -340,10 +341,10 @@
 
     <div class="tabs">
         <div class="tab {% if has_html %}active{% else %}disabled{% endif %}" onclick="showTab('html')" id="html-tab">
-            📱 HTML Version
+            📱 {% translate 'HTML Version' %}
         </div>
         <div class="tab {% if not has_html %}active{% endif %} {% if not has_text %}disabled{% endif %}" onclick="showTab('text')" id="text-tab">
-            📄 Plain Text Version
+            📄 {% translate 'Plain Text Version' %}
         </div>
     </div>
 
@@ -363,17 +364,17 @@
     <div class="preview-container active">
         <div class="no-template-warning">
             <div class="emoji">❌</div>
-            <p>No templates found. Create either:</p>
+            <p>{% translate 'No templates found. Create either:' %}</p>
             <ul>
-                <li>→ <code>{{ template_prefix }}.txt</code> for plain text</li>
-                <li>→ <code>{{ template_prefix }}.html</code> for HTML</li>
+                <li>→ <code>{{ template_prefix }}.txt</code> {% translate 'for plain text' %}</li>
+                <li>→ <code>{{ template_prefix }}.html</code> {% translate 'for HTML' %}</li>
             </ul>
         </div>
     </div>
     {% endif %}
 
     <div class="context-info">
-        <h3>🔍 Template Context (for debugging)</h3>
+        <h3>🔍 {% translate 'Template Context (for debugging)' %}</h3>
         <pre>{{ context|pprint }}</pre>
     </div>
 

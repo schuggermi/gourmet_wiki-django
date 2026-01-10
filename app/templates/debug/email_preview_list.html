@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template Previews</title>
+    <title>{% translate 'Email Template Previews' %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -242,15 +243,15 @@
     <div class="container">
         <div class="header">
             <div class="emoji">📧</div>
-            <h1>Email Template Previewer</h1>
-            <p>Development-only preview of email templates</p>
+            <h1>{% translate 'Email Template Previewer' %}</h1>
+            <p>{% translate 'Development-only preview of email templates' %}</p>
         </div>
 
         <div class="debug-warning">
             <div class="icon">⚠️</div>
             <div class="text">
-                <strong>Debug Mode Only</strong>
-                <p>This page is only accessible when DEBUG=True. It will not be available in production.</p>
+                <strong>{% translate 'Debug Mode Only' %}</strong>
+                <p>{% translate 'This page is only accessible when DEBUG=True. It will not be available in production.' %}</p>
             </div>
         </div>
 
@@ -258,116 +259,116 @@
         <div class="templates-grid">
             <a href="{% url 'email-preview' 'email_confirmation' %}" class="template-card">
                 <span class="template-icon">✉️</span>
-                <h3>Email Confirmation</h3>
-                <p>Verification email sent when a user signs up to confirm their email address.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Email Confirmation' %}</h3>
+                <p>{% translate 'Verification email sent when a user signs up to confirm their email address.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'email_confirmation_signup' %}" class="template-card">
                 <span class="template-icon">✉️</span>
-                <h3>Email Confirmation (Signup)</h3>
-                <p>Verification email sent specifically during the signup process.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Email Confirmation (Signup)' %}</h3>
+                <p>{% translate 'Verification email sent specifically during the signup process.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'password_reset' %}" class="template-card">
                 <span class="template-icon">🔑</span>
-                <h3>Password Reset</h3>
-                <p>Email sent when a user requests to reset their password with a secure link.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Password Reset' %}</h3>
+                <p>{% translate 'Email sent when a user requests to reset their password with a secure link.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'password_reset_key' %}" class="template-card">
                 <span class="template-icon">🔑</span>
-                <h3>Password Reset Key</h3>
-                <p>Email sent with the password reset key/link.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Password Reset Key' %}</h3>
+                <p>{% translate 'Email sent with the password reset key/link.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'password_reset_code' %}" class="template-card">
                 <span class="template-icon">🔢</span>
-                <h3>Password Reset Code</h3>
-                <p>Email sent with a code to reset the password.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Password Reset Code' %}</h3>
+                <p>{% translate 'Email sent with a code to reset the password.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'email_changed' %}" class="template-card">
                 <span class="template-icon">📝</span>
-                <h3>Email Change Confirmation</h3>
-                <p>Sent when a user changes their email to verify the new address.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Email Change Confirmation' %}</h3>
+                <p>{% translate 'Sent when a user changes their email to verify the new address.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'password_changed' %}" class="template-card">
                 <span class="template-icon">🔒</span>
-                <h3>Password Changed</h3>
-                <p>Notification sent after a user successfully changes their password.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Password Changed' %}</h3>
+                <p>{% translate 'Notification sent after a user successfully changes their password.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'password_set' %}" class="template-card">
                 <span class="template-icon">🔒</span>
-                <h3>Password Set</h3>
-                <p>Notification sent after a user sets their password.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Password Set' %}</h3>
+                <p>{% translate 'Notification sent after a user sets their password.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'email_confirmed' %}" class="template-card">
                 <span class="template-icon">✅</span>
-                <h3>Email Confirmed</h3>
-                <p>Notification sent after a user successfully confirms their email address.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Email Confirmed' %}</h3>
+                <p>{% translate 'Notification sent after a user successfully confirms their email address.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'email_deleted' %}" class="template-card">
                 <span class="template-icon">🗑️</span>
-                <h3>Email Deleted</h3>
-                <p>Notification sent when an email address is removed from an account.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Email Deleted' %}</h3>
+                <p>{% translate 'Notification sent when an email address is removed from an account.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'account_already_exists' %}" class="template-card">
                 <span class="template-icon">⚠️</span>
-                <h3>Account Already Exists</h3>
-                <p>Sent when a user tries to sign up with an email that is already registered.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Account Already Exists' %}</h3>
+                <p>{% translate 'Sent when a user tries to sign up with an email that is already registered.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'unknown_account' %}" class="template-card">
                 <span class="template-icon">❓</span>
-                <h3>Unknown Account</h3>
-                <p>Sent when a password reset is requested for an email not in the system.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Unknown Account' %}</h3>
+                <p>{% translate 'Sent when a password reset is requested for an email not in the system.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
 
             <a href="{% url 'email-preview' 'login_code' %}" class="template-card">
                 <span class="template-icon">🔢</span>
-                <h3>Login Code</h3>
-                <p>Sent when a user requests a login code.</p>
-                <span class="view-link">Preview Template →</span>
+                <h3>{% translate 'Login Code' %}</h3>
+                <p>{% translate 'Sent when a user requests a login code.' %}</p>
+                <span class="view-link">{% translate 'Preview Template' %} →</span>
             </a>
         </div>
         {% else %}
         <div class="empty-state">
             <div class="emoji">📭</div>
-            <h3>No Templates Available</h3>
-            <p>Add email templates to the template map in your views.py file.</p>
+            <h3>{% translate 'No Templates Available' %}</h3>
+            <p>{% translate 'Add email templates to the template map in your views.py file.' %}</p>
         </div>
         {% endif %}
 
         <div class="info-section">
             <h2>
                 <span>ℹ️</span>
-                Quick Reference
+                {% translate 'Quick Reference' %}
             </h2>
             <ul>
-                <li><strong>Template Location:</strong> <code>templates/account/email/</code></li>
-                <li><strong>Override Default:</strong> Create a file with the same name as allauth's default template</li>
-                <li><strong>HTML Emails:</strong> Use <code>.html</code> extension for HTML versions</li>
-                <li><strong>Text Emails:</strong> Use <code>.txt</code> extension for plain text versions</li>
-                <li><strong>Subject Lines:</strong> Files ending in <code>_subject.txt</code> define email subjects</li>
-                <li><strong>Base Template:</strong> Create <code>base_email.html</code> for consistent styling</li>
-                <li><strong>Live Reload:</strong> Edit templates and refresh preview to see changes instantly</li>
+                <li><strong>{% translate 'Template Location:' %}</strong> <code>templates/account/email/</code></li>
+                <li><strong>{% translate 'Override Default:' %}</strong> {% translate "Create a file with the same name as allauth's default template" %}</li>
+                <li><strong>{% translate 'HTML Emails:' %}</strong> {% translate 'Use <code>.html</code> extension for HTML versions' %}</li>
+                <li><strong>{% translate 'Text Emails:' %}</strong> {% translate 'Use <code>.txt</code> extension for plain text versions' %}</li>
+                <li><strong>{% translate 'Subject Lines:' %}</strong> {% translate 'Files ending in <code>_subject.txt</code> define email subjects' %}</li>
+                <li><strong>{% translate 'Base Template:' %}</strong> {% translate 'Create <code>base_email.html</code> for consistent styling' %}</li>
+                <li><strong>{% translate 'Live Reload:' %}</strong> {% translate 'Edit templates and refresh preview to see changes instantly' %}</li>
             </ul>
         </div>
     </div>
