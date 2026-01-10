@@ -22,7 +22,7 @@
             <form action="{{ login_url }}" method="post" class="flex flex-col gap-5 w-full text-start max-w-xs mx-auto">
                 {% csrf_token %}
 
-                <div class="flex flex-col w-full gap-3">
+                <div class="flex flex-col w-full gap-1">
                     {% if form.non_field_errors %}
                         <ul>
                             {% for error in form.non_field_errors %}
@@ -72,7 +72,7 @@
 
         <div class="text-center flex flex-col gap-2 items-center">
             <p>{% translate "You don't have an account at Gourmet Wiki yet?" %}</p>
-            <c-a animated url="{% url 'account_signup' %}"
+            <c-a url="{% url 'account_signup' %}"
                  class="underline">{% translate 'Sign Up Now' %}</c-a>
         </div>
     {% endif %}

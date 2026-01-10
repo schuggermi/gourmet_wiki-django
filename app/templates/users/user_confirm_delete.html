@@ -15,7 +15,7 @@
                 {% if token_fail %}
                     <div class="pt-10 w-full text-center flex flex-col gap-3 items-center">
                         <p>The password reset link was invalid, possibly because it has already been used.</p>
-                        <c-a animated url="{% url 'account_reset_password' %}"
+                        <c-a url="{% url 'account_reset_password' %}"
                              class="underline btn btn-primary"
                         >
                             {% translate 'Try Again' %}
@@ -61,8 +61,7 @@
 
             <div class="text-center flex flex-col gap-1 items-center">
                 <p> Please contact us if you have any trouble deleting your account. </p>
-                <c-a animated url=""
-                     class="underline">{% translate 'Support' %}</c-a>
+                <c-a animated url="" class="underline">{% translate 'Support' %}</c-a>
             </div>
         </div>
     </div>

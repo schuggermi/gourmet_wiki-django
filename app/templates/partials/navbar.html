@@ -116,10 +116,10 @@
                         </li>
                     {% else %}
                         <li class="hover:bg-primary">
-                            <c-a animated url="{% url 'account_login' %}">{% translate 'Login' %}</c-a>
+                            <c-a url="{% url 'account_login' %}">{% translate 'Login' %}</c-a>
                         </li>
                         <li class="hover:bg-primary">
-                            <c-a animated url="{% url 'account_signup' %}">{% translate 'Sign up' %}</c-a>
+                            <c-a url="{% url 'account_signup' %}">{% translate 'Sign up' %}</c-a>
                         </li>
                     {% endif %}
                 </ul>

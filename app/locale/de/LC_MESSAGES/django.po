@@ -155,7 +155,7 @@ msgstr "Bitte gib einen Abschnittstitel an."
 
 #: recipes/forms.py:140
 msgid "This field is required."
-msgstr "Dieses Feld ist erforderlich."
+msgstr "Erforderlich"
 
 #: recipes/forms.py:152
 msgid "Chicken breast"

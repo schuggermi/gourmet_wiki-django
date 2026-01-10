@@ -32,7 +32,7 @@
             <div class="flex flex-col gap-2 justify-center items-center">
                 {% url 'account_email' as email_url %}
                 <p class="text-error">{% translate 'This email confirmation link expired or is invalid.' %}</p>
-                <c-a animated url="{{ email_url }}"
+                <c-a url="{{ email_url }}"
                      class="underline justify-center">{% translate 'Issue a new email confirmation request' %}
                 </c-a>
             </div>
@@ -41,7 +41,7 @@
 
     <div class="flex flex-col gap-2 justify-center items-center">
         <p>Please contact us if you have any trouble confirming your email.</p>
-        <c-a animated url=""
+        <c-a url=""
              class="underline">{% translate 'Support' %}
         </c-a>
     </div>

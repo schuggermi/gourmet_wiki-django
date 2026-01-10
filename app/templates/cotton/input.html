@@ -9,51 +9,53 @@
         success_class="border-1 border-green-400!"
 ></c-vars>
 
-<label class="whitespace-nowrap {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
-    {% if field and not label %}
-        {{ field.label }}{% if field.field.required %}*{% endif %}
-    {% elif label %}
-        {{ label }}
-    {% endif %}
-</label>
-<div class="relative {% if w_full %}w-full{% else %}w-fit{% endif %}">
-    <input {{ field.field.widget.attrs|render_attrs }} type="{{ type }}"
-            {% if type == 'checkbox' %}
-                {% if field and field.value|stringformat:"s" == "True" or value|stringformat:"s" == "True" %}
-                    checked
+<div class="{% if type == 'checkbox' %}flex flex-row-reverse items-start justify-start gap-2{% else %}flex flex-col{% endif %}">
+    <label class="{% if type != 'checkbox' %}whitespace-nowrap{% else %}text-pretty! hyphens-none!{% endif %} {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
+        {% if field and not label %}
+            {{ field.label }}{% if field.field.required %}*{% endif %}
+        {% elif label %}
+            {{ label }}
+        {% endif %}
+    </label>
+    <div class="relative {% if w_full %}w-full{% else %}w-fit{% endif %}">
+        <input {{ field.field.widget.attrs|render_attrs }} type="{{ type }}"
+                {% if type == 'checkbox' %}
+                    {% if field and field.value|stringformat:"s" == "True" or value|stringformat:"s" == "True" %}
+                        checked
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            {% if disabled %}disabled{% endif %}
-            id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-            name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
-            {% if type != 'checkbox' %}
-                value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
-            {% endif %}
-            placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
-            class="{% if type == 'checkbox' %}{{ checkbox_class }}{% elif type == 'file' %}{{ file_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %} {% if w_full %}w-full{% else %}w-fit{% endif %}"
-            {% if hx_post %}
-                hx-post="{{ hx_post }}"
-            {% endif %}
-            {% if hx_trigger %}
-                hx-trigger="{{ hx_trigger }}"
-            {% endif %}
-            {% if hx_target %}
-                hx-target="{{ hx_target }}"
-            {% endif %}
-            {% if hx_swap %}
-                hx-swap="{{ hx_swap }}"
-            {% endif %}
-            {% if hx_include %}
-                hx-include="{{ hx_include }}"
-            {% endif %}
-    >
-    {% if slot %}
-        {{ slot }}
-    {% endif %}
+                {% if disabled %}disabled{% endif %}
+                id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+                name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
+                {% if type != 'checkbox' %}
+                    value="{% if field %}{{ field.value|default_if_none:''|stringformat:'s' }}{% elif instance_value %}{{ instance_value }}{% else %}{{ value|default_if_none:'' }}{% endif %}"
+                {% endif %}
+                placeholder="{% if field %}{{ field.widget.attrs.placeholder|default_if_none:'' }}{% else %}{{ placeholder }}{% endif %}"
+                class="{% if type == 'checkbox' %}{{ checkbox_class }}{% elif type == 'file' %}{{ file_class }}{% else %}{% if not plain_text %}{% if not disabled %}{{ input_class }}{% endif %} {{ default_class }}{% endif %}{% endif %} {{ class }}{% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %} {% if w_full %}w-full{% else %}w-fit{% endif %}"
+                {% if hx_post %}
+                    hx-post="{{ hx_post }}"
+                {% endif %}
+                {% if hx_trigger %}
+                    hx-trigger="{{ hx_trigger }}"
+                {% endif %}
+                {% if hx_target %}
+                    hx-target="{{ hx_target }}"
+                {% endif %}
+                {% if hx_swap %}
+                    hx-swap="{{ hx_swap }}"
+                {% endif %}
+                {% if hx_include %}
+                    hx-include="{{ hx_include }}"
+                {% endif %}
+        >
+        {% if slot %}
+            {{ slot }}
+        {% endif %}
+    </div>
 </div>
 {% if not no_errors %}
     {% for error in field.errors %}
-        <ul class="text-red-400">
+        <ul class="text-red-400 leading-none! mt-1">
             <li><small>{{ error }}</small></li>
         </ul>
     {% endfor %}

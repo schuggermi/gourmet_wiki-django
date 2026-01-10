@@ -120,6 +120,8 @@ class Profile(models.Model):
         default=UserLevelChoice.LEVEL_1,
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    accepted_policy = models.BooleanField(default=False)
+    policy_accepted_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username

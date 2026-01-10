@@ -2,6 +2,7 @@ from allauth.account.forms import SignupForm
 from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 User = get_user_model()
 
@@ -35,10 +36,22 @@ class CustomSignupForm(SignupForm):
             'placeholder': 'paul.bocuse',
         })
     )
+    accept_policy = forms.BooleanField(
+        label=_("I accept the terms of use and the privacy policy"),
+        required=True,
+    )
 
     def save(self, request):
         user = super().save(request)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+
+        # Update profile with policy acceptance
+        profile = user.profile
+        profile.accepted_policy = self.cleaned_data['accept_policy']
+        if profile.accepted_policy:
+            profile.policy_accepted_at = timezone.now()
+        profile.save()
+
         return user
