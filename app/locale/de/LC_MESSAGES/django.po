@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-07 19:55+0000\n"
+"POT-Creation-Date: 2026-01-10 01:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:102 recipes/models.py:203
+#: recipes/forms.py:102 recipes/models.py:214
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
@@ -177,82 +177,619 @@ msgstr "Rezeptname"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: recipes/models.py:39
+#: recipes/models.py:41
 msgid "Course"
 msgstr "Gang"
 
-#: recipes/models.py:50 templates/cotton/portions_calculator.html:24
+#: recipes/models.py:52 templates/cotton/portions_calculator.html:24
 #: templates/menus/partials/menu_form.html:24
 msgid "Portions"
 msgstr "Portionen"
 
-#: recipes/models.py:53
+#: recipes/models.py:55
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:63
+#: recipes/models.py:65
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:72
+#: recipes/models.py:74
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:80
+#: recipes/models.py:82
 msgid "Published at"
 msgstr "Veröffentlicht am"
 
-#: recipes/models.py:198
+#: recipes/models.py:209
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:204
+#: recipes/models.py:215
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:210 templates/recipes/_recipe_steps_form.html:14
-#: templates/recipes/partials/recipe_detail.html:89
+#: recipes/models.py:221 templates/recipes/_recipe_steps_form.html:14
+#: templates/recipes/partials/recipe_detail.html:92
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:233 templates/recipes/_recipe_ingredients_form.html:10
+#: recipes/models.py:244 templates/recipes/_recipe_ingredients_form.html:10
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:239 templates/recipes/_recipe_ingredients_form.html:11
+#: recipes/models.py:250 templates/recipes/_recipe_ingredients_form.html:11
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:243 templates/recipes/_recipe_ingredients_form.html:9
+#: recipes/models.py:254 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:244 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:255 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:75
-#: templates/recipes/recipe_edit.html:53
+#: templates/recipes/partials/recipe_detail.html:74
+#: templates/recipes/recipe_edit.html:52
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/models.py:268
+#: recipes/models.py:279
 msgid "Upload Image"
 msgstr "Bild hochladen"
 
-#: recipes/models.py:269
+#: recipes/models.py:280
 msgid "Select multiple images to upload"
 msgstr "Wähle mehrere Bilder zum Hochladen aus"
 
-#: recipes/views.py:738
+#: recipes/views.py:90
+msgid "Please complete the full recipe before publishing."
+msgstr "Bitte vervollständige das Rezept, bevor du es veröffentlichst."
+
+#: recipes/views.py:765
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:750 recipes/views.py:758
+#: recipes/views.py:777 recipes/views.py:785
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
+
+#: templates/account/email/account_already_exists_message.html:4
+#, python-format
+msgid "Account Already Exists - %(site_name)s"
+msgstr "Konto existiert bereits - %(site_name)s"
+
+#: templates/account/email/account_already_exists_message.html:8
+#: templates/account/email/account_already_exists_subject.txt:3
+msgid "Account Already Exists"
+msgstr "Konto existiert bereits"
+
+#: templates/account/email/account_already_exists_message.html:12
+#: templates/account/email/account_already_exists_message.txt:1
+#: templates/account/email/email_changed_message.html:12
+#: templates/account/email/email_changed_message.txt:1
+#: templates/account/email/email_confirm_message.html:12
+#: templates/account/email/email_confirm_message.txt:1
+#: templates/account/email/email_confirmation_message.html:12
+#: templates/account/email/email_confirmation_message.txt:1
+#: templates/account/email/email_deleted_message.html:12
+#: templates/account/email/email_deleted_message.txt:1
+#: templates/account/email/login_code_message.html:12
+#: templates/account/email/login_code_message.txt:1
+#: templates/account/email/password_changed_message.html:12
+#: templates/account/email/password_changed_message.txt:1
+#: templates/account/email/password_reset_code_message.html:12
+#: templates/account/email/password_reset_code_message.txt:1
+#: templates/account/email/password_reset_key_message.html:12
+#: templates/account/email/password_reset_key_message.txt:1
+#: templates/account/email/password_reset_message.html:12
+#: templates/account/email/password_reset_message.txt:1
+#: templates/account/email/password_set_message.html:12
+#: templates/account/email/password_set_message.txt:1
+#: templates/account/email/unknown_account_message.html:12
+#: templates/account/email/unknown_account_message.txt:1
+msgid "Hello!"
+msgstr "Hallo!"
+
+#: templates/account/email/account_already_exists_message.html:16
+#: templates/account/email/account_already_exists_message.txt:3
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else tried to sign up "
+"for an account at %(site_name)s using the email address:"
+msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, sich mit dieser E-Mail-Adresse für ein Konto bei %(site_name)s zu registrieren:"
+
+#: templates/account/email/account_already_exists_message.html:26
+#: templates/account/email/account_already_exists_message.txt:7
+msgid "However, an account using that email address already exists."
+msgstr "Es existiert jedoch bereits ein Konto mit dieser E-Mail-Adresse."
+
+#: templates/account/email/account_already_exists_message.html:30
+msgid ""
+"In case you have forgotten about this, you can reset your password using the "
+"button below:"
+msgstr "Falls du das vergessen hast, kannst du dein Passwort über den Button unten zurücksetzen:"
+
+#: templates/account/email/account_already_exists_message.html:38
+#: templates/account/email/password_reset_key_message.html:28
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/account/email/account_already_exists_message.html:47
+#: templates/account/email/email_confirmation_message.html:37
+#: templates/account/email/password_reset_key_message.html:37
+#: templates/account/email/unknown_account_message.html:41
+msgid "Or copy and paste this link into your browser:"
+msgstr "Oder kopiere diesen Link und füge ihn in deinen Browser ein:"
+
+#: templates/account/email/account_already_exists_message.html:55
+#: templates/account/email/account_already_exists_message.txt:13
+#: templates/account/email/email_changed_message.html:33
+#: templates/account/email/email_changed_message.txt:10
+#: templates/account/email/email_confirm_message.html:26
+#: templates/account/email/email_confirm_message.txt:7
+#: templates/account/email/email_confirmation_message.html:58
+#: templates/account/email/email_confirmation_message.txt:13
+#: templates/account/email/email_deleted_message.html:30
+#: templates/account/email/email_deleted_message.txt:9
+#: templates/account/email/login_code_message.html:30
+#: templates/account/email/login_code_message.txt:9
+#: templates/account/email/password_changed_message.html:26
+#: templates/account/email/password_changed_message.txt:7
+#: templates/account/email/password_reset_code_message.html:30
+#: templates/account/email/password_reset_code_message.txt:9
+#: templates/account/email/password_reset_key_message.html:59
+#: templates/account/email/password_reset_key_message.txt:13
+#: templates/account/email/password_reset_message.html:26
+#: templates/account/email/password_reset_message.txt:7
+#: templates/account/email/password_set_message.html:26
+#: templates/account/email/password_set_message.txt:7
+#: templates/account/email/unknown_account_message.html:53
+#: templates/account/email/unknown_account_message.txt:11
+msgid "Best regards,"
+msgstr "Viele Grüße,"
+
+#: templates/account/email/account_already_exists_message.html:56
+#: templates/account/email/account_already_exists_message.txt:14
+#: templates/account/email/email_changed_message.html:34
+#: templates/account/email/email_changed_message.txt:11
+#: templates/account/email/email_confirm_message.html:27
+#: templates/account/email/email_confirm_message.txt:8
+#: templates/account/email/email_confirmation_message.html:59
+#: templates/account/email/email_confirmation_message.txt:14
+#: templates/account/email/email_deleted_message.html:31
+#: templates/account/email/email_deleted_message.txt:10
+#: templates/account/email/login_code_message.html:31
+#: templates/account/email/login_code_message.txt:10
+#: templates/account/email/password_changed_message.html:27
+#: templates/account/email/password_changed_message.txt:8
+#: templates/account/email/password_reset_code_message.html:31
+#: templates/account/email/password_reset_code_message.txt:10
+#: templates/account/email/password_reset_key_message.html:60
+#: templates/account/email/password_reset_key_message.txt:14
+#: templates/account/email/password_reset_message.html:27
+#: templates/account/email/password_reset_message.txt:8
+#: templates/account/email/password_set_message.html:27
+#: templates/account/email/password_set_message.txt:8
+#: templates/account/email/unknown_account_message.html:54
+#: templates/account/email/unknown_account_message.txt:12
+#, python-format
+msgid "The %(site_name)s Team"
+msgstr "Das %(site_name)s-Team"
+
+#: templates/account/email/account_already_exists_message.txt:9
+msgid ""
+"In case you have forgotten about this, you can reset your password using the "
+"link below:"
+msgstr "Falls du das vergessen hast, kannst du dein Passwort über den Link unten zurücksetzen:"
+
+#: templates/account/email/base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr "Hallo von %(site_name)s!"
+
+#: templates/account/email/base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr "Danke, dass du %(site_name)s nutzt!\n%(site_domain)s"
+
+#: templates/account/email/base_notification.txt:5
+msgid ""
+"You are receiving this mail because the following change was made to your "
+"account:"
+msgstr "Du erhältst diese E-Mail, weil die folgende Änderung an deinem Konto vorgenommen wurde:"
+
+#: templates/account/email/base_notification.txt:10
+#, python-format
+msgid ""
+"If you do not recognize this change then please take proper security "
+"precautions immediately. The change to your account originates from:\n"
+"\n"
+"- IP address: %(ip)s\n"
+"- Browser: %(user_agent)s\n"
+"- Date: %(timestamp)s"
+msgstr "Wenn du diese Änderung nicht erkennst, ergreife bitte umgehend entsprechende Sicherheitsmaßnahmen. Die Änderung an deinem Konto stammt von:\n\n- IP-Adresse: %(ip)s\n- Browser: %(user_agent)s\n- Datum: %(timestamp)s"
+
+#: templates/account/email/email_changed_message.html:4
+#, python-format
+msgid "Email Address Changed - %(site_name)s"
+msgstr "E-Mail-Adresse geändert - %(site_name)s"
+
+#: templates/account/email/email_changed_message.html:8
+msgid "Email Address Changed"
+msgstr "E-Mail-Adresse geändert"
+
+#: templates/account/email/email_changed_message.html:12
+#: templates/account/email/email_changed_message.txt:1
+#: templates/account/email/email_confirm_message.html:12
+#: templates/account/email/email_confirm_message.txt:1
+#: templates/account/email/email_confirmation_message.html:12
+#: templates/account/email/email_confirmation_message.txt:1
+#: templates/account/email/email_deleted_message.html:12
+#: templates/account/email/email_deleted_message.txt:1
+#: templates/account/email/password_changed_message.html:12
+#: templates/account/email/password_changed_message.txt:1
+#: templates/account/email/password_reset_key_message.html:12
+#: templates/account/email/password_reset_key_message.txt:1
+#: templates/account/email/password_reset_message.html:12
+#: templates/account/email/password_reset_message.txt:1
+#: templates/account/email/password_set_message.html:12
+#: templates/account/email/password_set_message.txt:1
+#, python-format
+msgid "Hello %(first_name)s!"
+msgstr "Hallo %(first_name)s!"
+
+#: templates/account/email/email_changed_message.html:16
+#: templates/account/email/email_changed_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that the email address for your account at "
+"%(site_name)s has been changed."
+msgstr "Dies ist eine Benachrichtigung, dass die E-Mail-Adresse für dein Konto bei %(site_name)s geändert wurde."
+
+#: templates/account/email/email_changed_message.html:21
+#: templates/account/email/email_changed_message.txt:5
+msgid "Old Email:"
+msgstr "Alte E-Mail-Adresse:"
+
+#: templates/account/email/email_changed_message.html:24
+#: templates/account/email/email_changed_message.txt:6
+msgid "New Email:"
+msgstr "Neue E-Mail-Adresse:"
+
+#: templates/account/email/email_changed_message.html:29
+#: templates/account/email/email_changed_message.txt:8
+#: templates/account/email/email_deleted_message.html:26
+#: templates/account/email/email_deleted_message.txt:7
+msgid "If you did not authorize this change, please contact us immediately."
+msgstr "Wenn du diese Änderung nicht autorisiert hast, kontaktiere uns bitte umgehend."
+
+#: templates/account/email/email_changed_subject.txt:3
+msgid "Email Changed"
+msgstr "E-Mail-Adresse geändert"
+
+#: templates/account/email/email_confirm_message.html:4
+#, python-format
+msgid "Email Confirmed - %(site_name)s"
+msgstr "E-Mail-Adresse bestätigt - %(site_name)s"
+
+#: templates/account/email/email_confirm_message.html:8
+msgid "Email Confirmed"
+msgstr "E-Mail-Adresse bestätigt"
+
+#: templates/account/email/email_confirm_message.html:16
+#: templates/account/email/email_confirm_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that your email address has been successfully "
+"confirmed for your account at %(site_name)s."
+msgstr "Dies ist eine Benachrichtigung, dass deine E-Mail-Adresse für dein Konto bei %(site_name)s erfolgreich bestätigt wurde."
+
+#: templates/account/email/email_confirm_message.html:21
+#: templates/account/email/email_confirm_message.txt:5
+msgid "You can now access all features of your account."
+msgstr "Du kannst jetzt auf alle Funktionen deines Kontos zugreifen."
+
+#: templates/account/email/email_confirm_subject.txt:3
+msgid "Email Confirmation"
+msgstr "E-Mail-Bestätigung"
+
+#: templates/account/email/email_confirmation_message.html:4
+#, python-format
+msgid "Confirm Your Email Address - %(site_name)s"
+msgstr "Bestätige deine E-Mail-Adresse - %(site_name)s"
+
+#: templates/account/email/email_confirmation_message.html:8
+#, python-format
+msgid "Welcome to %(site_name)s!"
+msgstr "Willkommen bei %(site_name)s!"
+
+#: templates/account/email/email_confirmation_message.html:16
+#: templates/account/email/email_confirmation_message.txt:3
+#, python-format
+msgid ""
+"Thank you for signing up at %(site_name)s. To complete your registration and "
+"activate your account, please verify your email address."
+msgstr "Danke für deine Registrierung bei %(site_name)s. Um deine Registrierung abzuschließen und dein Konto zu aktivieren, bestätige bitte deine E-Mail-Adresse."
+
+#: templates/account/email/email_confirmation_message.html:20
+msgid "Click the button below to confirm your email address:"
+msgstr "Klicke auf den Button unten, um deine E-Mail-Adresse zu bestätigen:"
+
+#: templates/account/email/email_confirmation_message.html:28
+msgid "✓ Verify Email Address"
+msgstr "✓ E-Mail-Adresse bestätigen"
+
+#: templates/account/email/email_confirmation_message.html:47
+msgid ""
+"⏱️ <strong>This verification link will expire in 3 days.</strong> If you "
+"don't verify within this time, you'll need to request a new verification "
+"email."
+msgstr "⏱️ <strong>Dieser Bestätigungslink läuft in 3 Tagen ab.</strong> Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-Mail anfordern."
+
+#: templates/account/email/email_confirmation_message.html:54
+#: templates/account/email/email_confirmation_message.txt:11
+#, python-format
+msgid ""
+"If you didn't create an account with %(site_name)s, you can safely ignore "
+"this email. No account will be created without email verification."
+msgstr "Wenn du kein Konto bei %(site_name)s erstellt hast, kannst du diese E-Mail einfach ignorieren. Ohne Bestätigung wird kein Konto erstellt."
+
+#: templates/account/email/email_confirmation_message.html:65
+#, python-format
+msgid "© %(site_name)s. All rights reserved."
+msgstr "© %(site_name)s. Alle Rechte vorbehalten."
+
+#: templates/account/email/email_confirmation_message.txt:5
+msgid "Click the link below to confirm your email address:"
+msgstr "Klicke auf den Link unten, um deine E-Mail-Adresse zu bestätigen:"
+
+#: templates/account/email/email_confirmation_message.txt:9
+msgid ""
+"This verification link will expire in 3 days. If you don't verify within "
+"this time, you'll need to request a new verification email."
+msgstr "Dieser Bestätigungslink läuft in 3 Tagen ab. Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-Mail anfordern."
+
+#: templates/account/email/email_deleted_message.html:4
+#, python-format
+msgid "Email Address Removed - %(site_name)s"
+msgstr "E-Mail-Adresse entfernt - %(site_name)s"
+
+#: templates/account/email/email_deleted_message.html:8
+msgid "Email Address Removed"
+msgstr "E-Mail-Adresse entfernt"
+
+#: templates/account/email/email_deleted_message.html:16
+#: templates/account/email/email_deleted_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that an email address has been removed from your "
+"account at %(site_name)s."
+msgstr "Dies ist eine Benachrichtigung, dass eine E-Mail-Adresse von deinem Konto bei %(site_name)s entfernt wurde."
+
+#: templates/account/email/email_deleted_message.html:21
+#: templates/account/email/email_deleted_message.txt:5
+msgid "Removed Email:"
+msgstr "Entfernte E-Mail-Adresse:"
+
+#: templates/account/email/email_deleted_subject.txt:3
+msgid "Email Removed"
+msgstr "E-Mail-Adresse entfernt"
+
+#: templates/account/email/login_code_message.html:4
+#, python-format
+msgid "Sign-In Code - %(site_name)s"
+msgstr "Anmeldecode - %(site_name)s"
+
+#: templates/account/email/login_code_message.html:8
+msgid "Your Sign-In Code"
+msgstr "Dein Anmeldecode"
+
+#: templates/account/email/login_code_message.html:16
+#: templates/account/email/login_code_message.txt:3
+msgid ""
+"Your sign-in code is listed below. Please enter it in your open browser "
+"window."
+msgstr "Dein Anmeldecode lautet wie folgt. Bitte gib ihn in deinem geöffneten Browserfenster ein."
+
+#: templates/account/email/login_code_message.html:26
+#: templates/account/email/login_code_message.txt:7
+#: templates/account/email/password_reset_code_message.html:26
+#: templates/account/email/password_reset_code_message.txt:7
+#: templates/account/email/unknown_account_message.html:49
+#: templates/account/email/unknown_account_message.txt:9
+msgid "This mail can be safely ignored if you did not initiate this action."
+msgstr "Diese E-Mail kann ignoriert werden, wenn du diese Aktion nicht ausgelöst hast."
+
+#: templates/account/email/login_code_subject.txt:3
+msgid "Sign-In Code"
+msgstr "Anmeldecode"
+
+#: templates/account/email/password_changed_message.html:4
+#, python-format
+msgid "Password Changed - %(site_name)s"
+msgstr "Passwort geändert - %(site_name)s"
+
+#: templates/account/email/password_changed_message.html:8
+#: templates/account/email/password_changed_subject.txt:3
+msgid "Password Changed"
+msgstr "Passwort geändert"
+
+#: templates/account/email/password_changed_message.html:16
+#: templates/account/email/password_changed_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that the password for your account at %(site_name)s "
+"has been successfully changed."
+msgstr "Dies ist eine Benachrichtigung, dass das Passwort für dein Konto bei %(site_name)s erfolgreich geändert wurde."
+
+#: templates/account/email/password_changed_message.html:21
+#: templates/account/email/password_changed_message.txt:5
+msgid ""
+"If you did not make this change, please contact us immediately to secure "
+"your account."
+msgstr "Wenn du diese Änderung nicht vorgenommen hast, kontaktiere uns bitte umgehend, um dein Konto zu sichern."
+
+#: templates/account/email/password_reset_code_message.html:4
+#, python-format
+msgid "Password Reset Code - %(site_name)s"
+msgstr "Passwort-Wiederherstellungscode - %(site_name)s"
+
+#: templates/account/email/password_reset_code_message.html:8
+msgid "Your Password Reset Code"
+msgstr "Dein Passwort-Wiederherstellungscode"
+
+#: templates/account/email/password_reset_code_message.html:16
+#: templates/account/email/password_reset_code_message.txt:3
+msgid ""
+"Your password reset code is listed below. Please enter it in your open "
+"browser window."
+msgstr "Dein Code zum Zurücksetzen des Passworts lautet wie folgt. Bitte gib ihn in deinem geöffneten Browserfenster ein."
+
+#: templates/account/email/password_reset_code_subject.txt:3
+msgid "Password Reset Code"
+msgstr "Passwort-Wiederherstellungscode"
+
+#: templates/account/email/password_reset_key_message.html:4
+#, python-format
+msgid "Reset Your Password - %(site_name)s"
+msgstr "Setze dein Passwort zurück - %(site_name)s"
+
+#: templates/account/email/password_reset_key_message.html:8
+msgid "Reset Your Password"
+msgstr "Setze dein Passwort zurück"
+
+#: templates/account/email/password_reset_key_message.html:16
+#: templates/account/email/password_reset_key_message.txt:3
+#, python-format
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password reset for your user account at %(site_name)s."
+msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes eine Passwortzurücksetzung für dein Benutzerkonto bei %(site_name)s angefordert hat."
+
+#: templates/account/email/password_reset_key_message.html:20
+msgid "Click the button below to reset your password:"
+msgstr "Klicke auf den Button unten, um dein Passwort zurückzusetzen:"
+
+#: templates/account/email/password_reset_key_message.html:47
+#, python-format
+msgid "In case you forgot, your username is <strong>%(username)s</strong>."
+msgstr "Falls du es vergessen hast, dein Benutzername lautet <strong>%(username)s</strong>."
+
+#: templates/account/email/password_reset_key_message.html:55
+#: templates/account/email/password_reset_key_message.txt:11
+msgid ""
+"If you didn't request a password reset, you can safely ignore this email. "
+"Your password will not be changed."
+msgstr "Wenn du keine Passwortzurücksetzung angefordert hast, kannst du diese E-Mail ignorieren. Dein Passwort wird nicht geändert."
+
+#: templates/account/email/password_reset_key_message.txt:5
+msgid "Click the link below to reset your password:"
+msgstr "Klicke auf den Link unten, um dein Passwort zurückzusetzen:"
+
+#: templates/account/email/password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "Falls du es vergessen hast, dein Benutzername lautet %(username)s."
+
+#: templates/account/email/password_reset_key_subject.txt:3
+msgid "Password Reset Email"
+msgstr "E-Mail zum Zurücksetzen des Passworts"
+
+#: templates/account/email/password_reset_message.html:4
+#, python-format
+msgid "Password Reset - %(site_name)s"
+msgstr "Passwort zurückgesetzt - %(site_name)s"
+
+#: templates/account/email/password_reset_message.html:8
+#: templates/account/email/password_reset_subject.txt:3
+#: templates/account/password_reset.html:6
+#: templates/account/password_reset.html:10
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:10
+msgid "Password Reset"
+msgstr "Passwort zurücksetzen"
+
+#: templates/account/email/password_reset_message.html:16
+#: templates/account/email/password_reset_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that your password has been successfully reset for "
+"your account at %(site_name)s."
+msgstr "Dies ist eine Benachrichtigung, dass dein Passwort für dein Konto bei %(site_name)s erfolgreich zurückgesetzt wurde."
+
+#: templates/account/email/password_reset_message.html:21
+#: templates/account/email/password_reset_message.txt:5
+#: templates/account/email/password_set_message.html:21
+#: templates/account/email/password_set_message.txt:5
+msgid "If you did not perform this action, please contact us immediately."
+msgstr "Wenn du diese Aktion nicht ausgeführt hast, kontaktiere uns bitte umgehend."
+
+#: templates/account/email/password_set_message.html:4
+#, python-format
+msgid "Password Set - %(site_name)s"
+msgstr "Passwort festgelegt - %(site_name)s"
+
+#: templates/account/email/password_set_message.html:8
+#: templates/account/email/password_set_subject.txt:3
+msgid "Password Set"
+msgstr "Passwort festgelegt"
+
+#: templates/account/email/password_set_message.html:16
+#: templates/account/email/password_set_message.txt:3
+#, python-format
+msgid ""
+"This is a notification that a password has been set for your account at "
+"%(site_name)s."
+msgstr "Dies ist eine Benachrichtigung, dass für dein Konto bei %(site_name)s ein Passwort festgelegt wurde."
+
+#: templates/account/email/unknown_account_message.html:4
+#, python-format
+msgid "Unknown Account - %(site_name)s"
+msgstr "Unbekanntes Konto - %(site_name)s"
+
+#: templates/account/email/unknown_account_message.html:8
+#: templates/account/email/unknown_account_subject.txt:3
+msgid "Unknown Account"
+msgstr "Unbekanntes Konto"
+
+#: templates/account/email/unknown_account_message.html:16
+#, python-format
+msgid ""
+"You are receiving this email because you, or someone else, tried to access "
+"an account with the email address <strong>%(email)s</strong>."
+msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein Konto mit der E-Mail-Adresse <strong>%(email)s</strong> zuzugreifen."
+
+#: templates/account/email/unknown_account_message.html:20
+msgid "However, we do not have any record of such an account in our database."
+msgstr "Wir haben jedoch kein Konto mit dieser E-Mail-Adresse in unserer Datenbank."
+
+#: templates/account/email/unknown_account_message.html:24
+msgid "If it was you, you can sign up for an account using the button below:"
+msgstr "Wenn du das warst, kannst du über den Button unten ein Konto erstellen:"
+
+#: templates/account/email/unknown_account_message.html:32
+#: templates/account/signup.html:98
+msgid "Sign Up"
+msgstr "Registrieren"
+
+#: templates/account/email/unknown_account_message.txt:3
+#, python-format
+msgid ""
+"You are receiving this email because you, or someone else, tried to access "
+"an account with the email address %(email)s. However, we do not have any "
+"record of such an account in our database."
+msgstr "Du erhältst diese E-Mail, weil du oder jemand anderes versucht hat, auf ein Konto mit der E-Mail-Adresse %(email)s zuzugreifen. Wir haben jedoch kein Konto mit dieser E-Mail-Adresse in unserer Datenbank."
+
+#: templates/account/email/unknown_account_message.txt:5
+msgid "If it was you, you can sign up for an account using the link below:"
+msgstr "Wenn du das warst, kannst du über den Link unten ein Konto erstellen:"
 
 #: templates/account/email_confirm.html:6
 #: templates/account/email_confirm.html:10
@@ -273,6 +810,7 @@ msgid "Confirm"
 msgstr "Bestätigen"
 
 #: templates/account/email_confirm.html:29
+#: templates/account/messages/email_confirmation_failed.txt:2
 #, python-format
 msgid ""
 "Unable to confirm %(email)s because it is already confirmed by a different "
@@ -295,7 +833,7 @@ msgstr "Neue E-Mail-Bestätigungsanfrage senden"
 #: templates/account/password_reset_from_key.html:24
 #: templates/account/password_reset_from_key_done.html:30
 #: templates/account/verification_sent.html:19
-#: templates/users/user_confirm_delete.html:65
+#: templates/users/user_confirm_delete.html:64
 msgid "Support"
 msgstr "Support"
 
@@ -326,13 +864,73 @@ msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:86 templates/account/signup.html:78
+#: templates/account/login.html:86 templates/account/signup.html:119
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:91 templates/account/signup.html:83
+#: templates/account/login.html:91 templates/account/signup.html:124
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
+
+#: templates/account/messages/cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary email address (%(email)s)."
+msgstr "Du kannst deine primäre E-Mail-Adresse (%(email)s) nicht entfernen."
+
+#: templates/account/messages/email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "Bestätigungs-E-Mail an %(email)s gesendet."
+
+#: templates/account/messages/email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "Du hast %(email)s bestätigt."
+
+#: templates/account/messages/email_deleted.txt:2
+#, python-format
+msgid "Removed email address %(email)s."
+msgstr "E-Mail-Adresse %(email)s entfernt."
+
+#: templates/account/messages/logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr "Erfolgreich als %(name)s angemeldet."
+
+#: templates/account/messages/logged_out.txt:2
+msgid "You have signed out."
+msgstr "Du hast dich abgemeldet."
+
+#: templates/account/messages/login_code_sent.txt:2
+#, python-format
+msgid "A sign-in code has been sent to %(recipient)s."
+msgstr "Ein Anmeldecode wurde an %(recipient)s gesendet."
+
+#: templates/account/messages/password_changed.txt:2
+msgid "Password successfully changed."
+msgstr "Passwort erfolgreich geändert."
+
+#: templates/account/messages/password_set.txt:2
+msgid "Password successfully set."
+msgstr "Passwort erfolgreich festgelegt."
+
+#: templates/account/messages/phone_verification_sent.txt:2
+#, python-format
+msgid "A verification code has been sent to %(phone)s."
+msgstr "Ein Bestätigungscode wurde an %(phone)s gesendet."
+
+#: templates/account/messages/phone_verified.txt:2
+#, python-format
+msgid "You have verified phone number %(phone)s."
+msgstr "Du hast die Telefonnummer %(phone)s bestätigt."
+
+#: templates/account/messages/primary_email_set.txt:2
+msgid "Primary email address set."
+msgstr "Primäre E-Mail-Adresse festgelegt."
+
+#: templates/account/messages/unverified_primary_email.txt:2
+msgid "Your primary email address must be verified."
+msgstr "Deine primäre E-Mail-Adresse muss bestätigt werden."
 
 #: templates/account/password_change.html:6
 #: templates/account/password_change.html:10
@@ -347,13 +945,6 @@ msgstr "Passwort ändern"
 #: templates/account/password_change.html:44
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
-
-#: templates/account/password_reset.html:6
-#: templates/account/password_reset.html:10
-#: templates/account/password_reset_done.html:6
-#: templates/account/password_reset_done.html:10
-msgid "Password Reset"
-msgstr "Passwort zurücksetzen"
 
 #: templates/account/password_reset.html:21
 msgid "Enter your email to receive a password reset link."
@@ -391,15 +982,11 @@ msgstr "Dein Passwort wurde erfolgreich geändert."
 msgid "Set Password"
 msgstr "Passwort setzen"
 
-#: templates/account/signup.html:57
-msgid "Sign Up"
-msgstr "Registrieren"
-
-#: templates/account/signup.html:67
+#: templates/account/signup.html:108
 msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
-#: templates/account/signup.html:69 templates/errors/403.html:28
+#: templates/account/signup.html:110 templates/errors/403.html:28
 #: templates/partials/navbar.html:132
 msgid "Log In"
 msgstr "Anmelden"
@@ -521,7 +1108,7 @@ msgstr "Neues Menü"
 
 #: templates/menus/create_menu_wizard.html:37
 #: templates/recipes/create_recipe_wizard.html:35
-#: templates/recipes/recipe_edit.html:35
+#: templates/recipes/recipe_edit.html:34
 msgid "Details"
 msgstr "Details"
 
@@ -601,7 +1188,7 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:83
+#: templates/recipes/partials/recipe_detail.html:86
 msgid "Preparation"
 msgstr "Zubereitung"
 
@@ -1321,11 +1908,11 @@ msgstr "Noch keine Zutaten."
 msgid "+ Add Ingredient"
 msgstr "+ Zutat hinzufügen"
 
-#: templates/recipes/_recipe_publish_form.html:18
+#: templates/recipes/_recipe_publish_form.html:24
 msgid "Public since"
 msgstr "Öffentlich seit"
 
-#: templates/recipes/_recipe_publish_form.html:20
+#: templates/recipes/_recipe_publish_form.html:26
 msgid "Unpublished"
 msgstr "Nicht Veröffentlicht"
 
@@ -1357,12 +1944,12 @@ msgstr "+ Abschnitt hinzufügen"
 
 #: templates/recipes/create_recipe_wizard.html:7
 #: templates/recipes/create_recipe_wizard.html:23
-#: templates/recipes/recipe_edit.html:25
+#: templates/recipes/recipe_edit.html:24
 msgid "Edit Recipe"
 msgstr "Rezept bearbeiten"
 
 #: templates/recipes/create_recipe_wizard.html:44
-#: templates/recipes/recipe_edit.html:44
+#: templates/recipes/recipe_edit.html:43
 msgid "Images"
 msgstr "Bilder"
 
@@ -1450,23 +2037,23 @@ msgstr "Löschen"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: templates/recipes/recipe_detail.html:52
+#: templates/recipes/recipe_detail.html:55
 msgid "This recipe doesn’t have a description yet."
 msgstr "Dieses Rezept hat noch keine Beschreibung."
 
-#: templates/recipes/recipe_edit.html:20
+#: templates/recipes/recipe_edit.html:19
 msgid "View"
 msgstr "Ansehen"
 
-#: templates/recipes/recipe_edit.html:29
+#: templates/recipes/recipe_edit.html:28
 msgid "Add Ingredients, Steps and other Details"
 msgstr "Füge Zutaten, Zubereitungsschritte und weitere Details hinzu"
 
-#: templates/recipes/recipe_edit.html:62
+#: templates/recipes/recipe_edit.html:61
 msgid "Steps"
 msgstr "Schritte"
 
-#: templates/recipes/recipe_edit.html:72
+#: templates/recipes/recipe_edit.html:71
 msgid "Publish"
 msgstr "Veröffentlichen"
 
@@ -1575,12 +2162,16 @@ msgstr "Du hast noch keine Rezepte hinzugefügt."
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
+#: users/forms.py:40
+msgid "I accept the terms of use and the privacy policy"
+msgstr "Ich akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung"
+
 #: users/management/commands/initgroups.py:11 users/models.py:50
 msgid "Guest"
 msgstr "Gast"
 
 #: users/management/commands/initgroups.py:12 users/models.py:51
-#: users/models.py:198
+#: users/models.py:200
 msgid "Member"
 msgstr "Mitglied"
 
@@ -1668,7 +2259,7 @@ msgstr "Repräsentiert die Plattform"
 msgid "Admin"
 msgstr "Admin"
 
-#: users/models.py:202
+#: users/models.py:204
 msgid "Joined as a Community Member"
 msgstr "Als Community-Mitglied beigetreten"
 
@@ -1686,23 +2277,3 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
-
-#~ msgid "All Menus"
-#~ msgstr "Alle Menüs"
-
-#~ msgid "Proven chef-level recipes<br>that work anywhere."
-#~ msgstr "Profi-Rezepte, die überall funktionieren."
-
-#~ msgid "Where chefs, home cooks,<br>and food lovers connect."
-#~ msgstr "Wo Köche & Genießer zusammenkommen."
-
-#~ msgid "A Better Way to Find Recipes"
-#~ msgstr "Eine bessere Möglichkeit, Rezepte zu finden"
-
-#~ msgid "Pure culinary experience.<br>Zero ads."
-#~ msgstr "Pure Kulinarik. Null Werbung."
-
-#~ msgid "Built by chefs and serious home cooks sharing recipes they trust."
-#~ msgstr ""
-#~ "Von Köchen und leidenschaftlichen Hobbyköchen. Mit Rezepten, denen sie "
-#~ "vertrauen."
