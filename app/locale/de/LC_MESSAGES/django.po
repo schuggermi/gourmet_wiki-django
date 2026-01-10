@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-10 03:35+0000\n"
+"POT-Creation-Date: 2026-01-10 20:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -336,7 +336,7 @@ msgstr "Oder kopiere diesen Link und füge ihn in deinen Browser ein:"
 #: templates/account/email/email_changed_message.txt:10
 #: templates/account/email/email_confirm_message.html:26
 #: templates/account/email/email_confirm_message.txt:7
-#: templates/account/email/email_confirmation_message.html:58
+#: templates/account/email/email_confirmation_message.html:59
 #: templates/account/email/email_confirmation_message.txt:13
 #: templates/account/email/email_deleted_message.html:30
 #: templates/account/email/email_deleted_message.txt:9
@@ -363,7 +363,7 @@ msgstr "Viele Grüße,"
 #: templates/account/email/email_changed_message.txt:11
 #: templates/account/email/email_confirm_message.html:27
 #: templates/account/email/email_confirm_message.txt:8
-#: templates/account/email/email_confirmation_message.html:59
+#: templates/account/email/email_confirmation_message.html:60
 #: templates/account/email/email_confirmation_message.txt:14
 #: templates/account/email/email_deleted_message.html:31
 #: templates/account/email/email_deleted_message.txt:10
@@ -554,16 +554,15 @@ msgid "✓ Verify Email Address"
 msgstr "✓ E-Mail-Adresse bestätigen"
 
 #: templates/account/email/email_confirmation_message.html:47
-msgid ""
-"⏱️ <strong>This verification link will expire in 3 days.</strong> If you "
-"don't verify within this time, you'll need to request a new verification "
-"email."
-msgstr ""
-"⏱️ <strong>Dieser Bestätigungslink läuft in 3 Tagen ab.</strong> Wenn du "
-"deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine "
-"neue Bestätigungs-E-Mail anfordern."
+msgid "⏱️ This verification link will expire in 3 days."
+msgstr "Dieser Bestätigungslink läuft in 3 Tagen ab."
 
-#: templates/account/email/email_confirmation_message.html:54
+#: templates/account/email/email_confirmation_message.html:48
+msgid "If you don't verify within this time, you'll need to request a new verification email."
+msgstr "Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-"
+"Mail anfordern."
+
+#: templates/account/email/email_confirmation_message.html:55
 #: templates/account/email/email_confirmation_message.txt:11
 #, python-format
 msgid ""
@@ -573,7 +572,7 @@ msgstr ""
 "Wenn du kein Konto bei %(site_name)s erstellt hast, kannst du diese E-Mail "
 "einfach ignorieren. Ohne Bestätigung wird kein Konto erstellt."
 
-#: templates/account/email/email_confirmation_message.html:65
+#: templates/account/email/email_confirmation_message.html:66
 #, python-format
 msgid "© %(site_name)s. All rights reserved."
 msgstr "© %(site_name)s. Alle Rechte vorbehalten."
