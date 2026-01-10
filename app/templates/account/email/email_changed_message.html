@@ -9,7 +9,7 @@
 
 {% block content %}
 <h2 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 700; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.3;">
-    {% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
+    {% if user.first_name %}{% blocktranslate with first_name=user.first_name  %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
 </h2>
 
 <p style="margin: 0 0 16px 0; font-size: 16px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6;">

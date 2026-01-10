@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-10 20:45+0000\n"
+"POT-Creation-Date: 2026-01-10 22:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,7 +274,7 @@ msgstr "Konto existiert bereits"
 #: templates/account/email/email_changed_message.txt:1
 #: templates/account/email/email_confirm_message.html:12
 #: templates/account/email/email_confirm_message.txt:1
-#: templates/account/email/email_confirmation_message.html:12
+#: templates/account/email/email_confirmation_message.html:26
 #: templates/account/email/email_confirmation_message.txt:1
 #: templates/account/email/email_deleted_message.html:12
 #: templates/account/email/email_deleted_message.txt:1
@@ -324,7 +324,7 @@ msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
 #: templates/account/email/account_already_exists_message.html:47
-#: templates/account/email/email_confirmation_message.html:37
+#: templates/account/email/email_confirmation_message.html:52
 #: templates/account/email/password_reset_key_message.html:37
 #: templates/account/email/unknown_account_message.html:41
 msgid "Or copy and paste this link into your browser:"
@@ -336,7 +336,7 @@ msgstr "Oder kopiere diesen Link und füge ihn in deinen Browser ein:"
 #: templates/account/email/email_changed_message.txt:10
 #: templates/account/email/email_confirm_message.html:26
 #: templates/account/email/email_confirm_message.txt:7
-#: templates/account/email/email_confirmation_message.html:59
+#: templates/account/email/email_confirmation_message.html:75
 #: templates/account/email/email_confirmation_message.txt:13
 #: templates/account/email/email_deleted_message.html:30
 #: templates/account/email/email_deleted_message.txt:9
@@ -363,7 +363,7 @@ msgstr "Viele Grüße,"
 #: templates/account/email/email_changed_message.txt:11
 #: templates/account/email/email_confirm_message.html:27
 #: templates/account/email/email_confirm_message.txt:8
-#: templates/account/email/email_confirmation_message.html:60
+#: templates/account/email/email_confirmation_message.html:77
 #: templates/account/email/email_confirmation_message.txt:14
 #: templates/account/email/email_deleted_message.html:31
 #: templates/account/email/email_deleted_message.txt:10
@@ -445,7 +445,7 @@ msgstr "E-Mail-Adresse geändert"
 #: templates/account/email/email_changed_message.txt:1
 #: templates/account/email/email_confirm_message.html:12
 #: templates/account/email/email_confirm_message.txt:1
-#: templates/account/email/email_confirmation_message.html:12
+#: templates/account/email/email_confirmation_message.html:22
 #: templates/account/email/email_confirmation_message.txt:1
 #: templates/account/email/email_deleted_message.html:12
 #: templates/account/email/email_deleted_message.txt:1
@@ -524,17 +524,17 @@ msgstr "Du kannst jetzt auf alle Funktionen deines Kontos zugreifen."
 msgid "Email Confirmation"
 msgstr "E-Mail-Bestätigung"
 
-#: templates/account/email/email_confirmation_message.html:4
+#: templates/account/email/email_confirmation_message.html:5
 #, python-format
 msgid "Confirm Your Email Address - %(site_name)s"
 msgstr "Bestätige deine E-Mail-Adresse - %(site_name)s"
 
-#: templates/account/email/email_confirmation_message.html:8
+#: templates/account/email/email_confirmation_message.html:13
 #, python-format
 msgid "Welcome to %(site_name)s!"
-msgstr "Willkommen bei %(site_name)s!"
+msgstr "Hallo von %(site_name)s!"
 
-#: templates/account/email/email_confirmation_message.html:16
+#: templates/account/email/email_confirmation_message.html:31
 #: templates/account/email/email_confirmation_message.txt:3
 #, python-format
 msgid ""
@@ -545,24 +545,27 @@ msgstr ""
 "abzuschließen und dein Konto zu aktivieren, bestätige bitte deine E-Mail-"
 "Adresse."
 
-#: templates/account/email/email_confirmation_message.html:20
+#: templates/account/email/email_confirmation_message.html:37
 msgid "Click the button below to confirm your email address:"
 msgstr "Klicke auf den Button unten, um deine E-Mail-Adresse zu bestätigen:"
 
-#: templates/account/email/email_confirmation_message.html:28
+#: templates/account/email/email_confirmation_message.html:44
 msgid "✓ Verify Email Address"
 msgstr "✓ E-Mail-Adresse bestätigen"
 
-#: templates/account/email/email_confirmation_message.html:47
+#: templates/account/email/email_confirmation_message.html:61
 msgid "⏱️ This verification link will expire in 3 days."
 msgstr "Dieser Bestätigungslink läuft in 3 Tagen ab."
 
-#: templates/account/email/email_confirmation_message.html:48
-msgid "If you don't verify within this time, you'll need to request a new verification email."
-msgstr "Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst du eine neue Bestätigungs-E-"
-"Mail anfordern."
+#: templates/account/email/email_confirmation_message.html:62
+msgid ""
+"If you don't verify within this time, you'll need to request a new "
+"verification email."
+msgstr ""
+"Wenn du deine E-Mail-Adresse nicht innerhalb dieser Zeit bestätigst, musst "
+"du eine neue Bestätigungs-E-Mail anfordern."
 
-#: templates/account/email/email_confirmation_message.html:55
+#: templates/account/email/email_confirmation_message.html:69
 #: templates/account/email/email_confirmation_message.txt:11
 #, python-format
 msgid ""
@@ -571,11 +574,6 @@ msgid ""
 msgstr ""
 "Wenn du kein Konto bei %(site_name)s erstellt hast, kannst du diese E-Mail "
 "einfach ignorieren. Ohne Bestätigung wird kein Konto erstellt."
-
-#: templates/account/email/email_confirmation_message.html:66
-#, python-format
-msgid "© %(site_name)s. All rights reserved."
-msgstr "© %(site_name)s. Alle Rechte vorbehalten."
 
 #: templates/account/email/email_confirmation_message.txt:5
 msgid "Click the link below to confirm your email address:"
@@ -1070,23 +1068,16 @@ msgstr "Anmelden"
 msgid "Verify Your Email Address"
 msgstr "Bestätige deine E-Mail-Adresse"
 
-#: templates/base_email.html:313
+#: templates/base_email.html:214
 #, python-format
-msgid ""
-"\n"
-"                                This email was sent to %(user.email)s\n"
-"                            "
-msgstr ""
-"\n"
-"                                Diese E-Mail wurde an %(user.email)s "
-"gesendet\n"
-"                            "
+msgid "This email was sent to %(user.email)s"
+msgstr "Bestätigungs-E-Mail an %(email)s gesendet."
 
-#: templates/base_email.html:317
+#: templates/base_email.html:220
 msgid "If you didn't request this, please ignore this email."
 msgstr "Wenn du dies nicht angefordert hast, ignoriere diese E-Mail bitte."
 
-#: templates/base_email.html:319
+#: templates/base_email.html:225
 msgid "Visit our website"
 msgstr "Besuche unsere Website"
 

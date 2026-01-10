@@ -2,33 +2,41 @@
 {% load i18n %}
 
 {% block title %}
-    {% blocktranslate with site_name=current_site.name %}
+    {% blocktranslate trimmed with site_name=current_site.name %}
         Confirm Your Email Address - {{ site_name }}
     {% endblocktranslate %}
 {% endblock %}
 
-{% block logo %}✉️{% endblock %}
-
-{% block header_title %}
-    {% blocktranslate with site_name=current_site.name %}
-        Welcome to {{ site_name }}!
-    {% endblocktranslate %}
+{% block header %}
+    <div class="email-logo">✉️</div>
+    <h1>
+        {% blocktranslate trimmed with site_name=current_site.name %}
+            Welcome to {{ site_name }}!
+        {% endblocktranslate %}
+    </h1>
 {% endblock %}
 
 {% block content %}
 <h2 style="margin: 0 0 20px 0; font-size: 24px; font-weight: 700; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.3;">
-    {% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
+    {% if user.first_name %}
+        {% blocktranslate trimmed with first_name=user.first_name %}
+            Hello {{ first_name }}!
+        {% endblocktranslate %}
+    {% else %}
+        {% translate "Hello!" %}
+    {% endif %}
 </h2>
 
 <p style="margin: 0 0 16px 0; font-size: 16px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
-    {% blocktranslate with site_name=current_site.name %}Thank you for signing up at {{ site_name }}. To complete your registration and activate your account, please verify your email address.{% endblocktranslate %}
+    {% blocktranslate trimmed with site_name=current_site.name %}
+        Thank you for signing up at {{ site_name }}. To complete your registration and activate your account, please verify your email address.
+    {% endblocktranslate %}
 </p>
 
 <p style="margin: 0 0 16px 0; font-size: 16px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
     {% translate "Click the button below to confirm your email address:" %}
 </p>
 
-<!-- Button -->
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
     <tr>
         <td class="button-container" style="text-align: center; padding: 30px 0;">
@@ -39,7 +47,6 @@
     </tr>
 </table>
 
-<!-- Link fallback -->
 <div class="link-fallback" style="margin: 20px 0; padding: 16px; background-color: #f9fbf9; border-radius: 8px; border: 1px solid #dfe8e3;">
     <p style="margin: 0 0 8px 0; font-size: 13px; color: #2d5544; font-family: 'Montserrat', sans-serif; font-weight: 500;">
         {% translate "Or copy and paste this link into your browser:" %}
@@ -49,10 +56,9 @@
     </a>
 </div>
 
-<!-- Info box -->
 <div class="info-box" style="padding: 20px; background-color: #f5f7f6; border-left: 4px solid #d4f0df; border-radius: 8px; margin: 20px 0;">
     <p style="margin: 0; font-size: 14px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
-        {% translate '⏱️ This verification link will expire in 3 days.' %}
+        {% translate "⏱️ This verification link will expire in 3 days." %}
         {% translate "If you don't verify within this time, you'll need to request a new verification email." %}
     </p>
 </div>
@@ -60,17 +66,17 @@
 <hr class="divider" style="height: 1px; background-color: #dfe8e3; margin: 30px 0; border: none;">
 
 <p style="margin: 0 0 16px 0; font-size: 14px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6; opacity: 0.85;">
-    {% blocktranslate with site_name=current_site.name %}If you didn't create an account with {{ site_name }}, you can safely ignore this email. No account will be created without email verification.{% endblocktranslate %}
+    {% blocktranslate trimmed with site_name=current_site.name %}
+        If you didn't create an account with {{ site_name }}, you can safely ignore this email. No account will be created without email verification.
+    {% endblocktranslate %}
 </p>
 
 <p style="margin: 0; font-size: 16px; color: #2d5544; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
     {% translate "Best regards," %}<br>
-    <strong>{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}</strong>
-</p>
-{% endblock %}
-
-{% block footer_extra %}
-<p style="margin: 16px 0 0 0; font-size: 12px; color: #2d5544; opacity: 0.6; font-family: 'Montserrat', sans-serif;">
-    {% blocktranslate with site_name=current_site.name %}© {{ site_name }}. All rights reserved.{% endblocktranslate %}
+    <strong>
+        {% blocktranslate trimmed with site_name=current_site.name %}
+            The {{ site_name }} Team
+        {% endblocktranslate %}
+    </strong>
 </p>
 {% endblock %}
