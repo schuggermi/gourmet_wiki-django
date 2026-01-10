@@ -1,2 +1,2 @@
 {% load i18n %}
-{% blocktrans %}You have verified phone number {{phone}}.{% endblocktrans %}
+{% blocktranslate with phone=phone %}You have verified phone number {{phone}}.{% endblocktranslate %}

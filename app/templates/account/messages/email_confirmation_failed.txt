@@ -1,2 +1,2 @@
 {% load i18n %}
-{% blocktrans %}Unable to confirm {{email}} because it is already confirmed by a different account.{% endblocktrans %}
+{% blocktranslate with email=email %}Unable to confirm {{email}} because it is already confirmed by a different account.{% endblocktranslate %}

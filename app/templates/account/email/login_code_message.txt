@@ -1,9 +1,10 @@
-{% extends "account/email/base_message.txt" %}
-{% load account %}
-{% load i18n %}
+{% load i18n %}{% translate "Hello!" %}
 
-{% block content %}{% autoescape off %}{% blocktranslate %}Your sign-in code is listed below. Please enter it in your open browser window.{% endblocktranslate %}{% endautoescape %}
+{% translate "Your sign-in code is listed below. Please enter it in your open browser window." %}
 
 {{ code }}
 
-{% blocktranslate %}This mail can be safely ignored if you did not initiate this action.{% endblocktranslate %}{% endblock content %}
+{% translate "This mail can be safely ignored if you did not initiate this action." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

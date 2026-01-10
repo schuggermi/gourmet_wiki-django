@@ -39,9 +39,18 @@ def preview_email(request, template_name=None):
     # Template prefix mapping (without extensions)
     template_prefixes = {
         'email_confirmation': 'account/email/email_confirmation_message',
-        'password_reset': 'account/email/password_reset_key_message',
+        'email_confirmation_signup': 'account/email/email_confirmation_signup_message',
+        'password_reset': 'account/email/password_reset_message',
+        'password_reset_key': 'account/email/password_reset_key_message',
+        'password_reset_code': 'account/email/password_reset_code_message',
         'email_changed': 'account/email/email_changed_message',
         'password_changed': 'account/email/password_changed_message',
+        'password_set': 'account/email/password_set_message',
+        'email_confirmed': 'account/email/email_confirm_message',
+        'email_deleted': 'account/email/email_deleted_message',
+        'account_already_exists': 'account/email/account_already_exists_message',
+        'unknown_account': 'account/email/unknown_account_message',
+        'login_code': 'account/email/login_code_message',
     }
 
     template_prefix = template_prefixes.get(template_name)
@@ -57,8 +66,15 @@ def preview_email(request, template_name=None):
         'current_site': current_site,
         'activate_url': f"http://{current_site.domain}/accounts/confirm-email/ABC123/",
         'password_reset_url': f"http://{current_site.domain}/accounts/password/reset/key/XYZ789/",
+        'signup_url': f"http://{current_site.domain}/accounts/signup/",
         'key': 'SAMPLE-KEY-123',
         'uid': 'MQ',
+        'code': '123456',
+        'username': 'testuser',
+        'email': 'test@example.com',
+        'from_email': 'old@example.com',
+        'to_email': 'new@example.com',
+        'deleted_email': 'deleted@example.com',
     }
 
     # Try to render both text and HTML versions
@@ -132,9 +148,18 @@ def preview_email_content(request, template_name):
 
     template_prefixes = {
         'email_confirmation': 'account/email/email_confirmation_message',
-        'password_reset': 'account/email/password_reset_key_message',
+        'email_confirmation_signup': 'account/email/email_confirmation_signup_message',
+        'password_reset': 'account/email/password_reset_message',
+        'password_reset_key': 'account/email/password_reset_key_message',
+        'password_reset_code': 'account/email/password_reset_code_message',
         'email_changed': 'account/email/email_changed_message',
         'password_changed': 'account/email/password_changed_message',
+        'password_set': 'account/email/password_set_message',
+        'email_confirmed': 'account/email/email_confirm_message',
+        'email_deleted': 'account/email/email_deleted_message',
+        'account_already_exists': 'account/email/account_already_exists_message',
+        'unknown_account': 'account/email/unknown_account_message',
+        'login_code': 'account/email/login_code_message',
     }
 
     template_prefix = template_prefixes.get(template_name)
@@ -147,8 +172,15 @@ def preview_email_content(request, template_name):
         'current_site': current_site,
         'activate_url': f"http://{current_site.domain}/accounts/confirm-email/ABC123/",
         'password_reset_url': f"http://{current_site.domain}/accounts/password/reset/key/XYZ789/",
+        'signup_url': f"http://{current_site.domain}/accounts/signup/",
         'key': 'SAMPLE-KEY-123',
         'uid': 'MQ',
+        'code': '123456',
+        'username': 'testuser',
+        'email': 'test@example.com',
+        'from_email': 'old@example.com',
+        'to_email': 'new@example.com',
+        'deleted_email': 'deleted@example.com',
     }
 
     try:

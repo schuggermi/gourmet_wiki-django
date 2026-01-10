@@ -1,4 +1,8 @@
-{% extends "account/email/base_notification.txt" %}
-{% load i18n %}
+{% load i18n %}{% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
 
-{% block notification_message %}{% blocktrans %}Your email has been confirmed.{% endblocktrans %}{% endblock notification_message %}
+{% blocktranslate with site_name=current_site.name %}This is a notification that your email address has been successfully confirmed for your account at {{ site_name }}.{% endblocktranslate %}
+
+{% translate "You can now access all features of your account." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

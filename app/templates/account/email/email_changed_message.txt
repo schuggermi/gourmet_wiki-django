@@ -1,4 +1,11 @@
-{% extends "account/email/base_notification.txt" %}
-{% load i18n %}
+{% load i18n %}{% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
 
-{% block notification_message %}{% blocktrans %}Your email has been changed from {{ from_email }} to {{ to_email }}.{% endblocktrans %}{% endblock notification_message %}
+{% blocktranslate with site_name=current_site.name %}This is a notification that the email address for your account at {{ site_name }} has been changed.{% endblocktranslate %}
+
+{% translate "Old Email:" %} {{ from_email }}
+{% translate "New Email:" %} {{ to_email }}
+
+{% translate "If you did not authorize this change, please contact us immediately." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

@@ -1,4 +1,10 @@
-{% extends "account/email/base_notification.txt" %}
-{% load i18n %}
+{% load i18n %}{% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
 
-{% block notification_message %}{% blocktrans %}Email address {{ deleted_email }} has been removed from your account.{% endblocktrans %}{% endblock notification_message %}
+{% blocktranslate with site_name=current_site.name %}This is a notification that an email address has been removed from your account at {{ site_name }}.{% endblocktranslate %}
+
+{% translate "Removed Email:" %} {{ deleted_email }}
+
+{% translate "If you did not authorize this change, please contact us immediately." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

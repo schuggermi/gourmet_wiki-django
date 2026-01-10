@@ -1,10 +1,12 @@
-{% extends "account/email/base_message.txt" %}
-{% load i18n %}
+{% load i18n %}{% translate "Hello!" %}
 
-{% block content %}{% autoescape off %}{% blocktranslate %}You are receiving this email because you, or someone else, tried to access an account with email {{ email }}. However, we do not have any record of such an account in our database.{% endblocktranslate %}
+{% blocktranslate with email=email %}You are receiving this email because you, or someone else, tried to access an account with the email address {{ email }}. However, we do not have any record of such an account in our database.{% endblocktranslate %}
 
-{% blocktranslate %}This mail can be safely ignored if you did not initiate this action.{% endblocktranslate %}
+{% translate "If it was you, you can sign up for an account using the link below:" %}
 
-{% blocktranslate %}If it was you, you can sign up for an account using the link below.{% endblocktranslate %}
+{{ signup_url }}
 
-{{ signup_url }}{% endautoescape %}{% endblock content %}
+{% translate "This mail can be safely ignored if you did not initiate this action." %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

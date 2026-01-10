@@ -1,13 +1,14 @@
-{% extends "account/email/base_message.txt" %}
-{% load i18n %}
+{% load i18n %}{% translate "Hello!" %}
 
-{% block content %}{% autoescape off %}{% blocktrans %}You are receiving this email because you or someone else tried to signup for an
-account using email address:
+{% blocktranslate with site_name=current_site.name %}You are receiving this email because you or someone else tried to sign up for an account at {{ site_name }} using the email address:{% endblocktranslate %}
 
 {{ email }}
 
-However, an account using that email address already exists.  In case you have
-forgotten about this, please use the password forgotten procedure to recover
-your account:
+{% translate "However, an account using that email address already exists." %}
 
-{{ password_reset_url }}{% endblocktrans %}{% endautoescape %}{% endblock content %}
+{% translate "In case you have forgotten about this, you can reset your password using the link below:" %}
+
+{{ password_reset_url }}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}

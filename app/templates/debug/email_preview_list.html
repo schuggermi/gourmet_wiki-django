@@ -263,10 +263,31 @@
                 <span class="view-link">Preview Template →</span>
             </a>
 
+            <a href="{% url 'email-preview' 'email_confirmation_signup' %}" class="template-card">
+                <span class="template-icon">✉️</span>
+                <h3>Email Confirmation (Signup)</h3>
+                <p>Verification email sent specifically during the signup process.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
             <a href="{% url 'email-preview' 'password_reset' %}" class="template-card">
                 <span class="template-icon">🔑</span>
                 <h3>Password Reset</h3>
                 <p>Email sent when a user requests to reset their password with a secure link.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'password_reset_key' %}" class="template-card">
+                <span class="template-icon">🔑</span>
+                <h3>Password Reset Key</h3>
+                <p>Email sent with the password reset key/link.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'password_reset_code' %}" class="template-card">
+                <span class="template-icon">🔢</span>
+                <h3>Password Reset Code</h3>
+                <p>Email sent with a code to reset the password.</p>
                 <span class="view-link">Preview Template →</span>
             </a>
 
@@ -281,6 +302,48 @@
                 <span class="template-icon">🔒</span>
                 <h3>Password Changed</h3>
                 <p>Notification sent after a user successfully changes their password.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'password_set' %}" class="template-card">
+                <span class="template-icon">🔒</span>
+                <h3>Password Set</h3>
+                <p>Notification sent after a user sets their password.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'email_confirmed' %}" class="template-card">
+                <span class="template-icon">✅</span>
+                <h3>Email Confirmed</h3>
+                <p>Notification sent after a user successfully confirms their email address.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'email_deleted' %}" class="template-card">
+                <span class="template-icon">🗑️</span>
+                <h3>Email Deleted</h3>
+                <p>Notification sent when an email address is removed from an account.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'account_already_exists' %}" class="template-card">
+                <span class="template-icon">⚠️</span>
+                <h3>Account Already Exists</h3>
+                <p>Sent when a user tries to sign up with an email that is already registered.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'unknown_account' %}" class="template-card">
+                <span class="template-icon">❓</span>
+                <h3>Unknown Account</h3>
+                <p>Sent when a password reset is requested for an email not in the system.</p>
+                <span class="view-link">Preview Template →</span>
+            </a>
+
+            <a href="{% url 'email-preview' 'login_code' %}" class="template-card">
+                <span class="template-icon">🔢</span>
+                <h3>Login Code</h3>
+                <p>Sent when a user requests a login code.</p>
                 <span class="view-link">Preview Template →</span>
             </a>
         </div>

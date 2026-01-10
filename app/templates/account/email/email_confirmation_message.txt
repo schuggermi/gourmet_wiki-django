@@ -1,9 +1,14 @@
-{% extends "account/email/base_message.txt" %}
-{% load account %}
-{% load i18n %}
+{% load account %}{% load i18n %}{% user_display user as user_display %}{% if user.first_name %}{% blocktranslate with first_name=user.first_name %}Hello {{ first_name }}!{% endblocktranslate %}{% else %}{% translate "Hello!" %}{% endif %}
 
-{% block content %}{% autoescape off %}{% user_display user as user_display %}{% blocktranslate with site_name=current_site.name site_domain=current_site.domain %}You're receiving this email because user {{ user_display }} has given your email address to register an account on {{ site_domain }}.{% endblocktranslate %}
+{% blocktranslate with site_name=current_site.name %}Thank you for signing up at {{ site_name }}. To complete your registration and activate your account, please verify your email address.{% endblocktranslate %}
 
-{% if code %}{% blocktranslate %}Your email verification code is listed below. Please enter it in your open browser window.{% endblocktranslate %}
+{% translate "Click the link below to confirm your email address:" %}
 
-{{ code }}{% else %}{% blocktranslate %}To confirm this is correct, go to {{ activate_url }}{% endblocktranslate %}{% endif %}{% endautoescape %}{% endblock content %}
+{{ activate_url }}
+
+{% blocktranslate %}This verification link will expire in 3 days. If you don't verify within this time, you'll need to request a new verification email.{% endblocktranslate %}
+
+{% blocktranslate with site_name=current_site.name %}If you didn't create an account with {{ site_name }}, you can safely ignore this email. No account will be created without email verification.{% endblocktranslate %}
+
+{% translate "Best regards," %}
+{% blocktranslate with site_name=current_site.name %}The {{ site_name }} Team{% endblocktranslate %}
