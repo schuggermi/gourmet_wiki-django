@@ -1070,8 +1070,8 @@ msgstr "Bestätige deine E-Mail-Adresse"
 
 #: templates/base_email.html:214
 #, python-format
-msgid "This email was sent to %(user.email)s"
-msgstr "Bestätigungs-E-Mail an %(email)s gesendet."
+msgid "This email was sent to %(email)s"
+msgstr "Diese Email wurde an %(email)s gesendet."
 
 #: templates/base_email.html:220
 msgid "If you didn't request this, please ignore this email."
