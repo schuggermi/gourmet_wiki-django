@@ -50,15 +50,15 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             template_prefix, email, ctx
         )
 
-        body = html_body if html_body is not None else text_body
-
+        # Use text as the main body (required for EmailMultiAlternatives)
         msg = EmailMultiAlternatives(
             subject=subject,
-            body=body,
+            body=text_body,
             from_email=self.get_from_email(),
             to=[email]
         )
 
+        # Attach HTML as alternative if available
         if html_body:
             msg.attach_alternative(html_body, "text/html")
 
