@@ -1,5 +1,5 @@
 {% extends "base_email.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
     {% blocktranslate trimmed with site_name=current_site.name %}
@@ -7,13 +7,10 @@
     {% endblocktranslate %}
 {% endblock %}
 
-{% block header %}
-    <div class="email-logo">✉️</div>
-    <h1>
-        {% blocktranslate trimmed with site_name=current_site.name %}
-            Welcome to {{ site_name }}!
-        {% endblocktranslate %}
-    </h1>
+{% block header_title %}
+	{% blocktranslate trimmed with site_name=current_site.name %}
+        Welcome to {{ site_name }}!
+    {% endblocktranslate %}
 {% endblock %}
 
 {% block content %}

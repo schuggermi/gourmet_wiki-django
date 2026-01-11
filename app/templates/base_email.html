@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n %}
+{% load i18n static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -191,8 +191,19 @@
                 <tr>
                     <td class="email-header">
                         {% block header %}
-                            <div class="email-logo">{% block logo %}📧{% endblock %}</div>
-                            <h1>{{ current_site.name }}</h1>
+                            <div class="email-logo">
+                            {% block logo %}
+                                <a href="https://gourmet-wiki.app" title="Gourmet Wiki">
+                                    <img style="width: 100px; height: 100px; object-fit: contain;" src="{% static 'images/logo_icon_rotated.png' %}"
+                                         alt="Gourmet Wiki">
+                                </a>
+                            {% endblock %}
+                            </div>
+                            <h1>
+                            {% block header_title %}
+                                {{ current_site.name }}
+                            {% endblock %}
+                            </h1>
                         {% endblock %}
                     </td>
                 </tr>
@@ -208,7 +219,10 @@
                 <tr>
                     <td class="email-footer">
                         {% block footer %}
-                            <p><strong>{{ current_site.name }}</strong></p>
+                            <div style="flex-direction: row; align-items: center; justify-items: center;">
+                                <img style="width: 50px; height: 50px; object-fit: contain;" src="{% static 'images/logo_icon_rotated.png' %}" alt="Gourmet Wiki">
+                                <p><strong>{{ current_site.name }}</strong></p>
+                            </div>
 
                             <p>
                                 {% blocktranslate trimmed %}
