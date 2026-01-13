@@ -1,11 +1,24 @@
+from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.sites.shortcuts import get_current_site
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.core import context as allauth_context
 import logging
+from email.mime.image import MIMEImage
+from django.contrib.staticfiles import finders
 
 logger = logging.getLogger(__name__)
+
+
+class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
+    def populate_user(self, request, sociallogin, data):
+        user = super().populate_user(request, sociallogin, data)
+
+        user.first_name = data.get("given_name", "")
+        user.last_name = data.get("family_name", "")
+
+        return user
 
 
 class CustomAccountAdapter(DefaultAccountAdapter):
@@ -61,5 +74,16 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         # Attach HTML as alternative if available
         if html_body:
             msg.attach_alternative(html_body, "text/html")
+
+            # Attach logo
+            logo_path = finders.find('images/logo_icon_rotated.png')
+            if logo_path:
+                with open(logo_path, 'rb') as f:
+                    logo_data = f.read()
+                logo = MIMEImage(logo_data)
+                logo.add_header('Content-ID', '<logo_icon>')
+                logo.add_header('Content-Disposition', 'inline', filename='logo_icon_rotated.png')
+                msg.attach(logo)
+                msg.mixed_subtype = 'related'
 
         msg.send()

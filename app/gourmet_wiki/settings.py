@@ -231,7 +231,8 @@ ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
 
-ACCOUNT_ADAPTER = 'users.adapter.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'users.adapters.CustomAccountAdapter'
+SOCIALACCOUNT_ADAPTER = "users.adapters.CustomSocialAccountAdapter"
 
 if DEBUG:
     #ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -249,6 +250,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
             'key': ''
         },
+        'SCOPE': [
+            "profile",
+            "email",
+        ],
         'AUTH_PARAMS': {
             'access_type': 'online',
         },

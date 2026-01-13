@@ -13,7 +13,7 @@ def home(request):
     today = now().date()
 
     daily_random_recipes = (
-        Recipe.objects.annotate( # .filter(is_published=True)
+        Recipe.objects.filter(is_published=True).annotate(
             hash_order=Func(
                 Concat(
                     F('id'),
