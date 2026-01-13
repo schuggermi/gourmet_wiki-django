@@ -226,7 +226,7 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = False
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_SIGNUP_FIELDS = ['first_name*', 'last_name*', 'email*', 'username*', 'password1*', 'password2*']
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
