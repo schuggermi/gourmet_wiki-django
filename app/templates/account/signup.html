@@ -47,9 +47,9 @@
                     </div>
                     <div class="relative w-full">
                         <c-input :field="form.password1" type="password" labeled w_full class="pr-10">
-                            <button tabindex="0" role="button" type="button" id="togglePassword"
-                                    aria-expanded="false"
-                                    class="swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer">
+                            <button type="button"
+                                    class="password-toggle swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer"
+                                    aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor"
                                      class="size-6 swap-off">
@@ -68,9 +68,9 @@
                     </div>
                     <div class="relative w-full">
                         <c-input :field="form.password2" type="password" labeled w_full class="pr-10">
-                            <button tabindex="0" role="button" type="button" id="togglePassword"
-                                    aria-expanded="false"
-                                    class="swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer">
+                            <button type="button"
+                                    class="password-toggle swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer"
+                                    aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor"
                                      class="size-6 swap-off">
@@ -126,6 +126,22 @@
             {% endif %}
         {% endelement %}
     {% endif %}
+
+    <script>
+    document.addEventListener("click", (e) => {
+        const toggle = e.target.closest(".password-toggle");
+        if (!toggle) return;
+
+        const wrapper = toggle.closest(".relative");
+        const input = wrapper.querySelector("input[type='password'], input[type='text']");
+
+        const isPassword = input.type === "password";
+        input.type = isPassword ? "text" : "password";
+
+        toggle.classList.toggle("swap-active", isPassword);
+        toggle.setAttribute("aria-expanded", String(isPassword));
+    });
+    </script>
 {% endblock content %}
 
 {% block extra_body %}
