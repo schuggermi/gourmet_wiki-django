@@ -232,7 +232,7 @@ ACCOUNT_FORMS = {
 }
 
 ACCOUNT_ADAPTER = 'users.adapters.CustomAccountAdapter'
-SOCIALACCOUNT_ADAPTER = "users.adapters.CustomSocialAccountAdapter"
+# SOCIALACCOUNT_ADAPTER = "users.adapters.CustomSocialAccountAdapter"
 
 if DEBUG:
     #ACCOUNT_EMAIL_VERIFICATION = 'none'

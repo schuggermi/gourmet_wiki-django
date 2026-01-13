@@ -17,6 +17,7 @@ class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
 
         user.first_name = data.get("given_name", "")
         user.last_name = data.get("family_name", "")
+        user.save()
 
         return user
 
