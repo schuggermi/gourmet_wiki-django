@@ -26,7 +26,9 @@
                     <h3 class="group-hover:text-secondary break-words whitespace-normal">
                         {{ recipe.name }}
                     </h3>
-                    <p class="break-words whitespace-normal line-clamp-3">{{ recipe.description }}</p>
+                    {% if recipe.description %}
+                    	<p class="break-words whitespace-normal line-clamp-3">{{ recipe.description }}</p>
+                    {% endif %}
                 </div>
                 <div class="flex gap-2 justify-between items-center">
                     <div class="flex gap-2 items-center justify-end w-full">
