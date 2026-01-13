@@ -242,6 +242,8 @@ else:
 
 ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -257,10 +259,6 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
-        # "SCOPE": [
-        #     "profile",
-        #     "email",
-        # ],
         'OAUTH_PKCE_ENABLED': True,
         'EMAIL_AUTHENTICATION': True,
     }
