@@ -14,7 +14,7 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-2 gap-5 w-full min-w-0 pt-10">
-            <div class="col-span-2 w-full flex flex-col px-5 md:px-0 lg:flex-row gap-5">
+            <div class="col-span-2 w-full flex flex-col md:px-0 lg:flex-row gap-5">
                 <div class="shrink-0 shadow-md w-32 h-32 md:w-36 md:h-36 mask mask-hexagon-2 bg-base-300 group-hover/avatar:scale-105">
                     <p class="uppercase text-center text-base-content text-5xl! w-full h-full flex items-center justify-center">
                         {% if user.get_full_name %}
@@ -37,11 +37,11 @@
             </div>
 
             {% if object.badges.exists %}
-            	<div class="w-full flex gap-5">
+            	<div class="w-full flex flex-col gap-1">
                     <p class="font-bold shrink-0">{% translate 'Badges:' %}</p>
                     <ul class="ps-0 w-full flex flex-1 gasp-2 flex-wrap items-center">
                         {% for badge in object.badges.all %}
-                            <li class="badge badge-md badge-accent rounded-md font-bold break-all wrap-break-word">{{ badge }}</li>
+                            <li class="badge badge-md badge-neutral badge-outline rounded-md"><small>{{ badge }}</small></li>
                         {% endfor %}
                     </ul>
                 </div>
