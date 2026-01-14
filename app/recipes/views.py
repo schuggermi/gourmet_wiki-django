@@ -36,6 +36,11 @@ from core.seo import SeoViewMixin
 User = get_user_model()
 
 
+def recipe_detail_redirect(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    return redirect(recipe.get_absolute_url(), permanent=True)
+
+
 """ NEW """
 
 def recipe_create(request):
@@ -666,11 +671,13 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
-        return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
+        return redirect(reverse('recipe-detail', kwargs={'slug': recipe.slug}))
 
 
 class RecipeDetailView(SeoViewMixin, DetailView):
     model = Recipe
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 
 
 def get_calculate_scaled_ingredients(request, recipe_id):
@@ -794,7 +801,7 @@ def delete_recipe(request, recipe_id):
                 return render(request, "recipes/partials/delete_confirmation_modal.html", context=context, status=400)
 
             messages.error(request, _('Invalid confirmation code.'))
-            return redirect('recipe-detail', pk=recipe_id)
+            return redirect('recipe-detail', slug=recipe.slug)
 
     # Generate a random confirmation code
     import random

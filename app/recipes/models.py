@@ -22,6 +22,11 @@ class Recipe(models.Model):
         validators=[MinLengthValidator(3), MaxLengthValidator(50)],
         verbose_name=_("Recipe Name"),
     )
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        max_length=100,
+    )
     description = models.TextField(
         max_length=250,
         verbose_name=_("Description"),
@@ -82,6 +87,11 @@ class Recipe(models.Model):
         blank=True,
         verbose_name=_("Published at"),
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     @property
     def total_time_str(self):
@@ -186,7 +196,7 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('recipe-detail', kwargs={'pk': self.pk})
+        return reverse('recipe-detail', kwargs={'slug': self.slug})
 
     def get_seo_data(self, request) -> SeoData:
         """
