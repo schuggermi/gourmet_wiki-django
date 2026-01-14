@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from .models import WikiPage
+from .models import WikiArticle
 
 
 class WikiSitemap(Sitemap):
@@ -7,7 +7,7 @@ class WikiSitemap(Sitemap):
     priority = 0.7
 
     def items(self):
-        return WikiPage.objects.all()
+        return WikiArticle.objects.all()
 
-    def lastmod(self, obj: WikiPage):
+    def lastmod(self, obj: WikiArticle):
         return obj.updated_at
