@@ -20,7 +20,8 @@ User = get_user_model()
 class Recipe(models.Model):
     name = models.CharField(
         validators=[MinLengthValidator(3), MaxLengthValidator(50)],
-        verbose_name=_("Recipe Name"),
+        verbose_name=_("Name"),
+        unique=True,
     )
     slug = models.SlugField(
         unique=True,
@@ -87,6 +88,13 @@ class Recipe(models.Model):
         blank=True,
         verbose_name=_("Published at"),
     )
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = _("Recipe")
+        verbose_name_plural = _("Recipes")
+        unique_together = ('name', 'created_by')
+
 
     def save(self, *args, **kwargs):
         if not self.slug:

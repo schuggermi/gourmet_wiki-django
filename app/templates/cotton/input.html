@@ -10,7 +10,7 @@
 ></c-vars>
 
 <div class="{% if type == 'checkbox' %}flex flex-row-reverse items-start justify-start gap-2{% else %}flex flex-col{% endif %}">
-    <label class="{% if type != 'checkbox' %}whitespace-nowrap{% else %}text-pretty! hyphens-none!{% endif %} {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
+    <label lang="{{ request.LANGUAGE_CODE|default:'de' }}" class="{% if type == 'checkbox' %}whitespace-nowrap{% else %}leading-tight! text-pretty! hyphens-none!{% endif %} {% if not labeled %}hidden{% endif %}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}">
         {% if field and not label %}
             {{ field.label }}{% if field.field.required %}*{% endif %}
         {% elif label %}

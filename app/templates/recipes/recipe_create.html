@@ -26,8 +26,10 @@
                   class="w-full px-5 pb-5 pt-10">
                 {% csrf_token %}
 
-                <p>{% translate 'What should the recipe be called?' %}</p>
-                <c-input :field="form.name" w_full></c-input>
+                <c-input :field="form.name" w_full
+                    labeled
+                    label="{% translate 'What should the recipe be called?' %}"
+                ></c-input>
 
                 <!-- Modal Footer -->
                 <div class="flex justify-end gap-3 mt-10">
