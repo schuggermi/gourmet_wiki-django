@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-14 05:05+0000\n"
+"POT-Creation-Date: 2026-01-14 19:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1434,7 +1434,6 @@ msgid "Food Index"
 msgstr "Lebensmittel-Index"
 
 #: templates/ingredients/ingredient_list.html:15
-#: templates/wiki/article_list.html:15
 msgid "Search..."
 msgstr "Suchen..."
 
@@ -2515,6 +2514,10 @@ msgstr "Du hast noch keine Rezepte hinzugefügt."
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
+#: templates/wiki/article_list.html:15
+msgid "Search wiki..."
+msgstr "Wiki durchsuchen..."
+
 #: users/forms.py:40
 msgid "I accept the terms of use and the privacy policy"
 msgstr "Ich akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung"
@@ -2630,3 +2633,6 @@ msgstr ""
 #: users/views.py:66
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
+
+#~ msgid "Search articles..."
+#~ msgstr "Artikel durchsuchen..."

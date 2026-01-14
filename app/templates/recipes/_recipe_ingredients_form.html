@@ -65,7 +65,7 @@
     <div class="grid grid-cols-3 gap-2">
         <div class="col-span-3 md:col-span-1"><c-input :field="ingredient_form.name" labeled w_full></c-input></div>
         <div class="col-span-2 md:col-span-1"><c-input :field="ingredient_form.quantity" type="number" labeled w_full></c-input></div>
-        <div><c-select :field="ingredient_form.unit" labeled></c-select></div>
+        <c-select :field="ingredient_form.unit" labeled></c-select>
     </div>
 
     <button class="self-end btn btn-primary" type="submit">

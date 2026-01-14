@@ -128,19 +128,19 @@
     {% endif %}
 
     <script>
-    document.addEventListener("click", (e) => {
-        const toggle = e.target.closest(".password-toggle");
-        if (!toggle) return;
+        document.addEventListener("click", (e) => {
+            const toggle = e.target.closest(".password-toggle");
+            if (!toggle) return;
 
-        const wrapper = toggle.closest(".relative");
-        const input = wrapper.querySelector("input[type='password'], input[type='text']");
+            const wrapper = toggle.closest(".relative");
+            const input = wrapper.querySelector("input[type='password'], input[type='text']");
 
-        const isPassword = input.type === "password";
-        input.type = isPassword ? "text" : "password";
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
 
-        toggle.classList.toggle("swap-active", isPassword);
-        toggle.setAttribute("aria-expanded", String(isPassword));
-    });
+            toggle.classList.toggle("swap-active", isPassword);
+            toggle.setAttribute("aria-expanded", String(isPassword));
+        });
     </script>
 {% endblock content %}
 

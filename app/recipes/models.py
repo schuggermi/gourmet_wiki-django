@@ -320,7 +320,7 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE
     )
     name = models.CharField(unique=True, max_length=100)
-    slug = models.SlugField(blank=True, max_length=150)
+    slug = models.SlugField(unique=True, blank=True, max_length=150)
     quantity = models.DecimalField(
         max_digits=6,
         decimal_places=2,
@@ -334,6 +334,8 @@ class RecipeIngredient(models.Model):
         choices=UnitChoice.choices,
         default=UnitChoice.GRAM,
         verbose_name=_("Unit"),
+        blank=False,
+        null=False,
     )
 
     class Meta:

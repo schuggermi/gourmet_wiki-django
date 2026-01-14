@@ -12,7 +12,7 @@
             <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'wiki:article_list_partial' %}"
                   hx-target="#article-list-container"
                   hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
-                <c-input name="search" placeholder="{% translate 'Search...' %}"
+                <c-input name="search" placeholder="{% translate 'Search wiki...' %}"
                          value="{{ search_query }}"></c-input>
                 <button type="submit" class="btn btn-primary ">{% translate 'Search' %}</button>
             </form>
