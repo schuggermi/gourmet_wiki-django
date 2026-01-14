@@ -12,7 +12,7 @@
             name="is_published"
             value="{{ recipe.is_published }}"
             class="w-6! h-6!"
-            hx_post="{% url 'recipe-public-update' recipe.id %}"
+            hx_post="{% url 'recipes:recipe-public-update' recipe.id %}"
             hx_trigger="click"
             hx_target="#recipe-publish-container"
             hx_swap="innerHTML"

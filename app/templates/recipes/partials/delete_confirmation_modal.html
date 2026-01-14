@@ -7,7 +7,7 @@
     <p class="py-2">{% translate 'This action cannot be undone. To confirm, please enter the following code:' %}</p>
     <div class="bg-base-200 p-2 my-2 text-center font-mono text-lg">{{ confirmation_code }}</div>
 
-    <form id="recipe-delete-form" action="{% url 'recipe-delete' recipe_id=recipe.id %}" method="post" class="mt-4 flex flex-col gap-4">
+    <form id="recipe-delete-form" action="{% url 'recipes:recipe-delete' recipe_id=recipe.id %}" method="post" class="mt-4 flex flex-col gap-4">
       {% csrf_token %}
       <div class="form-control">
         <label class="label">
@@ -27,7 +27,7 @@
       </div>
 
       <div class="modal-action">
-        <a href="{% url 'recipe-detail' slug=recipe.slug %}" class="btn btn-ghost btn-outline btn-neutral">{% translate 'Cancel' %}</a>
+        <a href="{% url 'recipes:recipe-detail' slug=recipe.slug %}" class="btn btn-ghost btn-outline btn-neutral">{% translate 'Cancel' %}</a>
         <button type="submit" class="btn btn-error">{% translate 'Delete Recipe' %}</button>
       </div>
     </form>

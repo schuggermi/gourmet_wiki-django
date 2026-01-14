@@ -36,7 +36,7 @@
               <button type="button"
                       class="btn btn-sm btn-circle btn-error"
                       title="{% translate 'Remove Image' %}"
-                      hx-delete="{% url 'image_delete' recipe.id image.id %}"
+                      hx-delete="{% url 'recipes:image_delete' recipe.id image.id %}"
                       hx-target="#recipe-images-container"
                       hx-swap="innerHTML"
                       hx-confirm="{% translate 'Are you sure you want to remove this image?' %}">
@@ -65,7 +65,7 @@
 
 <!-- Upload Form -->
 <form id="recipe-images-form"
-      hx-post="{% url 'image_add' recipe.id %}"
+      hx-post="{% url 'recipes:image_add' recipe.id %}"
       hx-swap="innerHTML"
       hx-target="#recipe-images-container"
       hx-encoding="multipart/form-data"
@@ -229,7 +229,7 @@ function applyCrop() {
 
 // Helper function to reload images container
 function reloadImagesContainer() {
-    fetch('{% url "recipe-edit" recipe.id %}', {
+    fetch('{% url "recipes:recipe-edit" recipe.id %}', {
         headers: {
             'HX-Request': 'true',
             'HX-Target': 'recipe-images-container'

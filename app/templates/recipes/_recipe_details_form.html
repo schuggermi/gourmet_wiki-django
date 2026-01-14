@@ -1,7 +1,7 @@
 {% load cotton %}
 <form
     id="recipe-details-form"
-    hx-post="{% url 'recipe-details-update' recipe.id %}"
+    hx-post="{% url 'recipes:recipe-details-update' recipe.id %}"
     hx-trigger="change delay:500ms"
     hx-swap="outerHTML"
     hx-target="this"

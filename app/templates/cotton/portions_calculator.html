@@ -10,7 +10,7 @@
                                         if (current > 0) input.value = current - 1;
                                         this.setAttribute('hx-vals', JSON.stringify({portions: input.value}));
                                         "
-            hx-get="{% url 'calculate_scaled_ingredients' recipe_id=recipe.pk %}"
+            hx-get="{% url 'recipes:calculate_scaled_ingredients' recipe_id=recipe.pk %}"
             hx-target="{{ hx_target }}"
             hx-swap="outerHTML"
     >
@@ -33,7 +33,7 @@
                                         input.value = current + 1;
                                         this.setAttribute('hx-vals', JSON.stringify({portions: input.value}));
                                         "
-            hx-get="{% url 'calculate_scaled_ingredients' recipe_id=recipe.pk %}"
+            hx-get="{% url 'recipes:calculate_scaled_ingredients' recipe_id=recipe.pk %}"
             hx-target="{{ hx_target }}"
             hx-swap="outerHTML">
         +

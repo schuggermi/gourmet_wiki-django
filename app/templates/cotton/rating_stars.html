@@ -33,7 +33,7 @@
                     </svg>
                 </button>
             {% else %}
-                <c-a class="underline" url="{% url 'account_login' %}?next={% url 'recipe-detail' recipe.slug %}">
+                <c-a class="underline" url="{% url 'account_login' %}?next={% url 'recipes:recipe-detail' recipe.slug %}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                          stroke-width="1.5" stroke="currentColor" class="size-6 hover:text-yellow-300">
                         <path stroke-linecap="round" stroke-linejoin="round"

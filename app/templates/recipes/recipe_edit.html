@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block actions %}
-	<c-a url="{% url 'recipe-detail' recipe.slug %}"
-         hx-get="{% url 'recipe-detail' recipe.slug %}"
+	<c-a url="{% url 'recipes:recipe-detail' recipe.slug %}"
+         hx-get="{% url 'recipes:recipe-detail' recipe.slug %}"
          hx-target="#main-body"
          hx-push-url="true"
          hx-swap="innerHTML"

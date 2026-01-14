@@ -2,7 +2,7 @@
 
 <ul id="steps"
     class="mb-10 flex flex-col gap-2 ps-0"
-    hx-post="{% url 'steps_reorder' recipe.id %}"
+    hx-post="{% url 'recipes:steps_reorder' recipe.id %}"
     hx-trigger="end from:body"
     hx-include="#steps"
     hx-swap="none"
@@ -20,7 +20,7 @@
         <div class="flex items-center">
             <p class="cursor-pointer w-fit"
                title="{% translate 'Remove this Preparation Step' %}"
-               hx-delete="{% url 'step_delete' recipe.id step.id %}"
+               hx-delete="{% url 'recipes:step_delete' recipe.id step.id %}"
                hx-target="#recipe-steps-container"
                hx-swap="innerHTML"
                hx-confirm="{% translate 'Are you sure you want to remove this step?' %}"
@@ -50,7 +50,7 @@
 </ul>
 
 <form id="recipe-steps-form"
-      hx-post="{% url 'step_add' recipe.id %}"
+      hx-post="{% url 'recipes:step_add' recipe.id %}"
       hx-swap="innerHTML"
       hx-target="#recipe-steps-container"
       class="grid grid-cols-1 gap-5 w-full"

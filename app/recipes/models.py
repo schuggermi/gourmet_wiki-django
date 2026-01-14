@@ -204,7 +204,7 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('recipe-detail', kwargs={'slug': self.slug})
+        return reverse('recipes:recipe-detail', kwargs={'slug': self.slug})
 
     def get_seo_data(self, request) -> SeoData:
         """

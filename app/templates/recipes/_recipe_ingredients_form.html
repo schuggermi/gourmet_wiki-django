@@ -21,7 +21,7 @@
                 <td class="flex justify-end gap-1">
                     <small class="cursor-pointer w-fit"
                        title="{% translate 'Edit this Ingredient' %}"
-                       hx-get="{% url 'ingredient_edit' recipe.id ingredient.id %}"
+                       hx-get="{% url 'recipes:ingredient_edit' recipe.id ingredient.id %}"
                        hx-target="#recipe-ingredients-container"
                        hx-swap="innerHTML"
                     >
@@ -29,7 +29,7 @@
                     </small>
                     <small class="cursor-pointer w-fit"
                        title="{% translate 'Remove this Ingredient' %}"
-                       hx-delete="{% url 'ingredient_delete' recipe.id ingredient.id %}"
+                       hx-delete="{% url 'recipes:ingredient_delete' recipe.id ingredient.id %}"
                        hx-target="#recipe-ingredients-container"
                        hx-swap="innerHTML"
                        hx-confirm="{% translate 'Are you sure you want to remove this ingredient?' %}"
@@ -55,7 +55,7 @@
 </div>
 
 <form id="recipe-ingredients-form"
-      hx-post="{% url 'ingredient_add' recipe.id %}"
+      hx-post="{% url 'recipes:ingredient_add' recipe.id %}"
       hx-swap="innerHTML"
       hx-target="#recipe-ingredients-container"
       class="grid grid-cols-1 gap-5 w-full"

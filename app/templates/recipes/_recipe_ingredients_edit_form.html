@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <form id="recipe-ingredients-form"
-      hx-post="{% url 'ingredient_edit' recipe.id editing_ingredient_id %}"
+      hx-post="{% url 'recipes:ingredient_edit' recipe.id editing_ingredient_id %}"
       hx-swap="innerHTML"
       hx-target="#recipe-ingredients-container"
       class="grid grid-cols-1 gap-5 w-full p-2"
@@ -19,7 +19,7 @@
     <div class="flex gap-2 justify-end">
         <button type="button"
                 class="btn btn-ghost"
-                hx-get="{% url 'ingredient_cancel_edit' recipe.id %}"
+                hx-get="{% url 'recipes:ingredient_cancel_edit' recipe.id %}"
                 hx-target="#recipe-ingredients-form"
                 hx-swap="outerHTML">
             {% translate 'Cancel' %}

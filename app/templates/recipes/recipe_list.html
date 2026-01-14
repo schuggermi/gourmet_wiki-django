@@ -16,7 +16,7 @@
                 <c-go-back></c-go-back>
             </div>
 
-            <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'recipe-list-partial' %}" hx-target="#recipe-list-container"
+            <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'recipes:recipe-list-partial' %}" hx-target="#recipe-list-container"
                   hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
                 <c-input name="search" placeholder="{% translate 'Search recipes...' %}"
                          value="{{ search_query }}" w_full></c-input>

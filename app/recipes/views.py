@@ -54,7 +54,7 @@ def recipe_create(request):
             recipe.created_by = request.user
             recipe.save()
             response = HttpResponse()
-            response['HX-Redirect'] = reverse('recipe-edit', kwargs={'recipe_id': recipe.pk})
+            response['HX-Redirect'] = reverse('recipes:recipe-edit', kwargs={'recipe_id': recipe.pk})
             return response
             # return redirect("recipe-edit", recipe_id=recipe.id)
     else:
@@ -671,7 +671,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
                 instance.order = form.cleaned_data.get('order', index)
                 instance.save()
 
-        return redirect(reverse('recipe-detail', kwargs={'slug': recipe.slug}))
+        return redirect(reverse('recipes:recipe-detail', kwargs={'slug': recipe.slug}))
 
 
 class RecipeDetailView(SeoViewMixin, DetailView):
@@ -776,14 +776,14 @@ def delete_recipe(request, recipe_id):
                 # Clear the code from session
                 request.session.pop('recipe_delete_code', None)
                 return JsonResponse({
-                    "redirect_url": reverse('recipe-list')
+                    "redirect_url": reverse('recipes:recipe-list')
                 })
 
             recipe.delete()
             messages.success(request, _('Recipe successfully deleted.'))
             # Clear the code from session
             request.session.pop('recipe_delete_code', None)
-            return redirect('recipe-list')
+            return redirect('recipes:recipe-list')
         else:
             # Invalid code
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -801,7 +801,7 @@ def delete_recipe(request, recipe_id):
                 return render(request, "recipes/partials/delete_confirmation_modal.html", context=context, status=400)
 
             messages.error(request, _('Invalid confirmation code.'))
-            return redirect('recipe-detail', slug=recipe.slug)
+            return redirect('recipes:recipe-detail', slug=recipe.slug)
 
     # Generate a random confirmation code
     import random
