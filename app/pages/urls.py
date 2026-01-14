@@ -3,6 +3,9 @@ from django.urls import path
 from pages import views
 from pages.views import imprint, privacy, terms_of_use
 
+
+app_name = "pages"
+
 urlpatterns = [
     path('', views.home, name='home'),
     path('imprint/', imprint, name='imprint'),

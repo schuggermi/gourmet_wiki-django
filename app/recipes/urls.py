@@ -3,6 +3,9 @@ from django.urls import path
 from recipes import views
 
 
+app_name = 'recipes'
+
+
 urlpatterns = [
     path('new/', views.recipe_create, name='recipe-new'),
     path('edit/<int:recipe_id>/', views.recipe_edit, name='recipe-edit'),
