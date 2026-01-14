@@ -6,6 +6,9 @@ from django.views.generic import RedirectView, TemplateView
 from django.contrib.sitemaps.views import sitemap
 from core.sitemaps import StaticViewSitemap
 from recipes.sitemaps import RecipeSitemap
+from wiki.sitemaps import WikiSitemap
+from ingredients.sitemaps import IngredientSitemap
+from menus.sitemaps import MenuSitemap
 
 
 def handler404(request, exception):
@@ -39,6 +42,9 @@ urlpatterns = [
                   path('sitemap.xml', sitemap, {'sitemaps': {
                       'static': StaticViewSitemap,
                       'recipes': RecipeSitemap,
+                      'wiki': WikiSitemap,
+                      'ingredients': IngredientSitemap,
+                      'menus': MenuSitemap,
                   }}, name='sitemap'),
                   path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_txt'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \

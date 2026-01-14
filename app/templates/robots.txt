@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /admin/
+Disallow: /accounts/
+Disallow: /api-auth/
 Allow: /
 
 Sitemap: {{ SITE_URL|default:'https://example.com' }}/sitemap.xml
