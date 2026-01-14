@@ -1,7 +1,5 @@
-from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.shortcuts import render
 from django.urls import path, include
 from django.views.generic import RedirectView, TemplateView
@@ -44,5 +42,4 @@ urlpatterns = [
                   }}, name='sitemap'),
                   path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots_txt'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
-              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
-              debug_toolbar_urls()
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

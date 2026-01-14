@@ -60,7 +60,6 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
-    'debug_toolbar',
     'django_vite',
     'django_cotton',
     'formtools',
@@ -89,7 +88,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'core.middleware.RequireLoginMiddleware',
     'allauth.account.middleware.AccountMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'users.middleware.HTMXLoginRedirectMiddleware',
     'core.middleware.SuspiciousRequestMiddleware',
     # 'gourmet_wiki.middleware.GlobalRateLimitMiddleware',
@@ -120,7 +118,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
                 'core.context_processors.debug',
                 'core.context_processors.seo_defaults',
                 'gourmet_wiki.context_processors.cb_id',
