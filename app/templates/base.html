@@ -4,6 +4,10 @@
 <html lang="{{ request.LANGUAGE_CODE|default:'de' }}" data-theme="gourmet">
 <head>
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="{{ CB_ID }}" type="text/javascript" async></script>
+    <!-- Google Analytics -->
+    {% if GA_ID %}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
+    {% endif %}
 
     <meta name="google-site-verification" content="nNpjg2OPrWVhY5sfBlZCbPFqsPN0Rrz6otBWKZfBVMA" />
 
@@ -139,9 +143,6 @@
 <script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
 <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
 
-<!-- Google Analytics -->
-{% if GA_ID %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -249,7 +250,6 @@
 
     window.addEventListener('load', window.initializeSortable);
 </script>
-{% endif %}
 
 </body>
 </html>
