@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Page title - Should be set in child templates -->
-    <title>{% block title %}{{ page_title|default:'GourmetWiki' }}{% if page_title %} | GourmetWiki - Deine #1 Wissensküche{% else %} - Keine Werbung. Kein Rätselraten. Einfach kochen.{% endif %}{% endblock %}</title>
+    <title>{% block title %}{{ seo.title|default:'GourmetWiki' }}{% if seo.title %} | GourmetWiki - Deine #1 Wissensküche{% else %} - Keine Werbung. Kein Rätselraten. Einfach kochen.{% endif %}{% endblock %}</title>
 
     <!-- Page description for search engines -->
     <meta name="description"
-          content="{% block meta_description %}{{ page_description|default:'GourmetWiki - Rezepte von Köchen und leidenschaftlichen Hobbyköchen. Keine Werbung, keine Ablenkung. Von Profis entwickelt, für den Alltag geeignet. Jeder Schritt verständlich, jedes Gericht gelingt.' }}{% endblock %}">
+          content="{% block meta_description %}{{ seo.description|default:'GourmetWiki - Rezepte von Köchen und leidenschaftlichen Hobbyköchen. Keine Werbung, keine Ablenkung. Von Profis entwickelt, für den Alltag geeignet. Jeder Schritt verständlich, jedes Gericht gelingt.' }}{% endblock %}">
 
     <!-- Keywords for search engines -->
-    <meta name="keywords" content="{% block meta_keywords %}{{ page_keywords|default:'Rezepte ohne Werbung, Koch-Community, Profi-Rezepte, GourmetWiki, Kochrezepte Deutsch, Rezepte von Köchen, kulinarische Community, Koch-Wissensplattform' }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ seo.keywords|join:', '|default:'Rezepte ohne Werbung, Koch-Community, Profi-Rezepte, GourmetWiki, Kochrezepte Deutsch, Rezepte von Köchen, kulinarische Community, Koch-Wissensplattform' }}{% endblock %}">
 
     <!-- Author information -->
     <meta name="author" content="GourmetWiki - Schugge Solutions">
@@ -34,12 +34,12 @@
 
     <!-- Open Graph meta tags for better social media sharing -->
     {% block meta_og %}
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{{ seo.og_type|default:'website' }}">
     <meta property="og:site_name" content="GourmetWiki">
-    <meta property="og:title" content="{% firstof og_title page_title 'GourmetWiki - Deine #1 Wissensküche' %}">
-    <meta property="og:description" content="{% firstof og_description page_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Köchen und leidenschaftlichen Hobbyköchen - gekocht, getestet und von der Community empfohlen.' %}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
+    <meta property="og:title" content="{% firstof seo.title og_title 'GourmetWiki - Deine #1 Wissensküche' %}">
+    <meta property="og:description" content="{% firstof seo.description og_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Köchen und leidenschaftlichen Hobbyköchen - gekocht, getestet und von der Community empfohlen.' %}">
+    <meta property="og:url" content="{{ seo.canonical_url|default:request.build_absolute_uri }}">
+    <meta property="og:image" content="{% if seo.image_url %}{{ seo.image_url }}{% elif og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="GourmetWiki - Deine Wissensküche">
@@ -48,17 +48,20 @@
 
     <!-- Twitter Card meta tags for Twitter sharing -->
     {% block meta_twitter %}
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="{{ seo.twitter_card|default:'summary_large_image' }}">
     <meta name="twitter:site" content="@GourmetWiki">
-    <meta name="twitter:title" content="{% firstof twitter_title og_title page_title 'GourmetWiki - Deine #1 Wissensküche' %}">
-    <meta name="twitter:description" content="{% firstof twitter_description og_description page_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Profis für den Alltag.' %}">
-    <meta name="twitter:image" content="{% if twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
+    <meta name="twitter:title" content="{% firstof seo.title twitter_title og_title 'GourmetWiki - Deine #1 Wissensküche' %}">
+    <meta name="twitter:description" content="{% firstof seo.description twitter_description og_description 'Keine Werbung. Kein Rätselraten. Einfach kochen. Rezepte von Profis für den Alltag.' %}">
+    <meta name="twitter:image" content="{% if seo.image_url %}{{ seo.image_url }}{% elif twitter_image %}{{ twitter_image }}{% elif og_image %}{{ og_image }}{% elif DEFAULT_OG_IMAGE %}{{ DEFAULT_OG_IMAGE }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'favicons/android-chrome-512x512.png' %}{% endif %}">
     <meta name="twitter:image:alt" content="GourmetWiki Logo">
+    {% if seo.twitter_creator %}
+    <meta name="twitter:creator" content="{{ seo.twitter_creator }}">
+    {% endif %}
     {% endblock %}
 
     <!-- Canonical URL to prevent duplicate content issues -->
     {% block meta_canonical %}
-    <link rel="canonical" href="{{ canonical_url|default:request.build_absolute_uri }}">
+    <link rel="canonical" href="{{ seo.canonical_url|default:request.build_absolute_uri }}">
     {% endblock %}
 
     {% block meta_alternate %}
@@ -81,6 +84,9 @@
 
     {% block jsonld %}
     <!-- Structured data for search engines -->
+    {% if seo.json_ld %}
+        {{ seo.get_json_ld_script }}
+    {% else %}
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -95,6 +101,7 @@
         }
     }
     </script>
+    {% endif %}
     {% endblock %}
 
     {% block head %}{% endblock %}

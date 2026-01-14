@@ -18,6 +18,7 @@ from menus.formsets import MenuCourseFormSet, MenuItemFormSet
 from menus.models import Menu, MenuCourse, MenuItem
 from recipes.models import Recipe
 from recipes.utils import calculate_scaled_ingredients_menu
+from core.seo import SeoViewMixin
 
 
 @login_required
@@ -98,8 +99,10 @@ def menu_list_partial(request):
     return render(request, 'menus/partials/menu_list.html', context)
 
 
-class MenuListView(LoginRequiredMixin, ListView):
+class MenuListView(SeoViewMixin, LoginRequiredMixin, ListView):
     model = Menu
+    seo_title = "Menüs"
+    seo_description = "Erstelle und verwalte deine Menüs."
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -114,7 +117,7 @@ class MenuListView(LoginRequiredMixin, ListView):
         return context
 
 
-class MenuDetailView(LoginRequiredMixin, DetailView):
+class MenuDetailView(SeoViewMixin, LoginRequiredMixin, DetailView):
     model = Menu
 
     def get_context_data(self, **kwargs):

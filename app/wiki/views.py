@@ -3,12 +3,15 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from wiki.models import WikiArticle, Category
+from core.seo import SeoViewMixin
 
 
-class WikiArticleListView(ListView):
+class WikiArticleListView(SeoViewMixin, ListView):
     model = WikiArticle
     template_name = "wiki/article_list.html"
     context_object_name = "articles"
+    seo_title = "Wiki Artikel"
+    seo_description = "Durchsuche unsere Wiki-Artikel."
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -71,7 +74,7 @@ def article_list_partial(request):
     return render(request, 'wiki/partials/article_list.html', context)
 
 
-class WikiArticleDetailView(DetailView):
+class WikiArticleDetailView(SeoViewMixin, DetailView):
     model = WikiArticle
     template_name = "wiki/article_detail.html"
     context_object_name = "article"

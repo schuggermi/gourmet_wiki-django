@@ -12,6 +12,7 @@ from ingredients.models import Ingredient
 from recipes.services.cost_calculator import calculate_recipe_cost
 
 from core.models import CourseTypeChoice, SkillLevelChoice, UnitChoice
+from core.seo import SeoData
 
 User = get_user_model()
 
@@ -181,6 +182,73 @@ class Recipe(models.Model):
                 and self.images.exists()
                 and bool(self.skill_level)
                 and bool(self.course_type)
+        )
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('recipe-detail', kwargs={'pk': self.pk})
+
+    def get_seo_data(self, request) -> SeoData:
+        """
+        Generates SEO data for the Recipe instance.
+        """
+        # Construct keywords
+        keywords = [self.name, f"Rezept {self.name}"]
+        if self.course_type:
+            keywords.append(self.get_course_type_display())
+        keywords.append('GourmetWiki Rezept')
+
+        # Construct JSON-LD
+        json_ld = {
+            "@context": "https://schema.org",
+            "@type": "Recipe",
+            "name": self.name,
+            "description": self.description,
+            "author": {
+                "@type": "Person",
+                "name": self.created_by.get_full_name() or self.created_by.username
+            },
+            "datePublished": self.created_at.isoformat(),
+            "totalTime": f"PT{self.cooking_time_minutes}M",
+            "recipeYield": f"{self.portions} Portionen",
+            "recipeCategory": self.get_course_type_display(),
+            "keywords": ", ".join(keywords),
+            "recipeIngredient": [
+                f"{ing.quantity} {ing.get_unit_display()} {ing.name}" for ing in self.ingredients.all()
+            ],
+            "recipeInstructions": [
+                {
+                    "@type": "HowToStep",
+                    "text": step.step_text,
+                    "position": step.order
+                } for step in self.steps.all() if not step.is_section
+            ]
+        }
+        
+        # Add image if available
+        image_url = None
+        if self.images.exists():
+            image_url = request.build_absolute_uri(self.images.first().image.url)
+            json_ld["image"] = [image_url]
+
+        # Add rating if available
+        if self.ratings.exists():
+            json_ld["aggregateRating"] = {
+                "@type": "AggregateRating",
+                "ratingValue": str(self.average_rating),
+                "reviewCount": str(self.ratings.count()),
+                "bestRating": "5",
+                "worstRating": "1"
+            }
+
+        return SeoData(
+            title=f"{self.name} - Rezept",
+            description=self.description[:160] if self.description else f"Entdecke das Rezept für {self.name} auf GourmetWiki.",
+            keywords=keywords,
+            image_url=image_url,
+            canonical_url=request.build_absolute_uri(self.get_absolute_url()),
+            og_type="article",
+            json_ld=json_ld
         )
 
 

@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from recipes.models import Recipe
+from core.seo import SeoData
 
 User = get_user_model()
 
@@ -44,6 +45,49 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('menu_detail', kwargs={'pk': self.pk})
+
+    def get_seo_data(self, request) -> SeoData:
+        keywords = [self.name, "Menü", "GourmetWiki"]
+        
+        json_ld = {
+            "@context": "https://schema.org",
+            "@type": "Menu",
+            "name": self.name,
+            "description": self.description,
+            "hasMenuSection": []
+        }
+        
+        # Add menu sections/courses
+        for course in self.courses.all():
+            section = {
+                "@type": "MenuSection",
+                "name": course.get_course_type_display(),
+                "hasMenuItem": []
+            }
+            
+            # Find items for this course
+            items = self.items.filter(menu_course=course)
+            for item in items:
+                section["hasMenuItem"].append({
+                    "@type": "MenuItem",
+                    "name": item.recipe.name,
+                    "description": item.recipe.description
+                })
+                
+            json_ld["hasMenuSection"].append(section)
+
+        return SeoData(
+            title=f"{self.name} - Menü",
+            description=self.description[:160] if self.description else f"Entdecke das Menü {self.name} auf GourmetWiki.",
+            keywords=keywords,
+            canonical_url=request.build_absolute_uri(self.get_absolute_url()),
+            og_type="website", # Menus are collections, so website fits better than article
+            json_ld=json_ld
+        )
 
 
 class MenuItem(models.Model):

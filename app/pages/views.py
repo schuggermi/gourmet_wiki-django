@@ -3,8 +3,10 @@ from django.db.models import F, Func, Value, CharField
 from django.db.models.functions import Concat
 from django.shortcuts import render
 from django.utils.timezone import now
+from django.views.generic import TemplateView
 
 from recipes.models import Recipe
+from core.seo import SeoViewMixin, SeoData
 
 
 # @login_required
@@ -28,17 +30,42 @@ def home(request):
     )
 
     context['daily_random_recipes'] = daily_random_recipes
+    
+    # SEO Data for Home
+    seo_data = SeoData(
+        title="GourmetWiki - Deine #1 Wissensküche",
+        description="Deine #1 Wissensküche - Keine Werbung. Kein Rätselraten. Einfach kochen. Von Köchen und leidenschaftlichen Hobbyköchen.",
+        keywords=["Rezepte", "Kochen", "Gourmet", "Wiki", "Wissensküche"],
+        canonical_url=request.build_absolute_uri(request.path),
+        og_type="website"
+    )
+    context['seo'] = seo_data
 
     return render(request, "pages/home.html", context)
 
 
+class ImprintView(SeoViewMixin, TemplateView):
+    template_name = 'pages/imprint.html'
+    seo_title = "Impressum"
+    seo_description = "Impressum von GourmetWiki"
+
+class PrivacyView(SeoViewMixin, TemplateView):
+    template_name = 'pages/privacy.html'
+    seo_title = "Datenschutzerklärung"
+    seo_description = "Datenschutzerklärung von GourmetWiki"
+
+class TermsOfUseView(SeoViewMixin, TemplateView):
+    template_name = 'pages/terms_of_use.html'
+    seo_title = "Nutzungsbedingungen"
+    seo_description = "Nutzungsbedingungen von GourmetWiki"
+
 def imprint(request):
-    return render(request, 'pages/imprint.html')
+    return ImprintView.as_view()(request)
 
 
 def privacy(request):
-    return render(request, 'pages/privacy.html')
+    return PrivacyView.as_view()(request)
 
 
 def terms_of_use(request):
-    return render(request, 'pages/terms_of_use.html')
+    return TermsOfUseView.as_view()(request)

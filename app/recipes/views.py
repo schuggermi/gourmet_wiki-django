@@ -30,6 +30,7 @@ from recipes.forms import RecipePublishForm, RecipeForm, RecipeIngredientForm, R
 from recipes.formsets import RecipeIngredientFormSet, RecipeImageFormSet, RecipePreparationStepFormSet
 from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparationStep, RecipeRating
 from recipes.utils import calculate_scaled_ingredients_menu
+from core.seo import SeoViewMixin
 
 
 User = get_user_model()
@@ -411,8 +412,10 @@ def image_delete(request, recipe_id, image_id):
 """ NEW """
 
 
-class RecipeListView(ListView):
+class RecipeListView(SeoViewMixin, ListView):
     model = Recipe
+    seo_title = "Alle Rezepte"
+    seo_description = "Stöbere durch unsere Sammlung von köstlichen Rezepten."
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -429,6 +432,14 @@ class RecipeListView(ListView):
         context = super().get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('search', '')
         return context
+
+    def get_seo_data(self, context):
+        seo_data = super().get_seo_data(context)
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            seo_data.title = f"Suche: {search_query} - Rezepte"
+            seo_data.description = f"Suchergebnisse für '{search_query}' auf GourmetWiki."
+        return seo_data
 
 
 def recipe_list_partial(request):
@@ -658,7 +669,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
         return redirect(reverse('recipe-detail', kwargs={'pk': recipe.pk}))
 
 
-class RecipeDetailView(DetailView):
+class RecipeDetailView(SeoViewMixin, DetailView):
     model = Recipe
 
 

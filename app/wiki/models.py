@@ -4,6 +4,7 @@ import re
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
+from core.seo import SeoData
 
 User = get_user_model()
 
@@ -70,3 +71,34 @@ class WikiArticle(models.Model):
         # Save the final rendered HTML
         self.rendered_html = html
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('wiki:article_detail', kwargs={'slug': self.slug})
+
+    def get_seo_data(self, request) -> SeoData:
+        keywords = [self.title, "Wiki", "GourmetWiki"]
+        if self.category:
+            keywords.append(self.category.name)
+
+        json_ld = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": self.title,
+            "description": self.summary,
+            "author": {
+                "@type": "Person",
+                "name": self.author.get_full_name() or self.author.username if self.author else "GourmetWiki"
+            },
+            "datePublished": self.created_at.isoformat(),
+            "dateModified": self.updated_at.isoformat(),
+        }
+
+        return SeoData(
+            title=f"{self.title} - Wiki",
+            description=self.summary[:160] if self.summary else f"Lies den Artikel {self.title} auf GourmetWiki.",
+            keywords=keywords,
+            canonical_url=request.build_absolute_uri(self.get_absolute_url()),
+            og_type="article",
+            json_ld=json_ld
+        )
