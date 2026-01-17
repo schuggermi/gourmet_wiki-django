@@ -232,8 +232,8 @@ ACCOUNT_ADAPTER = 'users.adapters.CustomAccountAdapter'
 # SOCIALACCOUNT_ADAPTER = "users.adapters.CustomSocialAccountAdapter"
 
 if DEBUG:
-    #ACCOUNT_EMAIL_VERIFICATION = 'none'
-    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    ACCOUNT_EMAIL_VERIFICATION = 'none'
+    # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 else:
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 

@@ -32,6 +32,7 @@ from recipes.models import Recipe, RecipeIngredient, RecipeImage, RecipePreparat
 from recipes.utils import calculate_scaled_ingredients_menu
 from core.seo import SeoViewMixin
 
+from core.models import CourseTypeChoice
 
 User = get_user_model()
 
@@ -436,6 +437,8 @@ class RecipeListView(SeoViewMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search_query'] = self.request.GET.get('search', '')
+        context['course_types'] = dict(CourseTypeChoice.choices)
+        context['selected_course_types'] = self.request.GET.get('selected_course_types', [])
         return context
 
     def get_seo_data(self, context):
@@ -448,23 +451,48 @@ class RecipeListView(SeoViewMixin, ListView):
 
 
 def recipe_list_partial(request):
-    """
-    View to render the recipe list partial for htmx requests
-    """
-    queryset = Recipe.objects.all()
+    queryset = Recipe.objects.filter(is_published=True)
 
-    queryset = queryset.filter(is_published=True)
+    # --- filters ---
+    selected_course_types = request.GET.getlist("course_types")
+    toggle = request.GET.get("toggle_course_type")
 
-    search_query = request.GET.get('search', '')
+    if toggle:
+        if toggle in selected_course_types:
+            selected_course_types.remove(toggle)
+        else:
+            selected_course_types.append(toggle)
+
+    if selected_course_types:
+        queryset = queryset.filter(course_type__in=selected_course_types)
+
+    # --- search ---
+    search_query = request.GET.get("search", "")
     if search_query:
-        queryset = queryset.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
+        queryset = queryset.filter(
+            Q(name__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
 
     context = {
-        'object_list': queryset,
-        'search_query': search_query,
+        "object_list": queryset,
+        "selected_course_types": selected_course_types,
+        "course_types": dict(CourseTypeChoice.choices),
+        "search_query": search_query,
     }
 
-    return render(request, 'recipes/partials/recipe_list.html', context)
+    return render(
+        request,
+        "recipes/partials/recipe_search.html",
+        context,
+    )
+
+
+def filters_toggle(request):
+    open_state = request.GET.get("filters_open", "0") == "1"
+    return render(request, "recipes/partials/filters_toggle.html", {
+        "filters_open": open_state,
+    })
 
 
 # def add_preparation_step_form(request):

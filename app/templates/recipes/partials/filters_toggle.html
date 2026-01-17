@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<button
+    class="btn btn-sm btn-outline mb-2"
+    hx-get="{% url 'recipes:filters-toggle' %}?filters_open={{ filters_open|yesno:'0,1' }}"
+    hx-target="#filters-toggle"
+    hx-swap="outerHTML"
+>
+    {% if open %}
+        {% translate "Hide Filters" %}
+    {% else %}
+        {% translate "Show Filters" %}
+    {% endif %}
+</button>
+
+{% if open %}
+    {% include "recipes/partials/recipe_filters.html" %}
+{% endif %}

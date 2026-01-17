@@ -38,4 +38,6 @@ urlpatterns = [
     path('add-image-form/', views.add_image_form, name='add_image_form'),
     path('<int:recipe_id>/calculate-scaled-ingredients/', views.get_calculate_scaled_ingredients,
          name='calculate_scaled_ingredients'),
+
+    path("filters/toggle/", views.filters_toggle, name="filters-toggle"),
 ]

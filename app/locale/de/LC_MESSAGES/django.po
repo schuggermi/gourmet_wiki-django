@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-14 19:53+0000\n"
+"POT-Creation-Date: 2026-01-17 04:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -233,35 +233,35 @@ msgstr "Menge"
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:340 templates/recipes/_recipe_ingredients_form.html:9
+#: recipes/models.py:342 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:341 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:343 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
 #: templates/recipes/partials/recipe_detail.html:74
 #: templates/recipes/recipe_edit.html:52
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/models.py:365
+#: recipes/models.py:367
 msgid "Upload Image"
 msgstr "Bild hochladen"
 
-#: recipes/models.py:366
+#: recipes/models.py:368
 msgid "Select multiple images to upload"
 msgstr "Wähle mehrere Bilder zum Hochladen aus"
 
-#: recipes/views.py:96
+#: recipes/views.py:97
 msgid "Please complete the full recipe before publishing."
 msgstr "Bitte vervollständige das Rezept, bevor du es veröffentlichst."
 
-#: recipes/views.py:783
+#: recipes/views.py:804
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:795 recipes/views.py:803
+#: recipes/views.py:816 recipes/views.py:824
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1018,7 +1018,7 @@ msgstr "Deine primäre E-Mail-Adresse muss bestätigt werden."
 
 #: templates/account/password_change.html:6
 #: templates/account/password_change.html:10
-#: templates/account/password_change.html:40
+#: templates/account/password_change.html:76
 #: templates/account/password_reset_from_key.html:13
 #: templates/account/password_reset_from_key_done.html:6
 #: templates/account/password_reset_from_key_done.html:14
@@ -1026,7 +1026,7 @@ msgstr "Deine primäre E-Mail-Adresse muss bestätigt werden."
 msgid "Change Password"
 msgstr "Passwort ändern"
 
-#: templates/account/password_change.html:44
+#: templates/account/password_change.html:80
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
@@ -1438,7 +1438,7 @@ msgid "Search..."
 msgstr "Suchen..."
 
 #: templates/ingredients/ingredient_list.html:17
-#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:23
+#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:33
 #: templates/wiki/article_list.html:17
 msgid "Search"
 msgstr "Suchen"
@@ -2353,6 +2353,14 @@ msgstr "Menge"
 msgid "Persons"
 msgstr "Personen"
 
+#: templates/recipes/partials/recipe_filters.html:10
+msgid "Filter by course type"
+msgstr "Filter nach Gerichtsart"
+
+#: templates/recipes/partials/recipe_grid.html:5
+msgid "We don't have any Recipes listed yet."
+msgstr "Es sind noch keine Rezepte vorhanden."
+
 #: templates/recipes/partials/recipe_images_form.html:30
 msgid "No Images uploaded yet."
 msgstr "Noch keine Bilder hochgeladen."
@@ -2360,10 +2368,6 @@ msgstr "Noch keine Bilder hochgeladen."
 #: templates/recipes/partials/recipe_images_form.html:46
 msgid "Upload Image (max. 10 files)"
 msgstr "Bild hochladen (max. 10 Dateien)"
-
-#: templates/recipes/partials/recipe_list.html:5
-msgid "We don't have any Recipes listed yet."
-msgstr "Es sind noch keine Rezepte vorhanden."
 
 #: templates/recipes/partials/recipe_preparation_step_form.html:21
 msgid "+ Add Preparation Step"
@@ -2409,13 +2413,13 @@ msgstr "Schritte"
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
+#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:16
 #: templates/users/favorite_recipe_list.html:25
 #: templates/users/favorite_recipe_list.html:28
 msgid "Search in Recipes"
 msgstr "In Rezepten suchen"
 
-#: templates/recipes/recipe_list.html:21
+#: templates/recipes/recipe_list.html:27
 msgid "Search recipes..."
 msgstr "Rezepte durchsuchen..."
 

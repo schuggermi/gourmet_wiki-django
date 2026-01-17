@@ -10,22 +10,35 @@
     {{ block.super }}
 
     <div class="container pt-10 px-2 mx-auto flex flex-col gap-10 items-center justify-start">
-        <div class="w-full flex flex-col md:flex-row justify-between gap-5">
+        <div id="search-state" class="w-full flex flex-col gap-5">
             <div>
                 <h1>{% translate 'Search in Recipes' %}</h1>
                 <c-go-back></c-go-back>
             </div>
 
-            <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'recipes:recipe-list-partial' %}" hx-target="#recipe-list-container"
-                  hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
-                <c-input name="search" placeholder="{% translate 'Search recipes...' %}"
-                         value="{{ search_query }}" w_full></c-input>
-                <button type="submit" class="btn btn-primary ">{% translate 'Search' %}</button>
+            <form class="w-full flex gap-2"
+                      hx-get="{% url 'recipes:recipe-list-partial' %}"
+                      hx-target="#recipe-search"
+                      hx-trigger="submit, input[name='search'] keyup changed delay:500ms"
+                      hx-include="#search-state"
+                >
+                <div class="flex-1">
+                    <c-input name="search"
+                             placeholder="{% translate 'Search recipes...' %}"
+                             value="{{ search_query }}"
+                             w_full
+                    ></c-input>
+                </div>
+                <button type="submit" class="btn btn-primary ">
+                    {% translate 'Search' %}
+                </button>
             </form>
+
+            <!-- HTMX SWAP TARGET -->
+            <div id="recipe-search">
+                {% include "recipes/partials/recipe_search.html" %}
+            </div>
         </div>
 
-        <div id="recipe-list-container" class="w-full">
-            {% include "recipes/partials/recipe_list.html" %}
-        </div>
     </div>
 {% endblock %}
