@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 04:24+0000\n"
+"POT-Creation-Date: 2026-01-17 06:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,11 +257,11 @@ msgstr "Wähle mehrere Bilder zum Hochladen aus"
 msgid "Please complete the full recipe before publishing."
 msgstr "Bitte vervollständige das Rezept, bevor du es veröffentlichst."
 
-#: recipes/views.py:804
+#: recipes/views.py:819
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:816 recipes/views.py:824
+#: recipes/views.py:831 recipes/views.py:839
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1438,7 +1438,7 @@ msgid "Search..."
 msgstr "Suchen..."
 
 #: templates/ingredients/ingredient_list.html:17
-#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:33
+#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:39
 #: templates/wiki/article_list.html:17
 msgid "Search"
 msgstr "Suchen"
@@ -2337,6 +2337,14 @@ msgstr "Gib den obigen Code ein"
 msgid "Add to favorites"
 msgstr "Zu Favoriten hinzufügen"
 
+#: templates/recipes/partials/filters_toggle.html:12
+msgid "Hide Filters"
+msgstr "Filter verbergen"
+
+#: templates/recipes/partials/filters_toggle.html:14
+msgid "Show Filters"
+msgstr "Filter anzeigen"
+
 #: templates/recipes/partials/image_form_row.html:27
 msgid "Remove this Image"
 msgstr "Dieses Bild entfernen"
@@ -2353,7 +2361,7 @@ msgstr "Menge"
 msgid "Persons"
 msgstr "Personen"
 
-#: templates/recipes/partials/recipe_filters.html:10
+#: templates/recipes/partials/recipe_filters.html:5
 msgid "Filter by course type"
 msgstr "Filter nach Gerichtsart"
 
@@ -2413,13 +2421,13 @@ msgstr "Schritte"
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:16
+#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
 #: templates/users/favorite_recipe_list.html:25
 #: templates/users/favorite_recipe_list.html:28
 msgid "Search in Recipes"
 msgstr "In Rezepten suchen"
 
-#: templates/recipes/recipe_list.html:27
+#: templates/recipes/recipe_list.html:33
 msgid "Search recipes..."
 msgstr "Rezepte durchsuchen..."
 

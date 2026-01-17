@@ -2,21 +2,15 @@
 
 <!-- FILTERS -->
 <div id="filters" class="flex flex-col gap-2">
-    <!-- Hidden inputs hold selected course types -->
-    {% for key in selected_course_types %}
-        <input type="hidden" name="course_types" value="{{ key }}">
-    {% endfor %}
-
     <p>{% translate 'Filter by course type' %}</p>
     <div class="flex flex-wrap items-start justify-start gap-1">
         {% for course_type_key, course_type_value in course_types.items %}
             {% if course_type_key in selected_course_types %}
                 <!-- ACTIVE (click = remove filter) -->
                 <button
-                        class="btn btn-sm btn-primary"
+                        class="btn btn-sm btn-secondary"
                         hx-get="{% url 'recipes:recipe-list-partial' %}"
-                        hx-vals='{"toggle_course_type": "{{ course_type_key }}"}'
-                        hx-include="closest #filters"
+                        hx-vals='{"toggle_course_type": "{{ course_type_key }}", "open": "1"}'
                         hx-target="#recipe-search"
                         hx-include="#search-state"
                 >
@@ -26,8 +20,7 @@
                 <button
                         class="btn btn-sm btn-outline"
                         hx-get="{% url 'recipes:recipe-list-partial' %}"
-                        hx-vals='{"toggle_course_type": "{{ course_type_key }}"}'
-                        hx-include="closest #filters"
+                        hx-vals='{"toggle_course_type": "{{ course_type_key }}", "open": "1"}'
                         hx-target="#recipe-search"
                         hx-include="#search-state"
                 >
