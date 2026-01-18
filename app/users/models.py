@@ -1,7 +1,7 @@
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation.trans_null import gettext_lazy as _
+from users.managers import CustomUserManager
 
 
 class CustomUser(AbstractUser):
@@ -10,6 +10,8 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.email
