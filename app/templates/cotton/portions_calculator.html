@@ -1,3 +1,4 @@
+{% comment %}
 {% load i18n %}
 
 <div class="print:hidden inline-flex items-center gap-2">
@@ -38,4 +39,29 @@
             hx-swap="outerHTML">
         +
     </button>
+</div>{% endcomment %}
+
+{% load i18n %}
+
+
+<div class="print:hidden rounded-xl bg-base-200 p-4 max-w-xs">
+    <label class="block text-sm mb-2">
+        {% translate "Portions" %}
+    </label>
+
+    <input
+        type="range"
+        min="1"
+        max="12"
+        value="{{ portions_value }}"
+        class="range range-primary"
+        hx-get="{% url 'recipes:calculate_scaled_ingredients' recipe_id=recipe.pk %}"
+        hx-trigger="change"
+        hx-target="{{ hx_target }}"
+        name="portions"
+    >
+
+    <div class="mt-2 text-center font-bold text-lg">
+        {{ portions_value }}
+    </div>
 </div>

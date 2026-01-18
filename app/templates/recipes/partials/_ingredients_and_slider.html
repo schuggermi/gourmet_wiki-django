@@ -1,0 +1,8 @@
+<div id="recipe-ingredients">
+    {% include "recipes/partials/_portions_slider.html" %}
+    {% if ingredients %}
+        {% include 'recipes/partials/recipe_ingredients_list.html' with ingredients=ingredients %}
+    {% else %}
+        {% include 'recipes/partials/recipe_ingredients_list.html' with ingredients=recipe.ingredients.all %}
+    {% endif %}
+</div>

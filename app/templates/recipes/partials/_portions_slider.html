@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<div class="print:hidden rounded-xl bg-base-200 p-4 max-w-xs"
+     id="portions-slider">
+
+    <label class="block mb-2">
+        {% translate "Portions" %}
+    </label>
+
+    <input
+        type="range"
+        min="{{ recipe.portions }}"
+        max="16"
+        value="{{ portions_value }}"
+        name="portions"
+        class="range range-neutral"
+        hx-get="{% url 'recipes:calculate_scaled_ingredients' recipe_id=recipe.pk %}"
+        hx-trigger="input change delay:150ms"
+        hx-target="#recipe-ingredients"
+        hx-swap="outerHTML"
+        hx-include="#portions-slider"
+    >
+
+    <div class="mt-2 text-center font-bold text-lg tabular-nums">
+        {{ portions_value }}
+    </div amplified>
+</div>

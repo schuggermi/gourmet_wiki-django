@@ -68,36 +68,37 @@
     </div>{% endcomment %}
 
     <div class="w-full grid gap-10 grid-cols-1 md:grid-cols-2">
-        <!-- Recipe Ingredients -->
-        <div class="w-full flex flex-col gap-2">
-            <h3 class="whitespace-nowrap">{% translate 'Ingredients' %}</h3>
+        {% if recipe.ingredients %}
+        	<!-- Recipe Ingredients -->
+            <div class="w-full flex flex-col gap-2">
+                <h3 class="whitespace-nowrap">{% translate 'Ingredients' %}</h3>
 
-            <div class="max-w-[220px] self-start">
-                <c-portions-calculator :recipe="recipe" portions_value="{{ recipe.portions }}"
-                                       hx_target="#ingredients"></c-portions-calculator>
+                <div id="recipe-ingredients">
+                    {% include "recipes/partials/_ingredients_and_slider.html" %}
+                </div>
             </div>
+        {% endif %} 
 
-            {% include 'recipes/partials/recipe_ingredients_list.html' with ingredients=recipe.ingredients.all %}
-        </div>
+        {% if recipe.steps %}
+        	<!-- Preparation Steps -->
+            <div class="flex flex-col gap-5 justify-start">
+                <h3>{% translate 'Preparation' %}</h3>
 
-        <!-- Preparation Steps -->
-        <div class="flex flex-col gap-5 justify-start">
-            <h3>{% translate 'Preparation' %}</h3>
-
-            <ul class="flex flex-col list-none ps-0">
-                {% for step in recipe.ordered_preparation_steps %}
-                    {% if step.is_section %}
-                        <li class="{% if forloop.counter0 > 0 %}pt-2{% endif %}">
-                            <h4 class="font-semibold">{% translate 'Section' %}: <span class="text-secondary">{{ step.section_title }}</span></h4>
-                        </li>
-                    {% else %}
-                        <li class="flex flex-row gap-1 pt-1 print:py-0">
-                            <p>{{ step.step_text }}</p>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
+                <ul class="flex flex-col list-none ps-0">
+                    {% for step in recipe.ordered_preparation_steps %}
+                        {% if step.is_section %}
+                            <li class="{% if forloop.counter0 > 0 %}pt-2{% endif %}">
+                                <h4 class="font-semibold">{% translate 'Section' %}: <span class="text-secondary">{{ step.section_title }}</span></h4>
+                            </li>
+                        {% else %}
+                            <li class="flex flex-row gap-1 pt-1 print:py-0">
+                                <p>{{ step.step_text }}</p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 
     <!-- Nutruition Details -->

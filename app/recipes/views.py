@@ -715,14 +715,23 @@ class RecipeDetailView(SeoViewMixin, DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portions_value'] = self.get_object().portions
+        return context
+
 
 def get_calculate_scaled_ingredients(request, recipe_id):
+    portions = int(request.GET.get("portions", 4))
+
     recipe = get_object_or_404(Recipe, id=recipe_id)
     context = {
-        'ingredients': recipe.calculate_scaled_ingredients(int(request.GET.get('portions', recipe.portions)))
+        'recipe': recipe,
+        'ingredients': recipe.calculate_scaled_ingredients(int(request.GET.get('portions', recipe.portions))),
+        'portions_value': portions
     }
 
-    html = render_to_string('recipes/partials/recipe_ingredients_list.html', context)
+    html = render_to_string('recipes/partials/_ingredients_and_slider.html', context)
     return HttpResponse(html)
 
 
