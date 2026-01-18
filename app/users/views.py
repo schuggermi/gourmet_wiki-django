@@ -84,7 +84,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 class UserRecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
-    template_name = "users/recipe_list.html"
+    template_name = "users/cookbook.html"
 
     def get_queryset(self):
         return User.objects.get(pk=self.request.user.pk).recipe_set.all()
@@ -92,7 +92,7 @@ class UserRecipeListView(LoginRequiredMixin, ListView):
 
 class UserFavoriteRecipeListView(LoginRequiredMixin, ListView):
     model = Recipe
-    template_name = "users/favorite_recipe_list.html"
+    template_name = "users/favorites.html"
 
     def get_queryset(self):
         return User.objects.get(pk=self.request.user.pk).favorite_recipes.all()

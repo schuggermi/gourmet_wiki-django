@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block actions %}
-    {% if recipe.created_by == user %}
+    {% if recipe.author == user %}
     	<c-a url="#delete_confirmation_modal" onclick="showDeleteModal()"
             class="btn btn-error btn-outline btn-sm">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block sub_actions %}
-    {% if recipe.created_by == user %}
+    {% if recipe.author == user %}
         <c-rating data-average-rating="{{ recipe.average_rating }}"></c-rating>
         {% comment %}<button onclick="printElement('print-area')" class="cursor-pointer print:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -120,7 +120,7 @@
       "image": [{% with imgs=object.images.all %}{% for img in imgs %}"{{ img.image.url }}"{% if not forloop.last %}, {% endif %}{% empty %}"{{ DEFAULT_OG_IMAGE }}"{% endfor %}{% endwith %}],
       "author": {
         "@type": "Person",
-        "name": "{{ object.created_by.get_full_name|default:object.created_by.username|default:'Contributor' }}"
+        "name": "{{ object.created_by.get_full_name|default:object.author.username|default:'Contributor' }}"
       },
       "datePublished": "{{ object.created_at|date:'c' }}",
       "cookTime": "{{ object.total_time_str|default:"0 min" }}",

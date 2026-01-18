@@ -52,7 +52,7 @@ def recipe_create(request):
         form = RecipeCreateForm(request.POST)
         if form.is_valid():
             recipe = form.save(commit=False)
-            recipe.created_by = request.user
+            recipe.author = request.user
             recipe.save()
             response = HttpResponse()
             response['HX-Redirect'] = reverse('recipes:recipe-edit', kwargs={'recipe_id': recipe.pk})
@@ -439,6 +439,7 @@ class RecipeListView(SeoViewMixin, ListView):
         context['search_query'] = self.request.GET.get('search', '')
         context['course_types'] = dict(CourseTypeChoice.choices)
         context['selected_course_types'] = self.request.GET.get('selected_course_types', [])
+        context['seo_title'] = self.seo_title
         return context
 
     def get_seo_data(self, context):
@@ -451,7 +452,25 @@ class RecipeListView(SeoViewMixin, ListView):
 
 
 def recipe_list_partial(request):
-    queryset = Recipe.objects.filter(is_published=True)
+    # Check if we should include user's unpublished recipes
+    include_user_recipes = request.GET.get("include_user", "0") == "1"
+    # Check if we should show only user's favorite recipes
+    favorites_only = request.GET.get("favorites_only", "0") == "1"
+
+    # Start with published recipes OR recipes belonging to the logged-in user (if enabled)
+    if include_user_recipes and request.user.is_authenticated:
+        # Show published recipes + all recipes from the logged-in user
+        queryset = Recipe.objects.filter(
+            Q(is_published=True) | Q(author=request.user)
+        ).distinct()
+    else:
+        # Show only published recipes
+        queryset = Recipe.objects.filter(is_published=True)
+
+    # Filter to only favorites if requested
+    if favorites_only and request.user.is_authenticated:
+        favorite_ids = request.user.favorite_recipes.all().values_list('id', flat=True)
+        queryset = queryset.filter(id__in=favorite_ids)
 
     # --- filters ---
     open_state = request.GET.get("open", "0") == "1"
@@ -487,6 +506,8 @@ def recipe_list_partial(request):
         "course_types": dict(CourseTypeChoice.choices),
         "search_query": search_query,
         "open": open_state,
+        "include_user_recipes": include_user_recipes,
+        "favorites_only": favorites_only,
     }
 
     return render(
@@ -563,7 +584,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
     def dispatch(self, request, *args, **kwargs):
         self.recipe_id = kwargs.get('recipe_id')
         if self.recipe_id:
-            self.recipe_instance = get_object_or_404(Recipe, id=self.recipe_id, created_by=request.user.pk)
+            self.recipe_instance = get_object_or_404(Recipe, id=self.recipe_id, author=request.user.pk)
         return super().dispatch(request, *args, **kwargs)
 
     def get_form(self, step=None, data=None, files=None):
@@ -639,7 +660,7 @@ class CreateRecipeWizardView(LoginRequiredMixin, SessionWizardView):
             recipe = recipe_form.save()
         else:
             recipe = recipe_form.save(commit=False)
-            recipe.created_by = self.request.user
+            recipe.author = self.request.user
             recipe.save()
 
         # Step 1 – Ingredients
@@ -806,7 +827,7 @@ def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     # Check if the user is the owner of the recipe
-    if recipe.created_by != request.user:
+    if recipe.author != request.user:
         return HttpResponseForbidden()
 
     if request.method == "POST":

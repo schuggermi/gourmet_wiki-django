@@ -23,7 +23,7 @@ def create_profile_on_user_creation(sender, instance, created, **kwargs):
 def reward_recipe_submission(sender, instance, created, **kwargs):
     if created:
         try:
-            profile = instance.created_by.profile
+            profile = instance.author.profile
             profile.points += 25  # Points per Recipe
             profile.update_level()
         except Profile.DoesNotExist:

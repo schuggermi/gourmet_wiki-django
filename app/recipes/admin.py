@@ -22,9 +22,9 @@ class RecipePreparationStepInline(admin.TabularInline):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
-    list_display = ['name', 'course_type', 'skill_level', 'portions', 'created_by', 'created_at']
+    list_display = ['name', 'course_type', 'skill_level', 'portions', 'author', 'created_at']
     fields = [
-        'name', 'description', 'course_type', 'skill_level', 'thumbnail_image', 'created_by', 'created_at',
+        'name', 'description', 'course_type', 'skill_level', 'thumbnail_image', 'author', 'created_at',
         'portions',
         'working_time_hours', 'working_time_minutes', 'cooking_time_minutes',
         'rest_time_hours', 'rest_time_minutes',

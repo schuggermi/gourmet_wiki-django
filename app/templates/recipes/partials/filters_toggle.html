@@ -3,7 +3,7 @@
 <div id="filters-toggle" class="flex flex-col gap-2">
     <button
         class="btn btn-sm mb-2 btn-outline"
-        hx-get="{% url 'recipes:recipe-list-partial' %}"
+        hx-get="{% url 'recipes:recipe_list_partial' %}"
         hx-target="#recipe-search"
         hx-include="#search-state"
         hx-vals='{"open": "{{ open|yesno:'0,1' }}"}'

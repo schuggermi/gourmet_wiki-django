@@ -1,6 +1,15 @@
 {% load i18n %}
 
 <div class="dock dock-sm lg:hidden bg-base-300">
+    <c-a url="{% url 'recipes:recipe-new' %}"
+         hx-get="{% url 'recipes:recipe-new' %}"
+         hx-target="#modal-container"
+         hx-swap="innerHTML"
+         class="hover:scale-105 text-center bg-primary rounded-md tooltip tooltip-bottom tooltip-primary">
+        <c-add-recipe-icon></c-add-recipe-icon>
+        <span class="dock-label">{% translate 'Add Recipe' %}</span>
+    </c-a>
+
     <c-a url="{% url 'cookbook' %}"
          class="hover:scale-105 tooltip tooltip-bottom tooltip-primary">
         <c-cookbook-icon></c-cookbook-icon>
@@ -11,15 +20,6 @@
          class="hover:scale-105 tooltip tooltip-bottom tooltip-primary">
         <c-favorites-icon></c-favorites-icon>
         <span class="dock-label">{% translate 'Favorites' %}</span>
-    </c-a>
-
-    <c-a url="{% url 'recipes:recipe-new' %}"
-         hx-get="{% url 'recipes:recipe-new' %}"
-         hx-target="#modal-container"
-         hx-swap="innerHTML"
-         class="hover:scale-105 text-center tooltip tooltip-bottom tooltip-primary">
-        <c-add-recipe-icon></c-add-recipe-icon>
-        <span class="dock-label">{% translate 'Add Recipe' %}</span>
     </c-a>
 
     {% comment %}<c-a url="{% url 'menu_create' %}"

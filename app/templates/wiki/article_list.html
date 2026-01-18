@@ -2,22 +2,35 @@
 {% load i18n %}
 
 {% block main_content %}
-    <div class="container pt-10 px-2 lg:pt-20 flex flex-col gap-20">
-        <div class="w-full flex flex-col md:flex-row justify-between gap-5">
+    {{ block.super }}
+
+    <div class="container pt-10 px-2 mx-auto flex flex-col gap-10 items-center justify-start lg:max-w-3xl">
+        <div class="w-full flex flex-col gap-5">
             <div>
                 <h1>{% translate 'Wiki' %}</h1>
                 <c-go-back></c-go-back>
             </div>
 
-            <form class="w-full md:w-fit flex gap-2 items-start" hx-get="{% url 'wiki:article_list_partial' %}"
-                  hx-target="#article-list-container"
-                  hx-trigger="submit, input[name='search'] keyup changed delay:500ms">
-                <c-input name="search" placeholder="{% translate 'Search wiki...' %}"
-                         value="{{ search_query }}"></c-input>
-                <button type="submit" class="btn btn-primary ">{% translate 'Search' %}</button>
-            </form>
-        </div>
+            <div id="search-state">
+                <form class="w-full flex gap-2"
+                      hx-get="{% url 'wiki:article_list_partial' %}"
+                      hx-target="#article-search"
+                      hx-trigger="submit, input[name='search'] keyup changed delay:500ms"
+                >
+                    <div class="flex-1">
+                        <c-input name="search"
+                                 placeholder="{% translate 'Search wiki...' %}"
+                                 value="{{ search_query }}"
+                                 w_full
+                        ></c-input>
+                    </div>
+                </form>
+            </div>
 
-        {% include 'wiki/partials/article_list.html' %}
+            <!-- HTMX SWAP TARGET -->
+            <div id="article-search">
+                {% include 'wiki/partials/article_list.html' %}
+            </div>
+        </div>
     </div>
 {% endblock %}

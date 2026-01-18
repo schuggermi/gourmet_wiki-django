@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 06:05+0000\n"
+"POT-Creation-Date: 2026-01-18 23:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,19 +101,19 @@ msgstr "Dessert"
 msgid "Digestif"
 msgstr "Digestif"
 
-#: core/models.py:33 users/models.py:9
+#: core/models.py:33 users/models.py:27
 msgid "Beginner"
 msgstr "Anfänger"
 
-#: core/models.py:34 users/models.py:10
+#: core/models.py:34 users/models.py:28
 msgid "Intermediate"
 msgstr "Fortgeschritten"
 
-#: core/models.py:35 users/models.py:11
+#: core/models.py:35 users/models.py:29
 msgid "Advanced"
 msgstr "Erfahren"
 
-#: core/models.py:36 users/models.py:12
+#: core/models.py:36 users/models.py:30
 msgid "Professional"
 msgstr "Profi"
 
@@ -180,8 +180,9 @@ msgstr "Beschreibung"
 msgid "Course"
 msgstr "Gang"
 
-#: recipes/models.py:59 templates/cotton/portions_calculator.html:24
+#: recipes/models.py:59 templates/cotton/portions_calculator.html:50
 #: templates/menus/partials/menu_form.html:24
+#: templates/recipes/partials/_portions_slider.html:7
 msgid "Portions"
 msgstr "Portionen"
 
@@ -240,7 +241,7 @@ msgstr "Zutat"
 
 #: recipes/models.py:343 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:74
+#: templates/recipes/partials/recipe_detail.html:75
 #: templates/recipes/recipe_edit.html:52
 msgid "Ingredients"
 msgstr "Zutaten"
@@ -257,11 +258,11 @@ msgstr "Wähle mehrere Bilder zum Hochladen aus"
 msgid "Please complete the full recipe before publishing."
 msgstr "Bitte vervollständige das Rezept, bevor du es veröffentlichst."
 
-#: recipes/views.py:819
+#: recipes/views.py:841
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:831 recipes/views.py:839
+#: recipes/views.py:853 recipes/views.py:861
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -852,7 +853,7 @@ msgstr ""
 "Wenn du das warst, kannst du über den Button unten ein Konto erstellen:"
 
 #: templates/account/email/unknown_account_message.html:30
-#: templates/account/signup.html:98
+#: templates/account/signup.html:101
 msgid "Sign Up"
 msgstr "Registrieren"
 
@@ -948,11 +949,11 @@ msgstr "Du hast noch kein Konto bei Gourmet Wiki?"
 msgid "Sign Up Now"
 msgstr "Jetzt registrieren"
 
-#: templates/account/login.html:86 templates/account/signup.html:119
+#: templates/account/login.html:86 templates/account/signup.html:122
 msgid "Sign in with a passkey"
 msgstr "Mit Passkey anmelden"
 
-#: templates/account/login.html:91 templates/account/signup.html:124
+#: templates/account/login.html:91 templates/account/signup.html:127
 msgid "Send me a sign-in code"
 msgstr "Sende mir einen Anmeldecode"
 
@@ -1022,7 +1023,7 @@ msgstr "Deine primäre E-Mail-Adresse muss bestätigt werden."
 #: templates/account/password_reset_from_key.html:13
 #: templates/account/password_reset_from_key_done.html:6
 #: templates/account/password_reset_from_key_done.html:14
-#: templates/users/profile.html:109
+#: templates/users/profile.html:106
 msgid "Change Password"
 msgstr "Passwort ändern"
 
@@ -1066,12 +1067,12 @@ msgstr "Dein Passwort wurde erfolgreich geändert."
 msgid "Set Password"
 msgstr "Passwort setzen"
 
-#: templates/account/signup.html:108
+#: templates/account/signup.html:111
 msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
-#: templates/account/signup.html:110 templates/errors/403.html:28
-#: templates/partials/navbar.html:132
+#: templates/account/signup.html:113 templates/errors/403.html:28
+#: templates/partials/navbar.html:128
 msgid "Log In"
 msgstr "Anmelden"
 
@@ -1094,21 +1095,19 @@ msgid "Visit our website"
 msgstr "Besuche unsere Website"
 
 #: templates/cotton/dock.html:7 templates/cotton/quick_actions.html:4
-#: templates/users/profile.html:66 templates/users/recipe_list.html:6
-#: templates/users/recipe_list.html:16
+#: templates/users/profile.html:63
 msgid "Cookbook"
 msgstr "Kochbuch"
 
 #: templates/cotton/dock.html:13 templates/cotton/quick_actions.html:8
-#: templates/users/favorite_recipe_list.html:16 templates/users/profile.html:84
+#: templates/users/profile.html:81
 msgid "Favorites"
 msgstr "Favoriten"
 
 #: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:16
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
-#: templates/users/profile.html:58 templates/users/recipe_list.html:31
-#: templates/users/recipe_list.html:41
+#: templates/users/profile.html:55
 msgid "Add Recipe"
 msgstr "Neues Rezept"
 
@@ -1438,13 +1437,12 @@ msgid "Search..."
 msgstr "Suchen..."
 
 #: templates/ingredients/ingredient_list.html:17
-#: templates/menus/menu_list.html:23 templates/recipes/recipe_list.html:39
-#: templates/wiki/article_list.html:17
+#: templates/menus/menu_list.html:23
 msgid "Search"
 msgstr "Suchen"
 
 #: templates/ingredients/partials/ingredient_list.html:4
-#: templates/wiki/partials/article_list.html:4
+#: templates/wiki/partials/article_list.html:5
 msgid "Categories"
 msgstr "Kategorien"
 
@@ -2171,24 +2169,24 @@ msgstr "Alle Rezepte"
 msgid "Culinary Wiki"
 msgstr "Kulinarisches Wiki"
 
-#: templates/partials/navbar.html:82 templates/wiki/article_list.html:8
+#: templates/partials/navbar.html:82 templates/wiki/article_list.html:10
 msgid "Wiki"
 msgstr "Wiki"
 
-#: templates/partials/navbar.html:110 templates/users/profile.html:6
+#: templates/partials/navbar.html:106 templates/users/profile.html:6
 #: templates/users/profile.html:12
 msgid "Your Profile"
 msgstr "Dein Profil"
 
-#: templates/partials/navbar.html:117
+#: templates/partials/navbar.html:113
 msgid "Logout"
 msgstr "Abmelden"
 
-#: templates/partials/navbar.html:122
+#: templates/partials/navbar.html:118
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/partials/navbar.html:125
+#: templates/partials/navbar.html:121
 msgid "Sign up"
 msgstr "Registrieren"
 
@@ -2421,13 +2419,7 @@ msgstr "Schritte"
 msgid "Publish"
 msgstr "Veröffentlichen"
 
-#: templates/recipes/recipe_list.html:6 templates/recipes/recipe_list.html:15
-#: templates/users/favorite_recipe_list.html:25
-#: templates/users/favorite_recipe_list.html:28
-msgid "Search in Recipes"
-msgstr "In Rezepten suchen"
-
-#: templates/recipes/recipe_list.html:33
+#: templates/recipes/recipe_list.html:28
 msgid "Search recipes..."
 msgstr "Rezepte durchsuchen..."
 
@@ -2454,9 +2446,21 @@ msgstr "Weiter"
 msgid "or"
 msgstr "oder"
 
-#: templates/users/favorite_recipe_list.html:24
-msgid "You don't have any Favorites added yet."
-msgstr "Du hast noch keine Favoriten hinzugefügt."
+#: templates/users/cookbook.html:10
+msgid "My Cookbook"
+msgstr "Mein Kochbuch"
+
+#: templates/users/cookbook.html:29
+msgid "Search cookbook..."
+msgstr "Kochbuch durchsuchen..."
+
+#: templates/users/favorites.html:10
+msgid "My Favorites"
+msgstr "Meine Favoriten"
+
+#: templates/users/favorites.html:29
+msgid "Search favorites..."
+msgstr "Favoriten durchsuchen..."
 
 #: templates/users/partials/delete_confirmation_modal.html:5
 #: templates/users/partials/delete_confirmation_modal.html:47
@@ -2482,7 +2486,7 @@ msgstr "Bitte gib zur Bestätigung deinen vollständigen Namen ein:"
 msgid "Please enter your email to confirm:"
 msgstr "Bitte gib zur Bestätigung deine E-Mail-Adresse ein:"
 
-#: templates/users/profile.html:34
+#: templates/users/profile.html:31
 #, python-format
 msgid ""
 "%(points)s points missing till next level <span class=\"text-"
@@ -2491,11 +2495,11 @@ msgstr ""
 "%(points)s Punkte fehlen bis zum nächsten Level <span class=\"text-"
 "secondary\">%(level)s</span>"
 
-#: templates/users/profile.html:41
+#: templates/users/profile.html:38
 msgid "Badges:"
 msgstr "Abzeichen:"
 
-#: templates/users/profile.html:69 templates/users/profile.html:87
+#: templates/users/profile.html:66 templates/users/profile.html:84
 #, python-format
 msgid ""
 "\n"
@@ -2514,19 +2518,15 @@ msgstr[1] ""
 "                                %(recipe_count)s Rezepte\n"
 "                            "
 
-#: templates/users/profile.html:111
+#: templates/users/profile.html:108
 msgid "Delete Account"
 msgstr "Konto löschen"
-
-#: templates/users/recipe_list.html:24
-msgid "You don't have any Recipes added yet."
-msgstr "Du hast noch keine Rezepte hinzugefügt."
 
 #: templates/users/user_confirm_delete.html:21
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
-#: templates/wiki/article_list.html:15
+#: templates/wiki/article_list.html:22
 msgid "Search wiki..."
 msgstr "Wiki durchsuchen..."
 
@@ -2534,24 +2534,24 @@ msgstr "Wiki durchsuchen..."
 msgid "I accept the terms of use and the privacy policy"
 msgstr "Ich akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung"
 
-#: users/management/commands/initgroups.py:11 users/models.py:50
+#: users/management/commands/initgroups.py:11 users/models.py:68
 msgid "Guest"
 msgstr "Gast"
 
-#: users/management/commands/initgroups.py:12 users/models.py:51
-#: users/models.py:200
+#: users/management/commands/initgroups.py:12 users/models.py:69
+#: users/models.py:222
 msgid "Member"
 msgstr "Mitglied"
 
-#: users/management/commands/initgroups.py:13 users/models.py:52
+#: users/management/commands/initgroups.py:13 users/models.py:70
 msgid "Author"
 msgstr "Autor:in"
 
-#: users/management/commands/initgroups.py:14 users/models.py:53
+#: users/management/commands/initgroups.py:14 users/models.py:71
 msgid "Expert"
 msgstr "Expert:in"
 
-#: users/management/commands/initgroups.py:15 users/models.py:54
+#: users/management/commands/initgroups.py:15 users/models.py:72
 msgid "Curator"
 msgstr "Kurator:in"
 
@@ -2559,75 +2559,79 @@ msgstr "Kurator:in"
 msgid "Moderator"
 msgstr "Moderator:in"
 
-#: users/models.py:19
+#: users/models.py:9
+msgid "email address"
+msgstr "E-Mail-Adresse"
+
+#: users/models.py:37
 msgid "Kitchen Newbie"
 msgstr "Küchenneuling"
 
-#: users/models.py:20
+#: users/models.py:38
 msgid "Recipe Explorer"
 msgstr "Rezeptentdecker:in"
 
-#: users/models.py:21
+#: users/models.py:39
 msgid "Kitchen Connoisseur"
 msgstr "Küchenkenner:in"
 
-#: users/models.py:22
+#: users/models.py:40
 msgid "Knowledge Contributor"
 msgstr "Wissensstifter:in"
 
-#: users/models.py:23
+#: users/models.py:41
 msgid "Community Pioneer"
 msgstr "Community-Vorreiter:in"
 
-#: users/models.py:24
+#: users/models.py:42
 msgid "Professional Author"
 msgstr "Fachautor:in"
 
-#: users/models.py:25
+#: users/models.py:43
 msgid "Kitchen Mentor"
 msgstr "Küchenmentor:in"
 
-#: users/models.py:26
+#: users/models.py:44
 msgid "Gourmet Master"
 msgstr "Gourmet Master"
 
-#: users/models.py:38
+#: users/models.py:56
 msgid "Entry into the platform"
 msgstr "Einstieg in die Plattform"
 
-#: users/models.py:39
+#: users/models.py:57
 msgid "First own contributions"
 msgstr "Erste eigene Inhalte"
 
-#: users/models.py:40
+#: users/models.py:58
 msgid "Contributions with added value"
 msgstr "Beiträge mit Mehrwert"
 
-#: users/models.py:41
+#: users/models.py:59
 msgid "Strong professional contribution"
 msgstr "Starker fachlicher Beitrag"
 
-#: users/models.py:42
+#: users/models.py:60
 msgid "High activity & quality"
 msgstr "Hohe Aktivität & Qualität"
 
-#: users/models.py:43
+#: users/models.py:61
 msgid "Recognized professional profile"
 msgstr "Anerkanntes Fachprofil"
 
-#: users/models.py:44
+#: users/models.py:62
 msgid "Actively supports others"
 msgstr "Unterstützt andere aktiv"
 
-#: users/models.py:45
+#: users/models.py:63
 msgid "Represents the platform"
 msgstr "Repräsentiert die Plattform"
 
-#: users/models.py:55
+#: users/models.py:73
 msgid "Admin"
 msgstr "Admin"
 
-#: users/models.py:204
+#: users/models.py:226
 msgid "Joined as a Community Member"
 msgstr "Als Community-Mitglied beigetreten"
 
@@ -2646,5 +2650,11 @@ msgstr ""
 msgid "Your account has been deleted."
 msgstr "Dein Konto wurde gelöscht."
 
-#~ msgid "Search articles..."
-#~ msgstr "Artikel durchsuchen..."
+#~ msgid "Search in Recipes"
+#~ msgstr "In Rezepten suchen"
+
+#~ msgid "You don't have any Favorites added yet."
+#~ msgstr "Du hast noch keine Favoriten hinzugefügt."
+
+#~ msgid "You don't have any Recipes added yet."
+#~ msgstr "Du hast noch keine Rezepte hinzugefügt."

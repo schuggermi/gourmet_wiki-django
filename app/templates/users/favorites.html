@@ -7,7 +7,7 @@
     <div class="container pt-10 px-2 mx-auto flex flex-col gap-10 items-center justify-start lg:max-w-3xl">
         <div class="w-full flex flex-col gap-5">
             <div>
-                <h1>{{ seo_title }}</h1>
+                <h1>{% translate 'My Favorites' %}</h1>
                 <c-go-back></c-go-back>
             </div>
 
@@ -18,6 +18,8 @@
                       hx-trigger="submit, input[name='search'] keyup changed delay:500ms"
                 >
                     <input type="hidden" name="open" value="{{ open|yesno:'1,0' }}">
+                    <input type="hidden" name="include_user" value="1">
+                    <input type="hidden" name="favorites_only" value="1">
 
                     {% for key in selected_course_types %}
                         <input type="hidden" name="course_types" value="{{ key }}">
@@ -25,7 +27,7 @@
 
                     <div class="flex-1">
                         <c-input name="search"
-                                 placeholder="{% translate 'Search recipes...' %}"
+                                 placeholder="{% translate 'Search favorites...' %}"
                                  value="{{ search_query }}"
                                  w_full
                         ></c-input>
@@ -37,6 +39,18 @@
             <div id="recipe-search">
                 {% include "recipes/partials/recipe_search.html" %}
             </div>
+
+            {% comment %}<div class="flex flex-col gap-10 w-full">
+                {% if not object_list %}
+                    <div class="flex flex-col gap-5 items-center">
+                        <p class="text-center">{% translate "You don't have any Favorites added yet." %}</p>
+                        <c-a url="{% url 'recipes:recipe-list' %}" class="btn btn-primary ">{% translate 'Search in Recipes' %}</c-a>
+                    </div>
+                {% else %}
+                    <c-a url="{% url 'recipes:recipe-list' %}" class="btn btn-primary  w-fit self-end">{% translate 'Search in Recipes' %}</c-a>
+                    {% include "recipes/partials/recipe_list.html" %}
+                {% endif %}
+            </div>{% endcomment %}
         </div>
     </div>
 {% endblock %}

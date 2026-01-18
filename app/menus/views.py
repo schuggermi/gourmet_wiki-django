@@ -199,7 +199,7 @@ class CreateMenuWizardView(LoginRequiredMixin, SessionWizardView):
             menu = menu_form.save()
         else:
             menu = menu_form.save(commit=False)
-            menu.created_by = self.request.user
+            menu.author = self.request.user
             menu.save()
 
         # Step 1 – Menu Courses

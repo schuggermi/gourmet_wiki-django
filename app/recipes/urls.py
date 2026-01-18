@@ -6,6 +6,7 @@ from recipes import views
 app_name = 'recipes'
 
 
+
 urlpatterns = [
     path('new/', views.recipe_create, name='recipe-new'),
     path('edit/<int:recipe_id>/', views.recipe_edit, name='recipe-edit'),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('edit/<int:recipe_id>/images/reorder/', views.image_reorder, name='image_reorder'),
 
     path('', views.RecipeListView.as_view(), name='recipe-list'),
-    path('partial/', views.recipe_list_partial, name='recipe-list-partial'),
+    path('partial/', views.recipe_list_partial, name='recipe_list_partial'),
     path('create/', views.CreateRecipeWizardView.as_view(), name='recipe-create'),
     path('<int:pk>/', views.recipe_detail_redirect, name='recipe-detail-redirect'),
     path('<slug:slug>/', views.RecipeDetailView.as_view(), name='recipe-detail'),

@@ -9,7 +9,7 @@
                 <!-- ACTIVE (click = remove filter) -->
                 <button
                         class="btn btn-sm btn-secondary"
-                        hx-get="{% url 'recipes:recipe-list-partial' %}"
+                        hx-get="{% url 'recipes:recipe_list_partial' %}"
                         hx-vals='{"toggle_course_type": "{{ course_type_key }}", "open": "1"}'
                         hx-target="#recipe-search"
                         hx-include="#search-state"
@@ -19,7 +19,7 @@
             {% else %}
                 <button
                         class="btn btn-sm btn-outline"
-                        hx-get="{% url 'recipes:recipe-list-partial' %}"
+                        hx-get="{% url 'recipes:recipe_list_partial' %}"
                         hx-vals='{"toggle_course_type": "{{ course_type_key }}", "open": "1"}'
                         hx-target="#recipe-search"
                         hx-include="#search-state"

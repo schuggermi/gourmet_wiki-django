@@ -34,7 +34,7 @@ class Recipe(models.Model):
         blank=True,
         null=True,
     )
-    created_by = models.ForeignKey(
+    author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
     )
@@ -93,7 +93,7 @@ class Recipe(models.Model):
         ordering = ['-created_at']
         verbose_name = _("Recipe")
         verbose_name_plural = _("Recipes")
-        unique_together = ('name', 'created_by')
+        unique_together = ('name', 'author')
 
 
     def save(self, *args, **kwargs):
@@ -224,7 +224,7 @@ class Recipe(models.Model):
             "description": self.description,
             "author": {
                 "@type": "Person",
-                "name": self.created_by.get_full_name() or self.created_by.username
+                "name": self.author.get_full_name() or self.author.username
             },
             "datePublished": self.created_at.isoformat(),
             "totalTime": f"PT{self.cooking_time_minutes}M",

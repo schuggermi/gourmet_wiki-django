@@ -7,7 +7,7 @@
     <div class="container pt-10 px-2 mx-auto flex flex-col gap-10 items-center justify-start lg:max-w-3xl">
         <div class="w-full flex flex-col gap-5">
             <div>
-                <h1>{{ seo_title }}</h1>
+                <h1>{% translate 'My Cookbook' %}</h1>
                 <c-go-back></c-go-back>
             </div>
 
@@ -18,6 +18,7 @@
                       hx-trigger="submit, input[name='search'] keyup changed delay:500ms"
                 >
                     <input type="hidden" name="open" value="{{ open|yesno:'1,0' }}">
+                    <input type="hidden" name="include_user" value="1">
 
                     {% for key in selected_course_types %}
                         <input type="hidden" name="course_types" value="{{ key }}">
@@ -25,7 +26,7 @@
 
                     <div class="flex-1">
                         <c-input name="search"
-                                 placeholder="{% translate 'Search recipes...' %}"
+                                 placeholder="{% translate 'Search cookbook...' %}"
                                  value="{{ search_query }}"
                                  w_full
                         ></c-input>
@@ -40,3 +41,4 @@
         </div>
     </div>
 {% endblock %}
+

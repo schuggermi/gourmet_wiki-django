@@ -50,7 +50,7 @@ class Command(BaseCommand):
                 recipe = Recipe.objects.create(
                     name=recipe_data.get('name', ''),
                     description=recipe_data.get('description', ''),
-                    created_by=user,
+                    author=user,
                     course_type=recipe_data.get('course_type', 'main'),
                     portions=recipe_data.get('portions', 4),
                     cooking_time_minutes=recipe_data.get('cooking_time_minutes', 30),
