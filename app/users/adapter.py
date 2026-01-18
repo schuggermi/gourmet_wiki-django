@@ -1,4 +1,4 @@
-from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
+# from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,20 +11,22 @@ from django.contrib.staticfiles import finders
 logger = logging.getLogger(__name__)
 
 
-class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
-    def populate_user(self, request, sociallogin, data):
-        user = super().populate_user(request, sociallogin, data)
-
-        user.first_name = data.get("given_name", "")
-        user.last_name = data.get("family_name", "")
-        user.save()
-
-        return user
+# class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
+#     def populate_user(self, request, sociallogin, data):
+#         user = super().populate_user(request, sociallogin, data)
+#
+#         user.first_name = data.get("given_name", "")
+#         user.last_name = data.get("family_name", "")
+#         user.save()
+#
+#         return user
 
 
 class CustomAccountAdapter(DefaultAccountAdapter):
+    def clean_email(self, email):
+        return email.lower()
 
-    def render_mail(self, template_prefix, email, context):
+    def render_mail(self, template_prefix, email, context, headers=None):
         """
         Render both text and HTML versions of email
         Returns: (subject, text_body, html_body)

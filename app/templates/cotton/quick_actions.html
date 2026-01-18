@@ -1,10 +1,10 @@
 {% load i18n %}
 
-<c-a url="{% url 'users-profile-recipes' %}"
+<c-a url="{% url 'cookbook' %}"
      class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent" data-tip="{% translate 'Cookbook' %}">
     <c-cookbook-icon></c-cookbook-icon>
 </c-a>
-<c-a url="{% url 'users-profile-favorite-recipes' %}"
+<c-a url="{% url 'favorites' %}"
      class="hover:scale-105 tooltip tooltip-bottom tooltip-neutral dark:tooltip-accent" data-tip="{% translate 'Favorites' %}">
     <c-favorites-icon></c-favorites-icon>
 </c-a>

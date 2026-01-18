@@ -31,22 +31,22 @@
                         </ul>
                     {% endif %}
 
-                    <div class="flex gap-1">
+                    {% comment %}<div class="flex gap-1">
                         <div class="text-start">
                             <c-input :field="form.first_name" type="text" labeled w_full></c-input>
                         </div>
                         <div class="text-start">
                             <c-input :field="form.last_name" type="text" labeled w_full></c-input>
                         </div>
-                    </div>
+                    </div>{% endcomment %}
                     <div class="text-start">
                         <c-input :field="form.email" type="text" labeled w_full></c-input>
                     </div>
-                    <div class="text-start">
+                    {% comment %}<div class="text-start">
                         <c-input :field="form.username" type="text" labeled w_full></c-input>
-                    </div>
+                    </div>{% endcomment %}
                     <div class="relative w-full">
-                        <c-input :field="form.password1" type="password" labeled w_full class="pr-10">
+                        <c-input :field="form.password1" type="password" labeled w_full no_help class="pr-10">
                             <button type="button"
                                     class="password-toggle swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer"
                                     aria-expanded="false">
@@ -66,7 +66,7 @@
                             </button>
                         </c-input>
                     </div>
-                    <div class="relative w-full">
+                    {% comment %}<div class="relative w-full">
                         <c-input :field="form.password2" type="password" labeled w_full class="pr-10">
                             <button type="button"
                                     class="password-toggle swap absolute inset-y-0 z-20 right-0 pr-3 cursor-pointer"
@@ -86,7 +86,7 @@
                                 </svg>
                             </button>
                         </c-input>
-                    </div>
+                    </div>{% endcomment %}
                 </div>
 
                 <div class="flex flex-col gap-2 justify-start items-start">

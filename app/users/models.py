@@ -1,8 +1,24 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation.trans_null import gettext_lazy as _
 
-User = get_user_model()
+
+class CustomUser(AbstractUser):
+    username = None
+    email = models.EmailField(_("email address"), unique=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+
+    @property
+    def initial(self):
+        if (self.first_name or "").strip() or (self.last_name or "").strip():
+            return f"{self.first_name[:1]}{self.last_name[:1]}".upper()
+        return self.email[:1].upper() if self.email else "?"
 
 
 class SkillLevelChoice(models.TextChoices):
@@ -96,7 +112,11 @@ class UserRole(models.TextChoices):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="profile",
+    )
     avatar = models.ImageField(
         default='users/avatars/avatar_placeholder.png',
         upload_to='users/avatars/',
@@ -124,7 +144,7 @@ class Profile(models.Model):
     policy_accepted_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.email
 
     @property
     def is_author(self):

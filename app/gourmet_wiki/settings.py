@@ -218,18 +218,36 @@ DJANGO_VITE = {
     }
 }
 
-ACCOUNT_SIGNUP_REDIRECT_URL = 'profile'
-LOGIN_REDIRECT_URL = 'profile'
-LOGOUT_REDIRECT_URL = 'account_login'
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_SESSION_REMEMBER = False
-ACCOUNT_SIGNUP_FIELDS = ['first_name*', 'last_name*', 'email*', 'username*', 'password1*', 'password2*']
-ACCOUNT_FORMS = {
-    'signup': 'users.forms.CustomSignupForm',
+
+#########################
+# CORE ACCOUNT SETTINGS #
+#########################
+
+AUTH_USER_MODEL = 'users.CustomUser'
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*"]
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_RATE_LIMITS = {
+    "login_failed": "5/5m",
 }
 
-ACCOUNT_ADAPTER = 'users.adapters.CustomAccountAdapter'
-# SOCIALACCOUNT_ADAPTER = "users.adapters.CustomSocialAccountAdapter"
+## REDIRECTS
+
+LOGIN_REDIRECT_URL = 'profile'
+ACCOUNT_SIGNUP_REDIRECT_URL = 'profile'
+LOGOUT_REDIRECT_URL = '/'
+
+## LOGOUT SECURITY
+
+ACCOUNT_LOGOUT_ON_GET = False
+
+## SESSION / REMEMBER ME
+
+ACCOUNT_SESSION_REMEMBER = True
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # 30 Tage
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+## EMAIL VERIFICATION
 
 if DEBUG:
     ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -238,10 +256,12 @@ else:
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_RESEND = True
-SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
+## SOCIAL LOGIN
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
@@ -249,10 +269,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
             'key': ''
         },
-        'SCOPE': [
-            "profile",
-            "email",
-        ],
+        'SCOPE': ["profile", "email"],
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
@@ -260,7 +277,27 @@ SOCIALACCOUNT_PROVIDERS = {
         'EMAIL_AUTHENTICATION': True,
     }
 }
+
+## CUSTOM HOOKS
+
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm',
+}
+
+ACCOUNT_ADAPTER = 'users.adapter.CustomAccountAdapter'
+# SOCIALACCOUNT_ADAPTER = "users.adapter.CustomSocialAccountAdapter"
+
+
+################
+# DJANGO SITES #
+################
+
 SITE_ID = 1
+
+
+##################
+# OTHER SETTINGS #
+##################
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -5,7 +5,7 @@
     <h3>{% translate 'Delete Your Account' %}</h3>
     <p class="py-4">{% translate 'Are you sure you want to delete your account? This action cannot be undone.' %}</p>
 
-    <form id="user-delete-form" action="{% url 'user-delete' %}" method="post" class="mt-4 flex flex-col gap-4">
+    <form id="user-delete-form" action="{% url 'profile_delete' %}" method="post" class="mt-4 flex flex-col gap-4">
       {% csrf_token %}
 
       <div class="form-control">
@@ -43,7 +43,7 @@
       </div>
 
       <div class="modal-action">
-        <a href="{% url 'user-profile' user.username %}" class="btn">{% translate 'Cancel' %}</a>
+        <a href="{% url 'profile' %}" class="btn">{% translate 'Cancel' %}</a>
         <button type="submit" id="submit-button" class="btn btn-error">{% translate 'Delete Your Account' %}</button>
       </div>
     </form>

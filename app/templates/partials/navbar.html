@@ -1,7 +1,7 @@
 {% load static i18n %}
 
 <div id="navbar"
-     class="h-10 navbar bg-base-100 shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
+     class="h-10 navbar bg-base-200 shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
     <div class="navbar-start flex items-center gap-3">
         <c-a url="{% url 'pages:home' %}" title="Gourmet Wiki" class="flex items-end font-bold text-md md:text-xl">
             <img class="h-8 md:h-10 w-auto max-h-10 object-contain" src="{% static 'images/logo_icon_rotated.png' %}"
@@ -91,17 +91,13 @@
                      class="w-12 h-12 mask mask-hexagon-2 bg-neutral group-hover/avatar:scale-105">
                     {#                    <img src="{{ user.profile.avatar.url }}" alt="Avatar"/>#}
                     <p class="uppercase text-center text-accent-content w-full h-full flex items-center justify-center">
-                        {% if user.get_full_name %}
-                            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
-                        {% else %}
-                            {{ user.username|slice:":1" }}
-                        {% endif %}
+                        {{ user.initial }}
                     </p>
                 </div>
                 <ul tabindex="0" class="rounded-md dropdown-content menu menu-vertical w-max  bg-base-200 list-none">
                     {% if user.is_authenticated %}
                         <li class="w-full">
-                            <c-a url="{% url 'user-profile' user.username %}"
+                            <c-a url="{% url 'profile' %}"
                                  class="flex gap-5 items-center">
                                 <c-profile-icon size="size-4"></c-profile-icon>
                                 {% translate 'Your Profile' %}
