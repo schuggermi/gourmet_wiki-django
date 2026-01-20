@@ -48,7 +48,7 @@ class Recipe(models.Model):
         verbose_name=_('Course'),
         max_length=50,
         choices=CourseTypeChoice.choices,
-        blank=True,
+        default=CourseTypeChoice.MAIN,
     )
     portions = models.PositiveIntegerField(
         default=4,
@@ -64,13 +64,12 @@ class Recipe(models.Model):
         validators=[
             MinValueValidator(1),
         ],
-        blank=True,
     )
     skill_level = models.CharField(
         max_length=50,
         choices=SkillLevelChoice.choices,
         verbose_name=_("Skill Level"),
-        blank=False,
+        default=SkillLevelChoice.BEGINNER,
     )
     favorite_by = models.ManyToManyField(
         User,

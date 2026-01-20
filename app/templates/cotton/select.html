@@ -6,26 +6,28 @@
         success_class="border-1 border-green-400!"
 ></c-vars>
 
-<div class="flex flex-col">
+<div class="flex flex-col pb-0 mb-0">
     <label lang="{{ request.LANGUAGE_CODE|default:'de' }}" for="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-           class="leading-tight! text-pretty! hyphens-none! {% if not labeled %}hidden{% endif %}">
+           class="{% if not labeled %}hidden{% endif %}">
         {% if field and not label %}
-            {{ field.label }}
+            {{ field.label }}{% if field.field.required %}*{% endif %}
         {% elif label %}
             {{ label }}
         {% endif %}
     </label>
-    <select {{ field.field.widget.attrs|render_attrs }}
-            id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
-            name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
-            class="{{ default_class }} {{ class }} {% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
-    >
-        {% for value, label in field.field.choices %}
-            {% if forloop.counter0 >= 0 %}
-                <option value="{{ value }}" {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
-            {% endif %}
-        {% endfor %}
-    </select>
+    <div class="relative">
+        <select {{ field.field.widget.attrs|render_attrs }}
+                id="{% if field %}{{ field.id_for_label }}{% else %}{{ id }}{% endif %}"
+                name="{% if field %}{{ field.html_name }}{% else %}{{ name }}{% endif %}"
+                class="{{ default_class }} {{ class }} {% if field and field.errors %}{{ error_class }}{% else %}{{ success_class }}{% endif %}"
+        >
+            {% for value, label in field.field.choices %}
+                {% if forloop.counter0 >= 0 %}
+                    <option value="{{ value }}" {% if value|stringformat:"s" == field.value|stringformat:"s" or value|stringformat:"s" == instance_value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
 </div>
 {% if not no_errors %}
     {% for error in field.errors %}
