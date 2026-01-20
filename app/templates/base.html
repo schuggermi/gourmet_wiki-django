@@ -151,6 +151,14 @@
         'anonymize_ip': true,
         'cookie_flags': 'SameSite=None;Secure'
     });
+
+    document.addEventListener('htmx:afterRequest', function(event) {
+        // Finde alle Input-Felder im Form und entferne den Fokus
+        const activeElement = document.activeElement;
+        if (activeElement && activeElement.tagName === 'INPUT') {
+            activeElement.blur();
+        }
+    });
 </script>
 <script>
     function getCookie(name) {
