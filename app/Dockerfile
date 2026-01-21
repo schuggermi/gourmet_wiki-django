@@ -37,6 +37,8 @@ COPY requirements.txt /app
 RUN uv pip install --system -r requirements.txt
 # Manually install psycopg2-binary since it was missing from requirements.txt
 RUN uv pip install --system psycopg2-binary
+# Manually install django-reversion since it was missing from requirements.txt
+RUN uv pip install --system django-reversion
 
 # Copy rest of the app
 COPY . /app

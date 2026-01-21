@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'formtools',
     'crispy_forms',
     'crispy_daisyui',
-    # 'reversion',
+    'reversion',
 
     'allauth',
     'allauth.account',
