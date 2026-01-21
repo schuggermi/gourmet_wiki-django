@@ -3,12 +3,6 @@
 <!doctype html>
 <html lang="{{ request.LANGUAGE_CODE|default:'de' }}" data-theme="gourmet">
 <head>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="{{ CB_ID }}" type="text/javascript" async></script>
-    <!-- Google Analytics -->
-    {% if GA_ID %}
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_ID }}"></script>
-    {% endif %}
-
     <meta name="google-site-verification" content="MdTWF5usBTiGStU8iA92M8vAN-aYHBHjxiwcGi8HagA" />
 
     <!-- Character encoding for Unicode -->
@@ -119,7 +113,6 @@
 </a>
 
 {% include "partials/navbar.html" %}
-
 {% include "partials/alerts.html" %}
 
 <!-- Main content area with semantic HTML5 -->
@@ -139,125 +132,11 @@
 <!-- Modal Container -->
 <div id="modal-container"></div>
 
-<!-- HTMX for dynamic interactions -->
-<script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
-<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
-
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ GA_ID }}', {
-        'anonymize_ip': true,
-        'cookie_flags': 'SameSite=None;Secure'
-    });
-
-    document.addEventListener('htmx:afterRequest', function(event) {
-        // Finde alle Input-Felder im Form und entferne den Fokus
-        const activeElement = document.activeElement;
-        if (activeElement && activeElement.tagName === 'INPUT') {
-            activeElement.blur();
-        }
-    });
-</script>
-<script>
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    // HTMX global konfigurieren
-    document.body.addEventListener('htmx:configRequest', (event) => {
-        event.detail.headers['X-CSRFToken'] = getCookie('csrftoken');
-    });
-</script>
-<script>
-    // Hyperscript-compatible closeModal function
-    function closeModal() {
-        const modal = document.getElementById('modal');
-        if (modal) {
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                document.getElementById('modal-container').innerHTML = '';
-            }, 200);
-        }
-    }
-</script>
-<script>
-    window.initializeSortable = function initializeSortable() {
-        const sortable = document.querySelector("#steps");
-
-        if (sortable && !sortable.sortableInstance) {
-            console.log("Initializing Sortable");
-
-            sortable.sortableInstance = new Sortable(sortable, {
-                animation: 150,
-                dragClass: 'text-secondary!',
-                handle: '.drag-handle',
-                onEnd: function(evt) {
-                    console.log("Sort ended");
-
-                    // Get all items and their new order
-                    const items = sortable.querySelectorAll('li[data-step-id]');
-                    console.log("Found items:", items.length);
-
-                    const orderData = Array.from(items).map((item, index) => {
-                        console.log("Item:", item.dataset.stepId, "Order:", index + 1);
-                        return {
-                            id: item.dataset.stepId,
-                            order: index + 1
-                        };
-                    });
-
-                    console.log("Order data:", orderData);
-
-                    if (orderData.length === 0) {
-                        console.warn("No items to reorder!");
-                        return;
-                    }
-
-                    // Get CSRF token
-                    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-                    // Send to server
-                    fetch(sortable.getAttribute('hx-post'), {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                            'X-CSRFToken': csrfToken
-                        },
-                        body: new URLSearchParams({
-                            'order': JSON.stringify(orderData)
-                        })
-                    })
-                    .then(response => {
-                        console.log("Response status:", response.status);
-                        if (response.ok) {
-                            console.log("Reorder successful");
-                        } else {
-                            console.error("Reorder failed");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                    });
-                }
-            });
-        }
-    }
-
-    window.addEventListener('load', window.initializeSortable);
-</script>
-
+<script id="Cookiebot"
+        src="https://consent.cookiebot.com/uc.js"
+        data-cbid="{{ CB_ID }}"
+        type="text/javascript"
+        defer
+></script>
 </body>
 </html>

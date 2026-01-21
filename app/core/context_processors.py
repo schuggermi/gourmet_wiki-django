@@ -23,7 +23,7 @@ def seo_defaults(request):
             'Kochrezepte Deutsch, Rezepte von Köchen, kulinarische Community'
         ),
         'DEFAULT_OG_IMAGE': f"{request.scheme}://{request.get_host()}/static/images/og-default.jpg",
-        'GA_ID': getattr(settings, 'GOOGLE_ANALYTICS_ID', 'G-BYM0XLT51B'),
-        'CB_ID': getattr(settings, 'COOKIEBOT_ID', ''),
+        'VITE_GA_ID': getattr(settings, 'VITE_GA_ID', ''),
+        'VITE_CB_ID': getattr(settings, 'VITE_CB_ID', ''),
         'TWITTER_HANDLE': '@GourmetWiki',
     }

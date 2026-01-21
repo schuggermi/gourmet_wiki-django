@@ -3,10 +3,10 @@ from . import settings
 
 def cb_id(request):
     return {
-        "CB_ID": settings.CB_ID
+        "VITE_CB_ID": settings.VITE_CB_ID
     }
 
 def ga_id(request):
     return {
-        "GA_ID": settings.GA_ID
+        "VITE_GA_ID": settings.VITE_GA_ID
     }

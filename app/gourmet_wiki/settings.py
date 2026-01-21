@@ -58,14 +58,15 @@ INSTALLED_APPS = [
     'menus.apps.MenusConfig',
     'wiki.apps.WikiConfig',
 
-    'rest_framework',
+    # 'rest_framework',
     'corsheaders',
     'django_vite',
     'django_cotton',
+    'easy_thumbnails',
     'formtools',
     'crispy_forms',
     'crispy_daisyui',
-    'reversion',
+    # 'reversion',
 
     'allauth',
     'allauth.account',
@@ -377,7 +378,15 @@ USDA_FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1"
 
 OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL')
 
-GA_ID=os.getenv('GA_ID')
-CB_ID=os.getenv('CB_ID')
+VITE_GA_ID=os.getenv('VITE_GA_ID')
+VITE_CB_ID=os.getenv('VITE_CB_ID')
 
 APPEND_SLASH = True
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'hero': {'size': (1920, 1080), 'crop': True},
+        'hero_medium': {'size': (1024, 576), 'crop': True},
+        'hero_small': {'size': (640, 360), 'crop': True},
+    },
+}

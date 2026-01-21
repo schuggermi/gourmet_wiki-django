@@ -4,8 +4,12 @@
      class="h-10 navbar bg-base-200 shadow-xs sticky top-0 w-full transition-all duration-300 z-50 px-2">
     <div class="navbar-start flex items-center gap-3">
         <c-a url="{% url 'pages:home' %}" title="Gourmet Wiki" class="flex items-end font-bold text-md md:text-xl">
-            <img class="h-8 md:h-10 w-auto max-h-10 object-contain" src="{% static 'images/logo_icon_rotated.png' %}"
-                 alt="Gourmet Wiki">
+            <img class="h-8 md:h-10 w-auto max-h-10 object-contain"
+                 src="{% static 'images/logo_icon_rotated.png' %}"
+                 width="500"
+                 height="500"
+                 alt="Gourmet Wiki"
+            />
             <span class="text-base-content">Gourmet</span><span class="text-secondary">Wiki</span>
         </c-a>
     </div>

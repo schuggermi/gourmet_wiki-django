@@ -1,4 +1,14 @@
 import 'vite/modulepreload-polyfill';
+
+import 'htmx.org';
+import "hyperscript.org";
+
+import './cookiebot.js';
+import './analytics.js';
+import './htmx-config.js';
+import './modal.js';
+import './sortable-init.js';
+import './navbar.js'
 import '@/css/main.css';
 import Sortable from "sortablejs";
 import {reindexFormset} from './formset-utils';

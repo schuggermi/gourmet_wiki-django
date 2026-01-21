@@ -8,7 +8,7 @@ django-crispy-forms
 crispy-daisyui
 django-allauth
 django-allauth[socialaccount]
-psycopg2-binary
+psycopg[binary]
 python-dotenv
 gunicorn
 whitenoise
@@ -24,3 +24,4 @@ langchain
 langchainhub
 gpt4all
 langchain-ollama
+easy-thumbnails

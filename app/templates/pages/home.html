@@ -12,8 +12,15 @@
             <figure class="absolute inset-0 z-0" aria-hidden="true">
                 <img
                     src="{% static 'images/hero_background.webp' %}"
+                    srcset="{% thumbnail 'images/hero_background.webp' 'hero_small' %} 640w,
+                            {% thumbnail 'images/hero_background.webp' 'hero_medium' %} 1024w,
+                            {% thumbnail 'images/hero_background.webp' 'hero' %} 1920w"
+                    sizes="100vw"
+                    width="5376"
+                    height="3584"
                     alt=""
                     class="h-full w-full object-cover object-center"
+                    fetchpriority="high"
                 />
             </figure>
 
