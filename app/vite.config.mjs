@@ -2,7 +2,7 @@ import {defineConfig} from 'vite';
 import {resolve} from 'path';
 import tailwindcss from "@tailwindcss/vite";
 import typography from '@tailwindcss/typography';
-import sri from 'vite-plugin-sri';
+// import sri from 'vite-plugin-sri';
 
 export default defineConfig({
     base: "/static/",
@@ -33,7 +33,7 @@ export default defineConfig({
         }
     },
     plugins: [
-        sri(),
+        // sri(),
         tailwindcss(),
         typography,
     ]
