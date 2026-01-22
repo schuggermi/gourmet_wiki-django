@@ -33,7 +33,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Install Node dependencies
-COPY package*.json ./
+COPY package.json /app
 RUN npm install
 
 # Copy and install Python dependencies using uv
