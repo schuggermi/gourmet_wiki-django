@@ -38,11 +38,14 @@ COPY pyproject.toml /app
 RUN uv pip compile pyproject.toml -o requirements.txt && \
     uv pip install --system -r requirements.txt
 
-# Copy rest of the app
-COPY . /app
 
 # Install Node dependencies
-RUN npm install
+COPY package.json ./app
+COPY package-lock.json ./app
+RUN npm ci
+
+# Copy rest of the app
+COPY . /app
 
 # Add wait-for-it script
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
