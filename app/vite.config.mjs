@@ -42,6 +42,11 @@ export default defineConfig({
         lightningcss: {
             targets: {
                 safari: (16 << 16)
+            },
+            importAndCustomMedia: {
+                ignoredImports: [
+                    'https://fonts.googleapis.com'
+                ]
             }
         }
     },
