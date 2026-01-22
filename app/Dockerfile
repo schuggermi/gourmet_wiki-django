@@ -34,7 +34,8 @@ WORKDIR /app
 
 # Install Node dependencies
 COPY package.json /app
-RUN npm install
+COPY package-lock.json /app
+RUN npm ci
 
 # Copy and install Python dependencies using uv
 COPY requirements.txt /app
