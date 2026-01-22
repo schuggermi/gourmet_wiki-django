@@ -42,7 +42,7 @@ RUN uv pip compile pyproject.toml -o requirements.txt && \
 # Install Node dependencies
 COPY package.json ./app
 COPY package-lock.json ./app
-RUN npm ci
+RUN npm install
 
 # Copy rest of the app
 COPY . /app
