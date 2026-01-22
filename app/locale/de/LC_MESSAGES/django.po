@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-18 23:09+0000\n"
+"POT-Creation-Date: 2026-01-22 12:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,7 +136,7 @@ msgstr "Würziges Thai-Basilikum-Hähnchen"
 msgid "A spicy Thai stir-fry with chicken, basil, and fresh chili."
 msgstr "Eine würzige Thai-Pfanne mit Hähnchen, Basilikum und frischer Chili."
 
-#: recipes/forms.py:102 recipes/models.py:300
+#: recipes/forms.py:102 recipes/models.py:299
 msgid "Is Section"
 msgstr "Ist Abschnitt"
 
@@ -190,67 +190,67 @@ msgstr "Portionen"
 msgid "Cooking Time (Minutes)"
 msgstr "Kochzeit (Minuten)"
 
-#: recipes/models.py:72
+#: recipes/models.py:71
 msgid "Skill Level"
 msgstr "Schwierigkeitsgrad"
 
-#: recipes/models.py:81
+#: recipes/models.py:80
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: recipes/models.py:89
+#: recipes/models.py:88
 msgid "Published at"
 msgstr "Veröffentlicht am"
 
-#: recipes/models.py:94
+#: recipes/models.py:93
 msgid "Recipe"
 msgstr "Rezept"
 
-#: recipes/models.py:95
+#: recipes/models.py:94
 msgid "Recipes"
 msgstr "Rezepte"
 
-#: recipes/models.py:295
+#: recipes/models.py:294
 msgid "Step"
 msgstr "Schritt"
 
-#: recipes/models.py:301
+#: recipes/models.py:300
 msgid "Marks this row as a section/category break instead of a regular step."
 msgstr ""
 "Markiert diese Zeile als Abschnitts-/Kategorietrennung statt als normalen "
 "Schritt."
 
-#: recipes/models.py:307 templates/recipes/_recipe_steps_form.html:14
-#: templates/recipes/partials/recipe_detail.html:92
+#: recipes/models.py:306 templates/recipes/_recipe_steps_form.html:14
+#: templates/recipes/partials/recipe_detail.html:106
 msgid "Section"
 msgstr "Abschnitt"
 
-#: recipes/models.py:330 templates/recipes/_recipe_ingredients_form.html:10
+#: recipes/models.py:329 templates/recipes/_recipe_ingredients_form.html:10
 msgid "Quantity"
 msgstr "Menge"
 
-#: recipes/models.py:336 templates/recipes/_recipe_ingredients_form.html:11
+#: recipes/models.py:335 templates/recipes/_recipe_ingredients_form.html:11
 #: templates/recipes/partials/ingredient_form_row.html:57
 msgid "Unit"
 msgstr "Einheit"
 
-#: recipes/models.py:342 templates/recipes/_recipe_ingredients_form.html:9
+#: recipes/models.py:341 templates/recipes/_recipe_ingredients_form.html:9
 #: templates/recipes/partials/ingredient_form_row.html:20
 msgid "Ingredient"
 msgstr "Zutat"
 
-#: recipes/models.py:343 templates/menus/partials/recipe_detail.html:149
+#: recipes/models.py:342 templates/menus/partials/recipe_detail.html:149
 #: templates/recipes/create_recipe_wizard.html:38
-#: templates/recipes/partials/recipe_detail.html:75
+#: templates/recipes/partials/recipe_detail.html:89
 #: templates/recipes/recipe_edit.html:52
 msgid "Ingredients"
 msgstr "Zutaten"
 
-#: recipes/models.py:367
+#: recipes/models.py:366
 msgid "Upload Image"
 msgstr "Bild hochladen"
 
-#: recipes/models.py:368
+#: recipes/models.py:367
 msgid "Select multiple images to upload"
 msgstr "Wähle mehrere Bilder zum Hochladen aus"
 
@@ -258,11 +258,11 @@ msgstr "Wähle mehrere Bilder zum Hochladen aus"
 msgid "Please complete the full recipe before publishing."
 msgstr "Bitte vervollständige das Rezept, bevor du es veröffentlichst."
 
-#: recipes/views.py:841
+#: recipes/views.py:849
 msgid "Recipe successfully deleted."
 msgstr "Rezept erfolgreich gelöscht."
 
-#: recipes/views.py:853 recipes/views.py:861
+#: recipes/views.py:861 recipes/views.py:869
 msgid "Invalid confirmation code."
 msgstr "Ungültiger Bestätigungscode."
 
@@ -1072,7 +1072,7 @@ msgid "You already have an account at Gourmet Wiki?"
 msgstr "Du hast bereits ein Konto bei Gourmet Wiki?"
 
 #: templates/account/signup.html:113 templates/errors/403.html:28
-#: templates/partials/navbar.html:128
+#: templates/partials/navbar.html:132
 msgid "Log In"
 msgstr "Anmelden"
 
@@ -1094,22 +1094,22 @@ msgstr "Wenn du dies nicht angefordert hast, ignoriere diese E-Mail bitte."
 msgid "Visit our website"
 msgstr "Besuche unsere Website"
 
-#: templates/cotton/dock.html:7 templates/cotton/quick_actions.html:4
-#: templates/users/profile.html:63
-msgid "Cookbook"
-msgstr "Kochbuch"
-
-#: templates/cotton/dock.html:13 templates/cotton/quick_actions.html:8
-#: templates/users/profile.html:81
-msgid "Favorites"
-msgstr "Favoriten"
-
-#: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:16
+#: templates/cotton/dock.html:10 templates/cotton/quick_actions.html:16
 #: templates/recipes/create_recipe_wizard.html:9
 #: templates/recipes/create_recipe_wizard.html:26
 #: templates/users/profile.html:55
 msgid "Add Recipe"
 msgstr "Neues Rezept"
+
+#: templates/cotton/dock.html:16 templates/cotton/quick_actions.html:4
+#: templates/users/profile.html:63
+msgid "Cookbook"
+msgstr "Kochbuch"
+
+#: templates/cotton/dock.html:22 templates/cotton/quick_actions.html:8
+#: templates/users/profile.html:81
+msgid "Favorites"
+msgstr "Favoriten"
 
 #: templates/cotton/footer.html:20
 msgid "Legal"
@@ -1538,7 +1538,7 @@ msgstr "Ruhezeit"
 
 #: templates/menus/partials/recipe_detail.html:159
 #: templates/recipes/create_recipe_wizard.html:41
-#: templates/recipes/partials/recipe_detail.html:86
+#: templates/recipes/partials/recipe_detail.html:100
 msgid "Preparation"
 msgstr "Zubereitung"
 
@@ -1546,15 +1546,15 @@ msgstr "Zubereitung"
 msgid "Preparation Step"
 msgstr "Zubereitungsschritt"
 
-#: templates/pages/home.html:40
+#: templates/pages/home.html:47
 msgid "Your #1 knowledge kitchen"
 msgstr "Deine #1 Wissensküche"
 
-#: templates/pages/home.html:50
+#: templates/pages/home.html:57
 msgid "No ads. No guesswork. Just cooking."
 msgstr "Keine Werbung. Kein Rätselraten. Einfach kochen."
 
-#: templates/pages/home.html:57
+#: templates/pages/home.html:64
 msgid ""
 "By chefs and passionate home cooks. Recipes that are cooked, tested, and "
 "recommended by the community."
@@ -1562,23 +1562,28 @@ msgstr ""
 "Von Köchen und leidenschaftlichen Hobbyköchen. Rezepte, die gekocht, "
 "getestet und von der Community empfohlen werden."
 
-#: templates/pages/home.html:66
+#: templates/pages/home.html:73
 msgid "No distractions. No shortcuts. No experiments."
 msgstr "Ohne Ablenkung. Ohne Umwege. Ohne Experimente."
 
-#: templates/pages/home.html:77
+#: templates/pages/home.html:84
 msgid "Join the Community"
 msgstr "Der Community beitreten"
 
-#: templates/pages/home.html:87
+#: templates/pages/home.html:94
 msgid "Why Gourmet Wiki Makes Cooking Effortless"
 msgstr "Warum Gourmet Wiki das Kochen so einfach macht"
 
-#: templates/pages/home.html:95
+#: templates/pages/home.html:101 templates/pages/home.html:103
 msgid "Pure Focus on Cooking"
 msgstr "Volle Konzentration aufs Kochen"
 
-#: templates/pages/home.html:96
+#: templates/pages/home.html:101 templates/pages/home.html:110
+#: templates/pages/home.html:119
+msgid "Icon"
+msgstr "Symbol"
+
+#: templates/pages/home.html:104
 msgid ""
 "Focus on what truly matters: cooking. No distractions, no ads – just recipes "
 "that spark your passion."
@@ -1586,11 +1591,11 @@ msgstr ""
 "Fokussiere dich auf das, was wirklich zählt: das Kochen. Keine Ablenkung, "
 "keine Werbung – nur Rezepte, die deine Leidenschaft entfachen."
 
-#: templates/pages/home.html:103
+#: templates/pages/home.html:110 templates/pages/home.html:112
 msgid "Recipes You Can Trust"
 msgstr "Rezepte, auf die du dich verlassen kannst"
 
-#: templates/pages/home.html:104
+#: templates/pages/home.html:113
 msgid ""
 "Created by professional chefs, designed for everyday kitchens. Every step "
 "clear, every dish succeeds."
@@ -1598,11 +1603,11 @@ msgstr ""
 "Von Profi-Köchen entwickelt und für den Alltag geeignet. Jeder Schritt "
 "verständlich, jedes Gericht gelingt."
 
-#: templates/pages/home.html:111
+#: templates/pages/home.html:119 templates/pages/home.html:121
 msgid "Join a Vibrant Community"
 msgstr "Werde Teil einer lebendigen Community"
 
-#: templates/pages/home.html:112
+#: templates/pages/home.html:122
 msgid ""
 "Connect with chefs and food lovers alike. Share ideas, discover new recipes, "
 "and become part of a culinary family."
@@ -1610,7 +1615,7 @@ msgstr ""
 "Verbinde dich mit Köchen und Feinschmeckern. Tausche Ideen aus, entdecke "
 "neue Rezepte und werde Teil einer kulinarischen Familie."
 
-#: templates/pages/home.html:121
+#: templates/pages/home.html:131
 msgid "Daily Highlights"
 msgstr "Tägliche Highlights"
 
@@ -2161,32 +2166,32 @@ msgstr "12. Kontakt"
 msgid "Effective Date:"
 msgstr "Stand:"
 
-#: templates/partials/navbar.html:17 templates/partials/navbar.html:71
+#: templates/partials/navbar.html:21 templates/partials/navbar.html:75
 msgid "All Recipes"
 msgstr "Alle Rezepte"
 
-#: templates/partials/navbar.html:30
+#: templates/partials/navbar.html:34
 msgid "Culinary Wiki"
 msgstr "Kulinarisches Wiki"
 
-#: templates/partials/navbar.html:82 templates/wiki/article_list.html:10
+#: templates/partials/navbar.html:86 templates/wiki/article_list.html:10
 msgid "Wiki"
 msgstr "Wiki"
 
-#: templates/partials/navbar.html:106 templates/users/profile.html:6
+#: templates/partials/navbar.html:110 templates/users/profile.html:6
 #: templates/users/profile.html:12
 msgid "Your Profile"
 msgstr "Dein Profil"
 
-#: templates/partials/navbar.html:113
+#: templates/partials/navbar.html:117
 msgid "Logout"
 msgstr "Abmelden"
 
-#: templates/partials/navbar.html:118
+#: templates/partials/navbar.html:122
 msgid "Login"
 msgstr "Anmelden"
 
-#: templates/partials/navbar.html:121
+#: templates/partials/navbar.html:125
 msgid "Sign up"
 msgstr "Registrieren"
 
@@ -2458,7 +2463,7 @@ msgstr "Kochbuch durchsuchen..."
 msgid "My Favorites"
 msgstr "Meine Favoriten"
 
-#: templates/users/favorites.html:29
+#: templates/users/favorites.html:30
 msgid "Search favorites..."
 msgstr "Favoriten durchsuchen..."
 

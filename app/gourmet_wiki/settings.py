@@ -383,10 +383,10 @@ VITE_CB_ID=os.getenv('VITE_CB_ID')
 
 APPEND_SLASH = True
 
-THUMBNAIL_ALIASES = {
-    '': {
-        'hero': {'size': (1920, 1080), 'crop': True},
-        'hero_medium': {'size': (1024, 576), 'crop': True},
-        'hero_small': {'size': (640, 360), 'crop': True},
-    },
-}
+# THUMBNAIL_ALIASES = {
+#     '': {
+#         'hero': {'size': (1920, 1080), 'crop': True},
+#         'hero_medium': {'size': (1024, 576), 'crop': True},
+#         'hero_small': {'size': (640, 360), 'crop': True},
+#     },
+# }

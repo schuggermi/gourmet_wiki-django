@@ -56,6 +56,7 @@ django==5.2.1
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-formtools
+    #   django-reversion
     #   django-vite
     #   easy-thumbnails
 django-allauth==65.9.0
@@ -71,6 +72,10 @@ django-crispy-forms==2.4
 django-debug-toolbar==5.2.0
     # via gourmet-wiki (pyproject.toml)
 django-formtools==2.5.1
+    # via gourmet-wiki (pyproject.toml)
+django-ratelimit==4.1.0
+    # via gourmet-wiki (pyproject.toml)
+django-reversion==6.1.0
     # via gourmet-wiki (pyproject.toml)
 django-vite==3.1.0
     # via gourmet-wiki (pyproject.toml)
@@ -151,6 +156,8 @@ langsmith==0.4.14
     # via
     #   langchain
     #   langchain-core
+markdown==3.10.1
+    # via gourmet-wiki (pyproject.toml)
 markdown-it-py==4.0.0
     # via rich
 mdurl==0.1.2
@@ -215,6 +222,8 @@ protobuf==6.33.4
     #   googleapis-common-protos
     #   onnxruntime
     #   opentelemetry-proto
+psycopg2-binary==2.9.11
+    # via gourmet-wiki (pyproject.toml)
 pybase64==1.4.3
     # via chromadb
 pycparser==2.22
@@ -244,6 +253,8 @@ python-dotenv==1.1.1
     # via
     #   gourmet-wiki (pyproject.toml)
     #   uvicorn
+python-frontmatter==1.1.0
+    # via gourmet-wiki (pyproject.toml)
 pyyaml==6.0.2
     # via
     #   chromadb
@@ -251,6 +262,7 @@ pyyaml==6.0.2
     #   kubernetes
     #   langchain
     #   langchain-core
+    #   python-frontmatter
     #   uvicorn
 referencing==0.37.0
     # via

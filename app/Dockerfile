@@ -34,11 +34,9 @@ WORKDIR /app
 
 # Copy and install Python dependencies using uv
 COPY requirements.txt /app
-RUN uv pip install --system -r requirements.txt
-# Manually install psycopg2-binary since it was missing from requirements.txt
-RUN uv pip install --system psycopg2-binary
-# Manually install django-reversion since it was missing from requirements.txt
-RUN uv pip install --system django-reversion
+COPY pyproject.toml /app
+RUN uv pip compile pyproject.toml -o requirements.txt && \
+    uv pip install --system -r requirements.txt
 
 # Copy rest of the app
 COPY . /app

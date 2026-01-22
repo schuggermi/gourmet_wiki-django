@@ -12,12 +12,12 @@
             <figure class="absolute inset-0 z-0" aria-hidden="true">
                 <img
                     src="{% static 'images/hero_background.webp' %}"
-                    srcset="{% thumbnail 'images/hero_background.webp' 'hero_small' %} 640w,
-                            {% thumbnail 'images/hero_background.webp' 'hero_medium' %} 1024w,
-                            {% thumbnail 'images/hero_background.webp' 'hero' %} 1920w"
+                    srcset="{% static 'images/hero_background-640w.webp' %} 640w,
+                            {% static 'images/hero_background-1024w.webp' %} 1024w,
+                            {% static 'images/hero_background-1920w.webp' %} 1920w"
                     sizes="100vw"
-                    width="5376"
-                    height="3584"
+                    width="1920"
+                    height="1080"
                     alt=""
                     class="h-full w-full object-cover object-center"
                     fetchpriority="high"
@@ -97,7 +97,8 @@
                 <div class="grid grid-cols-auto lg:grid-cols-3 gap-10">
                     <!-- Card 1 -->
                     <c-why-card
-                        icon="{% static 'images/ad-blocker_icon.png' %}"
+                        icon="{% static 'images/ad-blocker_icon.webp' %}"
+                        alt="{% translate 'Pure Focus on Cooking' %} - {% trans 'Icon' %}"
                         aria-hidden="true"
                         heading="{% translate 'Pure Focus on Cooking' %}"
                         subheading="{% translate 'Focus on what truly matters: cooking. No distractions, no ads – just recipes that spark your passion.' %}"
@@ -105,7 +106,8 @@
 
                     <!-- Card 2 -->
                     <c-why-card
-                        icon="{% static 'images/chefhat_icon.png' %}"
+                        icon="{% static 'images/chefhat_icon.webp' %}"
+                        alt="{% translate 'Recipes You Can Trust' %} - {% trans 'Icon' %}"
                         aria-hidden="true"
                         heading="{% translate 'Recipes You Can Trust' %}"
                         subheading="{% translate 'Created by professional chefs, designed for everyday kitchens. Every step clear, every dish succeeds.' %}"
@@ -113,7 +115,8 @@
 
                     <!-- Card 3 -->
                     <c-why-card
-                        icon="{% static 'images/community_icon.png' %}"
+                        icon="{% static 'images/community_icon.webp' %}"
+                        alt="{% translate 'Join a Vibrant Community' %} - {% trans 'Icon' %}"
                         aria-hidden="true"
                         heading="{% translate 'Join a Vibrant Community' %}"
                         subheading="{% translate 'Connect with chefs and food lovers alike. Share ideas, discover new recipes, and become part of a culinary family.' %}"

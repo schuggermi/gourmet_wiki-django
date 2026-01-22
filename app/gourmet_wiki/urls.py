@@ -37,7 +37,7 @@ urlpatterns = [
                   path('menus/', include('menus.urls'), name='menus'),
                   path('accounts/', include('allauth.urls')),
                   path('', include('users.urls')),
-                  path('api-auth/', include('rest_framework.urls')),
+                  # path('api-auth/', include('rest_framework.urls')),
                   path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico')),
                   path('sitemap.xml', sitemap, {'sitemaps': {
                       'static': StaticViewSitemap,

@@ -1,4 +1,3 @@
-from django.contrib.auth.decorators import login_required
 from django.db.models import F, Func, Value, CharField
 from django.db.models.functions import Concat
 from django.shortcuts import render
@@ -33,8 +32,8 @@ def home(request):
     
     # SEO Data for Home
     seo_data = SeoData(
-        title="GourmetWiki - Deine #1 Wissensküche",
-        description="Deine #1 Wissensküche - Keine Werbung. Kein Rätselraten. Einfach kochen. Von Köchen und leidenschaftlichen Hobbyköchen.",
+        title="GourmetWiki - Deine #1 Wissensküche | Keine Werbung. Kein Rätselraten. Einfach kochen.",
+        description="Von Köchen und leidenschaftlichen Hobbyköchen. Rezepte, die gekocht, getestet und von der Community empfohlen werden.",
         keywords=["Rezepte", "Kochen", "Gourmet", "Wiki", "Wissensküche"],
         canonical_url=request.build_absolute_uri(request.path),
         og_type="website"
