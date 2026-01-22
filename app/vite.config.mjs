@@ -14,7 +14,13 @@ export default defineConfig({
         manifest: true,
         outDir: resolve("./assets"),
         rollupOptions: {
-            input: resolve('./static/js/main.js')
+            input: resolve('./static/js/main.js'),
+            onwarn(warning, warn) {
+                if (warning.code === 'EVAL' && warning.id?.includes('htmx.org')) {
+                    return;
+                }
+                warn(warning);
+            },
         }
     },
     server: {
@@ -29,6 +35,14 @@ export default defineConfig({
         },
         watch: {
             usePolling: true,
+        }
+    },
+    css: {
+        transformer: 'lightningcss',
+        lightningcss: {
+            targets: {
+                safari: (16 << 16)
+            }
         }
     },
     plugins: [
