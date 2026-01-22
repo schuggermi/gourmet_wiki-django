@@ -41,13 +41,11 @@ export default defineConfig({
         transformer: 'lightningcss',
         lightningcss: {
             targets: {
-                safari: (16 << 16)
+                safari: (16 << 16),
+                chrome: (111 << 16),
+                firefox: (115 << 16),
+                edge: (111 << 16)
             },
-            importAndCustomMedia: {
-                ignoredImports: [
-                    'https://fonts.googleapis.com'
-                ]
-            }
         }
     },
     plugins: [
