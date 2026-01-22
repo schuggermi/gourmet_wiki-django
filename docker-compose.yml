@@ -5,6 +5,7 @@ services:
     command: gunicorn gourmet_wiki.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/app
+      - /app/node_modules
       - static_volume:/app/staticfiles
       - assets_volume:/app/assets
       - media_volume:/app/media
